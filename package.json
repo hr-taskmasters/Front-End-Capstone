@@ -1,0 +1,32 @@
+{
+  "name": "front-end-capstone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "react-dev": "webpack -d --watch --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hr-taskmasters/Front-End-Capstone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hr-taskmasters/Front-End-Capstone/issues"
+  },
+  "homepage": "https://github.com/hr-taskmasters/Front-End-Capstone#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "babel-loader": "^8.2.3",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
