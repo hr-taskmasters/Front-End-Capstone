@@ -11,26 +11,62 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      products: []
+      product: {
+        "id": null,
+        "campus": '',
+        "name": '',
+        "slogan": '',
+        "description": '',
+        "category": '',
+        "default_price": '',
+        "created_at": '',
+        "updated_at": ''
+      },
+      ratings: {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": "",
+        "5": ""
+      }
     }
-    this.getProducts = this.getProducts.bind(this);
+    this.getProductViaId = this.getProductViaId.bind(this);
+    this.getReviewsMeta = this.getReviewsMeta.bind(this);
   }
 
   componentDidMount(){
-    this.getProducts();
+    this.getProductViaId(43266);    //placeholder number
+    this.getReviewsMeta(43266);
   }
 
-  getProducts() {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/?count=30', {
+  getProductViaId (id) { //  /products/:product_id
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}`, {
       headers: {
         'Authorization': `${API_KEY}`
       }
     })
-    .then((response) => {
+    .then(response => {
       this.setState({
-        products: response.data
+        product: response.data
       })
-    }).catch((err) => {
+    })
+    .catch(err => {
+      console.error(err);
+    })
+  }
+
+  getReviewsMeta (id) { //  /reviews/meta
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/meta/?product_id=${id}`, {
+      headers: {
+        'Authorization': `${API_KEY}`
+      }
+    })
+    .then(response => {
+      this.setState({
+        ratings: response.data.ratings
+      })
+    })
+    .catch(err => {
       console.log(err);
     })
   }
