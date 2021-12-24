@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import API_KEY from '../../config/config.js'
-// import testData from './testData.js';
-import List from './Components/List.jsx';
+import Ratings from './Components/Ratings/Ratings.jsx'
+import Reviews from './Components/Reviews/Reviews.jsx';
+import CardGroup from 'react-bootstrap/CardGroup';
+import Card from 'react-bootstrap/Card';
 
 
 function RatingAndReviews(props) {
@@ -28,7 +30,17 @@ function RatingAndReviews(props) {
   }
   return (
     <div>
-      <List reviews={reviews}/>
+      <h4>Ratings and Reviews</h4>
+      {/* <CardGroup> */}
+      <span>
+        <Card style={{ width: '25rem' }}> 
+          <Ratings />
+        </Card>
+        <Card style={{ width: '50rem' }}>
+          <Reviews reviews={reviews}/>
+        </Card>
+        </span>
+      {/* </CardGroup> */}
     </div>
   )
 }
