@@ -154,7 +154,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nvar API_KEY = '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';\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (API_KEY);\n\n//# sourceURL=webpack:///./client/src/config/config.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nvar API_KEY = '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';\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (API_KEY);\n\n//# sourceURL=webpack:///./client/src/config/config.js?");
 
 /***/ }),
 
