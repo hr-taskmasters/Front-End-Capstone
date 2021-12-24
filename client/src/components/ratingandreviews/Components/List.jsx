@@ -39,12 +39,10 @@ import Tile from './Tile.jsx'
 
 function List (props) {
 
-    // const [moreReviews, setMoreReviews] = useState(false);
-    // //display 2 tiles initially and more when moreReviews is true
-    // const[tileNum, setTileNum] = useState(2)
-    // useEffect(() =>{
-    //     props.getReviews(43266)
-    // },[])
+    const [moreReviews, setMoreReviews] = useState(false);
+    //display 2 tiles initially and more when moreReviews is true
+    const[tileNum, setTileNum] = useState(2)
+   
 
     // console.log(props)
     return (
@@ -62,8 +60,7 @@ function List (props) {
                 <span className="visually-hidden">Loading...</span>
             </div>
             }
-            
-            
+            <button>More Reviews</button>
         </div>
     )
 };
