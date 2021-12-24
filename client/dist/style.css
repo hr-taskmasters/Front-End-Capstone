@@ -1,0 +1,27 @@
+.p_on {
+  color: #e7e362;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.p_off {
+  color: #ccc;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.product-grid .p_price span {
+  color:#999;
+  font-size:13px;
+  font-weight:400;
+  text-decoration:line-through;
+  margin-left:3px;
+  display:inline-block
+}
+.p_thumbnail_img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
