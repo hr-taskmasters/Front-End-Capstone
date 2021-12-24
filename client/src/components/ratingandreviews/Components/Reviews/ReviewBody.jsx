@@ -7,30 +7,36 @@ function ReviewBody (props) {
 
 //default to first 250 chars
 //show more button should only appear when there are mor than 250 chars
+const [chars, setChars] = useState(0);
+
 
 //only display recommended if recommended it true
-
     return (
       <Card>
         <Card.Body>
           <Card.Text>
-            {props.review.body}
+            {/* {chars > 250 ?
+            trimmedReview
+        :  */}
+        {props.review.body}
           </Card.Text>
-          <Button variant="outline-secondary">Show More</Button>
+          { chars > 250 ?
+            <Button variant="outline-secondary">Show More</Button>
+          : <></> }
         </Card.Body>
       </Card>
     )
 
+
 }
 export default ReviewBody;
 
-{/* <Card.Header>Featured</Card.Header> */}
-{/* <Card.Title>Special title treatment</Card.Title> */}
-
-
-{/* <div>
-<div>{props.review.body}</div>
-<div>{props.review.recommended}</div>
-
-<button>Show More</button>
-</div> */}
+// let trimmedReview = props.reviews.body.slice(0, 250);
+// if(props.reviews.body)console.log(props.reviews.body)
+// const charsNum =() => {
+//   let body = props.review.body
+//   setChars(body.length)
+// }
+// useEffect(() => {
+//   setChars();
+// }, [])

@@ -5,8 +5,6 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 
-
-
 function Tile (props) {
     return (
     <>
@@ -26,12 +24,3 @@ function Tile (props) {
 }
 export default Tile;
 
-
-{/* <Button variant="primary">Go somewhere</Button> */}
-
-// <>
-// <div>Star Rating</div>
-// <div>{moment(props.review.date).fromNow()}</div> 
-// <div>{props.review.summary}</div>
-// <ReviewBody review={props.review}/><br></br>
-// </>

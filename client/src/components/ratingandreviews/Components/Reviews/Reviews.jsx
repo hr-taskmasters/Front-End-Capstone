@@ -9,10 +9,20 @@ function Reviews (props) {
 
     const [moreReviews, setMoreReviews] = useState(false);
     //display 2 tiles initially and more when moreReviews is true
-    const[tileNum, setTileNum] = useState(2)
+    const[tileNum, setTileNum] = useState(0)
    
 
-    // console.log(props)
+    //if tileNum > 2
+        //show more review button
+    const getReviewNum = () => {
+        if (props.reviews.count) {
+            setTileNum(props.reviews.count);
+        }
+    }
+    useEffect(() =>{
+        getReviewNum()
+    })
+
     return (
         <Card>
         <Card.Header>*Total* reviews, sorted by <Sort /></Card.Header>
@@ -30,7 +40,9 @@ function Reviews (props) {
             }
             <>
               <Button variant="outline-secondary">Submit Review</Button>{' '}
-              <Button variant="outline-secondary">More Reviews</Button>{' '}
+              {tileNum > 2 ?
+              <Button variant="outline-secondary">More Reviews</Button>
+                : <></>}
             </>
         </Card.Body>
       </Card>
