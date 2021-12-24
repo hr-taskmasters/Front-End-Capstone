@@ -1,15 +1,14 @@
 import React from 'react';
+import ProductCard from './ProductCard.jsx';
 
-class RelatedItems extends React.Component {
-  constructor(props){
-    super(props);
-  }
+//sample data
+import initialState from './sampleDataProduct.js';
 
-  render() {
-    return (
-      <div></div>
-    )
-  }
+const RelatedItems = (props) => {
+
+  return (
+    <ProductCard product={initialState.products[0]} ratings={props.ratings}/>
+  )
 }
 
 export default RelatedItems;
