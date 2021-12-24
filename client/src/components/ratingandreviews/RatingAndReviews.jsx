@@ -1,7 +1,7 @@
 import React from 'react';
-// import axios from 'axios';
-// import API_KEY from '../../config/config.js'
-import testData from './testData.js';
+import axios from 'axios';
+import API_KEY from '../../config/config.js'
+// import testData from './testData.js';
 import List from './Components/List.jsx';
 
 class RatingAndReviews extends React.Component {
@@ -9,49 +9,52 @@ class RatingAndReviews extends React.Component {
     super(props);
 
     this.state = {
-      reviews: [],
-      
+      reviews: {}
     }
-    // this.getReviews = this.getReviews.bind(this);
-    this.getTestData = this.getTestData.bind(this);
+    this.getReviews = this.getReviews.bind(this);
+    
   }
 
   componentDidMount() {
-    // this.getReviews();
-    this.getTestData()
+    this.getReviews();
   }
 
-  getTestData() {
-    this.setState({
-      reviews: testData
+
+  getReviews() {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?product_id=42366`, {
+      headers: {
+        'Authorization': `${API_KEY}`
+      },
+    })
+    .then((response) => {
+      this.setState({
+        reviews: response.data
+      })
+    }).catch((err) => {
+      console.log(err);
     })
   }
-
-  // getReviews() {
-  //   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/', {
-  //     headers: {
-  //       'Authorization': `${API_KEY}`
-  //     }
-  //   })
-  //   .then((response) => {
-  //     this.setState({
-  //       reviews: response.data
-  //     })
-  //   }).catch((err) => {
-  //     console.log(err);
-  //   })
-  // }
-
-
-
 
   render() {
     return (
       <div>
-        <List sampleReviews={this.state.reviews}/>
+        <List reviews={this.state.reviews}/>
+      
+        <button>More Reviews</button>
       </div>
     )
   }
 }
 
 export default RatingAndReviews;
+
+
+//ideas//
+
+//getReviews={this.getReviews}
+
+// this.getReviews().then(response =>{
+    //   this.setState({
+    //     reviews: response.data
+    //   })
+    // })
