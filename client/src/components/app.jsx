@@ -35,8 +35,8 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    this.getProductViaId(43266);    //placeholder number
-    this.getReviewsMeta(43266);
+    this.getProductViaId(42366);    //placeholder number
+    this.getReviewsMeta(42366);
   }
 
   getProductViaId (id) { //  /products/:product_id
@@ -75,7 +75,7 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <ProductDetails />
+        <ProductDetails product={this.state.product} ratings={this.state.ratings}/>
         <RelatedItems />
         <QuestionsAndAnswers />
         <RatingAndReviews />
