@@ -76,8 +76,13 @@ class App extends React.Component {
     return (
       <div>
         <ProductDetails product={this.state.product} ratings={this.state.ratings}/>
+<<<<<<< HEAD
         <RelatedItems products={this.state.products} ratings={this.state.ratings}/>
         <QuestionsAndAnswers />
+=======
+        <RelatedItems />
+        <QuestionsAndAnswers product={this.state.product}/>
+>>>>>>> 6a1d9d6 (draft questions list)
         <RatingAndReviews />
       </div>
     )
