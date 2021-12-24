@@ -7,7 +7,7 @@ import initialState from './sampleDataProduct.js';
 const RelatedItems = (props) => {
 
   return (
-    <ProductCard product={initialState.products[0]}/>
+    <ProductCard product={initialState.products[0]} ratings={props.ratings}/>
   )
 }
 
