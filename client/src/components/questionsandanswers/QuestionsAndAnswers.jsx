@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import {Button, Modal} from 'react-bootstrap';
 import API_KEY from '../../config/config.js';
@@ -14,6 +14,7 @@ const QuestionsAndAnswers = (props) => {
 
   //const [product_id, setId] = useState(42366);
   const [questions, setQuestions] = useState([]);
+  const [questionslen, setLength] = useState(0);
 
   useEffect(() => {
     getAllQuestions();
@@ -26,15 +27,64 @@ const QuestionsAndAnswers = (props) => {
       .then((response) => {
         console.log(response.data.results);
         setQuestions(response.data.results);
+        setLength(response.data.results.length);
       })
       .catch((err) => console.error(err));
   }
 
+  const questionsPerPage = 2;
+  let questionsHolding = [];
+  const [quesToShow, setQuesToShow] = useState([]);
+  const ref = useRef(questionsPerPage);
+  const loopWithSlice = (start, end) => {
+    const sliceQuestions = questions.slice(start, end);
+    questionsHolding = questionsHolding.concat(sliceQuestions);
+    setQuesToShow(questionsHolding);
+  }
+  useEffect(() => {
+    loopWithSlice(0, questionsPerPage)
+  }, []);
+
+  console.log('questions to show', quesToShow);
+  const handleLoadMoreClick = () => {
+    loopWithSlice(ref.current, ref.current + questionsPerPage)
+    ref.current += questionsPerPage;
+  }
+
+  //const [count, setCount] = useState(1);
+  // const loopThroughQuestions = (count) => {
+  //   for (
+  //     let i = count * questionsPerPage - questionsPerPage;
+  //     i < (questionsPerPage * count);
+  //     i++
+  //   ) {
+  //     if (questions[i] !== undefined) {
+  //       questionsHolding.push(questions[i]);
+  //     }
+  //   }
+  //   setQuesToShow(questionsHolding);
+  // }
+
+  // useEffect(() => {
+  //   setCount((prevCount) => prevCount + 1);
+  //   loopThroughQuestions(count);
+  // }, []);
+
+  // const handleLoadMoreClick = () => {
+  //   console.log('click load more');
+  //   setCount(prevCount => prevCount + 1);
+  //   loopThroughQuestions(count);
+  // };
+
   return (
     <div className="questions-answers">
         <h3>QUESTIONS & ANSWERS</h3>
-        <Questions questions={questions}/>
-        <Button>LOAD MORE QUESTIONS</Button>
+        <Questions questions={questions.slice(0,2)}/>
+        {/* <Questions questions={quesToShow}/> */}
+        {/* {questionslen > 2 &&
+
+        } */}
+        <Button onClick={handleLoadMoreClick}>LOAD MORE QUESTIONS</Button>
         <Button>ADD A QUESTION +</Button>
     </div>
   );
