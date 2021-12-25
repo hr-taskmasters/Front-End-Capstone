@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Answers from './Answers.jsx';
 
 const IndividualQuestion = (props) => {
   const [q_helpful_count, setQCount] = useState(() => {return props.question.question_helpfulness})
@@ -17,9 +18,11 @@ const IndividualQuestion = (props) => {
       <span> | </span>
       <u>Add Answer</u>
     </div>
+    <Answers question={props.question}/>
+    <br></br>
   </div>
   )
 
-}
+};
 
 export default IndividualQuestion;

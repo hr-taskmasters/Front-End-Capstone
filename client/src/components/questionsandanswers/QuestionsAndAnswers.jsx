@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import {Button, Modal} from 'react-bootstrap';
 import API_KEY from '../../config/config.js';
@@ -24,7 +24,7 @@ const QuestionsAndAnswers = (props) => {
     headers: { 'Authorization': `${API_KEY}` }
     })
       .then((response) => {
-        console.log(response.data.results);
+        //console.log('questions',response.data.results);
         setQuestions(response.data.results);
       })
       .catch((err) => console.error(err));
