@@ -22,6 +22,22 @@
 }
 .p_thumbnail_img {
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
+  margin: auto;
+  display: block;
+}
+.p_thumbnail_font {
+  color: #999;
+  font-size: x-small;
+  text-align: center;
+}
+.p_thumbnail {
+  display: flex;
+  justify-content: left;
+  padding: 2%;
+}
+.p_pic {
+  width: 75%;
+  margin: 0 10%;
 }
