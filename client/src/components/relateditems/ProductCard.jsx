@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ActionButton from './ActionButton.jsx';
 
 //sample data. Need to make /products/:id/styles query to retrieve
-import styleCall from './sampleDataProductCard.js';
+import styleCall from './data/sampleDataProductCard.js';
 
 const ProductCard = (props) => {
 

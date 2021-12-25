@@ -3,7 +3,7 @@ import ProductCard from './ProductCard.jsx';
 import {Carousel} from 'react-bootstrap';
 
 //sample data
-import initialState from './sampleDataProduct.js';
+import initialState from './data/sampleDataProduct.js';
 
 const RelatedItems = (props) => {
 
