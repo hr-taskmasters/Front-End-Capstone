@@ -22,7 +22,7 @@ const ProductCard = (props) => {
         <div>{expandedProductName}</div>
         <div>${price}</div>
         <div>{(props.ratings[1] === "" && props.ratings[2] === "" && props.ratings[3] === "" && props.ratings[4] === "" && props.ratings[5] === "")
-               ? 'Loading..' : rating}</div>
+               ? 'Loading...' : rating}</div>
       </div>
     </div>
   )
