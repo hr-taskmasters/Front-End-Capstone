@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "react-dev": "webpack --watch"
+    "react-dev": "webpack --watch",
+    "test": "jest --coverage",
+    "no-test": "jest --coverage --passWithNoTests"
   },
   "repository": {
     "type": "git",
