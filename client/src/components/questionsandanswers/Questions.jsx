@@ -1,12 +1,13 @@
 import React from 'react';
 import IndividualQuestion from './IndividualQuestion.jsx';
+import { ListGroup } from 'react-bootstrap';
 
 const Questions = (props) => (
-  <div>
+  <ListGroup variant="flush">
     {props.questions.map((question, index) =>
     <IndividualQuestion question={question} key={index} />
     )}
-  </div>
+  </ListGroup>
 )
 
 export default Questions;

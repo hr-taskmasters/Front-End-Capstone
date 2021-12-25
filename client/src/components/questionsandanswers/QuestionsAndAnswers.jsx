@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import {Button, Modal} from 'react-bootstrap';
+import {Button, Modal, Spinner} from 'react-bootstrap';
 import API_KEY from '../../config/config.js';
 import Questions from './Questions.jsx';
 
@@ -30,17 +30,17 @@ const QuestionsAndAnswers = (props) => {
       .catch((err) => console.error(err));
   }
 
-  const [numPerPage, setNumPerPage] = useState(2);
+  const [numPerPage, setNumPerPage] = useState(4);
   const loadMore = () => {
-    setNumPerPage(numPerPage + numPerPage);
+    setNumPerPage(numPerPage + 2);
   }
   const sliceQuesions = questions.slice(0, numPerPage);
   return (
     <div className="questions-answers">
-        <h3>QUESTIONS & ANSWERS</h3>
+        <h5>QUESTIONS & ANSWERS</h5>
         <Questions questions={sliceQuesions} />
-        <Button onClick={() => loadMore()}>LOAD MORE QUESTIONS</Button>
-        <Button>ADD A QUESTION +</Button>
+        <Button variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS</Button>
+        <Button variant="outline-secondary">ADD A QUESTION +</Button>
     </div>
   );
 };
