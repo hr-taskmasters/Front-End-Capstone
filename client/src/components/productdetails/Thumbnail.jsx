@@ -2,10 +2,6 @@ import React from 'react';
 
 function Thumbnail(props) {
 
-  const handleClick = (e) => {
-    console.log(e.target.value)
-  }
-
   return (
 
     <div className="row">
@@ -14,10 +10,10 @@ function Thumbnail(props) {
         return (
           <div key={index} className="p_thumbnail col">
             <div className="col-sd-4">
-              <img className="p_thumbnail_img"
+              <img
+                className="p_thumbnail_img"
                 src={itemStyle.photos[0].thumbnail_url}
-                value={index}
-                onClick={handleClick}>
+                onClick={() => props.handleClick(index)}>
               </img>
               <div className="p_thumbnail_font">{itemStyle.name}</div>
             </div>

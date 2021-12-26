@@ -9,12 +9,18 @@ import Favorite from './Favorite.jsx';
 
 function ProductInfo(props) {
 
+  const [styleNum, setStyleNum] = useState(0);
+
+  const handleClick = (index) => {
+    setStyleNum(index);
+  }
+
   return (
     <div className="row">
 
       <div className="col-md-6">
         <div className="product-grid">
-          <Image style={props.style}/>
+          <Image style={props.style} styleNum={styleNum}/>
         </div>
       </div>
       <div className="product-content col-md-5">
@@ -27,14 +33,14 @@ function ProductInfo(props) {
         </div>
         <div>
           <b>STYLE > </b><span>SELECTED STYLE</span>
-          <Thumbnail style={props.style}/>
+          <Thumbnail style={props.style} handleClick={handleClick}/>
         </div>
         <SizeAndQuantity />
         <Cart />
         <Favorite />
-        <div>
+        <p>
           {props.info.description}
-        </div>
+        </p>
         <div>
           <a className="p_share_icon" href="https://www.facebook.com/">
             <i className="fab fa-facebook-square fa-lg"></i>
