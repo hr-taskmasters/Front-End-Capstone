@@ -1,11 +1,25 @@
 import React, {useState, useEffect} from 'react';
 import Answers from './Answers.jsx';
 import { ListGroup, Button, Stack } from 'react-bootstrap';
+import axios from 'axios';
+import API_KEY from '../../config/config.js';
 
 const IndividualQuestion = (props) => {
   const [q_helpful_count, setQCount] = useState(() => {return props.question.question_helpfulness})
   const handleHelpfulClick = () => {
     setQCount(q_helpful_count + 1)
+  }
+  const question_id = props.question.question_id;
+  const [reported, setReported] = useState(false);
+  const markReport = () => {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${question_id}/report`,
+      { reported: true } ,{
+      headers: { 'Authorization': `${API_KEY}` }
+      })
+        .then((response) => {
+          setReported(true);
+        })
+        .catch((err) => console.error(err));
   }
   return (
     <ListGroup.Item>
@@ -21,7 +35,11 @@ const IndividualQuestion = (props) => {
         </div>
         <div className="vr"/>
         <div>
-        <u>Report</u>
+        {!reported ? (
+          <u onClick={() => markReport()}>Report</u>
+        ) : (
+          <label>Reported</label>
+        )}
         </div>
       </Stack>
       <Answers question={props.question}/>
