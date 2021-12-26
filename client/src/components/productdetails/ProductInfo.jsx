@@ -17,7 +17,6 @@ function ProductInfo(props) {
 
   return (
     <div className="row">
-
       <div className="col-md-6">
         <div className="product-grid">
           <Image style={props.style} styleNum={styleNum}/>

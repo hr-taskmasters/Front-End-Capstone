@@ -40,9 +40,10 @@
 .p_pic {
   width: 300px;
   height: 600px;
-  object-fit: fill;
+  object-fit: cover;
   padding: 0 10%;
 }
 .p_share_icon {
   padding: 5%;
 }
+
