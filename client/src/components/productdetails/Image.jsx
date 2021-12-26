@@ -9,7 +9,7 @@ function Image(props) {
           {props.style.length ?
           <Carousel variant="dark">
             {props.style[props.styleNum].photos.map((img, index) => (
-              <Carousel.Item key={index} interval={3000}>
+              <Carousel.Item key={index} interval={5000}>
                 <img
                   className="d-block w-100 p_pic"
                   src={img.url}
