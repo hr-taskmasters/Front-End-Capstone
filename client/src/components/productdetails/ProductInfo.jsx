@@ -29,10 +29,10 @@ function ProductInfo(props) {
         <h1 className="p_title"><a href="#">{props.info.name}</a></h1>
         <div className="p_price">
             <span>{props.info.sale_price ? $props.info.sale_price : null}</span>
-            ${props.info.default_price}
+            ${props.style[styleNum] ? props.style[styleNum].original_price : null}
         </div>
         <div>
-          <b>STYLE > </b><span>SELECTED STYLE</span>
+          <b>STYLE > </b><span>{props.style[styleNum] ? props.style[styleNum].name : null}</span>
           <Thumbnail style={props.style} handleClick={handleClick}/>
         </div>
         <SizeAndQuantity />
