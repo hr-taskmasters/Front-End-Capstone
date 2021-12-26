@@ -21,8 +21,9 @@ function ProductInfo(props) {
         <StarRating />
         <h4>{props.info.category}</h4>
         <h1 className="p_title"><a href="#">{props.info.name}</a></h1>
-        <div className="p_price">${props.info.default_price}
+        <div className="p_price">
             <span>{props.info.sale_price ? $props.info.sale_price : null}</span>
+            ${props.info.default_price}
         </div>
         <div>
           <b>STYLE > </b><span>SELECTED STYLE</span>
@@ -31,6 +32,20 @@ function ProductInfo(props) {
         <SizeAndQuantity />
         <Cart />
         <Favorite />
+        <div>
+          {props.info.description}
+        </div>
+        <div>
+          <a className="p_share_icon" href="https://www.facebook.com/">
+            <i className="fab fa-facebook-square fa-lg"></i>
+          </a>
+          <a className="p_share_icon" href="https://twitter.com/home">
+            <i className="fab fa-twitter-square fa-lg"></i>
+          </a>
+          <a className="p_share_icon" href="https://www.pinterest.com/">
+            <i className="fab fa-pinterest-square fa-lg"></i>
+          </a>
+        </div>
       </div>
 
     </div>

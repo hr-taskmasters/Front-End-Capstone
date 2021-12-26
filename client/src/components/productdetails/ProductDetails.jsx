@@ -6,19 +6,6 @@ import ProductInfo from './ProductInfo.jsx';
 
 function ProductDetails(props) {
 
-  const [info, setInfo] = useState({
-    id: 0,
-    campus: '',
-    name: '',
-    slogan: '',
-    description: '',
-    category: '',
-    default_price: '',
-    created_at: '',
-    updated_at: '',
-    features: []
-  });
-
   const [style, setStyle] = useState({
     product_id: 0,
     results: []
@@ -27,24 +14,9 @@ function ProductDetails(props) {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
-    getInfo();
     getStyle();
     getCartInfo();
   }, []);
-
-  const getInfo = () => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/42366', {
-      headers: {
-        'Authorization': `${API_KEY}`
-      }
-    })
-    .then(response => {
-      setInfo(response.data);
-    })
-    .catch(err => {
-      console.error(err);
-    })
-  }
 
   const getStyle = () => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/42366/styles', {
@@ -77,7 +49,7 @@ function ProductDetails(props) {
   return (
     <div>
       <Navbar />
-      <ProductInfo info={info} style={style.results} />
+      <ProductInfo info={props.product} style={style.results} />
     </div>
   )
 }
