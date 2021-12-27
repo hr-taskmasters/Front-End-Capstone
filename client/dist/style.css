@@ -46,4 +46,12 @@
 .p_share_icon {
   padding: 5%;
 }
-
+.q_ans_photos {
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+.q_answerslist {
+  width: 50px;
+}

@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import {Button, Modal} from 'react-bootstrap';
+import {Button, Modal, ListGroup, Container, Row, Col} from 'react-bootstrap';
 import API_KEY from '../../config/config.js';
 import Questions from './Questions.jsx';
 
@@ -11,38 +11,41 @@ const QuestionsAndAnswers = (props) => {
   useEffect(() => {
     setId(props.product.id)
   }, [props])
+  //const [product_id, setId] = useState(42380); //test for specific product, has more answers and photos in answer
+  //const [product_id, setId] = useState(42370); // has seller answered
 
-  //const [product_id, setId] = useState(42370);
   const [questions, setQuestions] = useState([]);
-
   useEffect(() => {
     getAllQuestions();
   }, [product_id]);
-
   const getAllQuestions = () => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${product_id}`, {
     headers: { 'Authorization': `${API_KEY}` }
     })
       .then((response) => {
-        console.log(response.data.results);
+        //console.log('questions',response.data.results);
         setQuestions(response.data.results);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => { return; });
   }
 
-  const [numPerPage, setNumPerPage] = useState(2);
+  const [numPerPage, setNumPerPage] = useState(4);
   const loadMore = () => {
-    setNumPerPage(numPerPage + numPerPage);
+    setNumPerPage(numPerPage + 2);
   }
   const sliceQuesions = questions.slice(0, numPerPage);
+
   return (
     <div className="questions-answers">
-        <h3>QUESTIONS & ANSWERS</h3>
-        <Questions questions={sliceQuesions} />
-        <Button onClick={() => loadMore()}>LOAD MORE QUESTIONS</Button>
-        <Button>ADD A QUESTION +</Button>
+      <h5>QUESTIONS & ANSWERS</h5>
+      <Questions questions={sliceQuesions} />
+      {questions.length > 2 &&
+        <Button variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS ({questions.length-sliceQuesions.length})</Button>
+      }
+      <Button variant="outline-secondary">ADD A QUESTION +</Button>
     </div>
   );
+
 };
 
 
