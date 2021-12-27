@@ -1,15 +1,16 @@
 .carousel {
-  height: 50vh;
+  height: 60vh;
   width: 100%;
-  background-color: black;
+  /* background-color: black; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
 
+
 .carouselContainer {
-  height: 250px;
+  height: 100%;
   width: 80%;
   position: relative;
 }
@@ -20,7 +21,7 @@
   font-weight: bold;
   height: 100%;
   width: 45px;
-  line-height: 250px;
+  line-height: 50vh;
   font-size: 25px;
   text-align: center;
   background-color: yellow;
@@ -40,7 +41,7 @@
 }
 
 .carouselBox {
-  height: 250px;
+  height: 100%;
   width: auto;
   overflow: scroll;
   white-space: nowrap;
@@ -52,9 +53,9 @@
 }
 
 .carouselBox .carouselItem {
-  min-width: 150px;
-  max-width: 150px;
-  height: 200px;
+  min-width: 300px;
+  max-width: 300px;
+  height: 90%;
   background-size: cover;
   background-color: white;
   margin: 5px 10px;
@@ -63,7 +64,18 @@
   z-index: 2;
 }
 
-.carouselBox .carouselItem:hover {
+.carouselBox .carouselItem .imageContainer {
+  min-width: 300px;
+  max-width: 300px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.carouselBox .carouselItem .imageContainer img {
+  width: 100%;
+}
+
+/* .carouselBox .carouselItem:hover {
   transform: scale(1.4);
   z-index: 5;
-}
+} */

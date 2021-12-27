@@ -1,5 +1,4 @@
 import React from 'react';
-import ProductCard from './ProductCard.jsx';
 import {Carousel} from 'react-bootstrap';
 import ListCarousel from './ListCarousel.jsx';
 
@@ -13,11 +12,11 @@ const RelatedItems = (props) => {
     <div>
       <div>RELATED PRODUCTS</div>
       <div>
-        <ListCarousel items={getProducts} purpose={'relatedItems'}/>
+        <ListCarousel items={getProducts} rating={props.ratings}/>
       </div>
       <div>YOUR OUTFIT</div>
       <div>
-        <ListCarousel items={getProducts} />
+        {/* <ListCarousel items={getProducts} /> */}
       </div>
     </div>
     // <Carousel variant="dark">

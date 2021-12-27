@@ -15,8 +15,12 @@ const ProductCard = (props) => {
 
   return (
     <div>
-      <img src={imageUrl}/>
-      <ActionButton />
+      <div className="imageContainer">
+        <img src={imageUrl}/>
+      </div>
+      <div className="buttonContainer">
+        <ActionButton />
+      </div>
       <div>
         <div>{category}</div>
         <div>{expandedProductName}</div>

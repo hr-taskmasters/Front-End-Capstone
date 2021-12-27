@@ -17,7 +17,7 @@ class ListCarousel extends React.Component {
     this.scrollRight = this. scrollRight.bind(this);
   }
   scrollPos = 0;
-  scrollDistance = 170;
+  scrollDistance = 320;
 
   componentDidMount() {
     this.populateCarousel();
@@ -26,7 +26,7 @@ class ListCarousel extends React.Component {
   populateCarousel () {
     let grid = [];
     getProducts.map((product, index) => {
-      grid.push(<div className="carouselItem" key={index}>{product.name}</div>)
+      grid.push(<div className="carouselItem" key={index}><ProductCard product={product} ratings={this.props.rating}/></div>)
     })
     this.setState({
       grid: grid
