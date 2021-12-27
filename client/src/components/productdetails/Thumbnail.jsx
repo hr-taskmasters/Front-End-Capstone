@@ -1,15 +1,20 @@
 import React from 'react';
 
 function Thumbnail(props) {
+
   return (
 
     <div className="row">
       {props.style.length ?
-      props.style.map(itemStyle => {
+      props.style.map((itemStyle, index) => {
         return (
-          <div className="p_thumbnail col">
+          <div key={index} className="p_thumbnail col">
             <div className="col-sd-4">
-              <img className="p_thumbnail_img" src={itemStyle.photos[0].thumbnail_url}></img>
+              <img
+                className="p_thumbnail_img"
+                src={itemStyle.photos[0].thumbnail_url}
+                onClick={() => props.handleClick(index)}>
+              </img>
               <div className="p_thumbnail_font">{itemStyle.name}</div>
             </div>
           </div>
