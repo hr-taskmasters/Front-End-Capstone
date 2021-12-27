@@ -16,17 +16,17 @@ function ProductInfo(props) {
   }
 
   return (
-    <div className="row">
-      <div className="col-md-6">
-        <div className="product-grid">
+    <div className='row'>
+      <div className='col-md-6'>
+        <div className='product-grid'>
           <Image style={props.style} styleNum={styleNum}/>
         </div>
       </div>
-      <div className="product-content col-md-5">
+      <div className='product-content col-md-5'>
         <StarRating />
         <h4>{props.info.category}</h4>
-        <h1 className="p_title"><a href="#">{props.info.name}</a></h1>
-        <div className="p_price">
+        <h1 className='p_title'><a href='#'>{props.info.name}</a></h1>
+        <div className='p_price'>
             <span>{props.info.sale_price ? $props.info.sale_price : null}</span>
             ${props.style[styleNum] ? props.style[styleNum].original_price : null}
         </div>
@@ -41,14 +41,14 @@ function ProductInfo(props) {
           {props.info.description}
         </p>
         <div>
-          <a className="p_share_icon" href="https://www.facebook.com/">
-            <i className="fab fa-facebook-square fa-lg"></i>
+          <a className='p_share_icon' href='https://www.facebook.com/'>
+            <i className='fab fa-facebook-square fa-lg'></i>
           </a>
-          <a className="p_share_icon" href="https://twitter.com/home">
-            <i className="fab fa-twitter-square fa-lg"></i>
+          <a className='p_share_icon' href='https://twitter.com/home'>
+            <i className='fab fa-twitter-square fa-lg'></i>
           </a>
-          <a className="p_share_icon" href="https://www.pinterest.com/">
-            <i className="fab fa-pinterest-square fa-lg"></i>
+          <a className='p_share_icon' href='https://www.pinterest.com/'>
+            <i className='fab fa-pinterest-square fa-lg'></i>
           </a>
         </div>
       </div>

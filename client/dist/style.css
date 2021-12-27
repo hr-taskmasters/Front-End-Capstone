@@ -55,3 +55,12 @@
 .q_answerslist {
   width: 50px;
 }
+.p_s_img {
+  width: 60px;
+  height: 70px;
+  object-fit: cover;
+  margin: 0 auto 10px 50px;
+  z-index: 3;
+  border: 1px black solid;
+  border-radius: 7%;
+}

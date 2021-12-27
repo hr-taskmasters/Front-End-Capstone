@@ -4,8 +4,13 @@ import Carousel from 'react-bootstrap/Carousel';
 function Image(props) {
 
   return (
-    <div>
-      <div>
+    <div className='row'>
+      <div className='col-md-2'>
+        {props.style.length ?
+          props.style[props.styleNum].photos.map((img, index) => (
+          <img className='p_s_img' key={index} src={img.thumbnail_url}></img>)) : null}
+      </div>
+      <div className='col-md-10'>
         {props.style.length ?
         <Carousel variant='dark'>
           {props.style[props.styleNum].photos.map((img, index) => (
