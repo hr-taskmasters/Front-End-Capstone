@@ -27,7 +27,7 @@ const QuestionsAndAnswers = (props) => {
         //console.log('questions',response.data.results);
         setQuestions(response.data.results);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => { return; });
   }
 
   const [numPerPage, setNumPerPage] = useState(4);
@@ -35,11 +35,14 @@ const QuestionsAndAnswers = (props) => {
     setNumPerPage(numPerPage + 2);
   }
   const sliceQuesions = questions.slice(0, numPerPage);
+
   return (
     <div className="questions-answers">
         <h5>QUESTIONS & ANSWERS</h5>
-        <Questions questions={sliceQuesions} />
-        <Button variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS</Button>
+        <Questions questions={sliceQuesions} getAllQuestions={getAllQuestions}/>
+        {questions.length > 2 &&
+          <Button variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS ({questions.length-sliceQuesions.length})</Button>
+        }
         <Button variant="outline-secondary">ADD A QUESTION +</Button>
     </div>
   );
