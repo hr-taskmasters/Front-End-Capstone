@@ -11,9 +11,11 @@ const RelatedItems = (props) => {
 
   return (
     <div>
+      <div>RELATED PRODUCTS</div>
       <div>
         <ListCarousel items={getProducts} purpose={'relatedItems'}/>
       </div>
+      <div>YOUR OUTFIT</div>
       <div>
         <ListCarousel items={getProducts} />
       </div>
