@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ActionButton from './ActionButton.jsx';
 
 //sample data. Need to make /products/:id/styles query to retrieve
-import styleCall from './sampleDataProductCard.js';
+import styleCall from './data/sampleDataProductCard.js';
 
 const ProductCard = (props) => {
 
@@ -22,7 +22,7 @@ const ProductCard = (props) => {
         <div>{expandedProductName}</div>
         <div>${price}</div>
         <div>{(props.ratings[1] === "" && props.ratings[2] === "" && props.ratings[3] === "" && props.ratings[4] === "" && props.ratings[5] === "")
-               ? 'Loading..' : rating}</div>
+               ? 'Loading...' : rating}</div>
       </div>
     </div>
   )
