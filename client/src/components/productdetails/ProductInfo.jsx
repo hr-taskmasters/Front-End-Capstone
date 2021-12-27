@@ -5,7 +5,7 @@ import SizeAndQuantity from './SizeAndQuantity.jsx';
 import Image from './Image.jsx';
 import Cart from './Cart.jsx';
 import Favorite from './Favorite.jsx';
-
+import Price from './Price.jsx';
 
 function ProductInfo(props) {
 
@@ -26,7 +26,7 @@ function ProductInfo(props) {
         <StarRating />
         <h4>{props.info.category}</h4>
         <h1 className='p_title'><a href='#'>{props.info.name}</a></h1>
-        <Price />
+        <Price info={props.info} style={props.style} styleNum={styleNum} />
         <div>
           <b>STYLE > </b><span>{props.style[styleNum] ? props.style[styleNum].name : null}</span>
           <Thumbnail style={props.style} styleNum={styleNum} handleClick={handleClick}/>

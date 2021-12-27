@@ -16,6 +16,10 @@ function Image(props) {
     setClick(false);
   }
 
+  const handleChange = (index) => {
+    console.log(index);
+  };
+
   return (
     <div className='row'>
       <div className='col-md-2'>
@@ -30,7 +34,7 @@ function Image(props) {
       </div>
       <div className='col-md-10' >
         {props.style.length ?
-          <Carousel variant='dark' onClick={handleCarousel}>
+          <Carousel variant='light' onClick={handleCarousel}>
             {click ?
               <img className='w-100 p_pic' src={props.style[props.styleNum].photos[selectImg].url}>
               </img>
@@ -39,7 +43,7 @@ function Image(props) {
                 <Carousel.Item key={index} interval={5000}>
                   <img
                     className='d-block w-100 p_pic'
-                    src={img.url}
+                    src={img.url} onChange={() => handleChange(index)}
                   />
                 </Carousel.Item>
               ))

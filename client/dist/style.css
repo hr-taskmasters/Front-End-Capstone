@@ -42,7 +42,7 @@
 }
 .p_pic {
   width: 300px;
-  height: 600px;
+  height: 480px;
   object-fit: cover;
   padding: 0 10%;
 }
@@ -69,4 +69,13 @@
 }
 .p_s_img_highlight {
   box-shadow: 0 0 0 0.3rem lightcoral;
+}
+.p_flex_container {
+  display: flex;
+  margin: auto;
+  padding: 20px;
+  width: 80%;
+}
+.p_flex_child_size, .p_flex_child_quantity {
+  flex: 1;
 }
