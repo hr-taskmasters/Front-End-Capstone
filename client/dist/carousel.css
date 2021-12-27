@@ -46,14 +46,14 @@
   white-space: nowrap;
   display: inline-block;
   text-align: center;
-  padding-bottom: 10px !important;
+  padding-bottom: 10px;
   display: flex;
   align-items: center;
 }
 
 .carouselBox .carouselItem {
-  min-width: 147px;
-  max-width: 147px;
+  min-width: 150px;
+  max-width: 150px;
   height: 200px;
   background-size: cover;
   background-color: white;

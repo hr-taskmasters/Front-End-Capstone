@@ -11,9 +11,13 @@ const RelatedItems = (props) => {
 
   return (
     <div>
-      <ListCarousel items={getProducts} />
+      <div>
+        <ListCarousel items={getProducts} purpose={'relatedItems'}/>
+      </div>
+      <div>
+        <ListCarousel items={getProducts} />
+      </div>
     </div>
-
     // <Carousel variant="dark">
     //   <Carousel.Item>
     //     <ProductCard product={initialState.products[0]} ratings={props.ratings}/>

@@ -17,7 +17,7 @@ class ListCarousel extends React.Component {
     this.scrollRight = this. scrollRight.bind(this);
   }
   scrollPos = 0;
-  scrollDistance = 400;
+  scrollDistance = 170;
 
   componentDidMount() {
     this.populateCarousel();
@@ -33,8 +33,9 @@ class ListCarousel extends React.Component {
     })
   }
 
-  scrollLeft () {
-    document.querySelector('.carouselBox').scrollTo({
+  scrollLeft (e) {
+    let element = e.target.parentElement.firstElementChild;
+    element.scrollTo({
       top: 0,
       left: (this.scrollPos -= this.scrollDistance),
       behavior: "smooth"
@@ -45,9 +46,10 @@ class ListCarousel extends React.Component {
     }
   }
 
-  scrollRight () {
-    if(this.scrollPos <= document.querySelector('.carouselBox').scrollWidth - document.querySelector('.carouselBox').clientWidth) {
-      document.querySelector('.carouselBox').scrollTo({
+  scrollRight (e) {
+    let element = e.target.parentElement.firstElementChild;
+    if(this.scrollPos <= element.scrollWidth - element.clientWidth) {
+      element.scrollTo({
         top: 0,
         left: (this.scrollPos += this.scrollDistance),
         behavior: "smooth"
