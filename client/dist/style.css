@@ -32,10 +32,13 @@
   font-size: x-small;
   text-align: center;
 }
-.p_thumbnail {
+.p_thumbnail .p_thumbnail_selected{
   display: flex;
   justify-content: left;
   padding: 2%;
+}
+.p_thumbnail_selected {
+  box-shadow: 0 0 0 0.1rem lightgray;
 }
 .p_pic {
   width: 300px;
@@ -55,7 +58,7 @@
 .q_answerslist {
   width: 50px;
 }
-.p_s_img {
+.p_s_img, .p_s_img_highlight {
   width: 60px;
   height: 70px;
   object-fit: cover;
@@ -63,4 +66,7 @@
   z-index: 3;
   border: 1px gray solid;
   border-radius: 7%;
+}
+.p_s_img_highlight {
+  box-shadow: 0 0 0 0.3rem lightcoral;
 }
