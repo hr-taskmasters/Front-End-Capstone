@@ -7,24 +7,22 @@ import Questions from './Questions.jsx';
 
 const QuestionsAndAnswers = (props) => {
 
-  const [product_id, setId] = useState(props);
-  useEffect(() => {
-    setId(props.product.id)
-  }, [props])
+  // const [product_id, setId] = useState(props);
+  // useEffect(() => {
+  //   setId(props.product.id)
+  // }, [props])
+  const [product_id, setId] = useState(42380); //test for specific product
 
-  //const [product_id, setId] = useState(42370);
   const [questions, setQuestions] = useState([]);
-
   useEffect(() => {
     getAllQuestions();
   }, [product_id]);
-
   const getAllQuestions = () => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${product_id}`, {
     headers: { 'Authorization': `${API_KEY}` }
     })
       .then((response) => {
-        //console.log('questions',response.data.results);
+        console.log('questions',response.data.results);
         setQuestions(response.data.results);
       })
       .catch((err) => { return; });
@@ -39,7 +37,7 @@ const QuestionsAndAnswers = (props) => {
   return (
     <div className="questions-answers">
         <h5>QUESTIONS & ANSWERS</h5>
-        <Questions questions={sliceQuesions} getAllQuestions={getAllQuestions}/>
+        <Questions questions={sliceQuesions} />
         {questions.length > 2 &&
           <Button variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS ({questions.length-sliceQuesions.length})</Button>
         }

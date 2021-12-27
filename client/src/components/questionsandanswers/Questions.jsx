@@ -5,7 +5,7 @@ import { ListGroup } from 'react-bootstrap';
 const Questions = (props) => (
   <ListGroup variant="flush">
     {props.questions.map((question, index) =>
-    <IndividualQuestion question={question} key={index} getAllQuestions={props.getAllQuestions}/>
+    <IndividualQuestion question={question} key={index}/>
     )}
   </ListGroup>
 )
