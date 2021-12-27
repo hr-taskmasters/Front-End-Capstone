@@ -38,14 +38,22 @@ const IndividualAnswer = (props) => {
     index: 0
   });
 
+  const [isSeller, setIsSeller] = useState(props.answer.answerer_name==='Seller');
+
   return (
     <div>
       <Stack gap={4}>
         <div>{props.answer.body}</div>
         <Stack direction="horizontal" gap={6}>
-          <div>
-            by {props.answer.answerer_name}, {moment(props.answer.date).format('MMMM Do YYYY')}
-          </div>
+          {isSeller ? (
+            <div>
+              by <b>Seller</b>, {moment(props.answer.date).format('MMMM Do YYYY')}
+            </div>
+          ) : (
+            <div>
+              by {props.answer.answerer_name}, {moment(props.answer.date).format('MMMM Do YYYY')}
+            </div>
+          )}
           <div className="vr ms-auto"/>
           {!markHelp ? (
             <div className="ms-auto">

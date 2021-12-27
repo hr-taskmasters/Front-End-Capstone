@@ -11,7 +11,8 @@ const QuestionsAndAnswers = (props) => {
   // useEffect(() => {
   //   setId(props.product.id)
   // }, [props])
-  const [product_id, setId] = useState(42380); //test for specific product
+  //const [product_id, setId] = useState(42380); //test for specific product, photos in answer
+  const [product_id, setId] = useState(42370); // has seller answered
 
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
