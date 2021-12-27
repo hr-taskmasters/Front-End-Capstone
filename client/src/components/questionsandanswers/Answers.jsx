@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import API_KEY from '../../config/config.js';
 import IndividualAnswer from './IndividualAnswer.jsx';
-import { Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Stack } from 'react-bootstrap';
 
 const Answers = (props) => {
   const [question_id, setQId] = useState(props);
@@ -20,7 +20,6 @@ const Answers = (props) => {
     headers: { 'Authorization': `${API_KEY}` }
     })
       .then((response) => {
-        console.log("for question:", question_id, "answers:", response.data.results)
         setAnswers(response.data.results);
       })
       .catch((err) => console.error(err));
@@ -31,18 +30,35 @@ const Answers = (props) => {
   }
   const sliceAns = answers.slice(0, ansPerPage);
 
+  // return (
+  //   <div>
+  //     {answers.length > 0 &&
+  //       <Stack direction="horizontal" gap={4}>
+  //         <strong>A:</strong>
+  //         {sliceAns.map((answer) =>
+  //           <IndividualAnswer answer={answer} key={answer.answer_id} />
+  //         )}
+  //       </Stack>
+  //     }
+  //     {answers.length > 2 &&
+  //       <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
+  //     }
+  //   </div>
+  // )
   return (
     <div>
+      {answers.length > 0 &&
       <Row>
-      <Col xs={1}><strong>A:</strong></Col>
-      <Col className="Q_answerslist">
-      {sliceAns.map((answer) =>
-      <IndividualAnswer answer={answer} key={answer.answer_id} />
-      )}
-      </Col>
+        <Col xs={1}><strong>A:</strong></Col>
+        <Col className="q_answerslist">
+        {sliceAns.map((answer) =>
+          <IndividualAnswer answer={answer} key={answer.answer_id} />
+        )}
+        </Col>
+        {answers.length > 2 &&
+          <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
+        }
       </Row>
-      {answers.length > 2 &&
-        <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
       }
     </div>
   )

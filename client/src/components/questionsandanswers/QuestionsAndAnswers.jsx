@@ -1,18 +1,18 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import {Button, Modal, Spinner} from 'react-bootstrap';
+import {Button, Modal, ListGroup, Container, Row, Col} from 'react-bootstrap';
 import API_KEY from '../../config/config.js';
 import Questions from './Questions.jsx';
 
 
 const QuestionsAndAnswers = (props) => {
 
-  // const [product_id, setId] = useState(props);
-  // useEffect(() => {
-  //   setId(props.product.id)
-  // }, [props])
-  //const [product_id, setId] = useState(42380); //test for specific product, photos in answer
-  const [product_id, setId] = useState(42370); // has seller answered
+  const [product_id, setId] = useState(props);
+  useEffect(() => {
+    setId(props.product.id)
+  }, [props])
+  //const [product_id, setId] = useState(42380); //test for specific product, has more answers and photos in answer
+  //const [product_id, setId] = useState(42370); // has seller answered
 
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
@@ -23,7 +23,7 @@ const QuestionsAndAnswers = (props) => {
     headers: { 'Authorization': `${API_KEY}` }
     })
       .then((response) => {
-        console.log('questions',response.data.results);
+        //console.log('questions',response.data.results);
         setQuestions(response.data.results);
       })
       .catch((err) => { return; });
@@ -37,14 +37,15 @@ const QuestionsAndAnswers = (props) => {
 
   return (
     <div className="questions-answers">
-        <h5>QUESTIONS & ANSWERS</h5>
-        <Questions questions={sliceQuesions} />
-        {questions.length > 2 &&
-          <Button variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS ({questions.length-sliceQuesions.length})</Button>
-        }
-        <Button variant="outline-secondary">ADD A QUESTION +</Button>
+      <h5>QUESTIONS & ANSWERS</h5>
+      <Questions questions={sliceQuesions} />
+      {questions.length > 2 &&
+        <Button variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS ({questions.length-sliceQuesions.length})</Button>
+      }
+      <Button variant="outline-secondary">ADD A QUESTION +</Button>
     </div>
   );
+
 };
 
 

@@ -44,7 +44,7 @@ const IndividualAnswer = (props) => {
     <div>
       <Stack gap={4}>
         <div>{props.answer.body}</div>
-        <Stack direction="horizontal" gap={6}>
+        <Stack direction="horizontal" gap={2}>
           {isSeller ? (
             <div>
               by <b>Seller</b>, {moment(props.answer.date).format('MMMM Do YYYY')}

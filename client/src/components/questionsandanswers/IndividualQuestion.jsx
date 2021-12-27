@@ -32,7 +32,7 @@ const IndividualQuestion = (props) => {
   }
 
   return (
-    <ListGroup.Item>
+    <ListGroup.Item className="individual-question">
       <Stack direction="horizontal" gap={4}>
         <strong>Q:</strong>
         <strong>
