@@ -26,10 +26,7 @@ function ProductInfo(props) {
         <StarRating />
         <h4>{props.info.category}</h4>
         <h1 className='p_title'><a href='#'>{props.info.name}</a></h1>
-        <div className='p_price'>
-            <span>{props.info.sale_price ? $props.info.sale_price : null}</span>
-            ${props.style[styleNum] ? props.style[styleNum].original_price : null}
-        </div>
+        <Price />
         <div>
           <b>STYLE > </b><span>{props.style[styleNum] ? props.style[styleNum].name : null}</span>
           <Thumbnail style={props.style} styleNum={styleNum} handleClick={handleClick}/>
