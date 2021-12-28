@@ -1,8 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import moment from 'moment';
 import ReviewBody from './ReviewBody.jsx';
-// import Card from 'react-bootstrap/Card'
-// import Button from 'react-bootstrap/Button'
 import { Card, Button, Stack } from 'react-bootstrap'
 
 

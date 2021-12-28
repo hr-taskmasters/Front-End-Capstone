@@ -1,8 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import API_KEY from '../../../../config/config.js'
-// import Card from 'react-bootstrap/Card';
-// import Button from 'react-bootstrap/Button';
 import { Button, Card, Stack } from 'react-bootstrap';
 import ReviewTile from './ReviewTile.jsx';
 import Sort from './Sort.jsx';
@@ -65,67 +63,3 @@ function Reviews (props) {
     )
 };
 export default Reviews;
-
-
-  //if tileNum > 2
-        //show more review button
-    // const getReviewNum = () => {
-    //     if (props.reviews.count) {
-    //         setTileNum(props.reviews.count);
-    //     }
-    // }
-
-
-
-// <div>
-//     <button>Sort Dropdown</button>
-//     <button>Submit Review</button>
-//     {props.reviews.results ? 
-//     <div>
-//         {props.reviews.results.map(tile => (
-//             <Tile key={tile.review_id} review={tile}/>
-//         ))}
-//     </div>
-//     : 
-//     <div className="spinner-border" role="status">
-//         <span className="visually-hidden">Loading...</span>
-//     </div>
-//     }
-//     <button>More Reviews</button>
-// </div>
-
-
-
-// class List extends React.Component {
-//   constructor(props){
-//     super(props);
-    
-//     this.state = {
-//       reviews: {}
-//     }
-    
-//     }
-//     componentDidMount(){
-//         // this.props.getReviews()
-        
-//     }
-    
-
-//   render() {
-    
-//       return (
-//         <div>
-//             <button>Sort Dropdown</button>
-//             <button>Submit Review</button>
-//             <div>
-//                 {
-//                     // props.reviews.results.map(tile => (
-//                 //     <Tile key={tile.review_id} review={tile}/>
-//                 // ))
-//                 }
-//             </div>
-//             <button>More Reviews</button>
-//         </div>
-//       )
-//   }
-// }
