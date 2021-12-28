@@ -1,13 +1,18 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, InputGroup } from 'react-bootstrap';
 
 const Search = () => {
   return (
     <Form className='q_searchbar' fluid>
-      <Form.Control
-      type='search'
-      placeholder='HAVING A QUESTION? SEARCH FOR ANSWERS...'
-      />
+      <InputGroup>
+        <Form.Control
+          type='search'
+          placeholder='HAVING A QUESTION? SEARCH FOR ANSWERS...'
+        >
+        </Form.Control>
+        <InputGroup.Text><i class="fas fa-search"></i></InputGroup.Text>
+      </InputGroup>
+
     </Form>
   )
 }
