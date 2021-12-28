@@ -28,7 +28,8 @@ class App extends React.Component {
         "3": "",
         "4": "",
         "5": ""
-      }
+      },
+      metaData: {}
     }
     this.getProductViaId = this.getProductViaId.bind(this);
     this.getReviewsMeta = this.getReviewsMeta.bind(this);
@@ -63,7 +64,8 @@ class App extends React.Component {
     })
     .then(response => {
       this.setState({
-        ratings: response.data.ratings
+        ratings: response.data.ratings,
+        metaData: response.data
       })
     })
     .catch(err => {
@@ -74,10 +76,10 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        {/* <ProductDetails product={this.state.product} ratings={this.state.ratings}/> */}
+        <ProductDetails product={this.state.product} ratings={this.state.ratings}/>
         <RelatedItems productid={this.state.product.id} chooseProduct={this.getProductViaId}/>
-        {/* <QuestionsAndAnswers product={this.state.product}/> */}
-        {/* <RatingAndReviews /> */}
+        <QuestionsAndAnswers product={this.state.product}/>
+        <RatingAndReviews metaData={this.state.metaData}/>
       </div>
     )
   }

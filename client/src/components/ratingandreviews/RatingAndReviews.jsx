@@ -17,7 +17,7 @@ function RatingAndReviews(props) {
       {/* <CardGroup> */}
       <Stack direction="horizontal" gap={3}>
         <Card style={{ width: '25rem' }}> 
-          <Ratings />
+          <Ratings metaData={props.metaData}/>
         </Card>
         <Card style={{ width: '50rem' }}>
           <Reviews />
