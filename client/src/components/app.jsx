@@ -75,9 +75,9 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <ProductDetails product={this.state.product} ratings={this.state.ratings}/>
-        <RelatedItems product={this.state.product} ratings={this.state.ratings}/>
-        <QuestionsAndAnswers product={this.state.product}/>
+        {/* <ProductDetails product={this.state.product} ratings={this.state.ratings}/> */}
+        {/* <RelatedItems product={this.state.product} ratings={this.state.ratings}/> */}
+        {/* <QuestionsAndAnswers product={this.state.product}/> */}
         <RatingAndReviews />
       </div>
     )
