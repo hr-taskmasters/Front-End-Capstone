@@ -3,43 +3,45 @@ import axios from 'axios';
 import API_KEY from '../../config/config.js'
 import Ratings from './Components/Ratings/Ratings.jsx'
 import Reviews from './Components/Reviews/Reviews.jsx';
-import CardGroup from 'react-bootstrap/CardGroup';
-import Card from 'react-bootstrap/Card';
+// import CardGroup from 'react-bootstrap/CardGroup';
+// import Card from 'react-bootstrap/Card';
+import {Card, Stack } from 'react-bootstrap';
+
 
 
 function RatingAndReviews(props) {
 
-  const [reviews, setReviews] = useState('')
+  // const [reviews, setReviews] = useState('')
 
-  useEffect(() => {
-    getReviews()
-  }, []);
+  // useEffect(() => {
+  //   getReviews()
+  // }, []);
 
-  const getReviews =() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?product_id=42366`, {
-      headers: {
-        'Authorization': `${API_KEY}`
-      },
-    })
-    .then((response) => {
-      setReviews(response.data)
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+  // const getReviews =() => {
+  //   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?product_id=42366`, {
+  //     headers: {
+  //       'Authorization': `${API_KEY}`
+  //     },
+  //   })
+  //   .then((response) => {
+  //     setReviews(response.data)
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   })
+  // }
   return (
     <div>
       <h4>Ratings and Reviews</h4>
       {/* <CardGroup> */}
-      <span>
+      <Stack direction="horizontal" gap={3}>
         <Card style={{ width: '25rem' }}> 
           <Ratings />
         </Card>
         <Card style={{ width: '50rem' }}>
-          <Reviews reviews={reviews}/>
+          <Reviews />
         </Card>
-        </span>
+        </Stack>
       {/* </CardGroup> */}
     </div>
   )
