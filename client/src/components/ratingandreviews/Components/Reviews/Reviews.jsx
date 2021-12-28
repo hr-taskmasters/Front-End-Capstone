@@ -1,8 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import API_KEY from '../../../../config/config.js'
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+// import Card from 'react-bootstrap/Card';
+// import Button from 'react-bootstrap/Button';
+import { Button, Card, Stack } from 'react-bootstrap';
 import ReviewTile from './ReviewTile.jsx';
 import Sort from './Sort.jsx';
 
@@ -43,11 +44,11 @@ function Reviews (props) {
         <Card.Header>{reviewList.length} reviews, sorted by: <Sort /></Card.Header>
         <Card.Body>
         {reviewList ? 
-            <div>
+            <Stack gap={3}>
                 {slicedReviews.map(review => (
                     <ReviewTile key={review.review_id} review={review}/>
                 ))}
-            </div>
+            </Stack>
             : 
             <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
