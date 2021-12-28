@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 
 function Image(props) {
@@ -16,9 +16,9 @@ function Image(props) {
     setClick(false);
   }
 
-  const handleChange = (index) => {
-    console.log(index);
-  };
+  useEffect(() => {
+    handleCarousel();
+  }, [])
 
   return (
     <div className='row'>
@@ -32,9 +32,9 @@ function Image(props) {
             onClick={() => handleClick(index)}
           ></img>)) : null}
       </div>
-      <div className='col-md-10' >
+      <div className='col-md-10'>
         {props.style.length ?
-          <Carousel variant='light' onClick={handleCarousel}>
+          <Carousel variant='dark' style={{backgroundColor: '#0000', height: '100%', width: '100%'}} onClick={handleCarousel}>
             {click ?
               <img className='w-100 p_pic' src={props.style[props.styleNum].photos[selectImg].url}>
               </img>
@@ -43,7 +43,7 @@ function Image(props) {
                 <Carousel.Item key={index} interval={5000}>
                   <img
                     className='d-block w-100 p_pic'
-                    src={img.url} onChange={() => handleChange(index)}
+                    src={img.url}
                   />
                 </Carousel.Item>
               ))

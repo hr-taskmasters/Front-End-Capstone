@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 
-function SizeAndQuantity() {
+function SizeAndQuantity(props) {
+
+  const [size, setSize] = useState('');
+  const [quantity, setQuantity] = useState(0);
 
   return (
     <div className='p_flex_container'>
@@ -11,15 +14,16 @@ function SizeAndQuantity() {
           <Dropdown.Toggle id="dropdown-button" variant="light">SELECT SIZE</Dropdown.Toggle>
 
           <Dropdown.Menu variant="white">
-            <Dropdown.Item href="#/action-1" active>XS</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">S</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">M</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">L</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">XL</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">XXL</Dropdown.Item>
+            {props.style.length ?
+              Object.values(props.style[props.styleNum].skus).map((item, index) => <Dropdown.Item key={index}>{Object.values(item)[1]}</Dropdown.Item>
+              )
+            :
+              <Dropdown.Item>OUT OF STOCK</Dropdown.Item>
+            }
           </Dropdown.Menu>
         </Dropdown>
       </div>
+
       <div className='p_flex_child_quantity'>
         <Dropdown>
           <Dropdown.Toggle id="dropdown-button" variant="light">QUANTITY</Dropdown.Toggle>

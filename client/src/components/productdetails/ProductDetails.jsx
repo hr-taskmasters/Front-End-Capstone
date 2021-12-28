@@ -6,6 +6,11 @@ import ProductInfo from './ProductInfo.jsx';
 
 function ProductDetails(props) {
 
+  const [id, setId] = useState(42366);
+  useEffect(() => {
+    setId(props.product.id)
+  }, [props])
+
   const [style, setStyle] = useState({
     product_id: 0,
     results: []
@@ -13,13 +18,16 @@ function ProductDetails(props) {
 
   const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    getStyle();
-    getCartInfo();
-  }, []);
+  const [ratings, setRatings] = useState({});
 
-  const getStyle = () => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/42366/styles', {
+  useEffect(() => {
+    getStyle(id);
+    getCartInfo();
+    getReviewsMeta(id);
+  }, [id]);
+
+  const getStyle = (id) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}/styles`, {
       headers: {
         'Authorization': `${API_KEY}`
       }
@@ -28,7 +36,7 @@ function ProductDetails(props) {
       setStyle(response.data);
     })
     .catch(err => {
-      console.error(err);
+      return;
     })
   }
 
@@ -46,10 +54,24 @@ function ProductDetails(props) {
     })
   }
 
+  const getReviewsMeta = (id) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/meta/?product_id=${id}`, {
+      headers: {
+        'Authorization': `${API_KEY}`
+      }
+    })
+    .then(response => {
+      setRatings(response.data.ratings);
+    })
+    .catch(err => {
+      return;
+    })
+  }
+
   return (
     <div>
       <Navbar />
-      <ProductInfo info={props.product} style={style.results} />
+      <ProductInfo info={props.product} style={style.results} ratings={ratings}/>
     </div>
   )
 }
