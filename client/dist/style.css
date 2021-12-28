@@ -58,9 +58,9 @@
 .p_s_img, .p_s_img_highlight {
   width: 60px;
   height: 70px;
+  z-index: 4;
   object-fit: cover;
   margin: 0 auto 10px 50px;
-  z-index: 3;
   border: 1px gray solid;
   border-radius: 7%;
 }

@@ -34,7 +34,7 @@ function Image(props) {
       </div>
       <div className='col-md-10' >
         {props.style.length ?
-          <Carousel variant='light' onClick={handleCarousel}>
+          <Carousel variant='dark' style={{backgroundColor: '#0000', height: '100%', width: '100%'}} onClick={handleCarousel}>
             {click ?
               <img className='w-100 p_pic' src={props.style[props.styleNum].photos[selectImg].url}>
               </img>

@@ -6,6 +6,7 @@ import Image from './Image.jsx';
 import Cart from './Cart.jsx';
 import Favorite from './Favorite.jsx';
 import Price from './Price.jsx';
+import Share from './Share.jsx';
 
 function ProductInfo(props) {
 
@@ -37,17 +38,7 @@ function ProductInfo(props) {
         <p>
           {props.info.description}
         </p>
-        <div>
-          <a className='p_share_icon' href='https://www.facebook.com/'>
-            <i className='fab fa-facebook-square fa-lg'></i>
-          </a>
-          <a className='p_share_icon' href='https://twitter.com/home'>
-            <i className='fab fa-twitter-square fa-lg'></i>
-          </a>
-          <a className='p_share_icon' href='https://www.pinterest.com/'>
-            <i className='fab fa-pinterest-square fa-lg'></i>
-          </a>
-        </div>
+        <Share />
       </div>
 
     </div>
