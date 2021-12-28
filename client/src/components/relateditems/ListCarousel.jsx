@@ -1,8 +1,10 @@
 import React from 'react';
 import ProductCard from './ProductCard.jsx';
+import axios from 'axios';
+import API_KEY from '../../config/config.js';
 
 // sample data
-import getProducts from './data/sampleDataProducts.js';
+// import getProducts from './data/sampleDataProducts.js';
 
 class ListCarousel extends React.Component {
   constructor(props){
@@ -25,11 +27,21 @@ class ListCarousel extends React.Component {
 
   populateCarousel () {
     let grid = [];
-    getProducts.map((product, index) => {
-      grid.push(<div className="carouselItem" key={index}><ProductCard product={product} ratings={this.props.rating}/></div>)
-    })
-    this.setState({
-      grid: grid
+    this.props.items.map((productid) => {
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${productid}`, {
+        headers: {
+          'Authorization': `${API_KEY}`
+        }
+      })
+      .then((result) => {
+        grid.push(result.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      this.setState({
+        grid: grid
+      })
     })
   }
 
@@ -62,7 +74,9 @@ class ListCarousel extends React.Component {
       <div className='carousel'>
         <div className='carouselContainer'>
           <div className="carouselBox">
-          {!Array.isArray(this.props.items) ? 'Loading...' : this.state.grid}
+          {this.state.grid.length === 0 ? 'Loading...' : this.state.grid.map((product, index) => (
+            <div className="carouselItem" key={index}><ProductCard product={product}/></div>
+          ))}
           </div>
           <div className="moveLeft slideButton" onClick={this.scrollLeft}>{'<'}</div>
           <div className="moveRight slideButton" onClick={this.scrollRight}>{'>'}</div>
