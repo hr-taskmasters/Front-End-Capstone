@@ -11,6 +11,7 @@ class ProductCard extends React.Component {
     super(props);
 
     this.state = {
+      productid: this.props.product.id,
       category: this.props.product.category.toUpperCase(),
       imageUrl: '',
       // styleCall.results[0].photos[0].thumbnail_url;
@@ -37,8 +38,11 @@ class ProductCard extends React.Component {
   }
 
   render() {
+    const { chooseProduct } = this.props;
+    const { productid } = this.state;
+
     return (
-      <div>
+      <div className="cardWrapper" onClick={() => {chooseProduct(productid)}}>
         <div className="imageContainer">
           <img src={this.state.imageUrl}/>
         </div>
