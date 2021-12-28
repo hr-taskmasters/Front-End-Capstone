@@ -9,25 +9,25 @@ import Card from 'react-bootstrap/Card';
 
 function RatingAndReviews(props) {
 
-  const [reviews, setReviews] = useState('')
+  // const [reviews, setReviews] = useState('')
 
-  useEffect(() => {
-    getReviews()
-  }, []);
+  // useEffect(() => {
+  //   getReviews()
+  // }, []);
 
-  const getReviews =() => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?product_id=42366`, {
-      headers: {
-        'Authorization': `${API_KEY}`
-      },
-    })
-    .then((response) => {
-      setReviews(response.data)
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+  // const getReviews =() => {
+  //   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?product_id=42366`, {
+  //     headers: {
+  //       'Authorization': `${API_KEY}`
+  //     },
+  //   })
+  //   .then((response) => {
+  //     setReviews(response.data)
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   })
+  // }
   return (
     <div>
       <h4>Ratings and Reviews</h4>
@@ -37,7 +37,7 @@ function RatingAndReviews(props) {
           <Ratings />
         </Card>
         <Card style={{ width: '50rem' }}>
-          <Reviews reviews={reviews}/>
+          <Reviews />
         </Card>
         </span>
       {/* </CardGroup> */}
