@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ProductCard from './ProductCard.jsx';
 import axios from 'axios';
 import API_KEY from '../../config/config.js';
@@ -6,28 +6,19 @@ import API_KEY from '../../config/config.js';
 // sample data
 // import getProducts from './data/sampleDataProducts.js';
 
-class ListCarousel extends React.Component {
-  constructor(props){
-    super(props);
+function ListCarousel(props) {
 
-    this.state = {
-      grid: []
-    }
+  const [grid, setGrid] = useState([]);
+  let scrollPos = 0;
+  let scrollDistance = 320;
 
-    this.populateCarousel = this.populateCarousel.bind(this);
-    this.scrollLeft = this.scrollLeft.bind(this);
-    this.scrollRight = this. scrollRight.bind(this);
-  }
-  scrollPos = 0;
-  scrollDistance = 320;
+  useEffect(() => {
+    populateCarousel();
+  })
 
-  componentDidMount() {
-    this.populateCarousel();
-  }
-
-  populateCarousel () {
+  const populateCarousel = () => {
     let grid = [];
-    this.props.items.map((productid) => {
+    props.items.map((productid) => {
       axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${productid}`, {
         headers: {
           'Authorization': `${API_KEY}`
@@ -35,9 +26,7 @@ class ListCarousel extends React.Component {
       })
       .then((result) => {
         grid.push(result.data);
-        this.setState({
-          grid: grid
-        })
+        setGrid(grid);
       })
       .catch((err) => {
         console.log(err);
@@ -45,45 +34,43 @@ class ListCarousel extends React.Component {
     })
   }
 
-  scrollLeft (e) {
+  const scrollLeft = (e) => {
     let element = e.target.parentElement.firstElementChild;
     element.scrollTo({
       top: 0,
-      left: (this.scrollPos -= this.scrollDistance),
+      left: (scrollPos -= scrollDistance),
       behavior: "smooth"
     })
 
-    if(this.scrollPos < 0){
-      this.scrollPos = 0;
+    if(scrollPos < 0){
+      scrollPos = 0;
     }
   }
 
-  scrollRight (e) {
+  const scrollRight = (e) => {
     let element = e.target.parentElement.firstElementChild;
-    if(this.scrollPos <= element.scrollWidth - element.clientWidth) {
+    if(scrollPos <= element.scrollWidth - element.clientWidth) {
       element.scrollTo({
         top: 0,
-        left: (this.scrollPos += this.scrollDistance),
+        left: (scrollPos += scrollDistance),
         behavior: "smooth"
       })
     }
   }
 
-  render() {
-    return (
-      <div className='carousel'>
-        <div className='carouselContainer'>
-          <div className="carouselBox">
-          {this.state.grid.length === 0 ? 'Loading...' : this.state.grid.map((product, index) => (
-            <div className="carouselItem" key={index}><ProductCard product={product}/></div>
-          ))}
-          </div>
-          <div className="moveLeft slideButton" onClick={this.scrollLeft}>{'<'}</div>
-          <div className="moveRight slideButton" onClick={this.scrollRight}>{'>'}</div>
+  return (
+    <div className='carousel'>
+      <div className='carouselContainer'>
+        <div className="carouselBox">
+        {grid.length === 0 ? 'Loading...' : grid.map((product, index) => (
+          <div className="carouselItem" key={index}><ProductCard product={product} chooseProduct={props.chooseProduct}/></div>
+        ))}
         </div>
+        <div className="moveLeft slideButton" onClick={scrollLeft}>{'<'}</div>
+        <div className="moveRight slideButton" onClick={scrollRight}>{'>'}</div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default ListCarousel;
