@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import moment from 'moment';
-import { Stack, Image, Modal} from 'react-bootstrap';
+import { Stack, Image, Modal, Row} from 'react-bootstrap';
 import axios from 'axios';
 import API_KEY from '../../config/config.js';
 
@@ -42,38 +42,49 @@ const IndividualAnswer = (props) => {
 
   return (
     <div>
-      <Stack gap={4}>
-        <div>{props.answer.body}</div>
-        <Stack direction="horizontal" gap={2}>
-          {isSeller ? (
+      <div id='q-individual_a_container'>
+        <div id='q_a_row1'>{props.answer.body}</div>
+        <br></br>
+        <Row id='q_a_row2'>
+          <Stack direction="horizontal" gap={2}>
+            <div id='q_a_row2_name'>
+              {isSeller ? (
+                <div>
+                by <b>Seller</b>, {moment(props.answer.date).format('MMMM Do YYYY')}
+                </div>
+              ) : (
+                <div>
+                by {props.answer.answerer_name}, {moment(props.answer.date).format('MMMM Do YYYY')}
+                </div>
+              )}
+            </div>
+            <div className="vr"/>
             <div>
-              by <b>Seller</b>, {moment(props.answer.date).format('MMMM Do YYYY')}
+              {!markHelp ? (
+                <div>
+                  <label> Helpful? </label>
+                  <u onClick={() => markHelpful()}>Yes</u>
+                  <span>({a_helpful_count})</span>
+                </div>
+              ) : (
+                <div>
+                  <label> Helpful? </label>
+                  <label>Yes({a_helpful_count})</label>
+                </div>
+              )}
             </div>
-          ) : (
+            <div className="vr"/>
             <div>
-              by {props.answer.answerer_name}, {moment(props.answer.date).format('MMMM Do YYYY')}
+              {!reported ? (
+                <u onClick={() => markReport()}>Report</u>
+              ) : (
+                <label>Reported</label>
+              )}
             </div>
-          )}
-          <div className="vr ms-auto"/>
-          {!markHelp ? (
-            <div className="ms-auto">
-              <label> Helpful? </label>
-              <u onClick={() => markHelpful()}>Yes</u>
-              <span>({a_helpful_count})</span>
-            </div>
-          ) : (
-            <div className="ms-auto">
-              <label> Helpful ?</label>
-              <label>Yes({a_helpful_count})</label>
-            </div>
-          )}
-          <div className="vr ms-auto"/>
-          {!reported ? (
-            <u className="ms-auto" onClick={() => markReport()}>Report</u>
-          ) : (
-            <label className="ms-auto">Reported</label>
-          )}
-        </Stack>
+          </Stack>
+        </Row>
+        <br></br>
+        <Row id='q_a_row3'>
         {photos.length > 0 &&
           <div>
             <label>Yes, as you can see in these photos.</label>
@@ -93,10 +104,12 @@ const IndividualAnswer = (props) => {
             </div>
           </div>
         }
+        </Row>
         <br></br>
-      </Stack>
+      </div>
     </div>
   )
+
 }
 
 export default IndividualAnswer;

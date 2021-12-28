@@ -55,9 +55,6 @@
   height: 100px;
   margin: 10px;
 }
-.q_answerslist {
-  width: 50px;
-}
 .p_s_img, .p_s_img_highlight {
   width: 60px;
   height: 70px;
@@ -78,4 +75,10 @@
 }
 .p_flex_child_size, .p_flex_child_quantity {
   flex: 1;
+}
+#q_grid_row1_col2 {
+  text-align: left;
+}
+#q_a_row2_name {
+  color: #999;
 }

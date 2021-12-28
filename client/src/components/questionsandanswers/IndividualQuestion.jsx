@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Answers from './Answers.jsx';
-import { ListGroup, Button, Stack } from 'react-bootstrap';
+import { Button, Stack, Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import API_KEY from '../../config/config.js';
 
@@ -32,36 +32,49 @@ const IndividualQuestion = (props) => {
   }
 
   return (
-    <ListGroup.Item className="individual-question">
-      <Stack direction="horizontal" gap={4}>
-        <strong>Q:</strong>
-        <strong>
-          {props.question.question_body}
-        </strong>
-        {!markHelp ? (
-            <div className="ms-auto">
-              <label>Helpful? </label>
-              <u onClick={() => markHelpful()}>Yes</u>
-              <span>({q_helpful_count})</span>
-            </div>
-          ) : (
-            <div className="ms-auto">
-              <label>Helpful?</label>
-              <label>Yes({q_helpful_count})</label>
-            </div>
-          )}
-        <div className="vr"/>
-        <div>
-        {!reported ? (
-          <u onClick={() => markReport()}>Report</u>
-        ) : (
-          <label>Reported</label>
-        )}
-        </div>
-      </Stack>
+    <Container className='q_individual_q_grid' fluid='md'>
+      <Row id='q_grid_row1'>
+        <Col id='q_grid_row1_col1' xs={1}>
+          <strong>Q:</strong>
+        </Col>
+        <Col id='q_grid_row1_col2'>
+          <strong>
+            {props.question.question_body}
+          </strong>
+        </Col>
+        <Col id='q_grid_row1_col3' md={4}>
+        <Stack direction='horizontal' gap={2}>
+          <div className="ms-auto">
+            {!markHelp ? (
+              <div>
+                <label>Helpful? </label>
+                <u onClick={() => markHelpful()}>Yes</u>
+                <span>({q_helpful_count})</span>
+              </div>
+            ) : (
+              <div>
+                <label>Helpful?</label>
+                <label>Yes({q_helpful_count})</label>
+              </div>
+            )}
+          </div>
+          <div className="vr"/>
+          <div>
+            {!reported ? (
+              <u onClick={() => markReport()}>Report</u>
+            ) : (
+              <label>Reported</label>
+            )}
+          </div>
+        </Stack>
+        </Col>
+      </Row>
+      <br></br>
       <Answers question={props.question}/>
-      <Button variant="outline-secondary">ADD A ANSWER </Button>
-    </ListGroup.Item>
+      <Row id='q_grid_row3'>
+        {/* <Button variant="outline-secondary">ADD A ANSWER </Button> */}
+      </Row>
+    </Container>
   )
 };
 
