@@ -32,7 +32,7 @@ function ProductInfo(props) {
           <b>STYLE > </b><span>{props.style[styleNum] ? props.style[styleNum].name : null}</span>
           <Thumbnail style={props.style} styleNum={styleNum} handleClick={handleClick}/>
         </div>
-        <SizeAndQuantity />
+        <SizeAndQuantity style={props.style} styleNum={styleNum}/>
         <Cart />
         <Favorite />
         <p>

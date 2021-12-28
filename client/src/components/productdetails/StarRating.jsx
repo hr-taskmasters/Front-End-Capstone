@@ -1,6 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 function StarRating(props) {
+
+  const [avgRating, setAvgRating] = useState(null);
+  const [review, setReview] = useState(0);
+
+  useEffect(() => {
+    average(props.ratings);
+  }, [props.ratings])
 
   const average = (ratingObject) => {
     if (Object.keys(ratingObject).length !== 0) {
@@ -10,12 +17,13 @@ function StarRating(props) {
         count += Number(ratingObject[key]);
         sum += Number(key) * Number(ratingObject[key]);
       }
-      return sum/count;
+      setAvgRating(parseFloat(sum/count).toFixed(1));
+      setReview(count);
     }
   }
 
   const starNum = () => {
-    var avg = average(props.ratings);
+    var avg = avgRating;
     if (avg) {
       if (avg === 5) {
         return (
@@ -133,9 +141,15 @@ function StarRating(props) {
 
   return (
     <div>
-      {starNum()}
-      <span>{average(props.ratings)}</span>
-      <span className='p_rating'>Read All Reviews</span>
+      {review ?
+        <div>
+          {starNum()}
+          <span>{avgRating}</span>
+          <span className='p_rating'>Read All {review} Reviews</span>
+        </div>
+      :
+        null
+      }
     </div>
   );
 }

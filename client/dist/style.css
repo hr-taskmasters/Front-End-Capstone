@@ -6,6 +6,10 @@
   margin-left:3px;
   display:inline-block
 }
+.p_thumbnail_container {
+  display: flex;
+  flex-wrap: wrap;
+}
 .p_thumbnail_img {
   border-radius: 50%;
   width: 70px;
@@ -19,12 +23,16 @@
   text-align: center;
 }
 .p_thumbnail .p_thumbnail_selected{
-  display: flex;
-  justify-content: left;
   padding: 2%;
+  float: left;
+  width: 25%;
 }
 .p_thumbnail_selected {
   box-shadow: 0 0 0 0.1rem lightgray;
+}
+.p_thumbnail_child{
+  width: 25%;
+  box-sizing: border-box;
 }
 .p_pic {
   width: 300px;
@@ -74,3 +82,4 @@
 .p_like {
   color: rgb(186, 65, 65);
 }
+

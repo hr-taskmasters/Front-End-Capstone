@@ -6,6 +6,11 @@ import ProductInfo from './ProductInfo.jsx';
 
 function ProductDetails(props) {
 
+  const [id, setId] = useState(42366);
+  useEffect(() => {
+    setId(props.product.id)
+  }, [props])
+
   const [style, setStyle] = useState({
     product_id: 0,
     results: []
@@ -16,13 +21,13 @@ function ProductDetails(props) {
   const [ratings, setRatings] = useState({});
 
   useEffect(() => {
-    getStyle();
+    getStyle(id);
     getCartInfo();
-    getReviewsMeta();
-  }, []);
+    getReviewsMeta(id);
+  }, [id]);
 
-  const getStyle = () => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/42366/styles', {
+  const getStyle = (id) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}/styles`, {
       headers: {
         'Authorization': `${API_KEY}`
       }
@@ -31,7 +36,7 @@ function ProductDetails(props) {
       setStyle(response.data);
     })
     .catch(err => {
-      console.error(err);
+      return;
     })
   }
 
@@ -49,8 +54,8 @@ function ProductDetails(props) {
     })
   }
 
-  const getReviewsMeta = () => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/meta/?product_id=42366', {
+  const getReviewsMeta = (id) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/meta/?product_id=${id}`, {
       headers: {
         'Authorization': `${API_KEY}`
       }
@@ -59,7 +64,7 @@ function ProductDetails(props) {
       setRatings(response.data.ratings);
     })
     .catch(err => {
-      console.log(err);
+      return;
     })
   }
 
