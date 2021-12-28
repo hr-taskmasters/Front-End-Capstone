@@ -14,7 +14,7 @@ function ListCarousel(props) {
 
   useEffect(() => {
     populateCarousel();
-  })
+  }, [props])
 
   const populateCarousel = () => {
     let grid = [];
