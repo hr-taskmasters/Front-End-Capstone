@@ -71,12 +71,11 @@ class App extends React.Component {
     })
   }
 
-
   render () {
     return (
       <div>
         <ProductDetails product={this.state.product} ratings={this.state.ratings}/>
-        <RelatedItems product={this.state.product} ratings={this.state.ratings}/>
+        {this.state.product.id !== null ? <RelatedItems productid={this.state.product.id}/> : 'Loading...'}
         <QuestionsAndAnswers product={this.state.product}/>
         <RatingAndReviews />
       </div>
