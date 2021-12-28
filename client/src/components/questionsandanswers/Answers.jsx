@@ -5,11 +5,11 @@ import IndividualAnswer from './IndividualAnswer.jsx';
 import { Container, Row, Col, Stack } from 'react-bootstrap';
 
 const Answers = (props) => {
-  const [question_id, setQId] = useState(props);
-  useEffect(() => {
-    setQId(props.question.question_id)
-  }, [props]);
-  //const [question_id, setId] = useState(348532); // has photos in answer
+  // const [question_id, setQId] = useState(props);
+  // useEffect(() => {
+  //   setQId(props.question.question_id)
+  // }, [props]);
+  const [question_id, setId] = useState(348532); // has photos in answer
 
   const [answers, setAnswers] = useState([]);
   useEffect(() => {
@@ -48,18 +48,21 @@ const Answers = (props) => {
   return (
     <div>
       {answers.length > 0 &&
-      <Row>
-        <Col xs={1}><strong>A:</strong></Col>
-        <Col className="q_answerslist">
-        {sliceAns.map((answer) =>
-          <IndividualAnswer answer={answer} key={answer.answer_id} />
-        )}
+      <Row id='q_grid_row2'>
+        <Col id='q_grid_row2_col1' xs={1}><strong>A:</strong></Col>
+        <Col className="q_answerslist" id='q_grid_row2_col2'>
+          {sliceAns.map((answer) =>
+            <IndividualAnswer answer={answer} key={answer.answer_id} />
+          )}
+          <Col>
+          {answers.length > 2 &&
+            <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
+          }
+          </Col>
         </Col>
-        {answers.length > 2 &&
-          <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
-        }
       </Row>
       }
+      <br></br>
     </div>
   )
 
