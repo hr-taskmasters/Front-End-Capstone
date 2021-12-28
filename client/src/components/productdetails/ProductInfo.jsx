@@ -24,7 +24,7 @@ function ProductInfo(props) {
         </div>
       </div>
       <div className='product-content col-md-5'>
-        <StarRating />
+        <StarRating ratings={props.ratings}/>
         <h4>{props.info.category}</h4>
         <h1 className='p_title'><a href='#'>{props.info.name}</a></h1>
         <Price info={props.info} style={props.style} styleNum={styleNum} />

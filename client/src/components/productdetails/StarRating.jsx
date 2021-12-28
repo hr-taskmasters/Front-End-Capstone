@@ -1,28 +1,141 @@
 import React, {useState} from 'react';
 
-function StarRating() {
+function StarRating(props) {
 
-  const [rating, setRating] = useState(0);
-  const [hover, setHover] = useState(0);
+  const average = (ratingObject) => {
+    if (Object.keys(ratingObject).length !== 0) {
+      var sum = 0;
+      var count = 0;
+      for (var key in ratingObject) {
+        count += Number(ratingObject[key]);
+        sum += Number(key) * Number(ratingObject[key]);
+      }
+      return sum/count;
+    }
+  }
+
+  const starNum = () => {
+    var avg = average(props.ratings);
+    if (avg) {
+      if (avg === 5) {
+        return (
+        <span>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+        </span>
+        );
+      } else if (avg >= 4.5) {
+        return (
+          <span>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star-half-alt"></i>
+          </span>
+        )
+      } else if (avg >= 4) {
+        return (
+          <span>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="far fa-star"></i>
+          </span>
+        )
+      } else if (avg >= 3.5) {
+        return (
+          <span>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star-half-alt"></i>
+            <i className="far fa-star"></i>
+          </span>
+        )
+      } else if (avg >= 3) {
+        return (
+          <span>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+          </span>
+        )
+      } else if (avg >= 2.5) {
+        return (
+          <span>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star-half-alt"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+          </span>
+        )
+      } else if (avg >= 2) {
+        return (
+          <span>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+          </span>
+        )
+      } else if (avg >= 1.5) {
+        return (
+          <span>
+            <i className="fas fa-star"></i>
+            <i className="fas fa-star-half-alt"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+          </span>
+        )
+      } else if (avg >= 1) {
+        return (
+          <span>
+            <i className="fas fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+          </span>
+        )
+      } else if (avg >= 0.5) {
+        return (
+          <span>
+            <i className="fas fa-star-half-alt"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+          </span>
+        )
+      } else {
+        return (
+          <span>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+            <i className="far fa-star"></i>
+          </span>
+        )
+      }
+    }
+  }
 
   return (
-    <div className="star-rating">
-      {[...Array(5)].map((star, index) => {
-        index += 1;
-        return (
-          <button
-            type="button"
-            key={index}
-            className={index <= (hover || rating) ? "p_on" : "p_off"}
-            onClick={() => setRating(index)}
-            onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(rating)}
-          >
-            <span className="star">&#9733;</span>
-          </button>
-        );
-      })}
-      <span>Read all reviews</span>
+    <div>
+      {starNum()}
+      <span>{average(props.ratings)}</span>
+      <span className='p_rating'>Read All Reviews</span>
     </div>
   );
 }

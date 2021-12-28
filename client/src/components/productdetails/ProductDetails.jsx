@@ -13,9 +13,12 @@ function ProductDetails(props) {
 
   const [cart, setCart] = useState([]);
 
+  const [ratings, setRatings] = useState({});
+
   useEffect(() => {
     getStyle();
     getCartInfo();
+    getReviewsMeta();
   }, []);
 
   const getStyle = () => {
@@ -46,10 +49,24 @@ function ProductDetails(props) {
     })
   }
 
+  const getReviewsMeta = () => {
+    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/meta/?product_id=42366', {
+      headers: {
+        'Authorization': `${API_KEY}`
+      }
+    })
+    .then(response => {
+      setRatings(response.data.ratings);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
   return (
     <div>
       <Navbar />
-      <ProductInfo info={props.product} style={style.results} />
+      <ProductInfo info={props.product} style={style.results} ratings={ratings}/>
     </div>
   )
 }
