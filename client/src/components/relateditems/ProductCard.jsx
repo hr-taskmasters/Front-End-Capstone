@@ -14,9 +14,9 @@ class ProductCard extends React.Component {
       category: this.props.product.category.toUpperCase(),
       imageUrl: '',
       // styleCall.results[0].photos[0].thumbnail_url;
-      expandedProductName: this.props.product.name + ' - ' + styleCall.results[0].name,
+      expandedProductName: this.props.product.name + ' - ' + this.props.product.slogan,
       price: this.props.product.default_price,
-      rating: (Number(this.props.ratings[1]) * 1 + Number(this.props.ratings[2]) * 2 + Number(this.props.ratings[3]) * 3 + Number(this.props.ratings[4]) * 4 + Number(this.props.ratings[5]) * 5)/ (Number(this.props.ratings[1]) + Number(this.props.ratings[2]) + Number(this.props.ratings[3]) + Number(this.props.ratings[4]) + Number(this.props.ratings[5]))
+      rating: 'FIVE STARS'
     }
   }
 

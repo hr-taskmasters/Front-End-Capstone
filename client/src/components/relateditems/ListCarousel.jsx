@@ -34,13 +34,13 @@ class ListCarousel extends React.Component {
         }
       })
       .then((result) => {
-        grid.push(result.data)
+        grid.push(result.data);
+        this.setState({
+          grid: grid
+        })
       })
       .catch((err) => {
         console.log(err);
-      })
-      this.setState({
-        grid: grid
       })
     })
   }
