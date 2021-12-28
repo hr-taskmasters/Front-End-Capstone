@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import {Button, Modal, ListGroup, Container, Row, Col} from 'react-bootstrap';
+import {Button, Modal, Container, Row, Col} from 'react-bootstrap';
 import API_KEY from '../../config/config.js';
 import Questions from './Questions.jsx';
 import Search from './Search.jsx';
@@ -36,16 +36,6 @@ const QuestionsAndAnswers = (props) => {
   }
   const sliceQuesions = questions.slice(0, numPerPage);
 
-  // return (
-  //   <div className="questions-answers">
-  //     <h5>QUESTIONS & ANSWERS</h5>
-  //     <Questions questions={sliceQuesions} />
-  //     {questions.length > 2 &&
-  //       <Button variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS ({questions.length-sliceQuesions.length})</Button>
-  //     }
-  //     <Button variant="outline-secondary">ADD A QUESTION +</Button>
-  //   </div>
-  // );
   return (
     <div className='questions-answers'>
       <div id='questions_answers_container'>
@@ -57,17 +47,15 @@ const QuestionsAndAnswers = (props) => {
             </Row>
             <Row id='q_list_questions_container'>
               <Questions questions={sliceQuesions} />
-              <Col className='q_questions_loadQ'>
                 <div>
                   {questions.length > 2 &&
                     <Button variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS ({questions.length-sliceQuesions.length})</Button>
                   }
                 </div>
-              </Col>
             </Row>
-            {/* <div id='q_list_addQuestion'>
-              <Button variant="outline-secondary">ADD A QUESTION +</Button>
-            </div> */}
+            <Row id='q_list_addQuestion'>
+              {/* <Button variant="outline-secondary">ADD A QUESTION +</Button> */}
+            </Row>
           </Container>
         </div>
       </div>

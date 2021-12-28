@@ -76,38 +76,6 @@ const IndividualQuestion = (props) => {
       </Row>
     </Container>
   )
-  // return (
-  //   <ListGroup.Item className="individual-question">
-  //     <Stack direction="horizontal" gap={4}>
-  //       <strong>Q:</strong>
-  //       <strong>
-  //         {props.question.question_body}
-  //       </strong>
-  //       {!markHelp ? (
-  //           <div className="ms-auto">
-  //             <label>Helpful? </label>
-  //             <u onClick={() => markHelpful()}>Yes</u>
-  //             <span>({q_helpful_count})</span>
-  //           </div>
-  //         ) : (
-  //           <div className="ms-auto">
-  //             <label>Helpful?</label>
-  //             <label>Yes({q_helpful_count})</label>
-  //           </div>
-  //         )}
-  //       <div className="vr"/>
-  //       <div>
-  //       {!reported ? (
-  //         <u onClick={() => markReport()}>Report</u>
-  //       ) : (
-  //         <label>Reported</label>
-  //       )}
-  //       </div>
-  //     </Stack>
-  //     <Answers question={props.question}/>
-  //     <Button variant="outline-secondary">ADD A ANSWER </Button>
-  //   </ListGroup.Item>
-  // )
 };
 
 export default IndividualQuestion;

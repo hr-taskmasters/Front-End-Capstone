@@ -30,21 +30,6 @@ const Answers = (props) => {
   }
   const sliceAns = answers.slice(0, ansPerPage);
 
-  // return (
-  //   <div>
-  //     {answers.length > 0 &&
-  //       <Stack direction="horizontal" gap={4}>
-  //         <strong>A:</strong>
-  //         {sliceAns.map((answer) =>
-  //           <IndividualAnswer answer={answer} key={answer.answer_id} />
-  //         )}
-  //       </Stack>
-  //     }
-  //     {answers.length > 2 &&
-  //       <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
-  //     }
-  //   </div>
-  // )
   return (
     <div>
       {answers.length > 0 &&

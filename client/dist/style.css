@@ -79,6 +79,6 @@
 #q_grid_row1_col2 {
   text-align: left;
 }
-.q_searchbar {
-  display: flex;
+#q_a_row2_name {
+  color: #999;
 }
