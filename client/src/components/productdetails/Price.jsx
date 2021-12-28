@@ -7,8 +7,8 @@ function Price(props) {
         props.style[props.styleNum].sale_price ?
           // with discount
           <div>
-          <span>{props.style[props.styleNum].original_price}</span>
           ${props.style[props.styleNum].sale_price}
+          <span>{props.style[props.styleNum].original_price}</span>
           </div>
         :
           // without discount

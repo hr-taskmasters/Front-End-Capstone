@@ -12,7 +12,7 @@
   outline: none;
   cursor: pointer;
 }
-.product-grid .p_price span {
+.p_price span {
   color:#999;
   font-size:13px;
   font-weight:400;
