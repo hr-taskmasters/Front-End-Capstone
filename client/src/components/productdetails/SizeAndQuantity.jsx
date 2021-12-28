@@ -6,12 +6,28 @@ function SizeAndQuantity(props) {
 
   const [size, setSize] = useState('SELECT SIZE');
   const [quantity, setQuantity] = useState(0);
+  const [index, setIndex] = useState(null);
 
   const selectSize = (e) => {
     setSize(e.target.value);
   }
 
-  console.log(props.style[props.styleNum])
+  const selectQuantity = () => {
+    if (props.style.length && size !== 'SELECT SIZE') {
+      var quantity = Object.values(props.style[props.styleNum].skus).filter((item) => {
+        return item.size === size;
+      })[0].quantity;
+      if (quantity > 15) {
+        quantity = 15;
+      }
+      var numList = Array.from({length: quantity}, (_, i) => i + 1);
+      return numList;
+    }
+  }
+
+  const pickQuantity = (e) => {
+    setQuantity(e.target.value);
+  }
 
   return (
     <div className='p_flex_container'>
@@ -20,7 +36,11 @@ function SizeAndQuantity(props) {
         <select onChange={selectSize}>
           <option>SELECT SIZE</option>
           {props.style.length ?
-            Object.values(props.style[props.styleNum].skus).map((item, index) => <option key={index} value={Object.values(item)[1]}>{Object.values(item)[1]}</option>)
+            Object.values(props.style[props.styleNum].skus).map((item, index) => {
+              return (
+                <option key={index} value={item.size}>{item.size}</option>
+              )
+            })
           :
             <option>OUT OF STOCK</option>
           }
@@ -33,12 +53,11 @@ function SizeAndQuantity(props) {
             <option>-</option>
           </select>
         :
-          <select>
+          <select onChange={pickQuantity}>
             <option>SELECT QUANTITY</option>
-            {/* {props.style.length ?
-              Object.values(props.style[props.styleNum].skus
-            } */}
-            <option>+</option>
+            {selectQuantity().map((num) => (
+              <option key={num} value={num}>{num}</option>
+            ))}
           </select>
         }
       </div>
