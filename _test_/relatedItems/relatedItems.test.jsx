@@ -9,5 +9,5 @@ const relatedItems = [];
 
 test('Renders no carousel', () => {
   const wrapper = mount(<RelatedItems items={[]} chooseProduct={() => {return 0}}/>);
-  expect(wrapper).toHaveState({relatedItems: []});
+  expect(wrapper).toHaveProp({relatedItems: []});
 })
