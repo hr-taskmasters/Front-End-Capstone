@@ -9,7 +9,7 @@ function Favorite() {
   }
 
   return (
-    <Button variant="light" className="btn btn-default btn-md" onClick={handleClick}>
+    <Button variant="light" className="btn btn-default btn-md p_fav" onClick={handleClick}>
       {like ? <i className="fas fa-star p_like"></i>: <i className="far fa-star"></i>}
     </Button>
   )

@@ -25,20 +25,20 @@ function ProductInfo(props) {
       <div className='product-content col-md-5'>
         <StarRating ratings={props.ratings}/>
         <h4>{props.info.category}</h4>
-        <h1 className='p_title'><a href='#'>{props.info.name}</a></h1>
+        <h2 className='p_title'><a href='#'>{props.info.name}</a></h2>
         <Price info={props.info} style={props.style} styleNum={styleNum} />
-        <div>
+        <div className='p_style'>
           <b>STYLE > </b><span>{props.style[styleNum] ? props.style[styleNum].name : null}</span>
           <Thumbnail style={props.style} styleNum={styleNum} handleClick={handleClick}/>
         </div>
         <Cart style={props.style} styleNum={styleNum}/>
-        <Favorite />
-        <p>
-          {props.info.description}
-        </p>
-        <Share />
       </div>
 
+      <div className='p_description'>
+        <h6>DESCRIPTION:</h6>
+        <p>{props.info.description}</p>
+        <Share />
+      </div>
     </div>
   );
 };
