@@ -35,7 +35,7 @@ function RelatedItems(props) {
     <div className='relatedProducts'>
       <div>RELATED PRODUCTS</div>
       <div>
-        {relatedItems[0] ? <ListCarousel items={relatedItems} chooseProduct={props.chooseProduct}/> : 'Loading...'}
+        {relatedItems[0] ? <ListCarousel items={relatedItems} chooseProduct={props.chooseProduct} uniqueid={props.productid}/> : 'Loading...'}
       </div>
       <div>YOUR OUTFIT</div>
       <div>
