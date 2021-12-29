@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ActionButton from './ActionButton.jsx';
 import axios from 'axios';
 import API_KEY from '../../config/config.js';
-
-//sample data. Need to make /products/:id/styles query to retrieve
-import styleCall from './data/sampleDataProductCard.js';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -42,22 +41,29 @@ class ProductCard extends React.Component {
     const { productid } = this.state;
 
     return (
-      <div className="cardWrapper" onClick={() => {chooseProduct(productid)}}>
-        <div className="imageContainer">
-          <img src={this.state.imageUrl}/>
-        </div>
-        <div className="buttonContainer">
-          <ActionButton />
-        </div>
-        <div>
-          <div>{this.state.category}</div>
-          <div>{this.state.expandedProductName}</div>
-          <div>${this.state.price}</div>
-          <div>{this.state.rating}</div>
-        </div>
-      </div>
+      <Card style={{width: '18rem'}} onClick={() => {chooseProduct(productid)}}>
+        <Card.Img variant="top" src={this.state.imageUrl} style={styles.cardImage}/>
+        <ActionButton />
+        <Card.Body>
+          <Card.Text>{this.state.category}</Card.Text>
+          <Card.Title>{this.state.expandedProductName}</Card.Title>
+          <Card.Text>${this.state.price}</Card.Text>
+          <Card.Text>{this.state.rating}</Card.Text>
+        </Card.Body>
+      </Card>
     )
   }
 }
 
 export default ProductCard;
+
+const styles = {
+  cardImage: {
+    maxWidth: '100%',
+    height: '300px',
+    overflow: 'hidden'
+  },
+  cardText: {
+
+  }
+}

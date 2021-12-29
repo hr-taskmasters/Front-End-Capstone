@@ -63,7 +63,7 @@
   z-index: 2;
 }
 
-.carouselBox .carouselItem .imageContainer {
+/* .carouselBox .carouselItem .imageContainer {
   min-width: 300px;
   max-width: 300px;
   height: 300px;
@@ -72,7 +72,7 @@
 
 .carouselBox .carouselItem .imageContainer img {
   width: 100%;
-}
+} */
 
 /* .carouselBox .carouselItem:hover {
   transform: scale(1.4);
