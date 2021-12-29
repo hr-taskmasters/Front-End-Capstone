@@ -20,7 +20,7 @@ function RatingAndReviews(props) {
           <Ratings metaData={props.metaData}/>
         </Card>
         <Card style={{ width: '50rem' }}>
-          <Reviews />
+          <Reviews product={props.product}/>
         </Card>
         </Stack>
       {/* </CardGroup> */}
