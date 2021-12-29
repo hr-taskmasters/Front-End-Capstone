@@ -32,7 +32,7 @@ function RelatedItems(props) {
   }
 
   return (
-    <div>
+    <div className='relatedProducts'>
       <div>RELATED PRODUCTS</div>
       <div>
         {relatedItems[0] ? <ListCarousel items={relatedItems} chooseProduct={props.chooseProduct}/> : 'Loading...'}
