@@ -14,7 +14,10 @@ function ListCarousel(props) {
 
   useEffect(() => {
     populateCarousel();
-  }, [props])
+    return () => {
+      setGrid([]);
+    }
+  }, [props.items])
 
   const populateCarousel = () => {
     let grid = [];
@@ -26,12 +29,30 @@ function ListCarousel(props) {
       })
       .then((result) => {
         grid.push(result.data);
-        setGrid(grid);
+        if(grid.length === props.items.length){
+          setGrid(grid);
+        }
       })
       .catch((err) => {
         console.log(err);
       })
     })
+  }
+
+  const checkPos = (e) => {
+    let leftButton = document.getElementById(props.uniqueid + 'left');
+    let rightButton = document.getElementById(props.uniqueid + 'right');
+    if(scrollPos <= 0){
+      scrollPos = 0;
+      leftButton.innerHTML = ' ';
+    } else {
+      leftButton.innerHTML = '<';
+    }
+    if(scrollPos >= scrollDistance * (props.items.length - 2)) {
+      rightButton.innerHTML = ' ';
+    } else {
+      rightButton.innerHTML = '>';
+    }
   }
 
   const scrollLeft = (e) => {
@@ -41,10 +62,7 @@ function ListCarousel(props) {
       left: (scrollPos -= scrollDistance),
       behavior: "smooth"
     })
-
-    if(scrollPos < 0){
-      scrollPos = 0;
-    }
+    checkPos(e);
   }
 
   const scrollRight = (e) => {
@@ -56,6 +74,7 @@ function ListCarousel(props) {
         behavior: "smooth"
       })
     }
+    checkPos(e);
   }
 
   return (
@@ -66,8 +85,8 @@ function ListCarousel(props) {
           <div className="carouselItem" key={index}><ProductCard product={product} chooseProduct={props.chooseProduct}/></div>
         ))}
         </div>
-        <div className="moveLeft slideButton" onClick={scrollLeft}>{'<'}</div>
-        <div className="moveRight slideButton" onClick={scrollRight}>{'>'}</div>
+        <div className="moveLeft slideButton" onClick={scrollLeft} id={props.uniqueid + 'left'}>{' '}</div>
+        <div className="moveRight slideButton" onClick={scrollRight} id={props.uniqueid + 'right'}>{'>'}</div>
       </div>
     </div>
   )
