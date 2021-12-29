@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import StarRating from './StarRating.jsx';
 import Thumbnail from './Thumbnail.jsx';
-import SizeAndQuantity from './SizeAndQuantity.jsx';
-import Image from './Image.jsx';
 import Cart from './Cart.jsx';
+import Image from './Image.jsx';
 import Favorite from './Favorite.jsx';
 import Price from './Price.jsx';
 import Share from './Share.jsx';
@@ -32,8 +31,7 @@ function ProductInfo(props) {
           <b>STYLE > </b><span>{props.style[styleNum] ? props.style[styleNum].name : null}</span>
           <Thumbnail style={props.style} styleNum={styleNum} handleClick={handleClick}/>
         </div>
-        <SizeAndQuantity style={props.style} styleNum={styleNum}/>
-        <Cart />
+        <Cart style={props.style} styleNum={styleNum}/>
         <Favorite />
         <p>
           {props.info.description}

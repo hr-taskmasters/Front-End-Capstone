@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Nav from 'react-bootstrap/Nav'
 
 function StarRating(props) {
 
@@ -145,7 +146,7 @@ function StarRating(props) {
         <div>
           {starNum()}
           <span>{avgRating}</span>
-          <span className='p_rating'>Read All {review} Reviews</span>
+          <span className='p_rating'><a href='#'>Read All {review} Reviews</a></span>
         </div>
       :
         null
