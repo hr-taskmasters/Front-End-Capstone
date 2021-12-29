@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack --watch",
-    "test": "jest --coverage",
+    "test": "npx jest",
+    "test-coverage": "jest --coverage",
     "no-test": "jest --coverage --passWithNoTests"
   },
   "repository": {
@@ -44,7 +45,7 @@
     "setupFilesAfterEnv": [
       "jest-enzyme"
     ],
-    "testEnvironment": "enzyme",
+    "testEnvironment": "jsdom",
     "testEnvironmentOptions": {
       "enzymeAdapter": "react16"
     },
