@@ -77,15 +77,9 @@ class App extends React.Component {
     return (
       <div>
         <ProductDetails product={this.state.product} ratings={this.state.ratings}/>
-<<<<<<< HEAD
         <RelatedItems productid={this.state.product.id} chooseProduct={this.getProductViaId}/>
         <QuestionsAndAnswers product={this.state.product}/>
         <RatingAndReviews metaData={this.state.metaData}/>
-=======
-        {/* <RelatedItems productid={this.state.product.id} chooseProduct={this.getProductViaId}/> */}
-        {/* <QuestionsAndAnswers product={this.state.product}/> */}
-        {/* <RatingAndReviews /> */}
->>>>>>> 0befce7 (Create quantity dropdown)
       </div>
     )
   }
