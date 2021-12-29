@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Favorite from './Favorite.jsx';
+import axios from 'axios';
+import API_KEY from '../../config/config.js';
 
 function Cart(props) {
 
@@ -31,9 +33,41 @@ function Cart(props) {
     setQuantity(e.target.value);
   }
 
+  const sku = () => {
+    var skus = props.style[props.styleNum].skus;
+    var skus_id;
+    for (var key in skus) {
+      if (skus[key].size === size) {
+        skus_id = key;
+      }
+    }
+    return skus_id;
+  }
+
   const addToCart = () => {
+    var data = {
+      'sku_id': sku(),
+      'count': quantity
+    }
+    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/cart', data, {
+      headers: {
+        'Authorization': `${API_KEY}`
+      }
+    })
+    .then(response => {
+      alert('Added to Cart!');
+    })
+    .catch(err => {
+      console.error(err);
+    })
+  }
+
+  const handleClick = () => {
     if (size === 'SELECT SIZE') {
       setNotice(true);
+    }
+    if (size !== 'SELECT SIZE' && quantity !== 0) {
+      addToCart();
     }
   }
 
@@ -73,8 +107,8 @@ function Cart(props) {
       </div>
 
       {props.style.length ?
-        <Button variant='dark' type='button' className='btn btn-default btn-sm p_flex_child_cart' onClick={addToCart}>
-          <b> Add to Cart <span>+</span></b>
+        <Button variant='dark' type='button' className='btn btn-default btn-sm p_flex_child_cart' onClick={handleClick}>
+          <b> Add to Cart +</b>
         </Button>
       :
         null
