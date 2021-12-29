@@ -44,7 +44,7 @@ class ProductCard extends React.Component {
       <Card style={{width: '18rem'}} onClick={() => {chooseProduct(productid)}}>
         <Card.Img variant="top" src={this.state.imageUrl} style={styles.cardImage}/>
         <ActionButton />
-        <Card.Body>
+        <Card.Body style={styles.cardText}>
           <Card.Text>{this.state.category}</Card.Text>
           <Card.Title>{this.state.expandedProductName}</Card.Title>
           <Card.Text>${this.state.price}</Card.Text>
@@ -64,6 +64,6 @@ const styles = {
     overflow: 'hidden'
   },
   cardText: {
-
+    whiteSpace: 'normal'
   }
 }
