@@ -6,14 +6,20 @@
   margin-left:3px;
   display:inline-block
 }
+.p_style {
+  margin-top: 10px;
+}
 .p_thumbnail_container {
   display: flex;
   flex-wrap: wrap;
+  margin: 10px;
+  padding: 5px;
 }
 .p_thumbnail_img {
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
   margin: auto;
   display: block;
 }
@@ -41,7 +47,7 @@
   padding: 0 10%;
 }
 .p_share_icon {
-  padding: 5%;
+  padding: 1%;
 }
 .q_ans_photos {
   float: left;
@@ -64,8 +70,8 @@
 .p_flex_container {
   display: flex;
   margin: auto;
-  padding: 20px;
-  width: 80%;
+  padding: 20px 0;
+  width: 100%;
 }
 .p_flex_child_size, .p_flex_child_quantity {
   flex: 1;
@@ -82,4 +88,28 @@
 .p_like {
   color: rgb(186, 65, 65);
 }
-
+.p_dropdown {
+  visibility: visible;
+}
+.p_notice {
+  color: red;
+  display: block;
+  margin-left: 20px;
+  margin-bottom: -20px;
+}
+.p_flex_child_cart {
+  width: 250px;
+  height: 50px;
+}
+.p_select {
+  width: 200px;
+  height: 50px;
+}
+.p_fav {
+  margin-left: 30px;
+  height: 50px;
+}
+.p_description {
+  margin: 50px;
+  padding: 30px;
+}

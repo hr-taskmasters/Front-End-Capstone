@@ -3,6 +3,7 @@ import React from 'react';
 function Share() {
   return (
     <div>
+      <span>Share: </span>
       <a className='p_share_icon' href='https://www.facebook.com/'>
         <i className='fab fa-facebook-square fa-lg'></i>
       </a>
