@@ -4,7 +4,9 @@ import ReviewBody from './ReviewBody.jsx';
 import { Card, Button, Stack } from 'react-bootstrap'
 
 
-function Tile (props) {
+function ReviewTile (props) {
+
+  //make post requests to add review as helpful or to report review
  
   return (
     <>
@@ -22,11 +24,13 @@ function Tile (props) {
           {props.review.summary}
           </Card.Text>
           <ReviewBody review={props.review}/>
+          *Helpful? Yes* ({props.review.helpfulness}) *report*
         </Card.Body>
+        
       </Card>
     </>
   )
 
 }
-export default Tile;
+export default ReviewTile;
 

@@ -1,0 +1,28 @@
+
+
+/* RATINGS */
+
+
+
+
+/* REVIEWS LIST */
+
+.reviews-list {
+  height: 800px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}
+
+
+
+/* REVIEW BODY */
+
+
+
+/* REVIEW PHOTOS */
+.review-photos {
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
