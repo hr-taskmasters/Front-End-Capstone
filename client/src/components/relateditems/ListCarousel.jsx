@@ -14,7 +14,10 @@ function ListCarousel(props) {
 
   useEffect(() => {
     populateCarousel();
-  }, [props])
+    return () => {
+      setGrid([]);
+    }
+  }, [props.items])
 
   const populateCarousel = () => {
     let grid = [];
@@ -26,7 +29,9 @@ function ListCarousel(props) {
       })
       .then((result) => {
         grid.push(result.data);
-        setGrid(grid);
+        if(grid.length === props.items.length){
+          setGrid(grid);
+        }
       })
       .catch((err) => {
         console.log(err);
