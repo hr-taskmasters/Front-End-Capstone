@@ -4,6 +4,7 @@ import {Button, Modal, Container, Row, Col} from 'react-bootstrap';
 import API_KEY from '../../config/config.js';
 import Questions from './Questions.jsx';
 import Search from './Search.jsx';
+import AddQuestion from './AddQuestion.jsx';
 
 
 const QuestionsAndAnswers = (props) => {
@@ -77,6 +78,7 @@ const QuestionsAndAnswers = (props) => {
             </Row>
             <Row id='q_list_addQuestion'>
               {/* <Button variant="outline-secondary">ADD A QUESTION +</Button> */}
+              <AddQuestion />
             </Row>
           </Container>
         </div>
