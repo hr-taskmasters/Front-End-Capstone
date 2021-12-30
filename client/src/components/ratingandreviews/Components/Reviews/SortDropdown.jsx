@@ -14,7 +14,7 @@ function SortDropdown (props) {
     return (
       <DropdownButton id="dropdown-basic-button" title={title} variant={'secondary'} >
         <Dropdown.Item href="#/action-1" name="Helpful" onClick={props.sortByHelpful}>Helpful</Dropdown.Item>
-        <Dropdown.Item href="#/action-2" name="Newest"onClick={changeTitle}>Newest</Dropdown.Item>
+        <Dropdown.Item href="#/action-2" name="Newest" onClick={props.sortByDate}>Newest</Dropdown.Item>
         <Dropdown.Item href="#/action-3" name="Relevance" onClick={changeTitle}>Relevance</Dropdown.Item>
       </DropdownButton>
     )

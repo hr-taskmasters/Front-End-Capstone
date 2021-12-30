@@ -1,17 +1,17 @@
 import React, { useState, useEffect} from 'react';
 import moment from 'moment';
 import ReviewBody from './ReviewBody.jsx';
-import { Card, Button, Stack } from 'react-bootstrap';
+import { Card, Stack } from 'react-bootstrap';
 import API_KEY from '../../../../config/config.js';
 import axios from 'axios';
 
 
 function ReviewTile (props) {
 
-  //make post requests to add review as helpful or to report review
   const [reviewHelpfulNum, setReviewHelpfulNum] = useState(() => props.review.helpfulness);
   const [helpfulSelected, setHelpfulSelected] = useState(false);
   const selectHelpful = () =>{
+    if (!helpfulSelected) {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${props.review.review_id}/helpful`, 
     {helpfulness: reviewHelpfulNum + 1},
     { headers: { 'Authorization': `${API_KEY}` } })
@@ -20,10 +20,10 @@ function ReviewTile (props) {
       setHelpfulSelected(true);
     })
     .catch(err => console.log(err));
+    }
   }
 
-
-
+  //make put request to report reviews...
 
 
   return (
@@ -42,9 +42,12 @@ function ReviewTile (props) {
           {props.review.summary}
           </Card.Text>
           <ReviewBody review={props.review}/>
-          Helpful? 
-          <div onClick={() => selectHelpful()}>Yes</div>
-           ({reviewHelpfulNum}) *report*
+          <Stack direction="horizontal" gap={3}>
+            <div>Helpful</div>
+            <div onClick={() => selectHelpful()}>Yes</div>
+            <div>({reviewHelpfulNum})</div>
+            <div>*report*</div>
+           </Stack>
         </Card.Body>
         
       </Card>

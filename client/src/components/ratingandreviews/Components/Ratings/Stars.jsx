@@ -10,12 +10,24 @@ function Stars (props) {
             *average*  *star display*
         </Card.Title>
         <Card.Body>
-          <Card.Text>
-           100% of reviews recommend this product
-          </Card.Text>
+          
+            <div>100% of reviews recommend this product</div>
+            <div>One stars</div>
+            <div>Two stars</div>
+            <div>Three stars</div>
+            <div>Four stars</div>
+            <div>Five stars</div>
+          
         </Card.Body>
       </Card>
     )
 
 }
 export default Stars;
+
+{/* <div>100% of reviews recommend this product</div>
+            <div>One stars</div>
+            <div>Two stars</div>
+            <div>Three stars</div>
+            <div>Four stars</div>
+            <div>Five stars</div> */}

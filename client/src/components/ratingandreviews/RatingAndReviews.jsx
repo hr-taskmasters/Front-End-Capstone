@@ -12,7 +12,7 @@ import {Card, Stack } from 'react-bootstrap';
 function RatingAndReviews(props) {
 
   return (
-    <div>
+    <div id="rating-reviews-main">
       <h4>Ratings and Reviews</h4>
       {/* <CardGroup> */}
       <Stack direction="horizontal" gap={3}>

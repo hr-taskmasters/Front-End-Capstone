@@ -12,13 +12,20 @@ function Reviews (props) {
     const [reviewList, setReviewList] = useState([]); //get initial reviewArray
     const [reviewNum, setReviewNum] = useState(2); //display 2 tiles initially and more when moreReviews is true
     
-    // useEffect(() => {
-    //     setId(props.product.id)
-    // }, [props]);
+    useEffect(() => {
+        setId(props.product.id)
+        setReviewList(reviewList)
+    }, [props]);
     
     useEffect(() => {
         getReviews(id)
     }, [id]);
+
+    useEffect(() => {
+        setSortedList()
+        sortByHelpful()
+        // sortByDate()
+    }, [])
 
     /*
     I am currently mapping over a sliced version of the review list and rendering that list. 
@@ -32,18 +39,53 @@ function Reviews (props) {
 
     const[sortedList, setSortedList] = useState(reviewList)// []??
 
-
     const sortByHelpful = () =>{
       const sortedByHelpful = reviewList.sort((a,b) => {
         // a.helpful - b.helpful
-        b.helpful - a.helpful
+        a.helpful - b.helpful
       })
       setSortedList(sortedByHelpful)
     }
 
 
+    //sort by date
+    const sortByDate = () => {
 
-    const slicedReviews = reviewList.slice(0, reviewNum);
+       /*
+       
+        make a copy of the review list using slice
+        create a dates array
+        iterate over the  reviewList
+        for each date add a 
+        make individual objects for each reviews date
+
+
+        sort by year
+        sort by month
+        sort by day
+        */
+        const datesArr = []
+        for (let review of reviewList){
+            
+        }
+
+        // const sortedByDate= reviewList.sort((a,b) => {
+        //     new Date(a.date) - new Date(b.date)
+        // })
+        // setSortedList(sortedByDate)
+
+    }
+
+
+
+
+    //sort by relevancy
+
+
+
+
+
+    const slicedReviews = sortedList.slice(0, reviewNum);
     const loadMore = () => {
         setReviewNum(reviewNum + 2);
     }
@@ -66,7 +108,7 @@ function Reviews (props) {
     return (
         <>
         <div>{reviewList.length} reviews, sorted by: 
-        <SortDropdown sortByHelpful={sortByHelpful}/>
+        <SortDropdown sortByHelpful={sortByHelpful} sortByDate={sortByDate}/>
         </div>
         <Card className="reviews-list">
         <Card.Body>
@@ -94,17 +136,3 @@ function Reviews (props) {
 };
 export default Reviews;
 
-
-//sorting ideas//
-
-// const[sortedList, setSortedList] = useState([])
-
-// const date = props.reviewList.date;
-
-// const sortByDate = () =>{
-//   const sortedByDate = props.reviewList.sort((a,b) => {
-//     a.date - b.date
-//   })
-
-//   setSortedList(sortedByDate)
-// }
