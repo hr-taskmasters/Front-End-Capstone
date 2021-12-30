@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import moment from 'moment';
-import { Stack, Image, Modal, Row} from 'react-bootstrap';
+import { Stack, Image, Modal, Row, closeButton } from 'react-bootstrap';
 import axios from 'axios';
 import API_KEY from '../../config/config.js';
 
@@ -93,8 +93,9 @@ const IndividualAnswer = (props) => {
                 <div>
                   <Image className="q_ans_photos" src={photo.url} thumbnail onClick={()=> setLarge({show: true, index: i})}/>
                   <Modal
-                    show={isEnlarge.show}
+                    show={isEnlarge.show} centered size='large'
                     onHide={() => setLarge({show: false, index: i})}>
+                    <Modal.Header closeButton></Modal.Header>
                     <Modal.Body>
                       <Image src={photos[isEnlarge.index].url} thumbnail/>
                     </Modal.Body>
