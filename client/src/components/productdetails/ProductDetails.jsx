@@ -71,6 +71,7 @@ function ProductDetails(props) {
   return (
     <div>
       <Navbar />
+      <div className='p_announcement'>SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT <span className='p_offer'>OFFER</span> -- <span className='p_highlight'>NEW PRODUCT HIGHLIGHT</span></div>
       <ProductInfo info={props.product} style={style.results} ratings={ratings}/>
     </div>
   )
