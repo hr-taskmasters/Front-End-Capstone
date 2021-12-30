@@ -3,19 +3,13 @@ import React from 'react';
 function Navbar() {
 
   return (
-    <nav className="navbar navbar-inverse navbar-fixed-top">
-      <div className="container">
-        <div className="navbar-header">
-          <a className="navbar-brand" href="#">Logo</a>
-        </div>
-        <div id="navbar" className="navbar-collapse collapse">
-          <form className="navbar-form navbar-right">
-            <div className="form-group">
-              <input type="text" className="form-control" />
-            </div>
-            <button type="submit" className="btn btn-light">Search</button>
-          </form>
-        </div>
+    <nav className='navbar navbar-light bg-light p_navbar'>
+      <div className='container-fluid'>
+        <a className='navbar-brand'>Logo</a>
+        <form className='d-flex'>
+          <input className='form-control me-2' type='search' placeholder='Search' aria-label='Search'></input>
+          <button className='btn btn-outline-gray' type='submit'><i className='fas fa-search'></i></button>
+        </form>
       </div>
     </nav>
   );
