@@ -10,27 +10,33 @@ function RatingBreakdown (props) {
 
   useEffect(() => {
     setRatings(props.metaData.ratings)
-    // addRatings(props.metaData.ratings)
+    addRatings(props.metaData.ratings)
+    avgRecommended(props.metaData.recommended)
   },[props.metaData.ratings]);
 
-  useEffect(() => {
-    addRatings(ratings)
-  }, [ratings])
+  // useEffect(() => {
+  //   addRatings(ratings)
+  // }, [ratings])
 
 
   const addRatings = (ratingsObj) => {
-    let ratingsArr = Object.values(ratingsObj);
-    let total = ratingsArr.reduce((a, b) => Number(a) + Number(b));
-    setTotalRatings(total);
+    if(props.metaData.ratings){
+      let ratingsArr = Object.values(ratingsObj);
+      let total = ratingsArr.reduce((a, b) => Number(a) + Number(b));
+      setTotalRatings(total);
+    }
+    
   }
 
   const avgRecommended = (recObj) => {
-    let trueNum = Number(recObj['true']);
-    let falseNum = Number(recObj['false']);
-    let total = trueNum + falseNum;
-    let avg = (trueNum / total) * 100;
-    let roundAvg = Math.round(avg)
-    setPercentRecommended(roundAvg);
+    if(props.metaData.recommended){
+      let trueNum = Number(recObj['true']);
+      let falseNum = Number(recObj['false']);
+      let total = trueNum + falseNum;
+      let avg = (trueNum / total) * 100;
+      let roundAvg = Math.round(avg)
+      setPercentRecommended(roundAvg);
+    }
   }
 
 
@@ -40,32 +46,27 @@ function RatingBreakdown (props) {
             *average*  *star display*
         </Card.Title>
         <Card.Body>
-            <div>*percent recommended*</div> {/*avgRecommended*/}
+          { ratings ?
+          <>
+            <div>{percentRecommended}% of reviewers recommend this product</div> 
             <div>One star:</div>
-            <ProgressBar variant="success" now={50}/> {/* ratings['1'] / totalRatings */}
+            <ProgressBar variant="success" now={ratings['1'] / totalRatings * 100}/> 
             <div>Two stars:</div>
-            <ProgressBar variant="success" now={50}/> {/* ratings['2'] / totalRatings */}
+            <ProgressBar variant="success" now={ratings['2'] / totalRatings * 100}/> 
             <div>Three stars:</div>
-            <ProgressBar variant="success" now={50}/> {/* ratings['3'] / totalRatings */}
+            <ProgressBar variant="success" now={ratings['3'] / totalRatings * 100}/> 
             <div>Four stars:</div>
-            <ProgressBar variant="success" now={50}/> {/* ratings['4'] / totalRatings */}
+            <ProgressBar variant="success" now={ratings['4'] / totalRatings * 100}/> 
             <div>Five stars:</div>
-            <ProgressBar variant="success" now={50}/> {/* ratings['5'] / totalRatings */}
+            <ProgressBar variant="success" now={ratings['5'] / totalRatings * 100}/> 
+            </>
+            : <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            }
         </Card.Body>
       </Card>
     )
 
 }
 export default RatingBreakdown;
-
- // const setStarRatings = () => {
-  //   setRatings(props.metaData.ratings)
-  // }
-
-  // const [ratings, setRatings] = useState({});
-  //     1: '',
-  //     2: '',
-  //     3: '',
-  //     4: '',
-  //     5: ''
-  // });
