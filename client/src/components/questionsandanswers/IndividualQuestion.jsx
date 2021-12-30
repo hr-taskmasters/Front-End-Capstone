@@ -71,9 +71,6 @@ const IndividualQuestion = (props) => {
       </Row>
       <br></br>
       <Answers question={props.question}/>
-      <Row id='q_grid_row3'>
-        {/* <Button variant="outline-secondary">ADD A ANSWER </Button> */}
-      </Row>
     </Container>
   )
 };

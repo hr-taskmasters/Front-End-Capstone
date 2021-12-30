@@ -3,6 +3,7 @@ import axios from 'axios';
 import API_KEY from '../../config/config.js';
 import IndividualAnswer from './IndividualAnswer.jsx';
 import { Container, Row, Col, Stack } from 'react-bootstrap';
+import AddAnswer from './AddAnswer.jsx';
 
 const Answers = (props) => {
   const [question_id, setQId] = useState(props);
@@ -39,10 +40,19 @@ const Answers = (props) => {
           {sliceAns.map((answer) =>
             <IndividualAnswer answer={answer} key={answer.answer_id} />
           )}
+          {/* <Col>
+            {answers.length > 2 &&
+              <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
+            }
+            <AddAnswer />
+          </Col> */}
           <Col>
-          {answers.length > 2 &&
-            <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
-          }
+            <Stack direction='horizontal' gap={2}>
+              {answers.length > 2 &&
+                <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
+              }
+              <AddAnswer />
+            </Stack>
           </Col>
         </Col>
       </Row>
