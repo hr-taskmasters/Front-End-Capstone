@@ -6,7 +6,7 @@ const ActionButton = (props) => {
 
   return (
     <span className='actionButton'>{icon}</span>
-  )
-}
+  );
+};
 
 export default ActionButton;

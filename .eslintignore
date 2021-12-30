@@ -1,0 +1,11 @@
+**/.eslint*
+**/*.ejs
+**/node_modules
+**/bower_components
+**/lib
+**/docs
+**/bundle.js
+**/__tests__
+**/coverage
+**/webpack.config.js
+**/config
