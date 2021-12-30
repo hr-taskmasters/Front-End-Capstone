@@ -26,7 +26,7 @@ function Ratings (props) {
         <Card.Title>
         </Card.Title>
         <Card.Body>
-          <Stars />
+          <Stars metaData={props.metaData}/>
           <Factors />
         </Card.Body>
       </Card>
