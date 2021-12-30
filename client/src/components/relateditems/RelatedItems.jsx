@@ -39,7 +39,7 @@ function RelatedItems(props) {
       </div>
       <div>YOUR OUTFIT</div>
       <div>
-        {/* <ListCarousel items={getProducts} /> */}
+        {/* <OutfitCarousel items={} /> */}
       </div>
     </div>
   )

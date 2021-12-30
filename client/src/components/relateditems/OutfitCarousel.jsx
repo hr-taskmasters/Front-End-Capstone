@@ -6,7 +6,7 @@ import API_KEY from '../../config/config.js';
 // sample data
 // import getProducts from './data/sampleDataProducts.js';
 
-function ListCarousel(props) {
+function OutfitCarousel(props) {
 
   const [grid, setGrid] = useState([]);
   let scrollPos = 0;
@@ -89,4 +89,4 @@ function ListCarousel(props) {
   );
 }
 
-export default ListCarousel;
+export default OutfitCarousel;
