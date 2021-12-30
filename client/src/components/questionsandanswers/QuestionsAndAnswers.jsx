@@ -78,7 +78,7 @@ const QuestionsAndAnswers = (props) => {
             </Row>
             <Row id='q_list_addQuestion'>
               {/* <Button variant="outline-secondary">ADD A QUESTION +</Button> */}
-              <AddQuestion />
+              <AddQuestion product_id={product_id}/>
             </Row>
           </Container>
         </div>

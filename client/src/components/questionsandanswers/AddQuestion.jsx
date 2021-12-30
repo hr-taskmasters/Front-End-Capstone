@@ -1,11 +1,42 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import { Button, Modal, closeButton, Form, Row, Col, FloatingLabel} from 'react-bootstrap';
+import API_KEY from '../../config/config.js';
 
-const AddQuestion = () => {
+const AddQuestion = (props) => {
   const [showModal, setModal] = useState(false);
   const handleShow = () => setModal(true);
   const handleClose = () => setModal(false);
+  const [body, setBody] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const postQuestion = (e) => {
+    e.preventDefault();
+    const question_info = {
+      body: body,
+      name: name,
+      email: email,
+      product_id: props.product_id
+    }
+    if(body.length > 1 && name.length > 1 && email.length > 1 && email.includes('@')) {
+      console.log(question_info);
+      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?${props.product_id}`, question_info, {
+        headers: { 'Authorization': `${API_KEY}` }
+      })
+        .then(response => {
+          //console.log(response);
+          alert('your question is successfully post.')
+          handleClose();
+        })
+        .catch((err) => console.error(err));
+    } else {
+      if(!email.includes('@')) {
+        alert('Please check your email format.')
+      } else {
+        alert('You must enter the all mandatory field.');
+      };
+    };
+  };
 
   return (
     <div id='add_question_button'>
@@ -14,8 +45,8 @@ const AddQuestion = () => {
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
-            <h3>Ask your question</h3>
-            <h6>About the [Product Name Here]</h6>
+            <h3 id='question_modal_title'>Ask your question</h3>
+            <h6 id='question_modal_subtitle'>About the [Product Name Here]</h6>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -25,9 +56,12 @@ const AddQuestion = () => {
                 <Form.Label>Post your question here</Form.Label>
                 <Form.Control
                   as='textarea'
+                  type='text'
+                  name='body'
                   placeholder='Please enter a question.'
                   style={{ height: '100px'}}
                   maxlength='1000'
+                  onChange={(e) => setBody(e.target.value)}
                   ></Form.Control>
               </Form.Group>
             </Row>
@@ -36,9 +70,11 @@ const AddQuestion = () => {
                 <Form.Label>What is your nickname?</Form.Label>
                 <FloatingLabel controlId='floatingnickname' label='Example: jackson11!'>
                   <Form.Control
-                    type='nickname'
+                    type='text'
+                    name='name'
                     placeholder='Example: jackson11!'
                     maxlength='60'
+                    onChange={(e) => setName(e.target.value)}
                   ></Form.Control>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
@@ -52,8 +88,10 @@ const AddQuestion = () => {
                 <FloatingLabel controlId='floatingemail' label='Why did you like the product or not?'>
                   <Form.Control
                     type='email'
+                    name='email'
                     placeholder='Why did you like the product or not?'
                     maxlength='60'
+                    onChange={(e) => setEmail(e.target.value)}
                   ></Form.Control>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
@@ -65,7 +103,7 @@ const AddQuestion = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={() => handleClose()}>Cancel</Button>
-          <Button>Submit</Button>
+          <Button type='submit' onClick={postQuestion}>Submit</Button>
         </Modal.Footer>
       </Modal>
     </div>
