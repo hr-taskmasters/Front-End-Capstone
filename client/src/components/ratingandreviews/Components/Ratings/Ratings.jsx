@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import Stars from './Stars.jsx'
+import RatingBreakdown from './RatingBreakdown.jsx'
 import Factors from './Factors.jsx'
 import Card from 'react-bootstrap/Card'
 
@@ -26,7 +26,7 @@ function Ratings (props) {
         <Card.Title>
         </Card.Title>
         <Card.Body>
-          <Stars />
+          <RatingBreakdown metaData={props.metaData}/>
           <Factors />
         </Card.Body>
       </Card>

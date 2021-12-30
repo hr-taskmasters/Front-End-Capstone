@@ -12,10 +12,10 @@ function Reviews (props) {
     const [reviewList, setReviewList] = useState([]); //get initial reviewArray
     const [reviewNum, setReviewNum] = useState(2); //display 2 tiles initially and more when moreReviews is true
     
-    useEffect(() => {
-        setId(props.product.id)
-        setReviewList(reviewList)
-    }, [props]);
+    // useEffect(() => {
+    //     setId(props.product.id)
+    //     setReviewList(reviewList)
+    // }, [props]);
     
     useEffect(() => {
         getReviews(id)
