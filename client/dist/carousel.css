@@ -1,5 +1,5 @@
 .relatedProducts .carousel {
-  height: 60vh;
+  height: 70vh;
   width: 100%;
   /* background-color: black; */
   display: flex;
@@ -20,7 +20,7 @@
   font-weight: bold;
   height: 100%;
   width: 45px;
-  line-height: 50vh;
+  line-height: 70vh;
   font-size: 25px;
   text-align: center;
   background-color: white;
@@ -42,7 +42,7 @@
 .carouselBox {
   height: 100%;
   width: auto;
-  overflow: scroll;
+  overflow: hidden scroll;
   white-space: nowrap;
   display: inline-block;
   text-align: center;
@@ -63,7 +63,15 @@
   z-index: 2;
 }
 
-.carouselBox .carouselItem .imageContainer {
+.actionButton {
+  position: absolute;
+  font-size: 35px;
+  color: white;
+  top: 5px;
+  right: 10px;
+}
+
+/* .carouselBox .carouselItem .imageContainer {
   min-width: 300px;
   max-width: 300px;
   height: 300px;
@@ -72,7 +80,7 @@
 
 .carouselBox .carouselItem .imageContainer img {
   width: 100%;
-}
+} */
 
 /* .carouselBox .carouselItem:hover {
   transform: scale(1.4);

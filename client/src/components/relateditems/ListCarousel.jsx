@@ -39,7 +39,7 @@ function ListCarousel(props) {
     })
   }
 
-  const checkPos = (e) => {
+  const checkPos = (e, width) => {
     let leftButton = document.getElementById(props.uniqueid + 'left');
     let rightButton = document.getElementById(props.uniqueid + 'right');
     if(scrollPos <= 0){
@@ -48,7 +48,7 @@ function ListCarousel(props) {
     } else {
       leftButton.innerHTML = '<';
     }
-    if(scrollPos >= scrollDistance * (props.items.length - 2)) {
+    if(scrollPos >= width) {
       rightButton.innerHTML = ' ';
     } else {
       rightButton.innerHTML = '>';
@@ -56,7 +56,7 @@ function ListCarousel(props) {
   }
 
   const scrollLeft = (e) => {
-    let element = e.target.parentElement.firstElementChild;
+    let element = e.target.parentElement.firstElementChild; // div w/ class carouselBox    console.log(element)
     element.scrollTo({
       top: 0,
       left: (scrollPos -= scrollDistance),
@@ -74,7 +74,7 @@ function ListCarousel(props) {
         behavior: "smooth"
       })
     }
-    checkPos(e);
+    checkPos(e, (element.scrollWidth - element.clientWidth));
   }
 
   return (
