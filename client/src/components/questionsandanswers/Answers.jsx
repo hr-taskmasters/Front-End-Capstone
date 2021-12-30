@@ -40,18 +40,12 @@ const Answers = (props) => {
           {sliceAns.map((answer) =>
             <IndividualAnswer answer={answer} key={answer.answer_id} />
           )}
-          {/* <Col>
-            {answers.length > 2 &&
-              <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
-            }
-            <AddAnswer />
-          </Col> */}
           <Col>
             <Stack direction='horizontal' gap={2}>
               {answers.length > 2 &&
                 <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
               }
-              <AddAnswer />
+              <AddAnswer question_id={question_id}/>
             </Stack>
           </Col>
         </Col>

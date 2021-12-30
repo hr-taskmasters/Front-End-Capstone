@@ -21,15 +21,15 @@ const AddAnswer = (props) => {
     }
     if(body.length > 1 && name.length > 1 && email.length > 1 && email.includes('@')) {
       console.log(answer_info);
-      // axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${props.question_id}/answers`, answer_info, {
-      //   headers: { 'Authorization': `${API_KEY}` }
-      // })
-      //   .then(response => {
-      //     //console.log(response);
-      //     alert('your question is successfully post.')
-      //     handleClose();
-      //   })
-      //   .catch((err) => console.error(err));
+      axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${props.question_id}/answers`, answer_info, {
+        headers: { 'Authorization': `${API_KEY}` }
+      })
+        .then(response => {
+          //console.log(response);
+          alert('your question is successfully post.')
+          handleClose();
+        })
+        .catch((err) => console.error(err));
     } else {
       if(!email.includes('@')) {
         alert('Please check your email format.')
