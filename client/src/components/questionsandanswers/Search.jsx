@@ -1,13 +1,15 @@
-import React from 'react';
-import { Form } from 'react-bootstrap';
+import React, {useState} from 'react';
+import { Form, InputGroup } from 'react-bootstrap';
 
-const Search = () => {
+const Search = ({searchTerm, setSearchTerm}) => {
   return (
-    <Form className='q_searchbar' fluid>
+    <Form>
       <Form.Control
-      type='search'
-      placeholder='HAVING A QUESTION? SEARCH FOR ANSWERS...'
-      />
+        type='text'
+        placeholder='HAVING A QUESTION? SEARCH FOR ANSWERS...'
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        />
     </Form>
   )
 }

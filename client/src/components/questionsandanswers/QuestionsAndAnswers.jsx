@@ -13,7 +13,6 @@ const QuestionsAndAnswers = (props) => {
     setId(props.product.id)
   }, [props])
   //const [product_id, setId] = useState(42380); //test for specific product, has more answers and photos in answer
-  //const [product_id, setId] = useState(42370); // has seller answered
 
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
@@ -30,11 +29,36 @@ const QuestionsAndAnswers = (props) => {
       .catch((err) => { return; });
   }
 
+  const [searchTerm, setSearchTerm] = useState('');
+  const filterQuestions = (questionlist, inputTerm) => {
+    if(!inputTerm || inputTerm.length < 3) {
+      return questionlist;
+    };
+    return questionlist.filter((question) => {
+      const body = question.question_body.toLowerCase();
+      return body.includes(inputTerm.toLowerCase());
+    });
+  };
+  const length = questions.length;
   const [numPerPage, setNumPerPage] = useState(4);
   const loadMore = () => {
     setNumPerPage(numPerPage + 2);
   }
   const sliceQuesions = questions.slice(0, numPerPage);
+  const filteredQues = filterQuestions(sliceQuesions, searchTerm);
+
+  const changeBtnMode = () => {
+    if(numPerPage < length) {
+      return(
+        <Button id='loadBtn' variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS ({questions.length-sliceQuesions.length})</Button>
+      )
+    }
+    // } else {
+    //   return(
+    //     <Button id='collapseBtn' variant="outline-secondary" onClick={()=> collapse()}>Collapse</Button>
+    //   )
+    // }
+  }
 
   return (
     <div className='questions-answers'>
@@ -43,14 +67,12 @@ const QuestionsAndAnswers = (props) => {
           <h5 className='questions_widget_header'>QUESTIONS & ANSWERS</h5>
           <Container className='questions_list'>
             <Row id='q_list_search'>
-              <Search />
+              <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
             </Row>
             <Row id='q_list_questions_container'>
-              <Questions questions={sliceQuesions} />
+              <Questions questions={filteredQues} />
                 <div>
-                  {questions.length > 2 &&
-                    <Button variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS ({questions.length-sliceQuesions.length})</Button>
-                  }
+                  {questions.length > 4 && changeBtnMode()}
                 </div>
             </Row>
             <Row id='q_list_addQuestion'>

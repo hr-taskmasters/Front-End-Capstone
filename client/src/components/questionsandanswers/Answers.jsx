@@ -5,11 +5,11 @@ import IndividualAnswer from './IndividualAnswer.jsx';
 import { Container, Row, Col, Stack } from 'react-bootstrap';
 
 const Answers = (props) => {
-  // const [question_id, setQId] = useState(props);
-  // useEffect(() => {
-  //   setQId(props.question.question_id)
-  // }, [props]);
-  const [question_id, setId] = useState(348532); // has photos in answer
+  const [question_id, setQId] = useState(props);
+  useEffect(() => {
+    setQId(props.question.question_id)
+  }, [props]);
+  //const [question_id, setId] = useState(348532); // has photos in answer
 
   const [answers, setAnswers] = useState([]);
   useEffect(() => {
