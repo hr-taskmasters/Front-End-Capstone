@@ -41,10 +41,10 @@
   box-sizing: border-box;
 }
 .p_pic {
-  width: 300px;
-  height: 480px;
+  width: 80%;
+  height: 500px;
   object-fit: cover;
-  padding: 0 10%;
+  padding: 0 1%;
 }
 .p_share_icon {
   padding: 1%;
@@ -56,8 +56,8 @@
   margin: 10px;
 }
 .p_s_img, .p_s_img_highlight {
-  width: 60px;
-  height: 70px;
+  width: 45px;
+  height: 55px;
   z-index: 4;
   object-fit: cover;
   margin: 0 auto 10px 50px;
@@ -127,4 +127,12 @@
 }
 .p_highlight {
   text-decoration: underline;
+}
+.p_up, .p_down {
+  margin: 0 auto 10px 60px;
+  border: lightgray;
+}
+.p_left, .p_right {
+  margin: 10px;
+  border: lightgray;
 }
