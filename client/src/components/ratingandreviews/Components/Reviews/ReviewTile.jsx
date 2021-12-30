@@ -1,13 +1,49 @@
 import React, { useState, useEffect} from 'react';
 import moment from 'moment';
 import ReviewBody from './ReviewBody.jsx';
-import { Card, Button, Stack } from 'react-bootstrap'
+import { Card, Stack } from 'react-bootstrap';
+import API_KEY from '../../../../config/config.js';
+import axios from 'axios';
 
 
 function ReviewTile (props) {
 
-  //make post requests to add review as helpful or to report review
+  const [reviewHelpfulNum, setReviewHelpfulNum] = useState(() => props.review.helpfulness);
+  const [helpfulSelection, setHelpfulSelection] = useState(false);
  
+  
+  const selectHelpful = () =>{
+    if (!helpfulSelection) {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${props.review.review_id}/helpful`, 
+    {helpfulness: reviewHelpfulNum + 1},
+    { headers: { 'Authorization': `${API_KEY}` } })
+    .then(res => {
+      setReviewHelpfulNum(reviewHelpfulNum + 1);
+      setHelpfulSelection(true);
+    })
+    .catch(err => console.log(err));
+    }
+  }
+
+  const selectUnHelpful = () =>{
+    if (!helpfulSelection) {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${props.review.review_id}/helpful`, 
+    {helpfulness: reviewHelpfulNum - 1},
+    { headers: { 'Authorization': `${API_KEY}` } })
+    .then(res => {
+      setReviewHelpfulNum(reviewHelpfulNum - 1);
+      setHelpfulSelection(true);
+    })
+    .catch(err => console.log(err));
+    }
+  }
+
+  //recommended
+  //if the review is recommended display "this review is recommended"
+
+  //make put request to report reviews...
+
+
   return (
     <>
       <Card>
@@ -24,7 +60,13 @@ function ReviewTile (props) {
           {props.review.summary}
           </Card.Text>
           <ReviewBody review={props.review}/>
-          *Helpful? Yes* ({props.review.helpfulness}) *report*
+          <Stack direction="horizontal" gap={3}>
+            <div>Helpful?</div>
+            <div onClick={() => selectHelpful()}>Yes</div>
+            <div onClick={() => selectUnHelpful()}>No</div>
+            <div>({reviewHelpfulNum})</div>
+            <div>*report*</div>
+           </Stack>
         </Card.Body>
         
       </Card>

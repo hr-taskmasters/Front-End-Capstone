@@ -3,7 +3,7 @@ import axios from 'axios';
 import API_KEY from '../../../../config/config.js'
 import { Button, Card, Stack } from 'react-bootstrap';
 import ReviewTile from './ReviewTile.jsx';
-import Sort from './Sort.jsx';
+import SortDropdown from './SortDropdown.jsx';
 
 
 function Reviews (props) {
@@ -12,13 +12,76 @@ function Reviews (props) {
     const [reviewList, setReviewList] = useState([]); //get initial reviewArray
     const [reviewNum, setReviewNum] = useState(2); //display 2 tiles initially and more when moreReviews is true
     
-    // useEffect(() => {
-    //     setId(props.product.id)
-    // }, [props]);
+    useEffect(() => {
+        setId(props.product.id)
+        setReviewList(reviewList)
+    }, [props]);
     
     useEffect(() => {
         getReviews(id)
     }, [id]);
+
+    useEffect(() => {
+        setSortedList()
+        // sortByHelpful()
+        // sortByDate()
+    }, [])
+    useEffect(() => {
+        sortByHelpful()
+        // sortByDate()
+    }, [reviewList])
+
+    /*
+    I am currently mapping over a sliced version of the review list and rendering that list. 
+    Then loading 2 more reviews every time the "more reviews" button is clicked.
+
+    If I sort the review list before slicing, then I should be able to use the same method.
+
+    This means that my sort methods should probably live in this file.
+    */
+
+
+    const[sortedList, setSortedList] = useState(reviewList)// []??
+
+    const sortByHelpful = () =>{
+      const sortedByHelpful = reviewList.sort((a,b) => {
+        // a.helpful - b.helpful
+        a.helpful - b.helpful
+      })
+      setSortedList(sortedByHelpful)
+    }
+
+
+    //sort by date
+    const sortByDate = () => {
+       /*
+        make a copy of the review list using slice
+        create a dates array
+        iterate over the  reviewList
+        for each date add a object with day month and year and id to array
+
+        sort by year
+        sort by month
+        sort by day
+        */
+
+        // const sortedByDate= reviewList.sort((a,b) => {
+        //     new Date(a.date) - new Date(b.date)
+        // })
+        // setSortedList(sortedByDate)
+
+    }
+
+    //sort by relevancy
+
+
+
+
+
+    const slicedReviews = sortedList.slice(0, reviewNum);
+    const loadMore = () => {
+        setReviewNum(reviewNum + 2);
+    }
 
     
     const getReviews =(id) => { //currently gets one by id
@@ -35,17 +98,12 @@ function Reviews (props) {
         })
         }
 
-
-    const slicedReviews = reviewList.slice(0, reviewNum);
-    const loadMore = () => {
-        setReviewNum(reviewNum + 2);
-    }
-
     return (
         <>
-        <div>{reviewList.length} reviews, sorted by: <Sort /></div>
+        <div>{reviewList.length} reviews, sorted by: 
+        <SortDropdown sortByHelpful={sortByHelpful} sortByDate={sortByDate}/>
+        </div>
         <Card className="reviews-list">
-        {/* <Card.Header>{reviewList.length} reviews, sorted by: <Sort /></Card.Header> */}
         <Card.Body>
         {reviewList ? 
             <Stack gap={3}>
@@ -70,3 +128,4 @@ function Reviews (props) {
     )
 };
 export default Reviews;
+
