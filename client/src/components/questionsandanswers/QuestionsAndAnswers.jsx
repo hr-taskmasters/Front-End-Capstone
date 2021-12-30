@@ -30,11 +30,23 @@ const QuestionsAndAnswers = (props) => {
       .catch((err) => { return; });
   }
 
+  const [searchTerm, setSearchTerm] = useState('');
+  const filterQuestions = (questionlist, inputTerm) => {
+    if(!inputTerm || inputTerm.length < 3) {
+      return questionlist;
+    };
+    return questionlist.filter((question) => {
+      const body = question.question_body.toLowerCase();
+      return body.includes(inputTerm);
+    });
+  };
+
   const [numPerPage, setNumPerPage] = useState(4);
   const loadMore = () => {
     setNumPerPage(numPerPage + 2);
   }
   const sliceQuesions = questions.slice(0, numPerPage);
+  const filteredQues = filterQuestions(sliceQuesions, searchTerm);
 
   return (
     <div className='questions-answers'>
@@ -43,12 +55,12 @@ const QuestionsAndAnswers = (props) => {
           <h5 className='questions_widget_header'>QUESTIONS & ANSWERS</h5>
           <Container className='questions_list'>
             <Row id='q_list_search'>
-              <Search />
+              <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
             </Row>
             <Row id='q_list_questions_container'>
-              <Questions questions={sliceQuesions} />
+              <Questions questions={filteredQues} />
                 <div>
-                  {questions.length > 2 &&
+                  {questions.length > 4 &&
                     <Button variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS ({questions.length-sliceQuesions.length})</Button>
                   }
                 </div>
