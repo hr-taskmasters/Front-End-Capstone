@@ -23,9 +23,13 @@ function Reviews (props) {
 
     useEffect(() => {
         setSortedList()
-        sortByHelpful()
+        // sortByHelpful()
         // sortByDate()
     }, [])
+    useEffect(() => {
+        sortByHelpful()
+        // sortByDate()
+    }, [reviewList])
 
     /*
     I am currently mapping over a sliced version of the review list and rendering that list. 
@@ -50,24 +54,16 @@ function Reviews (props) {
 
     //sort by date
     const sortByDate = () => {
-
        /*
-       
         make a copy of the review list using slice
         create a dates array
         iterate over the  reviewList
-        for each date add a 
-        make individual objects for each reviews date
-
+        for each date add a object with day month and year and id to array
 
         sort by year
         sort by month
         sort by day
         */
-        const datesArr = []
-        for (let review of reviewList){
-            
-        }
 
         // const sortedByDate= reviewList.sort((a,b) => {
         //     new Date(a.date) - new Date(b.date)
@@ -75,9 +71,6 @@ function Reviews (props) {
         // setSortedList(sortedByDate)
 
     }
-
-
-
 
     //sort by relevancy
 

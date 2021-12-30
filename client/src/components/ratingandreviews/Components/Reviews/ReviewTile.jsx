@@ -38,6 +38,9 @@ function ReviewTile (props) {
     }
   }
 
+  //recommended
+  //if the review is recommended display "this review is recommended"
+
   //make put request to report reviews...
 
 
