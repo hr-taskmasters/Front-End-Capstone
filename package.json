@@ -7,7 +7,8 @@
     "react-dev": "webpack --watch",
     "test": "npx jest",
     "test-coverage": "jest --coverage",
-    "no-test": "jest --coverage --passWithNoTests"
+    "no-test": "jest --coverage --passWithNoTests",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",

@@ -16,8 +16,8 @@ function ListCarousel(props) {
     populateCarousel();
     return () => {
       setGrid([]);
-    }
-  }, [props.items])
+    };
+  }, [props.items]);
 
   const populateCarousel = () => {
     let grid = [];
@@ -27,69 +27,69 @@ function ListCarousel(props) {
           'Authorization': `${API_KEY}`
         }
       })
-      .then((result) => {
-        grid.push(result.data);
-        if(grid.length === props.items.length){
-          setGrid(grid);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    })
-  }
+        .then((result) => {
+          grid.push(result.data);
+          if (grid.length === props.items.length) {
+            setGrid(grid);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  };
 
   const checkPos = (e, width) => {
     let leftButton = document.getElementById(props.uniqueid + 'left');
     let rightButton = document.getElementById(props.uniqueid + 'right');
-    if(scrollPos <= 0){
+    if (scrollPos <= 0) {
       scrollPos = 0;
       leftButton.innerHTML = ' ';
     } else {
       leftButton.innerHTML = '<';
     }
-    if(scrollPos >= width) {
+    if (scrollPos >= width) {
       rightButton.innerHTML = ' ';
     } else {
       rightButton.innerHTML = '>';
     }
-  }
+  };
 
   const scrollLeft = (e) => {
     let element = e.target.parentElement.firstElementChild; // div w/ class carouselBox    console.log(element)
     element.scrollTo({
       top: 0,
       left: (scrollPos -= scrollDistance),
-      behavior: "smooth"
-    })
+      behavior: 'smooth'
+    });
     checkPos(e);
-  }
+  };
 
   const scrollRight = (e) => {
     let element = e.target.parentElement.firstElementChild;
-    if(scrollPos <= element.scrollWidth - element.clientWidth) {
+    if (scrollPos <= element.scrollWidth - element.clientWidth) {
       element.scrollTo({
         top: 0,
         left: (scrollPos += scrollDistance),
-        behavior: "smooth"
-      })
+        behavior: 'smooth'
+      });
     }
     checkPos(e, (element.scrollWidth - element.clientWidth));
-  }
+  };
 
   return (
     <div className='carousel'>
       <div className='carouselContainer'>
         <div className="carouselBox">
-        {grid.length === 0 ? 'Loading...' : grid.map((product, index) => (
-          <div className="carouselItem" key={index}><ProductCard product={product} chooseProduct={props.chooseProduct}/></div>
-        ))}
+          {grid.length === 0 ? 'Loading...' : grid.map((product, index) => (
+            <div className="carouselItem" key={index}><ProductCard product={product} chooseProduct={props.chooseProduct}/></div>
+          ))}
         </div>
         <div className="moveLeft slideButton" onClick={scrollLeft} id={props.uniqueid + 'left'}>{' '}</div>
         <div className="moveRight slideButton" onClick={scrollRight} id={props.uniqueid + 'right'}>{'>'}</div>
       </div>
     </div>
-  )
+  );
 }
 
 export default ListCarousel;
