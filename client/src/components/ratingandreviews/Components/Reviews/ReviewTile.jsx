@@ -9,15 +9,30 @@ import axios from 'axios';
 function ReviewTile (props) {
 
   const [reviewHelpfulNum, setReviewHelpfulNum] = useState(() => props.review.helpfulness);
-  const [helpfulSelected, setHelpfulSelected] = useState(false);
+  const [helpfulSelection, setHelpfulSelection] = useState(false);
+ 
+  
   const selectHelpful = () =>{
-    if (!helpfulSelected) {
+    if (!helpfulSelection) {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${props.review.review_id}/helpful`, 
     {helpfulness: reviewHelpfulNum + 1},
     { headers: { 'Authorization': `${API_KEY}` } })
     .then(res => {
       setReviewHelpfulNum(reviewHelpfulNum + 1);
-      setHelpfulSelected(true);
+      setHelpfulSelection(true);
+    })
+    .catch(err => console.log(err));
+    }
+  }
+
+  const selectUnHelpful = () =>{
+    if (!helpfulSelection) {
+    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${props.review.review_id}/helpful`, 
+    {helpfulness: reviewHelpfulNum - 1},
+    { headers: { 'Authorization': `${API_KEY}` } })
+    .then(res => {
+      setReviewHelpfulNum(reviewHelpfulNum - 1);
+      setHelpfulSelection(true);
     })
     .catch(err => console.log(err));
     }
@@ -43,8 +58,9 @@ function ReviewTile (props) {
           </Card.Text>
           <ReviewBody review={props.review}/>
           <Stack direction="horizontal" gap={3}>
-            <div>Helpful</div>
+            <div>Helpful?</div>
             <div onClick={() => selectHelpful()}>Yes</div>
+            <div onClick={() => selectUnHelpful()}>No</div>
             <div>({reviewHelpfulNum})</div>
             <div>*report*</div>
            </Stack>
