@@ -13,7 +13,10 @@ const AddQuestion = () => {
       <Button  variant="outline-secondary" onClick={handleShow}>ADD A QUESTION +</Button>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Ask a question</Modal.Title>
+          <Modal.Title>
+            <h3>Ask your question</h3>
+            <h6>About the [Product Name Here]</h6>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
