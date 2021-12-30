@@ -3,7 +3,7 @@ import axios from 'axios';
 import API_KEY from '../../../../config/config.js'
 import { Button, Card, Stack } from 'react-bootstrap';
 import ReviewTile from './ReviewTile.jsx';
-import Sort from './Sort.jsx';
+import SortDropdown from './SortDropdown.jsx';
 
 
 function Reviews (props) {
@@ -20,6 +20,34 @@ function Reviews (props) {
         getReviews(id)
     }, [id]);
 
+    /*
+    I am currently mapping over a sliced version of the review list and rendering that list. 
+    Then loading 2 more reviews every time the "more reviews" button is clicked.
+
+    If I sort the review list before slicing, then I should be able to use the same method.
+
+    This means that my sort methods should probably live in this file.
+    */
+
+
+    const[sortedList, setSortedList] = useState(reviewList)// []??
+
+
+    const sortByHelpful = () =>{
+      const sortedByHelpful = reviewList.sort((a,b) => {
+        // a.helpful - b.helpful
+        b.helpful - a.helpful
+      })
+      setSortedList(sortedByHelpful)
+    }
+
+
+
+    const slicedReviews = reviewList.slice(0, reviewNum);
+    const loadMore = () => {
+        setReviewNum(reviewNum + 2);
+    }
+
     
     const getReviews =(id) => { //currently gets one by id
         axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?product_id=${id}`, {
@@ -35,17 +63,12 @@ function Reviews (props) {
         })
         }
 
-
-    const slicedReviews = reviewList.slice(0, reviewNum);
-    const loadMore = () => {
-        setReviewNum(reviewNum + 2);
-    }
-
     return (
         <>
-        <div>{reviewList.length} reviews, sorted by: <Sort /></div>
+        <div>{reviewList.length} reviews, sorted by: 
+        <SortDropdown sortByHelpful={sortByHelpful}/>
+        </div>
         <Card className="reviews-list">
-        {/* <Card.Header>{reviewList.length} reviews, sorted by: <Sort /></Card.Header> */}
         <Card.Body>
         {reviewList ? 
             <Stack gap={3}>
@@ -70,3 +93,18 @@ function Reviews (props) {
     )
 };
 export default Reviews;
+
+
+//sorting ideas//
+
+// const[sortedList, setSortedList] = useState([])
+
+// const date = props.reviewList.date;
+
+// const sortByDate = () =>{
+//   const sortedByDate = props.reviewList.sort((a,b) => {
+//     a.date - b.date
+//   })
+
+//   setSortedList(sortedByDate)
+// }
