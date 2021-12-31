@@ -10,6 +10,17 @@ function StarRating(props) {
     average(props.ratings);
   }, [props.ratings])
 
+  const handleReviewClick = () => {
+    let offset = 100;
+    window.scrollTo({
+        behavior: "smooth",
+        top:
+        document.getElementById("rating-reviews-main").getBoundingClientRect().top -
+        document.body.getBoundingClientRect().top -
+        offset
+    });
+  }
+
   const average = (ratingObject) => {
     if (Object.keys(ratingObject).length !== 0) {
       var sum = 0;
@@ -146,7 +157,7 @@ function StarRating(props) {
         <div>
           {starNum()}
           <span>{avgRating}</span>
-          <span className='p_rating'><a href='#'>Read All {review} Reviews</a></span>
+          <span className='p_rating'><a onClick={handleReviewClick}>Read All {review} Reviews</a></span>
         </div>
       :
         null

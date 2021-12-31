@@ -16,7 +16,7 @@ function RatingAndReviews(props) {
       <h4>Ratings and Reviews</h4>
       {/* <CardGroup> */}
       <Stack direction="horizontal" gap={3}>
-        <Card style={{ width: '25rem' }}> 
+        <Card style={{ width: '25rem' }}>
           <Ratings metaData={props.metaData}/>
         </Card>
         <Card style={{ width: '50rem' }}>
