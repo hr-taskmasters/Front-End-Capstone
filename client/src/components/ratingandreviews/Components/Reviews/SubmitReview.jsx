@@ -9,15 +9,48 @@ import {
 
 function SubmitReview (props) {
     const [showModal, setShowModal] = useState(false);
+    const [applicableChars, setApplicableChars] = useState([]);
+    //radio buttons
     const [recommended, setRecommended] = useState('');
+    const [size, setSize] = useState(null);
+    const [width, setWidth] = useState(null);
     
     const handleShow = () => setShowModal(true);
     const handleClose = () => setShowModal(false);
     
+    const findAppChars = () => {
+        if(props.metaData.characteristics !== undefined){
+        const charArr = Object.keys(props.metaData.characteristics);
+            setApplicableChars(charArr);
+        }
+    }
+    useEffect(()=> {
+        findAppChars()
+    }, [props.metaData.characteristics]);
+
+    //radio arrays
     const recommendedRadios =[
         { name: 'Yes', value: true},
         { name: 'No', value: false}
-    ]
+    ];
+
+    const sizeRadios = [
+        { name: 'A size too small', value: 1 },
+        { name: '1/2 a size too small', value: 2 },
+        { name: 'Perfect', value: 3 },
+        { name: '1/2 a size too big', value: 4 },
+        { name: 'A size too big', value: 5 }
+    ];
+
+    const widthRadios = [
+        { name: 'Too narrow', value: 1 },
+        { name: 'Slightly narrow', value: 2 },
+        { name: 'Perfect', value: 3 },
+        { name: 'Slightly wide', value: 4 },
+        { name: 'Too wide', value: 5 }
+    ];
+
+ 
 
 
 
@@ -45,6 +78,23 @@ function SubmitReview (props) {
                         value={radio.value}
                         checked={recommended === radio.value}
                         onChange={(e) => setRecommended(e.currentTarget.value)}
+                        >
+                        {radio.name}
+                    </ToggleButton>
+                  ))}
+                </ButtonGroup>
+                    //RADIO FACTORS
+                <ButtonGroup className="mb-2">
+                  {sizeRadios.map((radio, i) => (
+                    <ToggleButton
+                        key={i}
+                        id={`radio-${i}`}
+                        type="radio"
+                        variant="outline-primary"
+                        name="radio"
+                        value={radio.value}
+                        checked={size === radio.value}
+                        onChange={(e) => setSize(e.currentTarget.value)}
                         >
                         {radio.name}
                     </ToggleButton>

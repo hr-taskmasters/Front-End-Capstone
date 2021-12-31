@@ -32,7 +32,7 @@ function Reviews (props) {
                     ))}
                 </Stack>
                 <Stack direction="horizontal" gap={3}>
-                <SubmitReview product={props.product}/>
+                <SubmitReview product={props.product} metaData={props.metaData}/>
                 {props.reviewList.length > 2 && reviewNum <= props.reviewList.length &&
                 <Button variant="outline-secondary" onClick={() => loadMore()}>More Reviews</Button>
                 }
