@@ -37,8 +37,8 @@ function ListCarousel(props) {
   };
 
   const checkPos = (width) => {
-    let leftButton = document.getElementById(props.uniqueid + 'left');
-    let rightButton = document.getElementById(props.uniqueid + 'right');
+    let leftButton = document.getElementById('listLeft');
+    let rightButton = document.getElementById('listRight');
     if (scrollPos <= 0) {
       scrollPos = 0;
       leftButton.innerHTML = ' ';
@@ -82,8 +82,8 @@ function ListCarousel(props) {
             <div className="carouselItem" key={index}><ProductCard product={product} chooseProduct={props.chooseProduct} uniqueid={props.uniqueid}/></div>
           ))}
         </div>
-        <div className="moveLeft slideButton" onClick={scrollLeft} id={props.uniqueid + 'left'}>{' '}</div>
-        <div className="moveRight slideButton" onClick={scrollRight} id={props.uniqueid + 'right'}>{'>'}</div>
+        <div className="moveLeft slideButton" onClick={scrollLeft} id="listLeft">{' '}</div>
+        <div className="moveRight slideButton" onClick={scrollRight} id="listRight">{'>'}</div>
       </div>
     </div>
   );
