@@ -12,39 +12,36 @@ const ActionButton = (props) => {
 
 
   return (
-    <>
-      {props.icon === 'star' ? <span className='actionButton' onClick={(e) => {
+    <div onClick={e => e.stopPropagation()}>
+      {props.icon === 'star' ? <span className='actionButton' onClick={() => {
         handleShow();
-        e.stopPropagation();
       }}>{icon}</span> :
       <span className='actionButton' onClick={(e) => {
         props.removeOutfit(props.product)
-        e.stopPropagation();
       }}>{icon}</span> }
       <Modal show={show} dialogClassName="compareModal" onHide={(e) => {
         handleClose()
-        e.stopPropagation();
       }}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Comparing</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container fluid>
             <Row>
-              <Col>Product Placeholder 1</Col>
+              <Col>{props.featuredProd.name}</Col>
               <Col></Col>
-              <Col>Product Placeholder 2</Col>
+              <Col>{props.product.name}</Col>
             </Row>
+
           </Container>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={(e) => {
             handleClose()
-            e.stopPropagation();
           }}>Close</Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 
