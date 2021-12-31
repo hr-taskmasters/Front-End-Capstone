@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import ListCarousel from './ListCarousel.jsx';
+import OutfitCarousel from './OutfitCarousel.jsx';
 import API_KEY from '../../config/config.js';
 
 //sample data
@@ -9,12 +10,13 @@ import API_KEY from '../../config/config.js';
 function RelatedItems(props) {
 
   const [relatedItems, setRelated] = useState([]);
+  const [outfits, setOutfits] = useState([]);
 
   useEffect(() => {
     if(props.productid){
       getRelatedItems(props.productid);
     }
-
+    getYourOutfits();
   }, [props.productid])
 
   const getRelatedItems = (productid) => {
@@ -31,6 +33,13 @@ function RelatedItems(props) {
     })
   }
 
+  const getYourOutfits = () => { // fecCloset should be a stringified array of product objects
+    if(window.localStorage.fecCloset === undefined) {
+      window.localStorage.setItem('fecCloset', JSON.stringify(outfits))
+    }
+    setOutfits(JSON.parse(window.localStorage.fecCloset));
+  }
+
   return (
     <div className='relatedProducts'>
       <div>RELATED PRODUCTS</div>
@@ -39,7 +48,7 @@ function RelatedItems(props) {
       </div>
       <div>YOUR OUTFIT</div>
       <div>
-        {/* <ListCarousel items={getProducts} /> */}
+        <OutfitCarousel outfits={outfits} getYourOutfits={getYourOutfits} featuredProd={props.featuredProd} chooseProduct={props.chooseProduct} uniqueid={props.productid} />
       </div>
     </div>
   )

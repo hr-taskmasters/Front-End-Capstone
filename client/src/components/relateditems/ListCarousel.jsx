@@ -14,9 +14,6 @@ function ListCarousel(props) {
 
   useEffect(() => {
     populateCarousel();
-    return () => {
-      setGrid([]);
-    };
   }, [props.items]);
 
   const populateCarousel = () => {
@@ -39,9 +36,9 @@ function ListCarousel(props) {
     });
   };
 
-  const checkPos = (e, width) => {
-    let leftButton = document.getElementById(props.uniqueid + 'left');
-    let rightButton = document.getElementById(props.uniqueid + 'right');
+  const checkPos = (width) => {
+    let leftButton = document.getElementById('listLeft');
+    let rightButton = document.getElementById('listRight');
     if (scrollPos <= 0) {
       scrollPos = 0;
       leftButton.innerHTML = ' ';
@@ -62,7 +59,7 @@ function ListCarousel(props) {
       left: (scrollPos -= scrollDistance),
       behavior: 'smooth'
     });
-    checkPos(e);
+    checkPos();
   };
 
   const scrollRight = (e) => {
@@ -74,7 +71,7 @@ function ListCarousel(props) {
         behavior: 'smooth'
       });
     }
-    checkPos(e, (element.scrollWidth - element.clientWidth));
+    checkPos((element.scrollWidth - element.clientWidth));
   };
 
   return (
@@ -82,11 +79,11 @@ function ListCarousel(props) {
       <div className='carouselContainer'>
         <div className="carouselBox">
           {grid.length === 0 ? 'Loading...' : grid.map((product, index) => (
-            <div className="carouselItem" key={index}><ProductCard product={product} chooseProduct={props.chooseProduct}/></div>
+            <div className="carouselItem" key={index}><ProductCard product={product} chooseProduct={props.chooseProduct} uniqueid={props.uniqueid}/></div>
           ))}
         </div>
-        <div className="moveLeft slideButton" onClick={scrollLeft} id={props.uniqueid + 'left'}>{' '}</div>
-        <div className="moveRight slideButton" onClick={scrollRight} id={props.uniqueid + 'right'}>{'>'}</div>
+        <div className="moveLeft slideButton" onClick={scrollLeft} id="listLeft">{' '}</div>
+        <div className="moveRight slideButton" onClick={scrollRight} id="listRight">{'>'}</div>
       </div>
     </div>
   );

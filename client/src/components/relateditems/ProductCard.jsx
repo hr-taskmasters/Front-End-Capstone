@@ -61,7 +61,9 @@ class ProductCard extends React.Component {
     const { productid } = this.state;
 
     return (
-      <Card style={{width: '18rem'}} onClick={() => {chooseProduct(productid)}}>
+      <Card style={{width: '18rem'}} onClick={() => {
+        chooseProduct(productid);
+      }}>
         <Card.Img variant="top" src={this.state.imageUrl} style={styles.cardImage}/>
         <ActionButton icon='star'/>
         <Card.Body style={styles.cardText}>
