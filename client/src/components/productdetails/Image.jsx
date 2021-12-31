@@ -67,6 +67,10 @@ function Image(props) {
     setExpand(false);
   }
 
+  const zoomIn = () => {
+
+  }
+
   return (
     <div className='row justify-content-around'>
       <div className='col-md-2'>
@@ -108,7 +112,7 @@ function Image(props) {
         </div>
           <div className='p_expand_item col-md-10'>
             {selectImg ? <button className='p_left' onClick={prevImg}><i className='fas fa-chevron-left'></i></button> : null}
-            <img className='p_pic_expanded' src={props.style[props.styleNum].photos[selectImg].url}></img>
+            <img className='p_pic_expanded' src={props.style[props.styleNum].photos[selectImg].url} onClick={zoomIn}></img>
             <button className='p_exit_expand' onClick={exitExpandMode}><i class='fas fa-times fa-lg'></i></button>
             {selectImg === props.style[props.styleNum].photos.length - 1 ? null : <button className='p_right' onClick={nextImg}><i className='fas fa-chevron-right'></i></button>}
           </div>
