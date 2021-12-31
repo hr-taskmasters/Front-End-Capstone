@@ -6,22 +6,23 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 function SortDropdown (props) {
 
   //make the tile of the button change to what item was clicked on
-  const[title, setTitle]= useState('Relevance');
+  const [title, setTitle]= useState('relevant');
+  const [sortParam, setSortParam] = useState('relevant')
   
   useEffect(() => {
-    props.sortBy(title)
-  }, [title])
+    props.sortBy(sortParam)
+  }, [sortParam])
   
-  const changeTitle = (e) =>{
+  const changeSort = (e) =>{
     setTitle(e.target.name)
-    props.sortBy(title)
+    setSortParam(e.target.name)
   } 
  
     return (
       <DropdownButton id="dropdown-basic-button" title={title} variant={'secondary'} >
-        <Dropdown.Item href="#/action-1" name="Relevant" onClick={changeTitle}>Relevant</Dropdown.Item>
-        <Dropdown.Item href="#/action-2" name="Newest" onClick={changeTitle}>Newest</Dropdown.Item>
-        <Dropdown.Item href="#/action-3" name="Helpful" onClick={changeTitle}>Helpful</Dropdown.Item>
+        <Dropdown.Item href="#/action-1" key={"relevant"} name="relevant" onClick={changeSort}>relevant</Dropdown.Item>
+        <Dropdown.Item href="#/action-2" key={"newest"} name="newest" onClick={changeSort}>newest</Dropdown.Item>
+        <Dropdown.Item href="#/action-3" key={"helpful"} name="helpful" onClick={changeSort}>helpful</Dropdown.Item>
       </DropdownButton>
     )
 }
