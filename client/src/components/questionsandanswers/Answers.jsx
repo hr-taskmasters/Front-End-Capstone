@@ -51,7 +51,7 @@ const Answers = (props) => {
         </Col>
       </Row>
       }
-      <br></br>
+      {/* <br></br> */}
     </div>
   )
 

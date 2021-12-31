@@ -69,8 +69,8 @@ const IndividualQuestion = (props) => {
         </Stack>
         </Col>
       </Row>
-      <br></br>
       <Answers question={props.question}/>
+      <br></br>
     </Container>
   )
 };

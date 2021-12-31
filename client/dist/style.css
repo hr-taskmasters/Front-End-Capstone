@@ -181,3 +181,6 @@
   overflow-y: scroll;
   height: 500px;
 }
+h5.questions_widget_header {
+  margin-left: 50px;
+}
