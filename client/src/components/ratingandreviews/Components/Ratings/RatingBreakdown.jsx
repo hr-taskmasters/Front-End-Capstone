@@ -1,31 +1,26 @@
 import React, { useState, useEffect} from 'react';
-import { Card, ProgressBar } from 'react-bootstrap'
+import { Card, ProgressBar } from 'react-bootstrap';
+import Stars from './Stars.jsx';
 
 
 function RatingBreakdown (props) {
   const [ratings, setRatings] = useState({});
   const [totalRatings, setTotalRatings] = useState(null);
   const [percentRecommended, setPercentRecommended] = useState(null);
+  const [averageRating, setAverageRating] = useState(null);
  
-
   useEffect(() => {
     setRatings(props.metaData.ratings)
-    addRatings(props.metaData.ratings)
+    sumRatings(props.metaData.ratings)
     avgRecommended(props.metaData.recommended)
   },[props.metaData.ratings]);
 
-  // useEffect(() => {
-  //   addRatings(ratings)
-  // }, [ratings])
-
-
-  const addRatings = (ratingsObj) => {
+  const sumRatings = (ratingsObj) => {
     if(props.metaData.ratings){
       let ratingsArr = Object.values(ratingsObj);
       let total = ratingsArr.reduce((a, b) => Number(a) + Number(b));
       setTotalRatings(total);
     }
-    
   }
 
   const avgRecommended = (recObj) => {
@@ -39,34 +34,37 @@ function RatingBreakdown (props) {
     }
   }
 
-
-    return (
-      <Card>
-        <Card.Title>
-            *average*  *star display*
-        </Card.Title>
-        <Card.Body>
-          { ratings ?
-          <>
-            <div>{percentRecommended}% of reviewers recommend this product</div> 
-            <div>Five stars:</div>
-            <ProgressBar variant="success" now={ratings['5'] / totalRatings * 100}/> 
-            <div>Four stars:</div>
-            <ProgressBar variant="success" now={ratings['4'] / totalRatings * 100}/> 
-            <div>Three stars:</div>
-            <ProgressBar variant="success" now={ratings['3'] / totalRatings * 100}/> 
-            <div>Two stars:</div>
-            <ProgressBar variant="success" now={ratings['2'] / totalRatings * 100}/> 
-            <div>One star:</div>
-            <ProgressBar variant="success" now={ratings['1'] / totalRatings * 100}/> 
-            </>
-            : <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            }
-        </Card.Body>
-      </Card>
-    )
-
+  return (
+    <Card>
+      <Card.Title>
+          <Stars />
+      </Card.Title>
+      <Card.Body>
+        { ratings ?
+        <>
+          <div>{percentRecommended}% of reviewers recommend this product</div> 
+          <div>Five stars:</div>
+          <ProgressBar variant="success" now={ratings['5'] / totalRatings * 100}/> 
+          <div>Four stars:</div>
+          <ProgressBar variant="success" now={ratings['4'] / totalRatings * 100}/> 
+          <div>Three stars:</div>
+          <ProgressBar variant="success" now={ratings['3'] / totalRatings * 100}/> 
+          <div>Two stars:</div>
+          <ProgressBar variant="success" now={ratings['2'] / totalRatings * 100}/> 
+          <div>One star:</div>
+          <ProgressBar variant="success" now={ratings['1'] / totalRatings * 100}/> 
+          </>
+          : <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          }
+      </Card.Body>
+    </Card>
+  )
 }
+
 export default RatingBreakdown;
+
+ // useEffect(() => {
+  //   addRatings(ratings)
+  // }, [ratings])
