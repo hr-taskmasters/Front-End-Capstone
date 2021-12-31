@@ -5,7 +5,7 @@ import {Container, Row, Col} from'react-bootstrap';
 
 const ActionButton = (props) => {
 
-  const icon = props.icon === 'star' ? <i className='far fa-star'></i> : <i className='far fa-xmark'></i>;
+  const icon = props.icon === 'star' ? <i className='far fa-star'></i> : <i className='far fa-times-circle'></i>;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -13,10 +13,14 @@ const ActionButton = (props) => {
 
   return (
     <>
-      <span className='actionButton' onClick={(e) => {
+      {props.icon === 'star' ? <span className='actionButton' onClick={(e) => {
         handleShow();
         e.stopPropagation();
-      }}>{icon}</span>
+      }}>{icon}</span> :
+      <span className='actionButton' onClick={(e) => {
+        props.removeOutfit(props.product)
+        e.stopPropagation();
+      }}>{icon}</span> }
       <Modal show={show} dialogClassName="compareModal" onHide={(e) => {
         handleClose()
         e.stopPropagation();

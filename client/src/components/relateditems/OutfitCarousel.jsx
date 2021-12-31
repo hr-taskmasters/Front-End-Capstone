@@ -87,7 +87,7 @@ function OutfitCarousel(props) {
           </Card>
         </div>
           {grid.length === 0 ? '' : grid.map((product, index) => (
-            <div className="carouselItem" key={index}><ProductCard product={product} chooseProduct={props.chooseProduct} uniqueid={props.uniqueid}/></div>
+            <div className="carouselItem" key={index}><ProductCard product={product} icon='remove' removeOutfit={props.removeOutfit} chooseProduct={props.chooseProduct} uniqueid={props.uniqueid}/></div>
           ))}
         </div>
         <div className="moveLeft slideButton" onClick={scrollLeft} id="outfitLeft">{' '}</div>
