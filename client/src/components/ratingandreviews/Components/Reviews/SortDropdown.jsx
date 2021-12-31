@@ -16,11 +16,7 @@ function SortDropdown (props) {
     setTitle(e.target.name)
     props.sortBy(title)
   } 
-  // const sortBy = () => {
-  //   props.sortBy(title)
-  // }
-
-
+ 
     return (
       <DropdownButton id="dropdown-basic-button" title={title} variant={'secondary'} >
         <Dropdown.Item href="#/action-1" name="Relevant" onClick={changeTitle}>Relevant</Dropdown.Item>
