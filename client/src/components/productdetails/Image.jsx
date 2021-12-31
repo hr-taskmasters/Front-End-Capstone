@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import Carousel from 'react-bootstrap/Carousel';
 
 function Image(props) {
 
   const [selectImg, setSelectImg] = useState(0);
   const [firstImg, setFirstImg] = useState(0);
   const [lastImg, setLastImg] = useState(7);
+  const [expand, setExpand] = useState(false);
 
   useEffect(() => {
     changeStyle();
@@ -19,6 +19,10 @@ function Image(props) {
 
   const handleClick = (index) => {
     setSelectImg(index + firstImg);
+  };
+
+  const handleIconClick = (index) => {
+    setSelectImg(index);
   };
 
   const scrollUp = () => {
@@ -55,6 +59,14 @@ function Image(props) {
     }
   }
 
+  const expandMode = () => {
+    setExpand(true);
+  }
+
+  const exitExpandMode = () => {
+    setExpand(false);
+  }
+
   return (
     <div className='row justify-content-around'>
       <div className='col-md-2'>
@@ -73,9 +85,8 @@ function Image(props) {
         {props.style.length ?
           <div>
             {selectImg ? <button className='p_left' onClick={prevImg}><i className='fas fa-chevron-left'></i></button> : null}
-            {props.style[props.styleNum].photos[selectImg] ? <img className='p_pic' src={props.style[props.styleNum].photos[selectImg].url}></img> : <img className='p_pic' src={props.style[props.styleNum].photos[0].url}></img>}
+            {props.style[props.styleNum].photos[selectImg] ? <img className='p_pic' src={props.style[props.styleNum].photos[selectImg].url} onClick={expandMode}></img> : <img className='p_pic' src={props.style[props.styleNum].photos[0].url} onClick={expandMode}></img>}
             {selectImg === props.style[props.styleNum].photos.length - 1 ? null : <button className='p_right' onClick={nextImg}><i className='fas fa-chevron-right'></i></button>}
-
           </div>
         :
           <div className='spinner-border' role='status'>
@@ -83,6 +94,27 @@ function Image(props) {
           </div>
         }
       </div>
+      {expand && (
+        <div className='p_expand row'>
+          <div className='col-sm-1 p_icon_container'>
+          {props.style[props.styleNum].photos.map((img, index) => (
+            <div>
+              <button className='p_thum_icon' onClick={() => handleIconClick(index)}>
+                <i className={index === selectImg ? 'far fa-circle p_selected_icon' : 'far fa-circle'}></i>
+              </button>
+            </div>
+            ))
+          }
+        </div>
+          <div className='p_expand_item col-md-10'>
+            {selectImg ? <button className='p_left' onClick={prevImg}><i className='fas fa-chevron-left'></i></button> : null}
+            <img className='p_pic_expanded' src={props.style[props.styleNum].photos[selectImg].url}></img>
+            <button className='p_exit_expand' onClick={exitExpandMode}><i class='fas fa-times fa-lg'></i></button>
+            {selectImg === props.style[props.styleNum].photos.length - 1 ? null : <button className='p_right' onClick={nextImg}><i className='fas fa-chevron-right'></i></button>}
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
