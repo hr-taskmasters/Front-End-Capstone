@@ -40,6 +40,15 @@ function RelatedItems(props) {
     setOutfits(JSON.parse(window.localStorage.fecCloset));
   }
 
+  const removeOutfit = (product) => {
+    let closet = JSON.parse(window.localStorage.fecCloset);
+    let index = closet.findIndex(i => i.id === product.id)
+    closet.splice((index), 1);
+    window.localStorage.setItem('fecCloset', JSON.stringify(closet));
+
+    setOutfits(JSON.parse(window.localStorage.fecCloset))
+  }
+
   return (
     <div className='relatedProducts'>
       <div>RELATED PRODUCTS</div>
@@ -48,7 +57,7 @@ function RelatedItems(props) {
       </div>
       <div>YOUR OUTFIT</div>
       <div>
-        <OutfitCarousel outfits={outfits} getYourOutfits={getYourOutfits} featuredProd={props.featuredProd} chooseProduct={props.chooseProduct} uniqueid={props.productid} />
+        <OutfitCarousel outfits={outfits} getYourOutfits={getYourOutfits} removeOutfit={removeOutfit} featuredProd={props.featuredProd} chooseProduct={props.chooseProduct} uniqueid={props.productid} />
       </div>
     </div>
   )

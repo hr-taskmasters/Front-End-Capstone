@@ -65,7 +65,7 @@ class ProductCard extends React.Component {
         chooseProduct(productid);
       }}>
         <Card.Img variant="top" src={this.state.imageUrl} style={styles.cardImage}/>
-        <ActionButton icon='star'/>
+        <ActionButton icon={this.props.icon} removeOutfit={this.props.removeOutfit} product={this.props.product}/>
         <Card.Body style={styles.cardText}>
           <Card.Text style={styles.noMargin}>{this.state.category}</Card.Text>
           <Card.Title>{this.state.expandedProductName}</Card.Title>
