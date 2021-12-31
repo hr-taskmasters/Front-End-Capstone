@@ -12,10 +12,10 @@ function Reviews (props) {
     const [reviewList, setReviewList] = useState([]); //get initial reviewArray
     const [reviewNum, setReviewNum] = useState(2); //display 2 tiles initially and more when moreReviews is true
     
-    // useEffect(() => {
-    //     setId(props.product.id)
-    //     setReviewList(reviewList)
-    // }, [props]);
+    useEffect(() => {
+        setId(props.product.id)
+        setReviewList(reviewList)
+    }, [props]);
     
     useEffect(() => {
         getReviews(id)
@@ -100,30 +100,29 @@ function Reviews (props) {
 
     return (
         <>
+        { reviewList ? 
+        <>
         <div>{reviewList.length} reviews, sorted by: 
         <SortDropdown sortByHelpful={sortByHelpful} sortByDate={sortByDate}/>
         </div>
         <Card className="reviews-list">
-        <Card.Body>
-        {reviewList ? 
-            <Stack gap={3}>
-                {slicedReviews.map(review => (
-                    <ReviewTile key={review.review_id} review={review}/>
-                ))}
-            </Stack>
-            : 
-            <div className="spinner-border" role="status">
+            <Card.Body>
+                <Stack gap={3}>
+                    {slicedReviews.map(review => (
+                        <ReviewTile key={review.review_id} review={review}/>
+                    ))}
+                </Stack>
+                <Button variant="outline-secondary">Submit Review</Button>{' '}
+                {reviewList.length > 2 && reviewNum <= reviewList.length &&
+                <Button variant="outline-secondary" onClick={() => loadMore()}>More Reviews</Button>
+                }
+            </Card.Body>
+        </Card>
+        </>
+        :   <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>
-            }
-            <>
-              <Button variant="outline-secondary">Submit Review</Button>{' '}
-              {reviewList.length > 2 && reviewNum <= reviewList.length &&
-              <Button variant="outline-secondary" onClick={() => loadMore()}>More Reviews</Button>
-              }
-            </>
-        </Card.Body>
-      </Card>
+        }
       </>
     )
 };
