@@ -9,11 +9,11 @@ import AddQuestion from './AddQuestion.jsx';
 
 const QuestionsAndAnswers = (props) => {
 
-  // const [product_id, setId] = useState(props);
-  // useEffect(() => {
-  //   setId(props.product.id)
-  // }, [props])
-  const [product_id, setId] = useState(42380); //test for specific product, has more answers and photos in answer
+  const [product_id, setId] = useState(props);
+  useEffect(() => {
+    setId(props.product.id)
+  }, [props])
+  //const [product_id, setId] = useState(42380); //test for specific product, has more answers and photos in answer
 
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
