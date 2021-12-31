@@ -177,3 +177,7 @@
 .p_selected_icon {
   color: red;
 }
+.q_questions_sessions {
+  overflow-y: scroll;
+  height: 500px;
+}
