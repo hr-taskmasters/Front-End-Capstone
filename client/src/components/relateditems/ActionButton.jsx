@@ -9,7 +9,55 @@ const ActionButton = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [comparison, setCompare] = useState([])
 
+  useEffect(() => {
+    if(props.featuredProd.features !== undefined && props.product.features !== undefined){
+      getAndCompare();
+    }
+  }, [props.featuredProd])
+
+  const getAndCompare = () => {
+    // set features from props.featuredProd and props.product as keys in a combined object, then set each key to
+    // an array that holds each product's value. [0] for featuredProd and [1] for cardProduct
+    let featuredProd = props.featuredProd.features;
+    let cardProd = props.product.features;
+    let features = {};
+    let rowList = [];
+
+    featuredProd.forEach(featureObj => {
+      if(!features[featureObj.feature]){
+        if(features[featureObj.value] === null) {
+          features[featureObj.feature] = ['CHECKMARK'];
+        } else {
+          features[featureObj.feature] = [featureObj.value];
+        }
+      }
+    })
+    cardProd.forEach(featureObj => {
+      if(!features[featureObj.feature]){
+        if(features[featureObj.value] === null) {
+          features[featureObj.feature] = [];
+          features[featureObj.feature][1] = 'CHECKMARK';
+        } else {
+          features[featureObj.feature] = [];
+          features[featureObj.feature][1] = featureObj.value;
+        }
+      } else if (featureObj.value === null){
+        features[featureObj.feature][1] = 'CHECKMARK';
+      } else {
+        features[featureObj.feature][1] = featureObj.value
+      }
+    })
+    for(var feature in features) {
+      rowList.push(<Row key={feature}>
+        <Col>{features[feature][0]}</Col>
+        <Col>{feature}</Col>
+        <Col>{features[feature][1]}</Col>
+      </Row>)
+    }
+    setCompare(rowList);
+  }
 
   return (
     <div onClick={e => e.stopPropagation()}>
@@ -32,7 +80,7 @@ const ActionButton = (props) => {
               <Col></Col>
               <Col>{props.product.name}</Col>
             </Row>
-
+            {comparison}
           </Container>
         </Modal.Body>
         <Modal.Footer>
