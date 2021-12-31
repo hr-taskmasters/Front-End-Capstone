@@ -9,11 +9,11 @@ import AddQuestion from './AddQuestion.jsx';
 
 const QuestionsAndAnswers = (props) => {
 
-  const [product_id, setId] = useState(props);
-  useEffect(() => {
-    setId(props.product.id)
-  }, [props])
-  //const [product_id, setId] = useState(42380); //test for specific product, has more answers and photos in answer
+  // const [product_id, setId] = useState(props);
+  // useEffect(() => {
+  //   setId(props.product.id)
+  // }, [props])
+  const [product_id, setId] = useState(42380); //test for specific product, has more answers and photos in answer
 
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
@@ -28,7 +28,7 @@ const QuestionsAndAnswers = (props) => {
         setQuestions(response.data.results);
       })
       .catch((err) => { return; });
-  }
+  };
 
   const [searchTerm, setSearchTerm] = useState('');
   const filterQuestions = (questionlist, inputTerm) => {
@@ -44,7 +44,10 @@ const QuestionsAndAnswers = (props) => {
   const [numPerPage, setNumPerPage] = useState(4);
   const loadMore = () => {
     setNumPerPage(numPerPage + 2);
-  }
+  };
+  const collapse = () => {
+    setNumPerPage(4);
+  };
   const sliceQuesions = questions.slice(0, numPerPage);
   const filteredQues = filterQuestions(sliceQuesions, searchTerm);
 
@@ -52,14 +55,13 @@ const QuestionsAndAnswers = (props) => {
     if(numPerPage < length) {
       return(
         <Button id='loadBtn' variant="outline-secondary" onClick={() => loadMore()}>LOAD MORE QUESTIONS ({questions.length-sliceQuesions.length})</Button>
-      )
-    }
-    // } else {
-    //   return(
-    //     <Button id='collapseBtn' variant="outline-secondary" onClick={()=> collapse()}>Collapse</Button>
-    //   )
-    // }
-  }
+      );
+    } else {
+      return(
+        <Button id='collapseBtn' variant="outline-secondary" onClick={()=> collapse()}>Collapse</Button>
+      );
+    };
+  };
 
   return (
     <div className='questions-answers'>
@@ -77,15 +79,13 @@ const QuestionsAndAnswers = (props) => {
                 </div>
             </Row>
             <Row id='q_list_addQuestion'>
-              {/* <Button variant="outline-secondary">ADD A QUESTION +</Button> */}
               <AddQuestion product_id={product_id}/>
             </Row>
           </Container>
         </div>
       </div>
     </div>
-  )
-
+  );
 };
 
 
