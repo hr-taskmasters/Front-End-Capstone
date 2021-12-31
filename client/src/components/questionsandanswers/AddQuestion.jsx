@@ -54,15 +54,17 @@ const AddQuestion = (props) => {
             <Row className='mb-3'>
               <Form.Group as={Col} controlId='formGridQuestion'>
                 <Form.Label>Post your question here</Form.Label>
-                <Form.Control
-                  as='textarea'
-                  type='text'
-                  name='body'
-                  placeholder='Please enter a question.'
-                  style={{ height: '100px'}}
-                  maxlength='1000'
-                  onChange={(e) => setBody(e.target.value)}
+                <FloatingLabel controlId='floatingquestion' label='Why did you like the product or not?'>
+                  <Form.Control
+                    as='textarea'
+                    type='text'
+                    name='body'
+                    placeholder='Why did you like the product or not?'
+                    style={{ height: '100px'}}
+                    maxlength='1000'
+                    onChange={(e) => setBody(e.target.value)}
                   ></Form.Control>
+                </FloatingLabel>
               </Form.Group>
             </Row>
             <Row className='mb-3'>
@@ -85,11 +87,11 @@ const AddQuestion = (props) => {
             <Row>
               <Form.Group as={Col} controlId='formGridNickname'>
                 <Form.Label>What is your email?</Form.Label>
-                <FloatingLabel controlId='floatingemail' label='Why did you like the product or not?'>
+                <FloatingLabel controlId='floatingemail' label='Example: jack@email.com'>
                   <Form.Control
                     type='email'
                     name='email'
-                    placeholder='Why did you like the product or not?'
+                    placeholder='Example: jack@email.com'
                     maxlength='60'
                     onChange={(e) => setEmail(e.target.value)}
                   ></Form.Control>
