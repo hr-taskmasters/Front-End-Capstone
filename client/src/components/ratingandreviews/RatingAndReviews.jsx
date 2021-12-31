@@ -1,25 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import API_KEY from '../../config/config.js'
+import {Card, Stack } from 'react-bootstrap';
 import Ratings from './Components/Ratings/Ratings.jsx'
 import Reviews from './Components/Reviews/Reviews.jsx';
-// import CardGroup from 'react-bootstrap/CardGroup';
-// import Card from 'react-bootstrap/Card';
-import {Card, Stack } from 'react-bootstrap';
 
 
 
 function RatingAndReviews(props) {
-  const [id, setId] = useState(43266); //42366
-  const [reviewList, setReviewList] = useState([]); //get initial reviewArray
-  const [metaData, setMetaData] = useState([]); //get initial reviewArray
-  const [sort, setSort] = useState('relevant'); //get initial reviewArray
+  const [id, setId] = useState(42366); //43266
+  const [reviewList, setReviewList] = useState([]); 
+  const [metaData, setMetaData] = useState([]); 
+  const [sort, setSort] = useState('relevant'); 
   
   useEffect(() => {
-    setId(props.product.id)
-    // sortBy(sort)
-    // setReviewList(reviewList)
-  }, [props]);
+    if(props.product.id) {
+      setId(props.product.id)
+    }
+  }, [props.product.id]);
 
   useEffect(() => {
     getReviews(id, sort)
@@ -35,7 +33,7 @@ function RatingAndReviews(props) {
   }
 
 
-  const getReviews = (id, sort) => { //currently gets one by id
+  const getReviews = (id, sort) => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?sort=${sort}&product_id=${id}`, {
         headers: {
         'Authorization': `${API_KEY}`

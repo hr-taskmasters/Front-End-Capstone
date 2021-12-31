@@ -18,9 +18,11 @@ function Reviews (props) {
         <>
         { props.reviewList ? 
         <>
-        <div>{props.reviewList.length} reviews, sorted by: 
-        <SortDropdown sortBy={props.sortBy}/>
-        </div>
+        <Stack direction="horizontal" gap={2} className="reviews-dropdown-stack">
+            <b>{props.reviewList.length}</b>
+            <div>reviews, sorted by:</div>
+            <SortDropdown sortBy={props.sortBy}/>
+        </Stack>
         <Card className="reviews-list">
             <Card.Body>
                 <Stack gap={3}>
