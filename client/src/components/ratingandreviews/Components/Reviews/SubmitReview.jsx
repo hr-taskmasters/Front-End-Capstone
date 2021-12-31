@@ -2,25 +2,22 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import API_KEY from '../../../../config/config.js'
 import { 
-    Button,
-    Card,
-    Stack,
-    Row,
-    Form,
-    Modal,
-    Accordion,
-    FloatingLabel 
-    } from 'react-bootstrap';
+    Button, Stack, Row, Form, Modal, 
+    Accordion, FloatingLabel, ButtonGroup, ToggleButton, ToggleButtonGroup
+} from 'react-bootstrap';
 
 
 function SubmitReview (props) {
     const [showModal, setShowModal] = useState(false);
+    const [recommended, setRecommended] = useState('');
     
-    
-
     const handleShow = () => setShowModal(true);
     const handleClose = () => setShowModal(false);
     
+    const recommendedRadios =[
+        { name: 'Yes', value: true},
+        { name: 'No', value: false}
+    ]
 
 
 
@@ -33,6 +30,38 @@ function SubmitReview (props) {
             </Modal.Header>
             <Modal.Body>
                 <Stack gap={3}>
+
+
+
+                <b>Do you recommend this product?*</b>
+                <ButtonGroup className="mb-2">
+                  {recommendedRadios.map((radio, i) => (
+                    <ToggleButton
+                        key={i}
+                        id={`radio-${i}`}
+                        type="radio"
+                        variant={i % 2 === 0  ? 'outline-primary' : 'outline-secondary'}
+                        name="radio"
+                        value={radio.value}
+                        checked={recommended === radio.value}
+                        onChange={(e) => setRecommended(e.currentTarget.value)}
+                        >
+                        {radio.name}
+                    </ToggleButton>
+                  ))}
+                </ButtonGroup>
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <b>Summary</b>
                 <FloatingLabel controlId="floatingInput" label='Example: "Best purchase ever!"' className="mb-3">
@@ -48,6 +77,7 @@ function SubmitReview (props) {
                 <FloatingLabel controlId="floatingPassword" label='“Why did you like the product or not?”' className="mb-3">
                     <Form.Control 
                     className="submit-body"
+                    as="textarea"
                     type="text" 
                     placeholder='“Why did you like the product or not?”' 
                     minLength="50"
@@ -56,10 +86,10 @@ function SubmitReview (props) {
                     />
                 </FloatingLabel>
 
-
+                <b>Add Images*</b>
                 <Accordion>
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header>Add Images</Accordion.Header>
+                    <Accordion.Header>Upload Images</Accordion.Header>
                     <Accordion.Body>
                         <Stack gap={2}>
                             <div>[Image Previews] *Limit 5*</div>
@@ -112,9 +142,14 @@ function SubmitReview (props) {
 export default SubmitReview;
 
 
+
+
+
+
 // const [showModalImg, setShowModalImg] = useState(false);
 // const handleShowImg = () => setShowModalImg(true);
 // const handleCloseImg = () => setShowModalImg(false);
+
 {/* <Button variant="outline-secondary" onClick={handleShowImg}>Add Images</Button>
 
 
