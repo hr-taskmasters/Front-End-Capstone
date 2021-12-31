@@ -69,7 +69,7 @@ function RatingAndReviews(props) {
           <Ratings metaData={metaData}/>
         </Card>
         <Card style={{ width: '50rem' }}>
-          <Reviews reviewList={reviewList} sortBy={sortBy}/>
+          <Reviews reviewList={reviewList} product={props.product} sortBy={sortBy}/>
         </Card>
         </Stack>
     </div>
