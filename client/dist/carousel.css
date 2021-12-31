@@ -71,6 +71,12 @@
   right: 10px;
 }
 
+.compareModal .modal-content{
+  position: fixed;
+  width: 1000px;
+  left: 15%;
+  top: 15%;
+}
 /* .carouselBox .carouselItem .imageContainer {
   min-width: 300px;
   max-width: 300px;
