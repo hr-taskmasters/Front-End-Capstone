@@ -10,7 +10,9 @@ function ListCarousel(props) {
 
   const [grid, setGrid] = useState([]);
   let scrollPos = 0;
-  let scrollDistance = 320;
+  const scrollDistance = 320;
+  const [leftButton, setLButton] = useState(' ');
+  const [rightButton, setRButton] = useState('>');
 
   useEffect(() => {
     populateCarousel();
@@ -41,14 +43,22 @@ function ListCarousel(props) {
     let rightButton = document.getElementById('listRight');
     if (scrollPos <= 0) {
       scrollPos = 0;
-      leftButton.innerHTML = ' ';
+      if(leftButton !== ' ') {
+        setLButton(' ')
+      }
     } else {
-      leftButton.innerHTML = '<';
+      if(leftButton !== '<'){
+        setLButton('<');
+      }
     }
     if (scrollPos >= width) {
-      rightButton.innerHTML = ' ';
+      if(rightButton !== ' ') {
+        setRButton(' ')
+      }
     } else {
-      rightButton.innerHTML = '>';
+      if(rightButton !== '>') {
+        setRButton('>');
+      }
     }
   };
 
@@ -75,15 +85,15 @@ function ListCarousel(props) {
   };
 
   return (
-    <div className='carousel'>
+    <div className='carousel' key={props.uniqueid + 'related'}>
       <div className='carouselContainer'>
         <div className="carouselBox">
           {grid.length === 0 ? 'Loading...' : grid.map((product, index) => (
-            <div className="carouselItem" key={index}><ProductCard product={product} icon='star' chooseProduct={props.chooseProduct} uniqueid={props.uniqueid}/></div>
+            <div className="carouselItem" key={index}><ProductCard product={product} featuredProd={props.featuredProd} icon='star' chooseProduct={props.chooseProduct} checkPos={checkPos} uniqueid={props.uniqueid}/></div>
           ))}
         </div>
-        <div className="moveLeft slideButton" onClick={scrollLeft} id="listLeft">{' '}</div>
-        <div className="moveRight slideButton" onClick={scrollRight} id="listRight">{'>'}</div>
+        <div className="moveLeft slideButton" onClick={scrollLeft} id="listLeft">{leftButton}</div>
+        <div className="moveRight slideButton" onClick={scrollRight} id="listRight">{rightButton}</div>
       </div>
     </div>
   );

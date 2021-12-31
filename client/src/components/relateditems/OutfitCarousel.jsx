@@ -11,7 +11,9 @@ function OutfitCarousel(props) {
 
   const [grid, setGrid] = useState([]);
   let scrollPos = 0;
-  let scrollDistance = 320;
+  const scrollDistance = 320;
+  const [leftButton, setLButton] = useState(' ');
+  const [rightButton, setRButton] = useState('>');
 
   useEffect(() => {
     getOutfits();
@@ -26,14 +28,22 @@ function OutfitCarousel(props) {
     let rightButton = document.getElementById('outfitRight');
     if (scrollPos <= 0) {
       scrollPos = 0;
-      leftButton.innerHTML = ' ';
+      if(leftButton !== ' ') {
+        setLButton(' ')
+      }
     } else {
-      leftButton.innerHTML = '<';
+      if(leftButton !== '<'){
+        setLButton('<');
+      }
     }
     if (scrollPos >= width) {
-      rightButton.innerHTML = ' ';
+      if(rightButton !== ' ') {
+        setRButton(' ')
+      }
     } else {
-      rightButton.innerHTML = '>';
+      if(rightButton !== '>') {
+        setRButton('>');
+      }
     }
   };
 
@@ -60,7 +70,7 @@ function OutfitCarousel(props) {
   };
 
   return (
-    <div className='carousel'>
+    <div className='carousel' key={props.uniqueid + 'outfit'}>
       <div className='carouselContainer'>
         <div className="carouselBox">
         <div className="carouselItem">
@@ -87,11 +97,11 @@ function OutfitCarousel(props) {
           </Card>
         </div>
           {grid.length === 0 ? '' : grid.map((product, index) => (
-            <div className="carouselItem" key={index}><ProductCard product={product} icon='remove' removeOutfit={props.removeOutfit} chooseProduct={props.chooseProduct} uniqueid={props.uniqueid}/></div>
+            <div className="carouselItem" key={index}><ProductCard product={product} featuredProd={props.featuredProd} icon='remove' checkPos={checkPos} removeOutfit={props.removeOutfit} chooseProduct={props.chooseProduct} uniqueid={props.uniqueid}/></div>
           ))}
         </div>
-        <div className="moveLeft slideButton" onClick={scrollLeft} id="outfitLeft">{' '}</div>
-        <div className="moveRight slideButton" onClick={scrollRight} id="outfitRight">{'>'}</div>
+        <div className="moveLeft slideButton" onClick={scrollLeft} id="outfitLeft">{leftButton}</div>
+        <div className="moveRight slideButton" onClick={scrollRight} id="outfitRight">{rightButton}</div>
       </div>
     </div>
   );

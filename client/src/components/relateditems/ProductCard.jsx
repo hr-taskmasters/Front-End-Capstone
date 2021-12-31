@@ -62,10 +62,11 @@ class ProductCard extends React.Component {
 
     return (
       <Card style={{width: '18rem'}} onClick={() => {
-        chooseProduct(productid);
+        this.props.checkPos();
+        this.props.chooseProduct(productid);
       }}>
         <Card.Img variant="top" src={this.state.imageUrl} style={styles.cardImage}/>
-        <ActionButton icon={this.props.icon} removeOutfit={this.props.removeOutfit} product={this.props.product}/>
+        <ActionButton icon={this.props.icon} removeOutfit={this.props.removeOutfit} product={this.props.product} featuredProd={this.props.featuredProd} />
         <Card.Body style={styles.cardText}>
           <Card.Text style={styles.noMargin}>{this.state.category}</Card.Text>
           <Card.Title>{this.state.expandedProductName}</Card.Title>

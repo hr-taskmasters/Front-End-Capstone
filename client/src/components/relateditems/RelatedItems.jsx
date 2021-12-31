@@ -51,11 +51,11 @@ function RelatedItems(props) {
 
   return (
     <div className='relatedProducts'>
-      <div>RELATED PRODUCTS</div>
+      <div className='carouselTitle'>RELATED PRODUCTS</div>
       <div>
-        {relatedItems[0] ? <ListCarousel items={relatedItems} chooseProduct={props.chooseProduct} uniqueid={props.productid}/> : 'Loading...'}
+        {relatedItems[0] ? <ListCarousel items={relatedItems} chooseProduct={props.chooseProduct} featuredProd={props.featuredProd} uniqueid={props.productid}/> : 'Loading...'}
       </div>
-      <div>YOUR OUTFIT</div>
+      <div className='carouselTitle'>YOUR OUTFIT</div>
       <div>
         <OutfitCarousel outfits={outfits} getYourOutfits={getYourOutfits} removeOutfit={removeOutfit} featuredProd={props.featuredProd} chooseProduct={props.chooseProduct} uniqueid={props.productid} />
       </div>
