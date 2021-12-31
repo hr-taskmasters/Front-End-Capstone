@@ -135,4 +135,44 @@
 .p_left, .p_right {
   margin: 10px;
   border: lightgray;
+  background-color: transparent;
+  outline: none;
+}
+.p_expand {
+  position: absolute;
+  top: 80px;
+  left: 50px;
+  background-color: white;
+  margin: auto;
+}
+.p_expand_item {
+  width: 50%;
+  margin: 0 auto;
+}
+.p_pic_expanded {
+  width: 65%;
+  height: 650px;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+  border: cornsilk;
+}
+.p_exit_expand {
+  position: absolute;
+  left: 75%;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+.p_icon_container {
+  margin-top: 20%;
+  margin-left: 6%;
+}
+.p_thum_icon {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+.p_selected_icon {
+  color: red;
 }
