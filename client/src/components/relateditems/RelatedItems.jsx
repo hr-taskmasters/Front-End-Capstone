@@ -15,9 +15,8 @@ function RelatedItems(props) {
   useEffect(() => {
     if(props.productid){
       getRelatedItems(props.productid);
-      getYourOutfits();
     }
-
+    getYourOutfits();
   }, [props.productid])
 
   const getRelatedItems = (productid) => {
@@ -45,7 +44,7 @@ function RelatedItems(props) {
     <div className='relatedProducts'>
       <div>RELATED PRODUCTS</div>
       <div>
-        {/* {relatedItems[0] ? <ListCarousel items={relatedItems} chooseProduct={props.chooseProduct} uniqueid={props.productid}/> : 'Loading...'} */}
+        {relatedItems[0] ? <ListCarousel items={relatedItems} chooseProduct={props.chooseProduct} uniqueid={props.productid}/> : 'Loading...'}
       </div>
       <div>YOUR OUTFIT</div>
       <div>
