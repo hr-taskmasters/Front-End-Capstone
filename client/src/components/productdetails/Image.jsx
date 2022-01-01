@@ -152,12 +152,14 @@ function Image(props) {
           }
         </div>
           <div className='p_expand_item col-md-10'>
-            {selectImg &&
+            {selectImg ?
               <button
                 className='p_left'
                 onClick={prevImg}>
                 <i className='fas fa-chevron-left'></i>
               </button>
+            :
+              null
             }
             {click ?
               <Zoom
