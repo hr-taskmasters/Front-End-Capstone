@@ -29,14 +29,16 @@
 
 
 /* REVIEW BODY */
-.review-helpful-hover:hover {
-  color: blue;
+.review-helpful:hover {
+  color: green;
   text-decoration: underline;
 }
-.review-report-hover:hover {
+.review-report:hover {
   color: red;
   text-decoration: underline;
 }
+
+
 
 
 

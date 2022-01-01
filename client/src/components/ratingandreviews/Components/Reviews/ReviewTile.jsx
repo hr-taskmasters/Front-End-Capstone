@@ -44,11 +44,6 @@ function ReviewTile (props) {
 
   
 
-  
-
-
-  
-
   return (
     <>
       <Card>
@@ -69,13 +64,16 @@ function ReviewTile (props) {
           {props.review.summary}
           </Card.Text>
           <ReviewBody review={props.review}/>
-          <Stack direction="horizontal" gap={3}>
-            <div>Helpful?</div>
-            <div className="review-helpful-hover" onClick={() => selectHelpful()}>Yes</div>
+          <Stack direction="horizontal" gap={2}>
+            <div>Was this review helpful?</div>
+            <div className="review-helpful" onClick={() => selectHelpful()}>Yes</div>
             {/* <div onClick={() => selectUnHelpful()}>No</div> */}
             <div>({reviewHelpfulNum})</div>
-            <div className="review-report-hover, ms-auto" onClick={() => reportReview()}>Report</div>
-           </Stack>
+            <div className="review-report" onClick={() => reportReview()}>Report</div>
+            {props.review.recommend &&
+            <div className="ms-auto">I recommend this product. ✔</div>
+            }
+            </Stack>
         </Card.Body>
         
       </Card>
