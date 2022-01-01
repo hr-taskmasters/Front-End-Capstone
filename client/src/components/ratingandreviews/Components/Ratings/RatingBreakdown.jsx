@@ -35,8 +35,6 @@ function RatingBreakdown (props) {
   }
   
 
-{/* <div>Five stars: {ratings['5'] || '0'}</div> */}
-
   return (
     <Card>
       <Card.Title>

@@ -62,15 +62,21 @@ function RatingAndReviews(props) {
 
   return (
     <div id="rating-reviews-main">
-      <h4>Ratings and Reviews</h4>
-      <Stack direction="horizontal" gap={3}>
-        <Card style={{ width: '25rem' }}> 
-          <Ratings metaData={metaData}/>
-        </Card>
-        <Card style={{ width: '50rem' }}>
-          <Reviews reviewList={reviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
-        </Card>
-        </Stack>
+      <Card>
+        <Card.Title>
+        <h2 className="rating-reviews-title">Ratings and Reviews</h2>
+        </Card.Title>
+        <Card.Body>
+          <Stack direction="horizontal" gap={3}>
+            <Card style={{ width: '25rem' }}> 
+              <Ratings metaData={metaData}/>
+            </Card>
+            <Card style={{ width: '50rem' }}>
+              <Reviews reviewList={reviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
+            </Card>
+          </Stack>
+        </Card.Body>
+      </Card>
     </div>
   )
 }

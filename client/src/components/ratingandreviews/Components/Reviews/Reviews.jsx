@@ -18,13 +18,17 @@ function Reviews (props) {
     return (
         <>
         { props.reviewList ? 
-        <>
-        <Stack direction="horizontal" gap={2} className="reviews-dropdown-stack">
-            <b>{props.reviewList.length}</b>
-            <div>reviews, sorted by:</div>
-            <SortDropdown sortBy={props.sortBy}/>
-        </Stack>
         <Card className="reviews-list">
+            <Card.Title>
+                <Stack direction="horizontal" gap={2} className="reviews-dropdown-stack">
+                    <b>{props.reviewList.length}</b>
+                    <div>reviews, sorted by:</div>
+                    <SortDropdown sortBy={props.sortBy}/>
+                    <div className="ms-auto" >
+                        <SubmitReview product={props.product} metaData={props.metaData}/>
+                    </div>
+                </Stack>
+            </Card.Title>
             <Card.Body>
                 <Stack gap={3}>
                     {slicedReviews.map(review => (
@@ -32,14 +36,13 @@ function Reviews (props) {
                     ))}
                 </Stack>
                 <Stack direction="horizontal" gap={3}>
-                <SubmitReview product={props.product} metaData={props.metaData}/>
+                {/* <SubmitReview product={props.product} metaData={props.metaData}/> */}
                 {props.reviewList.length > 2 && reviewNum <= props.reviewList.length &&
                 <Button variant="outline-secondary" onClick={() => loadMore()}>More Reviews</Button>
                 }
                 </Stack>
             </Card.Body>
         </Card>
-        </>
         :   <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>
