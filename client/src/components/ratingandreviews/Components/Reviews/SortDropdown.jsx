@@ -19,7 +19,7 @@ function SortDropdown (props) {
   } 
  
     return (
-      <DropdownButton id="dropdown-basic-button" title={title} variant={'secondary'} >
+      <DropdownButton id="dropdown-basic-button" title={title} variant={'outline-secondary'} >
         <Dropdown.Item href="#/action-1" key={"relevant"} name="relevant" onClick={changeSort}>relevant</Dropdown.Item>
         <Dropdown.Item href="#/action-2" key={"newest"} name="newest" onClick={changeSort}>newest</Dropdown.Item>
         <Dropdown.Item href="#/action-3" key={"helpful"} name="helpful" onClick={changeSort}>helpful</Dropdown.Item>
