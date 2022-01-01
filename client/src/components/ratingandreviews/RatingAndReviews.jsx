@@ -6,7 +6,6 @@ import Ratings from './Components/Ratings/Ratings.jsx'
 import Reviews from './Components/Reviews/Reviews.jsx';
 
 
-
 function RatingAndReviews(props) {
   const [id, setId] = useState(42366); //43266
   const [reviewList, setReviewList] = useState([]); 
