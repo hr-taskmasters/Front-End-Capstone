@@ -44,16 +44,16 @@ function RatingBreakdown (props) {
         <>
           <div>{percentRecommended}% of reviewers recommend this product</div> 
           <br></br>
-          <div>Five stars:</div>
-          <ProgressBar variant="success" now={ratings['5'] / totalRatings * 100}/> 
-          <div>Four stars:</div>
-          <ProgressBar variant="success" now={ratings['4'] / totalRatings * 100}/> 
-          <div>Three stars:</div>
-          <ProgressBar variant="success" now={ratings['3'] / totalRatings * 100}/> 
-          <div>Two stars:</div>
-          <ProgressBar variant="success" now={ratings['2'] / totalRatings * 100}/> 
-          <div>One star:</div>
-          <ProgressBar variant="success" now={ratings['1'] / totalRatings * 100}/> 
+          <div>Five stars: {ratings['5']}</div>
+          <ProgressBar variant="success" now={ratings['5'] / totalRatings * 100} /> 
+          <div>Four stars: {ratings['4']}</div>
+          <ProgressBar variant="success" now={ratings['4'] / totalRatings * 100} /> 
+          <div>Three stars: {ratings['3']}</div>
+          <ProgressBar variant="success" now={ratings['3'] / totalRatings * 100} /> 
+          <div>Two stars: {ratings['2']}</div>
+          <ProgressBar variant="success" now={ratings['2'] / totalRatings * 100} /> 
+          <div>One star: {ratings['1']}</div>
+          <ProgressBar variant="success" now={ratings['1'] / totalRatings * 100} /> 
           </>
           : <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
