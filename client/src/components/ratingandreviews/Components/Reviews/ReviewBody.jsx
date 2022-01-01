@@ -3,10 +3,10 @@ import { Card, Button, Modal, Image, Row } from 'react-bootstrap'
 import Images from './Images.jsx';
 
 function ReviewBody (props) {
+  const slicedBody = props.review.body.slice(0, 250);
   const [body, setBody] = useState(slicedBody);
 
   const reviewPhotos = props.review.photos;
-  const slicedBody = props.review.body.slice(0, 250);
   
   const showMore = () => {
     setBody(props.review.body)
