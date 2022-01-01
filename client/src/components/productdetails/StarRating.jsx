@@ -157,7 +157,7 @@ function StarRating(props) {
         <div>
           {starNum()}
           <span>{avgRating}</span>
-          <span className='p_rating'><a onClick={handleReviewClick}>Read All {review} Reviews</a></span>
+          <span className='p_rating'><a onClick={handleReviewClick}>Read All {review} Ratings & Reviews</a></span>
         </div>
       :
         null

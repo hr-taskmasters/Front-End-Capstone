@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Favorite from './Favorite.jsx';
 import axios from 'axios';
@@ -8,8 +8,16 @@ function Cart(props) {
 
   const [size, setSize] = useState('SELECT SIZE');
   const [quantity, setQuantity] = useState(0);
-  const [index, setIndex] = useState(null);
   const [notice, setNotice] = useState(false);
+
+  useEffect(() => {
+    reset();
+  }, [])
+
+  const reset = () => {
+    setSize('SELECT SIZE');
+    setQuantity(0);
+  }
 
   const selectSize = (e) => {
     setSize(e.target.value);
@@ -48,7 +56,7 @@ function Cart(props) {
     var data = {
       'sku_id': sku(),
       'count': quantity
-    }
+    };
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/cart', data, {
       headers: {
         'Authorization': `${API_KEY}`
@@ -63,11 +71,13 @@ function Cart(props) {
   }
 
   const handleClick = () => {
+    event.preventDefault();
     if (size === 'SELECT SIZE') {
       setNotice(true);
     }
     if (size !== 'SELECT SIZE' && quantity !== 0) {
       addToCart();
+      reset();
     }
   }
 

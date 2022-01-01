@@ -45,6 +45,7 @@
   height: 500px;
   object-fit: cover;
   padding: 0 1%;
+  cursor: zoom-in;
 }
 .p_share_icon {
   padding: 1%;
@@ -150,13 +151,17 @@
   width: 50%;
   margin: 0 auto;
 }
-.p_pic_expanded {
+.p_pic_expanded, .p_exit_expand_zoomIn {
   width: 65%;
   height: 650px;
   object-fit: cover;
   margin-left: auto;
   margin-right: auto;
   border: cornsilk;
+  cursor: crosshair;
+}
+.p_exit_expand_zoomIn {
+  zoom: 2.5;
 }
 .p_exit_expand {
   position: absolute;

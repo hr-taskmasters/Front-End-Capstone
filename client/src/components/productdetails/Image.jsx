@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Zoom from './Zoom.jsx';
 
 function Image(props) {
 
@@ -6,6 +7,7 @@ function Image(props) {
   const [firstImg, setFirstImg] = useState(0);
   const [lastImg, setLastImg] = useState(7);
   const [expand, setExpand] = useState(false);
+  const [click, setClick] = useState(false);
 
   useEffect(() => {
     changeStyle();
@@ -68,13 +70,17 @@ function Image(props) {
   }
 
   const zoomIn = () => {
-
+    setClick(!click);
   }
 
   return (
     <div className='row justify-content-around'>
       <div className='col-md-2'>
-        <button className='p_up' onClick={scrollUp}><i className='fas fa-chevron-up'></i></button>
+        <button
+          className='p_up'
+          onClick={scrollUp}>
+          <i className='fas fa-chevron-up'></i>
+        </button>
         {props.style.length ?
           props.style[props.styleNum].photos.slice(firstImg, lastImg).map((img, index) => (
           <img
@@ -83,14 +89,46 @@ function Image(props) {
             src={img.thumbnail_url}
             onClick={() => handleClick(index)}
           ></img>)) : null}
-        <button className='p_down' onClick={scrollDown}><i className='fas fa-chevron-down'></i></button>
+        <button
+          className='p_down'
+          onClick={scrollDown}>
+          <i className='fas fa-chevron-down'></i>
+        </button>
       </div>
       <div className='col-md-9'>
         {props.style.length ?
           <div>
-            {selectImg ? <button className='p_left' onClick={prevImg}><i className='fas fa-chevron-left'></i></button> : null}
-            {props.style[props.styleNum].photos[selectImg] ? <img className='p_pic' src={props.style[props.styleNum].photos[selectImg].url} onClick={expandMode}></img> : <img className='p_pic' src={props.style[props.styleNum].photos[0].url} onClick={expandMode}></img>}
-            {selectImg === props.style[props.styleNum].photos.length - 1 ? null : <button className='p_right' onClick={nextImg}><i className='fas fa-chevron-right'></i></button>}
+            {selectImg ?
+              <button
+                className='p_left'
+                onClick={prevImg}>
+                <i className='fas fa-chevron-left'></i>
+              </button>
+            :
+              null
+            }
+            {props.style[props.styleNum].photos[selectImg] ?
+              <img
+                className='p_pic'
+                src={props.style[props.styleNum].photos[selectImg].url}
+                onClick={expandMode}>
+              </img>
+            :
+              <img
+                className='p_pic'
+                src={props.style[props.styleNum].photos[0].url}
+                onClick={expandMode}>
+              </img>
+            }
+            {selectImg === props.style[props.styleNum].photos.length - 1 ?
+              null
+            :
+              <button
+                className='p_right'
+                onClick={nextImg}>
+                <i className='fas fa-chevron-right'></i>
+              </button>
+            }
           </div>
         :
           <div className='spinner-border' role='status'>
@@ -102,8 +140,11 @@ function Image(props) {
         <div className='p_expand row'>
           <div className='col-sm-1 p_icon_container'>
           {props.style[props.styleNum].photos.map((img, index) => (
-            <div>
-              <button className='p_thum_icon' onClick={() => handleIconClick(index)}>
+            <div key={index}>
+              <button
+                className='p_thum_icon'
+                onClick={() => handleIconClick(index)}
+              >
                 <i className={index === selectImg ? 'far fa-circle p_selected_icon' : 'far fa-circle'}></i>
               </button>
             </div>
@@ -111,10 +152,42 @@ function Image(props) {
           }
         </div>
           <div className='p_expand_item col-md-10'>
-            {selectImg ? <button className='p_left' onClick={prevImg}><i className='fas fa-chevron-left'></i></button> : null}
-            <img className='p_pic_expanded' src={props.style[props.styleNum].photos[selectImg].url} onClick={zoomIn}></img>
-            <button className='p_exit_expand' onClick={exitExpandMode}><i class='fas fa-times fa-lg'></i></button>
-            {selectImg === props.style[props.styleNum].photos.length - 1 ? null : <button className='p_right' onClick={nextImg}><i className='fas fa-chevron-right'></i></button>}
+            {selectImg &&
+              <button
+                className='p_left'
+                onClick={prevImg}>
+                <i className='fas fa-chevron-left'></i>
+              </button>
+            }
+            {click ?
+              <Zoom
+                className='p_exit_expand_zoomIn'
+                img={props.style[props.styleNum].photos[selectImg].url}
+                zoomScale={3}
+                height={600}
+                width={600}
+                transitionTime={0.5}
+                onClick={zoomIn}
+              />
+            :
+              <img
+                className='p_pic_expanded'
+                src={props.style[props.styleNum].photos[selectImg].url}
+                onClick={zoomIn}
+              ></img>
+            }
+            <button
+              className='p_exit_expand'
+              onClick={exitExpandMode}>
+              <i className='fas fa-times fa-lg'></i>
+            </button>
+            {selectImg !== props.style[props.styleNum].photos.length - 1 &&
+              <button
+                className='p_right'
+                onClick={nextImg}>
+                <i className='fas fa-chevron-right'></i>
+              </button>
+            }
           </div>
         </div>
       )}
