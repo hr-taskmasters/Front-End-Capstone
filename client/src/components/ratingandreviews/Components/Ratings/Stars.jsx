@@ -22,7 +22,6 @@ function Stars (props) {
             const weightedTotal = weightedTotalArr.reduce((a,b) => a + b);
             const average = (weightedTotal / props.totalRatings) * 5
             const roundedAverage = (Math.round(average * 4) / 4).toFixed(2);
-            // const averageHeader = roundedAverage.toFixed(1)
             setStarAvg(roundedAverage);
         }
     }
@@ -30,6 +29,7 @@ function Stars (props) {
 
 
     return (
+        <>
         <Stack direction="horizontal" gap={3}>
             <div className="average-review-header">{Number(starAvg).toFixed(1)}</div>
         <Rating readonly={true} 
@@ -38,6 +38,8 @@ function Stars (props) {
             allowHalfIcon={true}
             size={35}/>
         </Stack>
+        <h5 className="total-ratings-header">{props.totalRatings} ratings</h5>
+        </>
     )
 }
 
