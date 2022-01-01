@@ -44,7 +44,7 @@ const IndividualAnswer = (props) => {
     <div>
       <div id='q-individual_a_container'>
         <div id='q_a_row1'>{props.answer.body}</div>
-        <br></br>
+        {/* <br></br> */}
         <Row id='q_a_row2'>
           <Stack direction="horizontal" gap={2}>
             <div id='q_a_row2_name'>
@@ -83,7 +83,7 @@ const IndividualAnswer = (props) => {
             </div>
           </Stack>
         </Row>
-        <br></br>
+        {/* <br></br> */}
         <Row id='q_a_row3'>
         {photos.length > 0 &&
           <div>

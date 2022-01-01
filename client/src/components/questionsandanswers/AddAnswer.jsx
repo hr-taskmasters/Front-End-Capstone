@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import { Button, Modal, closeButton, Form, Row, Col, FloatingLabel} from 'react-bootstrap';
+import { Button, Modal, closeButton, Form, Row, Col, FloatingLabel, Image} from 'react-bootstrap';
 import API_KEY from '../../config/config.js';
 
 const AddAnswer = (props) => {
@@ -11,6 +11,22 @@ const AddAnswer = (props) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [photos, setphotos] = useState([]);
+
+  const onFileChange = (e) => {
+    const preview = document.querySelector('#q_ans_uploads_previews');
+    const file = e.target.files[0];
+    //console.log(file);
+    const reader = new FileReader();
+    reader.onload = () => {
+      preview.src = reader.result;
+      //setphotos([...photos, reader.result]);
+      const url = URL.createObjectURL(file);
+      //setphotos([...photos, url]);
+    };
+    if(file) {
+      reader.readAsDataURL(file);
+    };
+  };
   const postAnswer = (e) => {
     e.preventDefault();
     const answer_info = {
@@ -19,6 +35,7 @@ const AddAnswer = (props) => {
       email: email,
       photos: photos
     }
+    console.log(answer_info);
     if(body.length > 1 && name.length > 1 && email.length > 1 && email.includes('@')) {
       console.log(answer_info);
       axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${props.question_id}/answers`, answer_info, {
@@ -43,6 +60,7 @@ const AddAnswer = (props) => {
     <div id='add_answer_button'>
       {' '}
       <Button  variant="outline-secondary" onClick={handleShow}>ADD A ANSWER</Button>
+      {/* <img src='blob:null/2b4cec05-df41-4e75-a6dc-ef0e1eb799e3'></img> */}
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
@@ -103,7 +121,13 @@ const AddAnswer = (props) => {
             <Row>
               <Form.Group as={Col} controlId='formGridphotos'>
                 <Form.Label>Upload photos here</Form.Label>
-                <Form.Control type='file' />
+                <Form.Control
+                  type='file'
+                  accept='image/png, image/jpeg'
+                  onChange={onFileChange} multiple/>
+                {/* {photos.length > 0 && <img id='answer_photo' src='' height='200'>} */}
+                <br/>
+                <Image id='q_ans_uploads_previews' height='100' width='100'/>
               </Form.Group>
             </Row>
           </Form>

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import API_KEY from '../../config/config.js';
 import IndividualAnswer from './IndividualAnswer.jsx';
-import { Container, Row, Col, Stack } from 'react-bootstrap';
+import { Container, Row, Col, Stack, Button } from 'react-bootstrap';
 import AddAnswer from './AddAnswer.jsx';
 
 const Answers = (props) => {
@@ -25,11 +25,26 @@ const Answers = (props) => {
       })
       .catch((err) => console.error(err));
   }
+  const ansLength = answers.length;
   const [ansPerPage, setAnsPerPage] = useState(2);
   const loadMoreAns = () => {
-    setAnsPerPage(ansPerPage + ansPerPage);
+    setAnsPerPage(ansPerPage + 2);
+  }
+  const collapse = () => {
+    setAnsPerPage(2);
   }
   const sliceAns = answers.slice(0, ansPerPage);
+  const changeBtnMode = () => {
+    if(ansPerPage < ansLength) {
+      return(
+        <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
+      );
+    } else {
+      return(
+        <Button id='collapseBtn' variant="outline-secondary" onClick={()=> collapse()}>Collapse Answers</Button>
+      );
+    };
+  };
 
   return (
     <div>
@@ -42,16 +57,14 @@ const Answers = (props) => {
           )}
           <Col>
             <Stack direction='horizontal' gap={2}>
-              {answers.length > 2 &&
-                <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
-              }
+              {answers.length > 2 && changeBtnMode()}
               <AddAnswer question_id={question_id}/>
             </Stack>
           </Col>
         </Col>
       </Row>
       }
-      <br></br>
+      {/* <br></br> */}
     </div>
   )
 

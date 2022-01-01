@@ -6,7 +6,7 @@ const Questions = (props) => (
     {props.questions.map((question, index) =>
       <IndividualQuestion question={question} key={index}/>
     )}
-    <br></br>
+    {/* <br></br> */}
   </div>
 );
 
