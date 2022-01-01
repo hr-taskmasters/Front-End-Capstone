@@ -26,7 +26,6 @@ function Stars (props) {
         }
     }
 
-
     return (
         <>
         <Stack direction="horizontal" gap={3}>
