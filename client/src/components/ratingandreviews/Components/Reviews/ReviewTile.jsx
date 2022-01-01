@@ -33,6 +33,7 @@ function ReviewTile (props) {
   const reportReview = () => {
     if(confirm('Are you sure you want to report this review?')){
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${props.review.review_id}/report`, 
+      { reported: true },
       { headers: { 'Authorization': `${API_KEY}` } })
       .then(res => {
         console.log('review reported');
