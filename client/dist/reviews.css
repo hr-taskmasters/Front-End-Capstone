@@ -31,3 +31,11 @@
   height: 100px;
   margin: 10px;
 }
+
+/* SUBMIT REVIEW */
+
+.submit-body{
+  height: 200px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+}

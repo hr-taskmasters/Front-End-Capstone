@@ -6,7 +6,6 @@ import Ratings from './Components/Ratings/Ratings.jsx'
 import Reviews from './Components/Reviews/Reviews.jsx';
 
 
-
 function RatingAndReviews(props) {
   const [id, setId] = useState(42366); //43266
   const [reviewList, setReviewList] = useState([]); 
@@ -69,7 +68,7 @@ function RatingAndReviews(props) {
           <Ratings metaData={metaData}/>
         </Card>
         <Card style={{ width: '50rem' }}>
-          <Reviews reviewList={reviewList} sortBy={sortBy}/>
+          <Reviews reviewList={reviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
         </Card>
         </Stack>
     </div>

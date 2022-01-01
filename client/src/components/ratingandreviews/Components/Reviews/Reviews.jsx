@@ -4,6 +4,7 @@ import API_KEY from '../../../../config/config.js'
 import { Button, Card, Stack } from 'react-bootstrap';
 import ReviewTile from './ReviewTile.jsx';
 import SortDropdown from './SortDropdown.jsx';
+import SubmitReview from './SubmitReview.jsx';
 
 
 function Reviews (props) {
@@ -30,10 +31,12 @@ function Reviews (props) {
                         <ReviewTile key={review.review_id} review={review}/>
                     ))}
                 </Stack>
-                <Button variant="outline-secondary">Submit Review</Button>{' '}
+                <Stack direction="horizontal" gap={3}>
+                <SubmitReview product={props.product} metaData={props.metaData}/>
                 {props.reviewList.length > 2 && reviewNum <= props.reviewList.length &&
                 <Button variant="outline-secondary" onClick={() => loadMore()}>More Reviews</Button>
                 }
+                </Stack>
             </Card.Body>
         </Card>
         </>
