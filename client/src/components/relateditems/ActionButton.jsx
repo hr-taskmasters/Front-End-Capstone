@@ -26,34 +26,32 @@ const ActionButton = (props) => {
     let rowList = [];
 
     featuredProd.forEach(featureObj => {
-      if(!features[featureObj.feature]){
-        if(features[featureObj.value] === null) {
-          features[featureObj.feature] = ['CHECKMARK'];
-        } else {
-          features[featureObj.feature] = [featureObj.value];
+      if (!features[featureObj.feature]) {
+        features[featureObj.feature] = [featureObj.value];
+        if (featureObj.value === null) {
+          features[featureObj.feature] = ['✔'];
         }
       }
     })
     cardProd.forEach(featureObj => {
       if(!features[featureObj.feature]){
-        if(features[featureObj.value] === null) {
+        features[featureObj.feature] = [];
+        features[featureObj.feature][1] = featureObj.value;
+        if(featureObj.value === null) {
           features[featureObj.feature] = [];
-          features[featureObj.feature][1] = 'CHECKMARK';
-        } else {
-          features[featureObj.feature] = [];
-          features[featureObj.feature][1] = featureObj.value;
+          features[featureObj.feature][1] = '✔';
         }
       } else if (featureObj.value === null){
-        features[featureObj.feature][1] = 'CHECKMARK';
+        features[featureObj.feature][1] = '✔';
       } else {
         features[featureObj.feature][1] = featureObj.value
       }
     })
     for(var feature in features) {
       rowList.push(<Row key={feature}>
-        <Col>{features[feature][0]}</Col>
+        <Col><i>{features[feature][0]}</i></Col>
         <Col>{feature}</Col>
-        <Col>{features[feature][1]}</Col>
+        <Col><i>{features[feature][1]}</i></Col>
       </Row>)
     }
     setCompare(rowList);
@@ -76,9 +74,9 @@ const ActionButton = (props) => {
         <Modal.Body>
           <Container fluid>
             <Row>
-              <Col>{props.featuredProd.name}</Col>
+              <Col><b>{props.featuredProd.name}</b></Col>
               <Col></Col>
-              <Col>{props.product.name}</Col>
+              <Col><b>{props.product.name}</b></Col>
             </Row>
             {comparison}
           </Container>
