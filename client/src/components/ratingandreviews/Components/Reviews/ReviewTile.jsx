@@ -13,10 +13,6 @@ function ReviewTile (props) {
   const [helpfulSelection, setHelpfulSelection] = useState(false);
   const [reported, setReported] = useState(false);
  
-
-  //if the review is recommended display "this review is recommended"
-
-
   const selectHelpful = () =>{
     if (!helpfulSelection) {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${props.review.review_id}/helpful`, 
@@ -42,8 +38,6 @@ function ReviewTile (props) {
       .catch(err => console.log(err));
     }
   }
-
-  
 
   return (
     <>
@@ -74,7 +68,6 @@ function ReviewTile (props) {
           <Stack direction="horizontal" gap={2}>
             <div>Was this review helpful?</div>
             <div className="review-helpful" onClick={() => selectHelpful()}>Yes</div>
-            {/* <div onClick={() => selectUnHelpful()}>No</div> */}
             <div>({reviewHelpfulNum})</div>
             <div className="review-report" onClick={() => reportReview()}>Report</div>
             {props.review.recommend &&
@@ -89,6 +82,12 @@ function ReviewTile (props) {
 
 }
 export default ReviewTile;
+
+
+
+//select no for unhelpful issue
+
+{/* <div onClick={() => selectUnHelpful()}>No</div> */}
 
 // const selectUnHelpful = () =>{
 //   if (!helpfulSelection) {

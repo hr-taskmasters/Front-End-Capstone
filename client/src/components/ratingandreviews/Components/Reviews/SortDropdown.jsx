@@ -5,7 +5,6 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 
 function SortDropdown (props) {
 
-  //make the tile of the button change to what item was clicked on
   const [title, setTitle]= useState('relevant');
   const [sortParam, setSortParam] = useState('relevant')
   

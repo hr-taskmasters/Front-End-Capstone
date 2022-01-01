@@ -68,7 +68,3 @@ function RatingBreakdown (props) {
 }
 
 export default RatingBreakdown;
-
- // useEffect(() => {
-  //   addRatings(ratings)
-  // }, [ratings])
