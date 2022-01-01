@@ -151,7 +151,7 @@
   width: 50%;
   margin: 0 auto;
 }
-.p_pic_expanded, .p_exit_expand_zoomIn {
+.p_pic_expanded {
   width: 65%;
   height: 650px;
   object-fit: cover;
@@ -160,8 +160,8 @@
   border: cornsilk;
   cursor: crosshair;
 }
-.p_exit_expand_zoomIn {
-  zoom: 2.5;
+.p_pic_expanded_zoom {
+  cursor: zoom-out;
 }
 .p_exit_expand {
   position: absolute;
