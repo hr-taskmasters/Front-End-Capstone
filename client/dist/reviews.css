@@ -2,6 +2,14 @@
 
 /* RATINGS */
 
+.average-review-header{
+  font-size: 60px;
+  padding-left: 10px;
+}
+.total-ratings-header {
+  padding-left: 10px;
+}
+
 .factors-text {
   color: grey;
 }
@@ -21,6 +29,14 @@
 
 
 /* REVIEW BODY */
+.review-helpful-hover:hover {
+  color: blue;
+  text-decoration: underline;
+}
+.review-report-hover:hover {
+  color: red;
+  text-decoration: underline;
+}
 
 
 
