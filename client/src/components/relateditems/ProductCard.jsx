@@ -4,6 +4,7 @@ import axios from 'axios';
 import API_KEY from '../../config/config.js';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { Rating } from 'react-simple-star-rating';
 
 class ProductCard extends React.Component {
   constructor(props) {
@@ -71,7 +72,14 @@ class ProductCard extends React.Component {
           <Card.Text style={styles.noMargin}>{this.state.category}</Card.Text>
           <Card.Title>{this.state.expandedProductName}</Card.Title>
           <Card.Text style={styles.noMargin}>${this.state.price}</Card.Text>
-          <Card.Text style={styles.noMargin}>{this.state.rating}</Card.Text>
+          <Card.Text style={styles.noMargin}>
+            <Rating readonly={true}
+              ratingValue={this.state.rating * 20}
+              initialValue={this.state.rating * 20}
+              allowHalfIcon={true}
+              size={20}
+            />
+          </Card.Text>
         </Card.Body>
       </Card>
     )
