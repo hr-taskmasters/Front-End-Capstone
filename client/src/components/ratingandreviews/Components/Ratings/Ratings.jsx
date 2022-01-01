@@ -6,7 +6,6 @@ import Card from 'react-bootstrap/Card'
 
 function Ratings (props) {
 
-
   return (
     <Card>
       <Card.Title>
@@ -19,24 +18,3 @@ function Ratings (props) {
   )
 }
 export default Ratings;
-
-{/* <Factors metaData={props.metaData}/> */}
-
-
-// const ratings = props.metaData.ratings
-// const [starAvg, setStarAvg] = useState({})
-// const [metaData, setMetaData]= useState([]);
-// useEffect(() =>{
-//   setMetaData(props.metaData)
-// },[props.metaData]);
-
-// useEffect(() => {
-  //   calcStarAverage(props.metaData.ratings);
-  // },[props.metaData]);
-
-  // //calculate the average star count
-  // const calcStarAverage = (ratingsObj) => {
-  //  if(Object.keys(ratingsObj).length > 0){
-    
-  //  }
-  // }

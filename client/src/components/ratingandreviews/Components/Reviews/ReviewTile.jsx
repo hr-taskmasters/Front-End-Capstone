@@ -13,10 +13,6 @@ function ReviewTile (props) {
   const [helpfulSelection, setHelpfulSelection] = useState(false);
   const [reported, setReported] = useState(false);
  
-
-  //if the review is recommended display "this review is recommended"
-
-
   const selectHelpful = () =>{
     if (!helpfulSelection) {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${props.review.review_id}/helpful`, 
@@ -33,6 +29,7 @@ function ReviewTile (props) {
   const reportReview = () => {
     if(confirm('Are you sure you want to report this review?')){
       axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${props.review.review_id}/report`, 
+      { reported: true },
       { headers: { 'Authorization': `${API_KEY}` } })
       .then(res => {
         console.log('review reported');
@@ -41,13 +38,6 @@ function ReviewTile (props) {
       .catch(err => console.log(err));
     }
   }
-
-  
-
-  
-
-
-  
 
   return (
     <>
@@ -59,8 +49,14 @@ function ReviewTile (props) {
             initialValue={props.review.rating * 20} 
             allowHalfIcon={true}
             size={25}/>
-            <div className="ms-auto">{props.review.reviewer_name}</div>
-            <div>{moment(props.review.date).format('MMMM Do, YYYY')}</div>
+            {props.review.email ?
+                <>
+                <div className="verified-user ms-auto">✔ verified user</div>
+                <div>{props.review.reviewer_name}</div>
+                </>
+            : <div className="ms-auto">{props.review.reviewer_name}</div>
+            }
+            <div className="review-tile-date">{moment(props.review.date).format('MMMM Do, YYYY')}</div>
           </Stack>
         </Card.Header>
         <Card.Body>
@@ -69,13 +65,15 @@ function ReviewTile (props) {
           {props.review.summary}
           </Card.Text>
           <ReviewBody review={props.review}/>
-          <Stack direction="horizontal" gap={3}>
-            <div>Helpful?</div>
-            <div className="review-helpful-hover" onClick={() => selectHelpful()}>Yes</div>
-            {/* <div onClick={() => selectUnHelpful()}>No</div> */}
+          <Stack direction="horizontal" gap={2}>
+            <div>Was this review helpful?</div>
+            <div className="review-helpful" onClick={() => selectHelpful()}>Yes</div>
             <div>({reviewHelpfulNum})</div>
-            <div className="review-report-hover, ms-auto" onClick={() => reportReview()}>Report</div>
-           </Stack>
+            <div className="review-report" onClick={() => reportReview()}>Report</div>
+            {props.review.recommend &&
+            <div className="ms-auto">I recommend this product. ✔</div>
+            }
+            </Stack>
         </Card.Body>
         
       </Card>
@@ -84,6 +82,12 @@ function ReviewTile (props) {
 
 }
 export default ReviewTile;
+
+
+
+//select no for unhelpful issue
+
+{/* <div onClick={() => selectUnHelpful()}>No</div> */}
 
 // const selectUnHelpful = () =>{
 //   if (!helpfulSelection) {

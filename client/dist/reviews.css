@@ -1,7 +1,14 @@
 
+/* =========================== */
+/* WHOLE WIDGET */
+/* =========================== */
+#rating-reviews-main{
+  padding-left: 20px;
+}
 
+/* =========================== */
 /* RATINGS */
-
+/* =========================== */
 .average-review-header{
   font-size: 60px;
   padding-left: 10px;
@@ -13,10 +20,13 @@
 .factors-text {
   color: grey;
 }
+.percent-recommended{
+  font-size: x-large;
+}
 
-
+/* =========================== */
 /* REVIEWS LIST */
-
+/* =========================== */
 .reviews-list {
   height: 800px;
   overflow-y: scroll;
@@ -27,20 +37,26 @@
 }
 
 
-
+/* =========================== */
 /* REVIEW BODY */
-.review-helpful-hover:hover {
-  color: blue;
+/* =========================== */
+.review-helpful:hover {
+  color: green;
   text-decoration: underline;
 }
-.review-report-hover:hover {
+.review-report:hover {
   color: red;
   text-decoration: underline;
 }
 
+.review-tile-date, .verified-user{
+  font-size: small;
+  color: grey;
+}
 
-
+/* =========================== */
 /* REVIEW PHOTOS */
+/* =========================== */
 .review-photos {
   float: left;
   width: 100px;
@@ -48,8 +64,9 @@
   margin: 10px;
 }
 
+/* =========================== */
 /* SUBMIT REVIEW */
-
+/* =========================== */
 .submit-body{
   height: 200px;
   overflow-y: scroll;

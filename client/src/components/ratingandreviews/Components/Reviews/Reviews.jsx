@@ -8,7 +8,7 @@ import SubmitReview from './SubmitReview.jsx';
 
 
 function Reviews (props) {
-    const [reviewNum, setReviewNum] = useState(2); //display 2 tiles initially and more when moreReviews is true
+    const [reviewNum, setReviewNum] = useState(2);
     const slicedReviews = props.reviewList.slice(0, reviewNum);
 
     const loadMore = () => {
