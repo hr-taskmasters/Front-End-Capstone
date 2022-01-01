@@ -76,9 +76,9 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <ProductDetails product={this.state.product} ratings={this.state.ratings}/>
+        {/* <ProductDetails product={this.state.product} ratings={this.state.ratings}/> */}
         <RelatedItems productid={this.state.product.id} featuredProd={this.state.product} chooseProduct={this.getProductViaId}/>
-        <QuestionsAndAnswers product={this.state.product}/>
+        {/* <QuestionsAndAnswers product={this.state.product}/> */}
         <RatingAndReviews product={this.state.product} metaData={this.state.metaData}/>
       </div>
     )

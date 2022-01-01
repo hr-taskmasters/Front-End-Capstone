@@ -13,11 +13,11 @@ function Stars (props) {
     const calcStarAvg = () =>{
         if(props.ratings && props.totalRatings){
             const weightedTotalArr = [
-                Number(props.ratings['1']) * 0.2,
-                Number(props.ratings['2']) * 0.4,
-                Number(props.ratings['3']) * 0.6,
-                Number(props.ratings['4']) * 0.8,
-                Number(props.ratings['5']) 
+                Number(props.ratings['1']) * 0.2 || 0,
+                Number(props.ratings['2']) * 0.4 || 0,
+                Number(props.ratings['3']) * 0.6|| 0,
+                Number(props.ratings['4']) * 0.8|| 0,
+                Number(props.ratings['5']) || 0
             ];
             const weightedTotal = weightedTotalArr.reduce((a,b) => a + b);
             const average = (weightedTotal / props.totalRatings) * 5

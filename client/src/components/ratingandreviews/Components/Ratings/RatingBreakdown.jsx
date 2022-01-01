@@ -25,8 +25,8 @@ function RatingBreakdown (props) {
 
   const avgRecommended = (recObj) => {
     if(props.metaData.recommended){
-      let trueNum = Number(recObj['true']);
-      let falseNum = Number(recObj['false']);
+      let trueNum = Number(recObj['true']) || 0;
+      let falseNum = Number(recObj['false']) || 0;
       let total = trueNum + falseNum;
       let avg = (trueNum / total) * 100;
       let roundAvg = Math.round(avg)
