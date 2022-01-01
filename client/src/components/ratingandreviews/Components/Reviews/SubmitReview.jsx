@@ -82,16 +82,17 @@ function SubmitReview (props) {
             142033: Number(length),
             142035: Number(quality)
         }
-        console.log('PARAMS:',{
+        const bodyParams = {
             product_id: props.product.id,
             rating: (stars / 20),
             summary: summary,
             body: body,
-            recommended: Boolean(recommended),
+            recommend: Boolean(recommended),
             name: nickname,
             email: email,
+            photos: ['',''],
             characteristics: factors
-        })
+        }
         // console.log(factors)
         if ( recommended 
             && body.length > 50 
@@ -99,28 +100,16 @@ function SubmitReview (props) {
             && email.length > 1 
             && email.includes('@') 
             && factors) {
-                console.log(body.length>50, nickname.length > 1, email.length > 1 && email.includes('@'),factors)
-                // /?product_id=${props.product.id}
-        axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?product_id=${props.product.id}`, {
-            product_id: props.product.id,
-            rating: (stars / 20),
-            summary: summary,
-            body: body,
-            recommended: Boolean(recommended),
-            name: nickname,
-            email: email,
-            photos: ['https://unsplash.com/s/photos/domestic-cat'],
-            characteristics: factors
-        }, { headers: { 'Authorization': `${API_KEY}` } })
-        .then(res =>{
+        axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?product_id=${props.product.id}`, bodyParams,
+        { headers: { 'Authorization': `${API_KEY}` } })
+        .then(res => {
             alert('Your review was submitted.')
             handleClose();
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err, bodyParams))
         } else {
             alert('All fields marked with a * must be complete.')
         };
-
     };
 
     
@@ -134,9 +123,12 @@ function SubmitReview (props) {
             <Modal.Body>
                 <Stack gap={3}>
                 <b>Rating*</b>
-                <Rating onClick={handleRating} ratingValue={stars}/>
+                <Rating onClick={handleRating} 
+                    ratingValue={stars} 
+                    showTooltip={true} 
+                    tooltipArray={['Poor', 'Fair', 'Average', 'Good', 'Great']}
+                />
                 
-
                     {/* RADIOS */}
                 <b>Do you recommend this product?*</b>
                 <ButtonGroup className="mb-2">
@@ -347,7 +339,7 @@ function SubmitReview (props) {
             </Modal.Body>
             <Modal.Footer>
             <Button variant="outline-secondary" onClick={handleClose}>Cancel</Button>
-            <Button variant="outline-primary" onClick={postReview}>Submit</Button>
+            <Button variant="outline-primary" type="submit" onClick={postReview}>Submit</Button>
             </Modal.Footer>
         </Modal>
       </div>
