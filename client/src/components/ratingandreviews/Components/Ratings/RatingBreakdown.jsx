@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { Card, ProgressBar } from 'react-bootstrap';
+import { Card, ProgressBar, Stack } from 'react-bootstrap';
 import Stars from './Stars.jsx';
 
 
@@ -42,8 +42,6 @@ function RatingBreakdown (props) {
       <Card.Body>
         { ratings ?
         <>
-          <div>{percentRecommended}% of reviewers recommend this product</div> 
-          <br></br>
           <div>Five stars: {ratings['5'] || '0'}</div>
           <ProgressBar variant="success" now={(ratings['5'] || 0) / totalRatings * 100} /> 
           <div>Four stars: {ratings['4'] || '0'}</div>
@@ -54,6 +52,11 @@ function RatingBreakdown (props) {
           <ProgressBar variant="success" now={(ratings['2'] || 0) / totalRatings * 100} /> 
           <div>One star: {ratings['1'] || '0'}</div>
           <ProgressBar variant="success" now={(ratings['1'] || 0) / totalRatings * 100} /> 
+          <br></br>
+          <Stack direction="horizontal" gap={2}>
+            <div className="percent-recommended">{percentRecommended}%</div> 
+            <>of reviewers recommend this product</>
+            </Stack> 
           </>
           : <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>

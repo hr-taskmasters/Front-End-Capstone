@@ -55,8 +55,14 @@ function ReviewTile (props) {
             initialValue={props.review.rating * 20} 
             allowHalfIcon={true}
             size={25}/>
-            <div className="ms-auto">{props.review.reviewer_name}</div>
-            <div>{moment(props.review.date).format('MMMM Do, YYYY')}</div>
+            {props.review.email ?
+                <>
+                <div className="verified-user ms-auto">✔ verified user</div>
+                <div>{props.review.reviewer_name}</div>
+                </>
+            : <div className="ms-auto">{props.review.reviewer_name}</div>
+            }
+            <div className="review-tile-date">{moment(props.review.date).format('MMMM Do, YYYY')}</div>
           </Stack>
         </Card.Header>
         <Card.Body>
