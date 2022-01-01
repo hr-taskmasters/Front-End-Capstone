@@ -45,7 +45,6 @@ function RelatedItems(props) {
     let index = closet.findIndex(i => i.id === product.id)
     closet.splice((index), 1);
     window.localStorage.setItem('fecCloset', JSON.stringify(closet));
-
     setOutfits(JSON.parse(window.localStorage.fecCloset))
   }
 
