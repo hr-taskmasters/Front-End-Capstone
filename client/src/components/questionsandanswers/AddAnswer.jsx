@@ -12,13 +12,16 @@ const AddAnswer = (props) => {
   const [email, setEmail] = useState('');
   const [photos, setphotos] = useState([]);
 
-  const onFileChangeCapture = (e) => {
+  const onFileChange = (e) => {
     const preview = document.querySelector('#q_ans_uploads_previews');
     const file = e.target.files[0];
+    //console.log(file);
     const reader = new FileReader();
     reader.onload = () => {
       preview.src = reader.result;
-      setphotos([...photos, preview.src]);
+      //setphotos([...photos, reader.result]);
+      const url = URL.createObjectURL(file);
+      //setphotos([...photos, url]);
     };
     if(file) {
       reader.readAsDataURL(file);
@@ -57,6 +60,7 @@ const AddAnswer = (props) => {
     <div id='add_answer_button'>
       {' '}
       <Button  variant="outline-secondary" onClick={handleShow}>ADD A ANSWER</Button>
+      {/* <img src='blob:null/2b4cec05-df41-4e75-a6dc-ef0e1eb799e3'></img> */}
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
@@ -120,7 +124,7 @@ const AddAnswer = (props) => {
                 <Form.Control
                   type='file'
                   accept='image/png, image/jpeg'
-                  onChange={onFileChangeCapture}/>
+                  onChange={onFileChange} multiple/>
                 {/* {photos.length > 0 && <img id='answer_photo' src='' height='200'>} */}
                 <br/>
                 <Image id='q_ans_uploads_previews' height='100' width='100'/>
