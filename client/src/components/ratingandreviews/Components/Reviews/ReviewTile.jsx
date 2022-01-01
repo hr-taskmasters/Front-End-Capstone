@@ -1,9 +1,10 @@
 import React, { useState, useEffect} from 'react';
 import moment from 'moment';
-import ReviewBody from './ReviewBody.jsx';
-import { Card, Stack } from 'react-bootstrap';
 import API_KEY from '../../../../config/config.js';
 import axios from 'axios';
+import { Card, Stack } from 'react-bootstrap';
+import { Rating } from 'react-simple-star-rating';
+import ReviewBody from './ReviewBody.jsx';
 
 
 function ReviewTile (props) {
@@ -49,7 +50,11 @@ function ReviewTile (props) {
       <Card>
         <Card.Header>
           <Stack direction="horizontal" gap={3}>
-            <div>*star rating*</div>
+            <Rating readonly={true} 
+            ratingValue={props.review.rating * 20} 
+            initialValue={props.review.rating * 20} 
+            allowHalfIcon={true}
+            size={25}/>
             <div className="ms-auto">{props.review.reviewer_name}</div>
             <div>{moment(props.review.date).format('MMMM Do, YYYY')}</div>
           </Stack>

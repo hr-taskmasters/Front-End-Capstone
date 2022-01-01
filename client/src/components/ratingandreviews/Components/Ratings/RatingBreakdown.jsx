@@ -37,12 +37,13 @@ function RatingBreakdown (props) {
   return (
     <Card>
       <Card.Title>
-          <Stars />
+          <Stars ratings={ratings} totalRatings={totalRatings}/>
       </Card.Title>
       <Card.Body>
         { ratings ?
         <>
           <div>{percentRecommended}% of reviewers recommend this product</div> 
+          <br></br>
           <div>Five stars:</div>
           <ProgressBar variant="success" now={ratings['5'] / totalRatings * 100}/> 
           <div>Four stars:</div>
