@@ -193,7 +193,6 @@ function Image(props) {
           </div>
         </div>
       )}
-
     </div>
   );
 };
