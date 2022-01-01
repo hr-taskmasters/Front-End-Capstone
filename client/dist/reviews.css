@@ -24,6 +24,19 @@
   font-size: x-large;
 }
 
+#button-tooltip > .tooltip-inner{
+  color:white;
+  background-color: #6c757d;
+
+}
+/* #button-tooltip > .tooltip-arrow{
+  border-bottom-color: #6c757d;
+} */
+
+
+
+
+
 /* =========================== */
 /* REVIEWS LIST */
 /* =========================== */

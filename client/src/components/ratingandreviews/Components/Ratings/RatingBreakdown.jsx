@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { Card, ProgressBar, Stack } from 'react-bootstrap';
+import { Card, ProgressBar, Stack, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Stars from './Stars.jsx';
 
 
@@ -33,6 +33,9 @@ function RatingBreakdown (props) {
       setPercentRecommended(roundAvg);
     }
   }
+  
+
+{/* <div>Five stars: {ratings['5'] || '0'}</div> */}
 
   return (
     <Card>
@@ -42,21 +45,64 @@ function RatingBreakdown (props) {
       <Card.Body>
         { ratings ?
         <>
-          <div>Five stars: {ratings['5'] || '0'}</div>
-          <ProgressBar variant="success" now={(ratings['5'] || 0) / totalRatings * 100} /> 
-          <div>Four stars: {ratings['4'] || '0'}</div>
-          <ProgressBar variant="success" now={(ratings['4'] || 0) / totalRatings * 100} /> 
-          <div>Three stars: {ratings['3'] || '0'}</div>
-          <ProgressBar variant="success" now={(ratings['3'] || 0) / totalRatings * 100} /> 
-          <div>Two stars: {ratings['2'] || '0'}</div>
-          <ProgressBar variant="success" now={(ratings['2'] || 0) / totalRatings * 100} /> 
-          <div>One star: {ratings['1'] || '0'}</div>
-          <ProgressBar variant="success" now={(ratings['1'] || 0) / totalRatings * 100} /> 
+        <Stack gap={1}>
+          <div className="breakdowns">
+            <OverlayTrigger
+              placement="right"
+              delay={{ show: 250, hide: 400 }}
+              overlay={<Tooltip id="button-tooltip">Filter by five star ratings</Tooltip>}
+            >
+              <Button variant="outline-secondary" size="sm">Five stars: {ratings['5'] || '0'}</Button>
+            </OverlayTrigger>
+          </div>
+            <ProgressBar variant="success" now={(ratings['5'] || 0) / totalRatings * 100} />
+          <div className="breakdowns">
+            <OverlayTrigger
+              placement="right"
+              delay={{ show: 250, hide: 400 }}
+              overlay={<Tooltip id="button-tooltip">Filter by four star ratings</Tooltip>}
+            >
+              <Button variant="outline-secondary" size="sm">Four stars: {ratings['4'] || '0'}</Button>
+            </OverlayTrigger>
+          </div>
+            <ProgressBar variant="success" now={(ratings['4'] || 0) / totalRatings * 100} /> 
+          <div className="breakdowns">
+            <OverlayTrigger
+              placement="right"
+              delay={{ show: 250, hide: 400 }}
+              overlay={<Tooltip id="button-tooltip">Filter by three star ratings</Tooltip>}
+            >
+              <Button variant="outline-secondary" size="sm">Three stars: {ratings['3'] || '0'}</Button>
+            </OverlayTrigger>
+          </div> 
+            <ProgressBar variant="success" now={(ratings['3'] || 0) / totalRatings * 100} />
+          <div className="breakdowns">
+            <OverlayTrigger
+              placement="right"
+              delay={{ show: 250, hide: 400 }}
+              overlay={<Tooltip id="button-tooltip">Filter by two star ratings</Tooltip>}
+            >
+              <Button variant="outline-secondary" size="sm">Two stars: {ratings['2'] || '0'}</Button>
+            </OverlayTrigger>
+          </div>
+            <ProgressBar variant="success" now={(ratings['2'] || 0) / totalRatings * 100} /> 
+          <div className="breakdowns">
+          <OverlayTrigger
+              placement="right"
+              delay={{ show: 250, hide: 400 }}
+              overlay={<Tooltip id="button-tooltip">Filter by one star ratings</Tooltip>}
+            >
+              <Button variant="outline-secondary" size="sm">One star: {ratings['1'] || '0'}</Button>
+            </OverlayTrigger>
+          </div>
+            <ProgressBar variant="success" now={(ratings['1'] || 0) / totalRatings * 100} /> 
+
           <br></br>
+          </Stack>
           <Stack direction="horizontal" gap={2}>
             <div className="percent-recommended">{percentRecommended}%</div> 
             <>of reviewers recommend this product</>
-            </Stack> 
+            </Stack>
           </>
           : <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
