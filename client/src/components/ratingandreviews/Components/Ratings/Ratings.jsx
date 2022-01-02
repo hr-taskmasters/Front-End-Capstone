@@ -6,9 +6,6 @@ import Card from 'react-bootstrap/Card'
 
 function Ratings (props) {
 
-
-  // addToFiltered={props.addToFiltered}
-
   return (
     <Card>
       <Card.Title>

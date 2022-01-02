@@ -118,8 +118,14 @@ function RatingBreakdown (props) {
             <ProgressBar variant="success" now={(ratings['1'] || 0) / totalRatings * 100} /> 
           </Stack>
           <br></br>
-            <b>Filtered by:</b>
+            {showFilters(props.filteredBy).length > 0 &&
+            <>
+            <Stack direction="horizontal" gap={2}>
+              <h5>Filtered by:</h5>
+              <Button variant="outline-secondary" size="sm" className="ms-auto">Remove all filters</Button>
+            </Stack>
             <div className="filtered-list">{showFilters(props.filteredBy)}</div>
+            </>}
           </>
           : <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>

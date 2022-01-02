@@ -37,11 +37,9 @@ function Reviews (props) {
                 {slicedReviews.map(review => (
                     <ReviewTile key={review.review_id} review={review}/>
                 ))}
-            </Stack>
-            <Stack direction="horizontal" gap={3}>
-            {props.reviewList.length > 2 && reviewNum <= props.reviewList.length &&
-            <Button variant="outline-secondary" onClick={() => loadMore()}>More Reviews</Button>
-            }
+                {props.reviewList.length > 2 && reviewNum <= props.reviewList.length &&
+                <Button variant="outline-secondary" onClick={() => loadMore()}>Show more reviews</Button>
+                }
             </Stack>
         </Card.Body>
         </Card>
