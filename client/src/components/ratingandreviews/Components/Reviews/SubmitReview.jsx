@@ -134,7 +134,6 @@ function SubmitReview (props) {
     - removing the ID from the url and only sending it in the query as a property: /?product_id=${props.product.id}
 
     */
-
     
     return (
       <div>
