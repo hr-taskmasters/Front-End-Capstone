@@ -34,6 +34,8 @@ function RatingBreakdown (props) {
     }
   }
   
+  // name "star rating"
+  // onClick={(e) => addToFiltered(e.target.name)}
 
   return (
     <Card>
@@ -44,13 +46,14 @@ function RatingBreakdown (props) {
         { ratings ?
         <>
         <Stack gap={1}>
-          <div className="breakdowns">
+          <div className="breakdowns" >
             <OverlayTrigger
               placement="right"
               delay={{ show: 250, hide: 400 }}
-              overlay={<Tooltip id="button-tooltip">Filter by five star ratings</Tooltip>}
+              overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
-              <Button variant="outline-secondary" size="sm">Five stars: {ratings['5'] || '0'}</Button>
+              <Button variant="outline-secondary" size="sm" 
+              name="five" onClick={(e) => props.toggleFiltered(e.target.name)}>Five stars: {ratings['5'] || '0'}</Button>
             </OverlayTrigger>
           </div>
             <ProgressBar variant="success" now={(ratings['5'] || 0) / totalRatings * 100} />
@@ -58,7 +61,7 @@ function RatingBreakdown (props) {
             <OverlayTrigger
               placement="right"
               delay={{ show: 250, hide: 400 }}
-              overlay={<Tooltip id="button-tooltip">Filter by four star ratings</Tooltip>}
+              overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
               <Button variant="outline-secondary" size="sm">Four stars: {ratings['4'] || '0'}</Button>
             </OverlayTrigger>
@@ -68,7 +71,7 @@ function RatingBreakdown (props) {
             <OverlayTrigger
               placement="right"
               delay={{ show: 250, hide: 400 }}
-              overlay={<Tooltip id="button-tooltip">Filter by three star ratings</Tooltip>}
+              overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
               <Button variant="outline-secondary" size="sm">Three stars: {ratings['3'] || '0'}</Button>
             </OverlayTrigger>
@@ -78,7 +81,7 @@ function RatingBreakdown (props) {
             <OverlayTrigger
               placement="right"
               delay={{ show: 250, hide: 400 }}
-              overlay={<Tooltip id="button-tooltip">Filter by two star ratings</Tooltip>}
+              overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
               <Button variant="outline-secondary" size="sm">Two stars: {ratings['2'] || '0'}</Button>
             </OverlayTrigger>
@@ -88,7 +91,7 @@ function RatingBreakdown (props) {
           <OverlayTrigger
               placement="right"
               delay={{ show: 250, hide: 400 }}
-              overlay={<Tooltip id="button-tooltip">Filter by one star ratings</Tooltip>}
+              overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
               <Button variant="outline-secondary" size="sm">One star: {ratings['1'] || '0'}</Button>
             </OverlayTrigger>

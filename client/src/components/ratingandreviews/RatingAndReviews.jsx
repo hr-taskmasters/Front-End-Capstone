@@ -11,6 +11,14 @@ function RatingAndReviews(props) {
   const [reviewList, setReviewList] = useState([]); 
   const [metaData, setMetaData] = useState([]); 
   const [sort, setSort] = useState('relevant'); 
+  const [filteredBy, setFilteredBy] = useState({
+    five: false,
+    four: false,
+    three: false,
+    two: false,
+    one: false
+  }); 
+  const [filteredReviewList, setFilteredReviewList] = useState([]); 
   
   useEffect(() => {
     if(props.product.id) {
@@ -30,6 +38,41 @@ function RatingAndReviews(props) {
   const sortBy = (option) => {
     setSort(option)
   }
+
+
+  /*  --FILTERING PLAN--
+  
+   1. add a method that populates the state of a filterBy arr with booleans for each star rating
+
+   2. onclick of each button in review breakdown a boolean should be added to the toFilterArr
+
+    3. Create a filteredReviewList array state 
+
+
+  */
+  // useEffect(() => {
+  //   addToFiltered()
+  // })
+
+  const toggleFiltered = (option) => {
+      if(filteredBy[option] === false){
+        filteredBy[option] === true;
+      } else if (filteredBy[option] === true) {
+        filteredBy[option] === false;
+      }
+      setFilteredBy(filteredBy);
+
+      // let addition =filteredBy.concat([option])
+      // setFilteredBy(addition)
+  }
+
+
+
+
+
+
+
+
 
 
   const getReviews = (id, sort) => {
@@ -69,7 +112,7 @@ function RatingAndReviews(props) {
         <Card.Body>
           <Stack direction="horizontal" gap={3}>
             <Card style={{ width: '25rem' }}> 
-              <Ratings metaData={metaData}/>
+              <Ratings metaData={metaData} toggleFiltered={toggleFiltered}/>
             </Card>
             <Card style={{ width: '50rem' }}>
               <Reviews reviewList={reviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
