@@ -122,7 +122,8 @@ function RatingBreakdown (props) {
             <>
             <Stack direction="horizontal" gap={2}>
               <h5>Filtered by:</h5>
-              <Button variant="outline-secondary" size="sm" className="ms-auto">Remove all filters</Button>
+              <Button variant="outline-secondary" size="sm" 
+              className="ms-auto" onClick={() => props.resetFiltered()}>Remove all filters</Button>
             </Stack>
             <div className="filtered-list">{showFilters(props.filteredBy)}</div>
             </>}

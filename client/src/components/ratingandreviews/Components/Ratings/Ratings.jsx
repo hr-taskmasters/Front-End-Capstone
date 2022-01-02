@@ -11,7 +11,11 @@ function Ratings (props) {
       <Card.Title>
       </Card.Title>
       <Card.Body>
-        <RatingBreakdown metaData={props.metaData} toggleFiltered={props.toggleFiltered} filteredBy={props.filteredBy}/>
+        <RatingBreakdown 
+          metaData={props.metaData} 
+          toggleFiltered={props.toggleFiltered} 
+          filteredBy={props.filteredBy}
+          resetFiltered={props.resetFiltered}/>
         <Factors metaData={props.metaData}/>
       </Card.Body>
     </Card>

@@ -18,7 +18,7 @@ function RatingAndReviews(props) {
     two: false,
     one: false
   }); 
-  // const [filteredReviewList, setFilteredReviewList] = useState(reviewList); 
+  const [filteredReviewList, setFilteredReviewList] = useState(reviewList); 
   
   useEffect(() => {
     if(props.product.id) {
@@ -39,33 +39,19 @@ function RatingAndReviews(props) {
     setSort(option)
   }
 
-  /*  --FILTERING PLAN--
-  
-   //1. add a method that toggles the state of a filteredBy state object with booleans for each star rating
+  useEffect(() => {
+    createFilteredList()
+  }, [filteredBy])
 
-   //2. onclick of each button in review breakdown a boolean should be toggled in filteredBy
-
-   //3. Create a filteredReviewList array state 
-
-  4. for all true values in filteredBy, add those reviews to filteredReviewList
-      
-    for each key of filteredBy if the value is true
-      add a num version of the string key to an filterNumbersArr
-    for each review of reviewList
-    if the review rating is present in filterNumbersArr
-      add the whole review to filteredReviewList
-
-  
-  
-  5. send filteredBy back down as a prop to ratingsBreakdown to be displayed
-
-  6. create a button in RatingsBreakdown to clear all filters
-    -this will reset the filteredBy obj's state' values to all  be false
-
-  */
-  
- const [filteredReviewList, setFilteredReviewList] = useState([]); 
-
+  const resetFiltered = () =>{
+    setFilteredBy({
+      five: false,
+      four: false,
+      three: false,
+      two: false,
+      one: false
+    }); 
+  }
   const toggleFiltered = (option) => {
     if(filteredBy[option] === false){
       setFilteredBy({...filteredBy, [option]: true})
@@ -74,14 +60,7 @@ function RatingAndReviews(props) {
     }
   }
 
-   
-  // for each key of filteredBy if the value is true
-  //     add a num version of the string key to an filterNumbersArr
-  //   for each review of reviewList
-  //   if the review rating is present in filterNumbersArr
-  //     add the whole review to filteredReviewList
   const createFilteredList = () => {
-    
       const filterNumbers = [];
       const reviewStorage =[];
       if(filteredBy.five) filterNumbers.push(5)
@@ -97,11 +76,16 @@ function RatingAndReviews(props) {
     setFilteredReviewList(reviewStorage)
   }
 
-  useEffect(() => {
-    createFilteredList()
-  }, [filteredBy])
+  // useEffect(() => {
+  //   createFilteredList()
+  // }, [filteredBy])
 
-
+  // const toggleListRender = () => {
+  //   let toRender;
+  //   filteredReviewList.length < 1 ?
+  //   toRender = reviewList :
+  //   toRender = filteredReviewList
+  // }
 
 
 
@@ -143,7 +127,7 @@ function RatingAndReviews(props) {
         <Card.Body>
           <Stack direction="horizontal" gap={3}>
             <Card style={{ width: '26rem' }}> 
-              <Ratings metaData={metaData} toggleFiltered={toggleFiltered} filteredBy={filteredBy}/>
+              <Ratings metaData={metaData} toggleFiltered={toggleFiltered} filteredBy={filteredBy} resetFiltered={resetFiltered}/>
             </Card>
             <Card style={{ width: '50rem' }}>
               <Reviews reviewList={reviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
@@ -157,28 +141,28 @@ function RatingAndReviews(props) {
 
 export default RatingAndReviews;
 
-//    // var copy = {...filteredBy}
-//     // console.log(copy)
-//     //   if(copy[option] === false){
-//     //     copy[option] === true;
-//     //   } else if (copy[option] === true) {
-//     //     copy[option] === false;
-//     //   }
-//     //   console.log(copy)
-//     //   setFilteredBy(copy);
 
-//       // let addition =filteredBy.concat([option])
-//       // setFilteredBy(addition)
+/*  --FILTERING PLAN--
   
+   //1. add a method that toggles the state of a filteredBy state object with booleans for each star rating
 
+   //2. onclick of each button in review breakdown a boolean should be toggled in filteredBy
 
-// //maybe just add the strigns to an array
-//   //then use .filter to make a new array of their values
-//   //if the length is odd, the value is true
-//   //if the length is even the value is false
+   //3. Create a filteredReviewList array state 
 
-//   const determineBool = (arr, starStr) => {
-//     var singleStarStrings = arr.filter(item => item === starStr)
-//     var toggleBool = singleStarStrings.length % 2 === 0 ? false : true;
-//     return toggleBool;
-//   }
+  4. for all true values in filteredBy, add those reviews to filteredReviewList
+      
+    for each key of filteredBy if the value is true
+      add a num version of the string key to an filterNumbersArr
+    for each review of reviewList
+    if the review rating is present in filterNumbersArr
+      add the whole review to filteredReviewList
+
+  
+  
+  5. send filteredBy back down as a prop to ratingsBreakdown to be displayed
+
+  6. create a button in RatingsBreakdown to clear all filters
+    -this will reset the filteredBy obj's state' values to all  be false
+
+  */
