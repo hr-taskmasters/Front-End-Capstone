@@ -51,6 +51,7 @@ function RatingAndReviews(props) {
       two: false,
       one: false
     }); 
+    setFilteredReviewList(reviewList)
   }
   const toggleFiltered = (option) => {
     if(filteredBy[option] === false){
@@ -76,19 +77,6 @@ function RatingAndReviews(props) {
     setFilteredReviewList(reviewStorage)
   }
 
-  // useEffect(() => {
-  //   createFilteredList()
-  // }, [filteredBy])
-
-  // const toggleListRender = () => {
-  //   let toRender;
-  //   filteredReviewList.length < 1 ?
-  //   toRender = reviewList :
-  //   toRender = filteredReviewList
-  // }
-
-
-
 
   const getReviews = (id, sort) => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?sort=${sort}&product_id=${id}`, {
@@ -98,6 +86,7 @@ function RatingAndReviews(props) {
     })
     .then((response) => {
         setReviewList(response.data.results)
+        setFilteredReviewList(response.data.results)
     })
     .catch(err => {
         console.log(err);
@@ -130,7 +119,7 @@ function RatingAndReviews(props) {
               <Ratings metaData={metaData} toggleFiltered={toggleFiltered} filteredBy={filteredBy} resetFiltered={resetFiltered}/>
             </Card>
             <Card style={{ width: '50rem' }}>
-              <Reviews reviewList={reviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
+              <Reviews reviewList={filteredReviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
             </Card>
           </Stack>
         </Card.Body>
