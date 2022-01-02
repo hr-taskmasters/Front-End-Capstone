@@ -60,7 +60,7 @@ function RatingBreakdown (props) {
             <>of reviewers recommend this product</>
         </Stack>
         <br></br>
-        <Stack gap={1}>
+        <Stack gap={2}>
           <div className="breakdowns" >
             <OverlayTrigger
               placement="right"

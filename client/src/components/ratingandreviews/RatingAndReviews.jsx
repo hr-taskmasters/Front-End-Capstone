@@ -11,14 +11,14 @@ function RatingAndReviews(props) {
   const [reviewList, setReviewList] = useState([]); 
   const [metaData, setMetaData] = useState([]); 
   const [sort, setSort] = useState('relevant'); 
-  const [filteredBy, setFilteredBy] = useState({    //?[]
+  const [filteredBy, setFilteredBy] = useState({
     five: false,
     four: false,
     three: false,
     two: false,
     one: false
   }); 
-  const [filteredReviewList, setFilteredReviewList] = useState([]); 
+  // const [filteredReviewList, setFilteredReviewList] = useState(reviewList); 
   
   useEffect(() => {
     if(props.product.id) {
@@ -41,14 +41,21 @@ function RatingAndReviews(props) {
 
   /*  --FILTERING PLAN--
   
-   1. add a method that populates the state of a filterBy arr with booleans for each star rating
+   //1. add a method that toggles the state of a filteredBy state object with booleans for each star rating
 
-   2. onclick of each button in review breakdown a boolean should be added to the toFilterArr
+   //2. onclick of each button in review breakdown a boolean should be toggled in filteredBy
 
-  3. Create a filteredReviewList array state 
+   //3. Create a filteredReviewList array state 
 
-  4. for all true values in filteredBy, those reviews to filteredReviewList
-      -then pass the filtered review list down as a prop
+  4. for all true values in filteredBy, add those reviews to filteredReviewList
+      
+    for each key of filteredBy if the value is true
+      add a num version of the string key to an filterNumbersArr
+    for each review of reviewList
+    if the review rating is present in filterNumbersArr
+      add the whole review to filteredReviewList
+
+  
   
   5. send filteredBy back down as a prop to ratingsBreakdown to be displayed
 
@@ -57,6 +64,7 @@ function RatingAndReviews(props) {
 
   */
   
+ const [filteredReviewList, setFilteredReviewList] = useState([]); 
 
   const toggleFiltered = (option) => {
     if(filteredBy[option] === false){
@@ -65,9 +73,33 @@ function RatingAndReviews(props) {
       setFilteredBy({...filteredBy, [option]: false})
     }
   }
-   
-  
 
+   
+  // for each key of filteredBy if the value is true
+  //     add a num version of the string key to an filterNumbersArr
+  //   for each review of reviewList
+  //   if the review rating is present in filterNumbersArr
+  //     add the whole review to filteredReviewList
+  const createFilteredList = () => {
+    
+      const filterNumbers = [];
+      const reviewStorage =[];
+      if(filteredBy.five) filterNumbers.push(5)
+      if(filteredBy.four) filterNumbers.push(4)
+      if(filteredBy.three) filterNumbers.push(3)
+      if(filteredBy.two) filterNumbers.push(2)
+      if(filteredBy.one) filterNumbers.push(1)
+      reviewList.forEach(review => {
+        if(filterNumbers.indexOf(review.rating) > -1) {
+        reviewStorage.push(review)
+      };
+    });
+    setFilteredReviewList(reviewStorage)
+  }
+
+  useEffect(() => {
+    createFilteredList()
+  }, [filteredBy])
 
 
 
