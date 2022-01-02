@@ -31,9 +31,15 @@ class ProductCard extends React.Component {
     })
     .then((product) => {
       if(this._isMounted){
-        this.setState({
-          imageUrl: product.data.results[0].photos[0].thumbnail_url
-        })
+        if(product.data.results[0].photos[0].thumbnail_url){
+          this.setState({
+            imageUrl: product.data.results[0].photos[0].thumbnail_url
+          })
+        } else {
+          this.setState({
+            imageUrl: `images/placeholder-image.png`
+          })
+        }
       }
     })
     .catch((err) => {
