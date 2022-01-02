@@ -12,7 +12,7 @@ function Cart(props) {
 
   useEffect(() => {
     reset();
-  }, [])
+  }, [props])
 
   const reset = () => {
     setSize('SELECT SIZE');
@@ -123,7 +123,7 @@ function Cart(props) {
       :
         null
       }
-      <Favorite />
+      <Favorite style={props.style}/>
     </div>
 
   );

@@ -77,7 +77,7 @@ function Image(props) {
           <img
             className={index + firstImg === selectImg ? 'p_s_img_highlight' : 'p_s_img'}
             key={index}
-            src={img.thumbnail_url}
+            src={img.thumbnail_url ? img.thumbnail_url : `images/placeholder-image.png`}
             onClick={() => handleClick(index)}
           ></img>)) : null}
         <button
@@ -101,13 +101,13 @@ function Image(props) {
             {props.style[props.styleNum].photos[selectImg] ?
               <img
                 className='p_pic'
-                src={props.style[props.styleNum].photos[selectImg].url}
+                src={props.style[props.styleNum].photos[selectImg].url ? props.style[props.styleNum].photos[selectImg].url : `images/placeholder-image.png`}
                 onClick={props.expandMode}>
               </img>
             :
               <img
                 className='p_pic'
-                src={props.style[props.styleNum].photos[0].url}
+                src={props.style[props.styleNum].photos[0].url ? props.style[props.styleNum].photos[0].url : `images/placeholder-image.png`}
                 onClick={props.expandMode}>
               </img>
             }
@@ -157,7 +157,7 @@ function Image(props) {
             {click ?
               <div className='p_zoom'>
                 <Zoom
-                  img={props.style[props.styleNum].photos[selectImg].url}
+                  img={props.style[props.styleNum].photos[selectImg].url ? props.style[props.styleNum].photos[selectImg].url : `images/placeholder-image.png`}
                   zoomScale={2.5}
                   height={650}
                   width={900}
@@ -168,7 +168,7 @@ function Image(props) {
             :
               <img
                 className='p_pic_expanded'
-                src={props.style[props.styleNum].photos[selectImg].url}
+                src={props.style[props.styleNum].photos[selectImg].url ? props.style[props.styleNum].photos[selectImg].url : `images/placeholder-image.png`}
                 onClick={zoomIn}
               ></img>
             }
