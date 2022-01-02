@@ -6,7 +6,6 @@ function Image(props) {
   const [selectImg, setSelectImg] = useState(0);
   const [firstImg, setFirstImg] = useState(0);
   const [lastImg, setLastImg] = useState(7);
-  const [expand, setExpand] = useState(false);
   const [click, setClick] = useState(false);
 
   useEffect(() => {
@@ -61,14 +60,6 @@ function Image(props) {
     }
   }
 
-  const expandMode = () => {
-    setExpand(true);
-  }
-
-  const exitExpandMode = () => {
-    setExpand(false);
-  }
-
   const zoomIn = () => {
     setClick(!click);
   }
@@ -111,13 +102,13 @@ function Image(props) {
               <img
                 className='p_pic'
                 src={props.style[props.styleNum].photos[selectImg].url}
-                onClick={expandMode}>
+                onClick={props.expandMode}>
               </img>
             :
               <img
                 className='p_pic'
                 src={props.style[props.styleNum].photos[0].url}
-                onClick={expandMode}>
+                onClick={props.expandMode}>
               </img>
             }
             {selectImg === props.style[props.styleNum].photos.length - 1 ?
@@ -136,7 +127,7 @@ function Image(props) {
           </div>
         }
       </div>
-      {expand && (
+      {props.expand && (
         <div className='p_expand row'>
           {!click &&
             <div className='col-sm-1 p_icon_container'>
@@ -164,14 +155,16 @@ function Image(props) {
               null
             }
             {click ?
-              <Zoom
-                img={props.style[props.styleNum].photos[selectImg].url}
-                zoomScale={2.5}
-                height={600}
-                width={600}
-                transitionTime={0.5}
-                onClick={zoomIn}
-              />
+              <div className='p_zoom'>
+                <Zoom
+                  img={props.style[props.styleNum].photos[selectImg].url}
+                  zoomScale={2.5}
+                  height={650}
+                  width={900}
+                  transitionTime={0.5}
+                  onClick={zoomIn}
+                />
+              </div>
             :
               <img
                 className='p_pic_expanded'
@@ -182,7 +175,7 @@ function Image(props) {
             {!click &&
             <button
               className='p_exit_expand'
-              onClick={exitExpandMode}>
+              onClick={props.exitExpandMode}>
               <i className='fas fa-times fa-lg'></i>
             </button>
             }
