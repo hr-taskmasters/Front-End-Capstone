@@ -7,7 +7,8 @@ function RatingBreakdown (props) {
   const [ratings, setRatings] = useState({});
   const [totalRatings, setTotalRatings] = useState(null);
   const [percentRecommended, setPercentRecommended] = useState(null);
-  const [averageRating, setAverageRating] = useState(null);
+  // const [averageRating, setAverageRating] = useState(null);
+  const [filterList, setFilterList] = useState('')
  
   useEffect(() => {
     setRatings(props.metaData.ratings)
@@ -34,17 +35,31 @@ function RatingBreakdown (props) {
     }
   }
   
-  // name "star rating"
-  // onClick={(e) => addToFiltered(e.target.name)}
+  const showFilters = (obj) => {
+    let filters = '';
+    for (let key in obj){
+      if(obj[key] === true){
+        filters.length < 50 ? filters += ` ${key} stars |` 
+        : filters += ` ${key} stars`
+      }
+    }
+    return filters;
+  }
+
 
   return (
     <Card>
       <Card.Title>
-          <Stars ratings={ratings} totalRatings={totalRatings}/>
+        <Stars ratings={ratings} totalRatings={totalRatings}/>
       </Card.Title>
       <Card.Body>
         { ratings ?
         <>
+        <Stack direction="horizontal" gap={2}>
+            <div className="percent-recommended">{percentRecommended}%</div> 
+            <>of reviewers recommend this product</>
+        </Stack>
+        <br></br>
         <Stack gap={1}>
           <div className="breakdowns" >
             <OverlayTrigger
@@ -101,13 +116,10 @@ function RatingBreakdown (props) {
             </OverlayTrigger>
           </div>
             <ProgressBar variant="success" now={(ratings['1'] || 0) / totalRatings * 100} /> 
-
-          <br></br>
           </Stack>
-          <Stack direction="horizontal" gap={2}>
-            <div className="percent-recommended">{percentRecommended}%</div> 
-            <>of reviewers recommend this product</>
-            </Stack>
+          <br></br>
+            <b>Filtered by:</b>
+            <div className="filtered-list">{showFilters(props.filteredBy)}</div>
           </>
           : <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>

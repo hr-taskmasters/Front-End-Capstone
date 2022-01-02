@@ -56,7 +56,7 @@ function RatingAndReviews(props) {
     -this will reset the filteredBy obj's state' values to all  be false
 
   */
-    const [test, setTest] = useState(false)
+  
 
   const toggleFiltered = (option) => {
     if(filteredBy[option] === false){
@@ -110,8 +110,8 @@ function RatingAndReviews(props) {
         </Card.Title>
         <Card.Body>
           <Stack direction="horizontal" gap={3}>
-            <Card style={{ width: '25rem' }}> 
-              <Ratings metaData={metaData} toggleFiltered={toggleFiltered}/>
+            <Card style={{ width: '26rem' }}> 
+              <Ratings metaData={metaData} toggleFiltered={toggleFiltered} filteredBy={filteredBy}/>
             </Card>
             <Card style={{ width: '50rem' }}>
               <Reviews reviewList={reviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
