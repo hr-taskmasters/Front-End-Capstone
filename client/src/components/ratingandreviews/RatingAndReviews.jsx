@@ -84,7 +84,6 @@ function RatingAndReviews(props) {
     }
   }
 
-
   const getReviews = (id, sort) => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?sort=${sort}&product_id=${id}`, {
         headers: {
