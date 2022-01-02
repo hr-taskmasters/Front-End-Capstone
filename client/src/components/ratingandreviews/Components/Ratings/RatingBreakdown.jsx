@@ -7,7 +7,8 @@ function RatingBreakdown (props) {
   const [ratings, setRatings] = useState({});
   const [totalRatings, setTotalRatings] = useState(null);
   const [percentRecommended, setPercentRecommended] = useState(null);
-  const [averageRating, setAverageRating] = useState(null);
+  // const [averageRating, setAverageRating] = useState(null);
+  const [filterList, setFilterList] = useState('')
  
   useEffect(() => {
     setRatings(props.metaData.ratings)
@@ -34,18 +35,32 @@ function RatingBreakdown (props) {
     }
   }
   
-  // name "star rating"
-  // onClick={(e) => addToFiltered(e.target.name)}
+  const showFilters = (obj) => {
+    let filters = '';
+    for (let key in obj){
+      if(obj[key] === true){
+        filters.length < 50 ? filters += ` ${key} stars |` 
+        : filters += ` ${key} stars`
+      }
+    }
+    return filters;
+  }
+
 
   return (
     <Card>
       <Card.Title>
-          <Stars ratings={ratings} totalRatings={totalRatings}/>
+        <Stars ratings={ratings} totalRatings={totalRatings}/>
       </Card.Title>
       <Card.Body>
         { ratings ?
         <>
-        <Stack gap={1}>
+        <Stack direction="horizontal" gap={2}>
+            <div className="percent-recommended">{percentRecommended}%</div> 
+            <>of reviewers recommend this product</>
+        </Stack>
+        <br></br>
+        <Stack gap={2}>
           <div className="breakdowns" >
             <OverlayTrigger
               placement="right"
@@ -63,7 +78,8 @@ function RatingBreakdown (props) {
               delay={{ show: 250, hide: 400 }}
               overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
-              <Button variant="outline-secondary" size="sm">Four stars: {ratings['4'] || '0'}</Button>
+              <Button variant="outline-secondary" size="sm"
+              name="four" onClick={(e) => props.toggleFiltered(e.target.name)}>Four stars: {ratings['4'] || '0'}</Button>
             </OverlayTrigger>
           </div>
             <ProgressBar variant="success" now={(ratings['4'] || 0) / totalRatings * 100} /> 
@@ -73,7 +89,8 @@ function RatingBreakdown (props) {
               delay={{ show: 250, hide: 400 }}
               overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
-              <Button variant="outline-secondary" size="sm">Three stars: {ratings['3'] || '0'}</Button>
+              <Button variant="outline-secondary" size="sm"
+              name="three" onClick={(e) => props.toggleFiltered(e.target.name)}>Three stars: {ratings['3'] || '0'}</Button>
             </OverlayTrigger>
           </div> 
             <ProgressBar variant="success" now={(ratings['3'] || 0) / totalRatings * 100} />
@@ -83,7 +100,8 @@ function RatingBreakdown (props) {
               delay={{ show: 250, hide: 400 }}
               overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
-              <Button variant="outline-secondary" size="sm">Two stars: {ratings['2'] || '0'}</Button>
+              <Button variant="outline-secondary" size="sm"
+              name="two" onClick={(e) => props.toggleFiltered(e.target.name)}>Two stars: {ratings['2'] || '0'}</Button>
             </OverlayTrigger>
           </div>
             <ProgressBar variant="success" now={(ratings['2'] || 0) / totalRatings * 100} /> 
@@ -93,17 +111,22 @@ function RatingBreakdown (props) {
               delay={{ show: 250, hide: 400 }}
               overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
-              <Button variant="outline-secondary" size="sm">One star: {ratings['1'] || '0'}</Button>
+              <Button variant="outline-secondary" size="sm"
+              name="one" onClick={(e) => props.toggleFiltered(e.target.name)}>One star: {ratings['1'] || '0'}</Button>
             </OverlayTrigger>
           </div>
             <ProgressBar variant="success" now={(ratings['1'] || 0) / totalRatings * 100} /> 
-
-          <br></br>
           </Stack>
-          <Stack direction="horizontal" gap={2}>
-            <div className="percent-recommended">{percentRecommended}%</div> 
-            <>of reviewers recommend this product</>
+          <br></br>
+            {showFilters(props.filteredBy).length > 0 &&
+            <>
+            <Stack direction="horizontal" gap={2}>
+              <h5>Filtered by:</h5>
+              <Button variant="outline-secondary" size="sm" 
+              className="ms-auto" onClick={() => props.resetFiltered()}>Remove all filters</Button>
             </Stack>
+            <div className="filtered-list">{showFilters(props.filteredBy)}</div>
+            </>}
           </>
           : <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>

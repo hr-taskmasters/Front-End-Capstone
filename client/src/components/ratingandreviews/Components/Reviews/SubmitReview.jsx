@@ -3,8 +3,8 @@ import axios from 'axios';
 import API_KEY from '../../../../config/config.js';
 import Radios from '../../radioData/radioData.js';
 import { Rating } from 'react-simple-star-rating';
-
-import { Button, Stack, Form, Modal, Accordion, FloatingLabel, ButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Button, Stack, Form, Modal, Accordion, 
+  FloatingLabel, ButtonGroup, ToggleButton } from 'react-bootstrap';
 
 
 function SubmitReview (props) {
@@ -82,17 +82,33 @@ function SubmitReview (props) {
             142033: Number(length),
             142035: Number(quality)
         }
+        // const bodyParams = {
+        //     product_id: props.product.id,
+        //     rating: (stars / 20),
+        //     summary: summary,
+        //     body: body,
+        //     recommend: Boolean(recommended),
+        //     name: nickname,
+        //     email: email,
+        //     photos: [],
+        //     characteristics: factors
+        // }
         const bodyParams = {
-            product_id: props.product.id,
-            rating: (stars / 20),
-            summary: summary,
-            body: body,
-            recommend: Boolean(recommended),
-            name: nickname,
-            email: email,
-            photos: ['',''],
-            characteristics: factors
+          product_id: 42366,
+          rating: 4,
+          summary: "testSummary",
+          body: "testBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBody",
+          recommend: true,
+          name: "test1234",
+          email: "test@1234",
+          photos: [],
+          characteristics: {
+            142034: 3,
+            142032: 3,
+            142033: 3,
+            142035: 3
         }
+      }
         // console.log(factors)
         if ( recommended 
             && body.length > 50 
@@ -101,7 +117,7 @@ function SubmitReview (props) {
             && email.includes('@') 
             && factors) {
         axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?product_id=${props.product.id}`, bodyParams,
-        { headers: { 'Authorization': `${API_KEY}` } })
+        { headers: { 'Authorization': `${API_KEY}` }})
         .then(res => {
             alert('Your review was submitted.')
             handleClose();
@@ -111,7 +127,13 @@ function SubmitReview (props) {
             alert('All fields marked with a * must be complete.')
         };
     };
+    /* Tried So far: (all combinations of the following...)
+    - making a test object and a test factors object
+    - adding the header(s): 'Content-Type': 'application/json' 'Content-Type':'application/x-www-form-urlencoded'
+    - stringify'ing the query: JSON.stringify(bodyParams)
+    - removing the ID from the url and only sending it in the query as a property: /?product_id=${props.product.id}
 
+    */
     
     return (
       <div>
@@ -122,10 +144,10 @@ function SubmitReview (props) {
             </Modal.Header>
             <Modal.Body>
                 <Stack gap={3}>
-                <b>Rating*</b>
                 <Rating onClick={handleRating} 
                     ratingValue={stars} 
                     showTooltip={true} 
+                    tooltipDefaultText="Your Rating*"
                     tooltipArray={['Poor', 'Fair', 'Average', 'Good', 'Great']}
                 />
                 
@@ -338,8 +360,8 @@ function SubmitReview (props) {
             </Stack>
             </Modal.Body>
             <Modal.Footer>
-            <Button variant="outline-secondary" onClick={handleClose}>Cancel</Button>
-            <Button variant="outline-primary" type="submit" onClick={postReview}>Submit</Button>
+              <Button variant="outline-secondary" onClick={handleClose}>Cancel</Button>
+              <Button variant="outline-primary" type="submit" onClick={postReview}>Submit</Button>
             </Modal.Footer>
         </Modal>
       </div>
@@ -375,30 +397,3 @@ export default SubmitReview;
     <Button variant="primary">Understood</Button>
     </Modal.Footer>
 </Modal> */}
-
-
-
-//radio arrays
-// const recommendedRadios =[
-//     { name: 'Yes', value: true},
-//     { name: 'No', value: false}
-// ];
-
-// const sizeRadios = [
-//     { name: 'A size too small', value: 1 },
-//     { name: '1/2 a size too small', value: 2 },
-//     { name: 'Perfect', value: 3 },
-//     { name: '1/2 a size too big', value: 4 },
-//     { name: 'A size too big', value: 5 }
-// ];
-
-// const widthRadios = [
-//     { name: 'Too narrow', value: 1 },
-//     { name: 'Slightly narrow', value: 2 },
-//     { name: 'Perfect', value: 3 },
-//     { name: 'Slightly wide', value: 4 },
-//     { name: 'Too wide', value: 5 }
-// ];
-
-
-

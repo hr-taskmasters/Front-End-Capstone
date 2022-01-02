@@ -6,15 +6,16 @@ import Card from 'react-bootstrap/Card'
 
 function Ratings (props) {
 
-
-  // addToFiltered={props.addToFiltered}
-
   return (
     <Card>
       <Card.Title>
       </Card.Title>
       <Card.Body>
-        <RatingBreakdown metaData={props.metaData} toggleFiltered={props.toggleFiltered}/>
+        <RatingBreakdown 
+          metaData={props.metaData} 
+          toggleFiltered={props.toggleFiltered} 
+          filteredBy={props.filteredBy}
+          resetFiltered={props.resetFiltered}/>
         <Factors metaData={props.metaData}/>
       </Card.Body>
     </Card>
