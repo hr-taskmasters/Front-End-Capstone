@@ -39,20 +39,24 @@ function RatingAndReviews(props) {
     setSort(option)
   }
 
-
   /*  --FILTERING PLAN--
   
    1. add a method that populates the state of a filterBy arr with booleans for each star rating
 
    2. onclick of each button in review breakdown a boolean should be added to the toFilterArr
 
-    3. Create a filteredReviewList array state 
+  3. Create a filteredReviewList array state 
 
+  4. for all true values in filteredBy, those reviews to filteredReviewList
+      -then pass the filtered review list down as a prop
+  
+  5. send filteredBy back down as a prop to ratingsBreakdown to be displayed
+
+  6. create a button in RatingsBreakdown to clear all filters
+    -this will reset the filteredBy obj's state' values to all  be false
 
   */
-  // useEffect(() => {
-  //   addToFiltered()
-  // })
+  
 
   const toggleFiltered = (option) => {
       if(filteredBy[option] === false){
