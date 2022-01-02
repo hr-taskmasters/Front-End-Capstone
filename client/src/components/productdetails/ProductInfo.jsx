@@ -24,6 +24,10 @@ function ProductInfo(props) {
     setExpand(false);
   }
 
+  useEffect(() => {
+    setStyleNum(0);
+  }, [props])
+
   return (
     <div className='row'>
       <div className='col-md-6'>
