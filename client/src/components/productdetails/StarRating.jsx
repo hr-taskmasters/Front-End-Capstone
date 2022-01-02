@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import Nav from 'react-bootstrap/Nav'
+import Nav from 'react-bootstrap/Nav';
+import { Rating } from 'react-simple-star-rating';
 
 function StarRating(props) {
 
@@ -34,128 +35,17 @@ function StarRating(props) {
     }
   }
 
-  const starNum = () => {
-    var avg = avgRating;
-    if (avg) {
-      if (avg === 5) {
-        return (
-        <span>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-          <i className="fas fa-star"></i>
-        </span>
-        );
-      } else if (avg >= 4.5) {
-        return (
-          <span>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star-half-alt"></i>
-          </span>
-        )
-      } else if (avg >= 4) {
-        return (
-          <span>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="far fa-star"></i>
-          </span>
-        )
-      } else if (avg >= 3.5) {
-        return (
-          <span>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star-half-alt"></i>
-            <i className="far fa-star"></i>
-          </span>
-        )
-      } else if (avg >= 3) {
-        return (
-          <span>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-          </span>
-        )
-      } else if (avg >= 2.5) {
-        return (
-          <span>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star-half-alt"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-          </span>
-        )
-      } else if (avg >= 2) {
-        return (
-          <span>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-          </span>
-        )
-      } else if (avg >= 1.5) {
-        return (
-          <span>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star-half-alt"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-          </span>
-        )
-      } else if (avg >= 1) {
-        return (
-          <span>
-            <i className="fas fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-          </span>
-        )
-      } else if (avg >= 0.5) {
-        return (
-          <span>
-            <i className="fas fa-star-half-alt"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-          </span>
-        )
-      } else {
-        return (
-          <span>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-          </span>
-        )
-      }
-    }
-  }
-
   return (
     <div>
       {review ?
         <div>
-          {starNum()}
+          <Rating
+            readonly={true}
+            ratingValue={avgRating * 20}
+            initialValue={avgRating * 20}
+            allowHalfIcon={true}
+            size={28}
+          />
           <span>{avgRating}</span>
           <span className='p_rating'><a onClick={handleReviewClick}>Read All {review} Ratings & Reviews</a></span>
         </div>

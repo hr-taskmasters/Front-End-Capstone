@@ -10,29 +10,46 @@ import Share from './Share.jsx';
 function ProductInfo(props) {
 
   const [styleNum, setStyleNum] = useState(0);
+  const [expand, setExpand] = useState(false);
 
   const handleClick = (index) => {
     setStyleNum(index);
+  }
+
+  const expandMode = () => {
+    setExpand(true);
+  }
+
+  const exitExpandMode = () => {
+    setExpand(false);
   }
 
   return (
     <div className='row'>
       <div className='col-md-6'>
         <div className='product-grid'>
-          <Image style={props.style} styleNum={styleNum}/>
+          <Image
+            style={props.style}
+            styleNum={styleNum}
+            expand={expand}
+            expandMode={expandMode}
+            exitExpandMode={exitExpandMode}
+          />
         </div>
       </div>
-      <div className='product-content col-md-5'>
-        <StarRating ratings={props.ratings}/>
-        <h4>{props.info.category}</h4>
-        <h2 className='p_title'><a href='#'>{props.info.name}</a></h2>
-        <Price info={props.info} style={props.style} styleNum={styleNum} />
-        <div className='p_style'>
-          <b>STYLE > </b><span>{props.style[styleNum] ? props.style[styleNum].name : null}</span>
-          <Thumbnail style={props.style} styleNum={styleNum} handleClick={handleClick}/>
+      {!expand &&
+        <div className='product-content col-md-5'>
+          <StarRating ratings={props.ratings}/>
+          <h4>{props.info.category}</h4>
+          <h2 className='p_title'><a href='#'>{props.info.name}</a></h2>
+          <Price info={props.info} style={props.style} styleNum={styleNum} />
+          <div className='p_style'>
+            <b>STYLE > </b><span>{props.style[styleNum] ? props.style[styleNum].name : null}</span>
+            <Thumbnail style={props.style} styleNum={styleNum} handleClick={handleClick}/>
+          </div>
+          <Cart style={props.style} styleNum={styleNum}/>
         </div>
-        <Cart style={props.style} styleNum={styleNum}/>
-      </div>
+      }
 
       <div className='p_description'>
         <h6>DESCRIPTION:</h6>

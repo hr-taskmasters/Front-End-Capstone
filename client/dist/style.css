@@ -154,6 +154,7 @@
 .p_pic_expanded {
   width: 65%;
   height: 650px;
+  z-index: 3;
   object-fit: cover;
   margin-left: auto;
   margin-right: auto;
@@ -188,4 +189,10 @@
 }
 h5.questions_widget_header {
   margin-left: 50px;
+}
+.p_zoom {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
