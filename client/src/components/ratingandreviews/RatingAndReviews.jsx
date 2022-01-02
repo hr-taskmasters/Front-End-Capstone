@@ -11,7 +11,7 @@ function RatingAndReviews(props) {
   const [reviewList, setReviewList] = useState([]); 
   const [metaData, setMetaData] = useState([]); 
   const [sort, setSort] = useState('relevant'); 
-  const [filteredBy, setFilteredBy] = useState({
+  const [filteredBy, setFilteredBy] = useState({    //?[]
     five: false,
     four: false,
     three: false,
@@ -56,22 +56,17 @@ function RatingAndReviews(props) {
     -this will reset the filteredBy obj's state' values to all  be false
 
   */
-  
+    const [test, setTest] = useState(false)
 
   const toggleFiltered = (option) => {
-      if(filteredBy[option] === false){
-        filteredBy[option] === true;
-      } else if (filteredBy[option] === true) {
-        filteredBy[option] === false;
-      }
-      setFilteredBy(filteredBy);
-
-      // let addition =filteredBy.concat([option])
-      // setFilteredBy(addition)
+    if(filteredBy[option] === false){
+      setFilteredBy({...filteredBy, [option]: true})
+    } else if(filteredBy[option] === true){
+      setFilteredBy({...filteredBy, [option]: false})
+    }
   }
-
-
-
+   
+  
 
 
 
@@ -130,3 +125,28 @@ function RatingAndReviews(props) {
 
 export default RatingAndReviews;
 
+//    // var copy = {...filteredBy}
+//     // console.log(copy)
+//     //   if(copy[option] === false){
+//     //     copy[option] === true;
+//     //   } else if (copy[option] === true) {
+//     //     copy[option] === false;
+//     //   }
+//     //   console.log(copy)
+//     //   setFilteredBy(copy);
+
+//       // let addition =filteredBy.concat([option])
+//       // setFilteredBy(addition)
+  
+
+
+// //maybe just add the strigns to an array
+//   //then use .filter to make a new array of their values
+//   //if the length is odd, the value is true
+//   //if the length is even the value is false
+
+//   const determineBool = (arr, starStr) => {
+//     var singleStarStrings = arr.filter(item => item === starStr)
+//     var toggleBool = singleStarStrings.length % 2 === 0 ? false : true;
+//     return toggleBool;
+//   }

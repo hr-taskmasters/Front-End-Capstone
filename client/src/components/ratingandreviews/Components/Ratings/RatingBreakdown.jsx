@@ -63,7 +63,8 @@ function RatingBreakdown (props) {
               delay={{ show: 250, hide: 400 }}
               overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
-              <Button variant="outline-secondary" size="sm">Four stars: {ratings['4'] || '0'}</Button>
+              <Button variant="outline-secondary" size="sm"
+              name="four" onClick={(e) => props.toggleFiltered(e.target.name)}>Four stars: {ratings['4'] || '0'}</Button>
             </OverlayTrigger>
           </div>
             <ProgressBar variant="success" now={(ratings['4'] || 0) / totalRatings * 100} /> 
@@ -73,7 +74,8 @@ function RatingBreakdown (props) {
               delay={{ show: 250, hide: 400 }}
               overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
-              <Button variant="outline-secondary" size="sm">Three stars: {ratings['3'] || '0'}</Button>
+              <Button variant="outline-secondary" size="sm"
+              name="three" onClick={(e) => props.toggleFiltered(e.target.name)}>Three stars: {ratings['3'] || '0'}</Button>
             </OverlayTrigger>
           </div> 
             <ProgressBar variant="success" now={(ratings['3'] || 0) / totalRatings * 100} />
@@ -83,7 +85,8 @@ function RatingBreakdown (props) {
               delay={{ show: 250, hide: 400 }}
               overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
-              <Button variant="outline-secondary" size="sm">Two stars: {ratings['2'] || '0'}</Button>
+              <Button variant="outline-secondary" size="sm"
+              name="two" onClick={(e) => props.toggleFiltered(e.target.name)}>Two stars: {ratings['2'] || '0'}</Button>
             </OverlayTrigger>
           </div>
             <ProgressBar variant="success" now={(ratings['2'] || 0) / totalRatings * 100} /> 
@@ -93,7 +96,8 @@ function RatingBreakdown (props) {
               delay={{ show: 250, hide: 400 }}
               overlay={<Tooltip id="button-tooltip">toggle filter</Tooltip>}
             >
-              <Button variant="outline-secondary" size="sm">One star: {ratings['1'] || '0'}</Button>
+              <Button variant="outline-secondary" size="sm"
+              name="one" onClick={(e) => props.toggleFiltered(e.target.name)}>One star: {ratings['1'] || '0'}</Button>
             </OverlayTrigger>
           </div>
             <ProgressBar variant="success" now={(ratings['1'] || 0) / totalRatings * 100} /> 
