@@ -140,29 +140,3 @@ function RatingAndReviews(props) {
 }
 
 export default RatingAndReviews;
-
-
-/*  --FILTERING PLAN--
-  
-   //1. add a method that toggles the state of a filteredBy state object with booleans for each star rating
-
-   //2. onclick of each button in review breakdown a boolean should be toggled in filteredBy
-
-   //3. Create a filteredReviewList array state 
-
-  4. for all true values in filteredBy, add those reviews to filteredReviewList
-      
-    for each key of filteredBy if the value is true
-      add a num version of the string key to an filterNumbersArr
-    for each review of reviewList
-    if the review rating is present in filterNumbersArr
-      add the whole review to filteredReviewList
-
-  
-  
-  5. send filteredBy back down as a prop to ratingsBreakdown to be displayed
-
-  6. create a button in RatingsBreakdown to clear all filters
-    -this will reset the filteredBy obj's state' values to all  be false
-
-  */
