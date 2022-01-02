@@ -45,43 +45,16 @@ function SubmitReview (props) {
         setStars(rate);
     }
 
-    // useEffect(() => {
-    //     createAndParseFactorsObj()
-    // },[])
-
-    // const createAndParseFactorsObj = () => {
-    //     if(props.metaData.characteristics !== undefined){
-    //         const sizeKey = props.metaData.characteristics.Size.id;
-    //         const widthKey = props.metaData.characteristics.Width.id;
-    //         const comfortKey = props.metaData.characteristics.Comfort.id;
-    //         const qualityKey = props.metaData.characteristics.Quality.id;
-    //         const lengthKey = props.metaData.characteristics.Length.id;
-    //         const fitKey = props.metaData.characteristics.Fit.id;
-    //         const factorsObj = {
-    //             [sizeKey]: size,
-    //             [widthKey]: width,
-    //             [comfortKey]: comfort,
-    //             [qualityKey]: quality,
-    //             [lengthKey]: length,
-    //             [fitKey]: fit
-    //         }
-    //         for(var key in factorsObj){
-    //             if(factorsObj[key] === null){
-    //                 delete factorsObj[key]
-    //             }
-    //         }
-    //         setFactors(factorsObj)
-    //     }
-    // }
+    
 
     const postReview = (e) => {
         e.preventDefault();
-        const factors = {
-            142034: Number(comfort),
-            142032: Number(fit),
-            142033: Number(length),
-            142035: Number(quality)
-        }
+        // const factors = {
+        //     142034: Number(comfort),
+        //     142032: Number(fit),
+        //     142033: Number(length),
+        //     142035: Number(quality)
+        // }
         // const bodyParams = {
         //     product_id: props.product.id,
         //     rating: (stars / 20),
@@ -109,23 +82,23 @@ function SubmitReview (props) {
             142035: 3
         }
       }
-        // console.log(factors)
-        if ( recommended 
-            && body.length > 50 
-            && nickname.length > 1 
-            && email.length > 1 
-            && email.includes('@') 
-            && factors) {
-        axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?product_id=${props.product.id}`, bodyParams,
+        // console.log(factors)  
+        // if ( recommended !== null
+        //     && body.length > 50 
+        //     && nickname.length > 1 
+        //     && email.length > 1 
+        //     && email.includes('@') 
+        //     && factors) {
+        axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews`, bodyParams,
         { headers: { 'Authorization': `${API_KEY}` }})
         .then(res => {
             alert('Your review was submitted.')
             handleClose();
         })
         .catch(err => console.log(err, bodyParams))
-        } else {
-            alert('All fields marked with a * must be complete.')
-        };
+        // } else {
+        //     alert('All fields marked with a * must be complete.')
+        // };
     };
     /* Tried So far: (all combinations of the following...)
     - making a test object and a test factors object
@@ -316,6 +289,7 @@ function SubmitReview (props) {
                     placeholder='“Why did you like the product or not?”' 
                     minLength="50"
                     maxLength="1000"
+                    required={true}
                     onChange={(e) => setBody(e.target.value)}
                     />
                 </FloatingLabel>
@@ -370,6 +344,38 @@ function SubmitReview (props) {
 
 export default SubmitReview;
 
+
+
+
+
+   // useEffect(() => {
+    //     createAndParseFactorsObj()
+    // },[])
+
+    // const createAndParseFactorsObj = () => {
+    //     if(props.metaData.characteristics !== undefined){
+    //         const sizeKey = props.metaData.characteristics.Size.id;
+    //         const widthKey = props.metaData.characteristics.Width.id;
+    //         const comfortKey = props.metaData.characteristics.Comfort.id;
+    //         const qualityKey = props.metaData.characteristics.Quality.id;
+    //         const lengthKey = props.metaData.characteristics.Length.id;
+    //         const fitKey = props.metaData.characteristics.Fit.id;
+    //         const factorsObj = {
+    //             [sizeKey]: size,
+    //             [widthKey]: width,
+    //             [comfortKey]: comfort,
+    //             [qualityKey]: quality,
+    //             [lengthKey]: length,
+    //             [fitKey]: fit
+    //         }
+    //         for(var key in factorsObj){
+    //             if(factorsObj[key] === null){
+    //                 delete factorsObj[key]
+    //             }
+    //         }
+    //         setFactors(factorsObj)
+    //     }
+    // }
 
 
 

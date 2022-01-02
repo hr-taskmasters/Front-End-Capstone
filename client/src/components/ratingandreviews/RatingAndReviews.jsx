@@ -7,7 +7,7 @@ import Reviews from './Components/Reviews/Reviews.jsx';
 
 
 function RatingAndReviews(props) {
-  const [id, setId] = useState(42366); //43266
+  const [id, setId] = useState(42366);
   const [metaData, setMetaData] = useState([]); 
   const [sort, setSort] = useState('relevant'); 
   const [reviewList, setReviewList] = useState([]); 
@@ -51,9 +51,6 @@ function RatingAndReviews(props) {
       two: false,
       one: false
     }); 
-    // if(reviewList.length > 0){
-    // setFilteredReviewList(reviewList)
-    // }
   }
 
   const toggleFiltered = (option) => {
