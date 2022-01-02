@@ -98,6 +98,7 @@ class Zoom extends Component {
         onMouseMove={this.handleMouseMovement}
         onClick={this.props.onClick}
         ref={this.imageRef}
+        className='p_pic_expanded_zoom'
       >
         <div
           style={{
