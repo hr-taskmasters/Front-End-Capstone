@@ -3,8 +3,8 @@ import axios from 'axios';
 import API_KEY from '../../../../config/config.js';
 import Radios from '../../radioData/radioData.js';
 import { Rating } from 'react-simple-star-rating';
-
-import { Button, Stack, Form, Modal, Accordion, FloatingLabel, ButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Button, Stack, Form, Modal, Accordion, 
+  FloatingLabel, ButtonGroup, ToggleButton } from 'react-bootstrap';
 
 
 function SubmitReview (props) {
@@ -122,10 +122,10 @@ function SubmitReview (props) {
             </Modal.Header>
             <Modal.Body>
                 <Stack gap={3}>
-                <b>Rating*</b>
                 <Rating onClick={handleRating} 
                     ratingValue={stars} 
                     showTooltip={true} 
+                    tooltipDefaultText="Your Rating*"
                     tooltipArray={['Poor', 'Fair', 'Average', 'Good', 'Great']}
                 />
                 
