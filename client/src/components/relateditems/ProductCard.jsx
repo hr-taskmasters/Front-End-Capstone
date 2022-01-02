@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { Rating } from 'react-simple-star-rating';
 
 class ProductCard extends React.Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
 
@@ -22,15 +23,18 @@ class ProductCard extends React.Component {
   }
 
   componentDidMount(){
+    this._isMounted = true;
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${this.props.product.id}/styles`, {
     headers: {
       'Authorization': `${API_KEY}`
       }
     })
     .then((product) => {
-      this.setState({
-        imageUrl: product.data.results[0].photos[0].thumbnail_url
-      })
+      if(this._isMounted){
+        this.setState({
+          imageUrl: product.data.results[0].photos[0].thumbnail_url
+        })
+      }
     })
     .catch((err) => {
       console.log(err)
@@ -48,13 +52,19 @@ class ProductCard extends React.Component {
       let star5 = meta.data.ratings[5] ? Number(meta.data.ratings[5]) : 0;
       let total = star1 + star2 + star3 + star4 + star5
       let rating = ((star1 * 1) + (star2 * 2) + (star3 * 3)+ (star4 * 4) + (star5 * 5)) / total;
-      this.setState({
-        rating: rating
-      })
+      if(this._isMounted){
+        this.setState({
+          rating: rating
+        })
+      }
     })
     .catch((err) => {
       console.log(err)
     })
+  }
+
+  componentWillUnmount(){
+    this._isMounted = false;
   }
 
   render() {
