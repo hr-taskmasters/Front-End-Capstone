@@ -3,24 +3,20 @@ import { Card, Button, Modal, Image, Row } from 'react-bootstrap'
 import Images from './Images.jsx';
 
 function ReviewBody (props) {
+  const slicedBody = props.review.body.slice(0, 250);
+  const reviewPhotos = props.review.photos;
   const [body, setBody] = useState(slicedBody);
 
-  const reviewPhotos = props.review.photos;
-  const slicedBody = props.review.body.slice(0, 250);
   
   const showMore = () => {
     setBody(props.review.body)
   }
-  
-  //default to first 250 chars
-  //show more button should only appear when there are more than 250 chars
+
 
   return (
     <Card>
       <Card.Body>
         <Card.Text>
-          {/* {props.review.body.length > 250 ? <>{body}...</>
-          : <>{body}</>} */}
           {body}
         </Card.Text>
           {props.review.body.length > 250 &&
@@ -42,4 +38,11 @@ function ReviewBody (props) {
 export default ReviewBody;
 
 
+//optional extras:
 
+//default to first 250 chars
+  //show more button should only appear when there are more than 250 chars
+
+//display a "..." when review is trimmed
+  {/* {props.review.body.length > 250 ? <>{body}...</>
+          : <>{body}</>} */}

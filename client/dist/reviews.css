@@ -3,7 +3,15 @@
 /* WHOLE WIDGET */
 /* =========================== */
 #rating-reviews-main{
+  display: flex;
   padding-left: 20px;
+  justify-content: center;
+  margin: 20px;
+  /* max-height: 830px; */
+}
+
+.rating-reviews-title{
+  padding: 20px;
 }
 
 /* =========================== */
@@ -24,16 +32,29 @@
   font-size: x-large;
 }
 
+#button-tooltip > .tooltip-inner{
+  color:white;
+  background-color: #6c757d;
+
+}
+/* #button-tooltip > .tooltip-arrow{
+  border-bottom-color: #6c757d;
+} */
+
+
+
+
+
 /* =========================== */
 /* REVIEWS LIST */
 /* =========================== */
 .reviews-list {
-  height: 800px;
+  height: 830px;
   overflow-y: scroll;
   scrollbar-width: thin;
 }
 .reviews-dropdown-stack {
-  padding-left: 10px;
+  padding: 10px;
 }
 
 

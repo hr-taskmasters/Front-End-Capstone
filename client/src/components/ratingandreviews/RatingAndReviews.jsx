@@ -11,6 +11,14 @@ function RatingAndReviews(props) {
   const [reviewList, setReviewList] = useState([]); 
   const [metaData, setMetaData] = useState([]); 
   const [sort, setSort] = useState('relevant'); 
+  const [filteredBy, setFilteredBy] = useState({
+    five: false,
+    four: false,
+    three: false,
+    two: false,
+    one: false
+  }); 
+  const [filteredReviewList, setFilteredReviewList] = useState([]); 
   
   useEffect(() => {
     if(props.product.id) {
@@ -30,6 +38,45 @@ function RatingAndReviews(props) {
   const sortBy = (option) => {
     setSort(option)
   }
+
+  /*  --FILTERING PLAN--
+  
+   1. add a method that populates the state of a filterBy arr with booleans for each star rating
+
+   2. onclick of each button in review breakdown a boolean should be added to the toFilterArr
+
+  3. Create a filteredReviewList array state 
+
+  4. for all true values in filteredBy, those reviews to filteredReviewList
+      -then pass the filtered review list down as a prop
+  
+  5. send filteredBy back down as a prop to ratingsBreakdown to be displayed
+
+  6. create a button in RatingsBreakdown to clear all filters
+    -this will reset the filteredBy obj's state' values to all  be false
+
+  */
+  
+
+  const toggleFiltered = (option) => {
+      if(filteredBy[option] === false){
+        filteredBy[option] === true;
+      } else if (filteredBy[option] === true) {
+        filteredBy[option] === false;
+      }
+      setFilteredBy(filteredBy);
+
+      // let addition =filteredBy.concat([option])
+      // setFilteredBy(addition)
+  }
+
+
+
+
+
+
+
+
 
 
   const getReviews = (id, sort) => {
@@ -62,15 +109,21 @@ function RatingAndReviews(props) {
 
   return (
     <div id="rating-reviews-main">
-      <h4>Ratings and Reviews</h4>
-      <Stack direction="horizontal" gap={3}>
-        <Card style={{ width: '25rem' }}> 
-          <Ratings metaData={metaData}/>
-        </Card>
-        <Card style={{ width: '50rem' }}>
-          <Reviews reviewList={reviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
-        </Card>
-        </Stack>
+      <Card>
+        <Card.Title>
+        <h2 className="rating-reviews-title">Ratings and Reviews</h2>
+        </Card.Title>
+        <Card.Body>
+          <Stack direction="horizontal" gap={3}>
+            <Card style={{ width: '25rem' }}> 
+              <Ratings metaData={metaData} toggleFiltered={toggleFiltered}/>
+            </Card>
+            <Card style={{ width: '50rem' }}>
+              <Reviews reviewList={reviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
+            </Card>
+          </Stack>
+        </Card.Body>
+      </Card>
     </div>
   )
 }
