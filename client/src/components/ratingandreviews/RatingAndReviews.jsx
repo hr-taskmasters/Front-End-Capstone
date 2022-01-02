@@ -8,9 +8,10 @@ import Reviews from './Components/Reviews/Reviews.jsx';
 
 function RatingAndReviews(props) {
   const [id, setId] = useState(42366); //43266
-  const [reviewList, setReviewList] = useState([]); 
   const [metaData, setMetaData] = useState([]); 
   const [sort, setSort] = useState('relevant'); 
+  const [reviewList, setReviewList] = useState([]); 
+  const [filteredReviewList, setFilteredReviewList] = useState([]); 
   const [filteredBy, setFilteredBy] = useState({
     five: false,
     four: false,
@@ -18,7 +19,6 @@ function RatingAndReviews(props) {
     two: false,
     one: false
   }); 
-  const [filteredReviewList, setFilteredReviewList] = useState(reviewList); 
   
   useEffect(() => {
     if(props.product.id) {
@@ -35,13 +35,13 @@ function RatingAndReviews(props) {
     getReviews(id, sort)
   }, [sort]);
 
-  const sortBy = (option) => {
-    setSort(option)
-  }
-
   useEffect(() => {
     createFilteredList()
   }, [filteredBy])
+  
+  const sortBy = (option) => {
+    setSort(option)
+  }
 
   const resetFiltered = () =>{
     setFilteredBy({
@@ -51,7 +51,11 @@ function RatingAndReviews(props) {
       two: false,
       one: false
     }); 
+    // if(reviewList.length > 0){
+    // setFilteredReviewList(reviewList)
+    // }
   }
+
   const toggleFiltered = (option) => {
     if(filteredBy[option] === false){
       setFilteredBy({...filteredBy, [option]: true})
@@ -73,22 +77,12 @@ function RatingAndReviews(props) {
         reviewStorage.push(review)
       };
     });
-    setFilteredReviewList(reviewStorage)
+    if (reviewStorage.length === 0){
+      setFilteredReviewList(reviewList)
+    } else {
+      setFilteredReviewList(reviewStorage)
+    }
   }
-
-  // useEffect(() => {
-  //   createFilteredList()
-  // }, [filteredBy])
-
-  // const toggleListRender = () => {
-  //   let toRender;
-  //   filteredReviewList.length < 1 ?
-  //   toRender = reviewList :
-  //   toRender = filteredReviewList
-  // }
-
-
-
 
   const getReviews = (id, sort) => {
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?sort=${sort}&product_id=${id}`, {
@@ -98,6 +92,7 @@ function RatingAndReviews(props) {
     })
     .then((response) => {
         setReviewList(response.data.results)
+        setFilteredReviewList(response.data.results)
     })
     .catch(err => {
         console.log(err);
@@ -130,7 +125,7 @@ function RatingAndReviews(props) {
               <Ratings metaData={metaData} toggleFiltered={toggleFiltered} filteredBy={filteredBy} resetFiltered={resetFiltered}/>
             </Card>
             <Card style={{ width: '50rem' }}>
-              <Reviews reviewList={reviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
+              <Reviews reviewList={filteredReviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
             </Card>
           </Stack>
         </Card.Body>
