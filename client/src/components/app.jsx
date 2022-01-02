@@ -12,7 +12,7 @@ class App extends React.Component {
 
     this.state = {
       product: {
-        "id": null,
+        "id": 42366,
         "campus": '',
         "name": '',
         "slogan": '',
