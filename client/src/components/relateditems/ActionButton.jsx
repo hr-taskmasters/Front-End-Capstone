@@ -69,7 +69,7 @@ const ActionButton = (props) => {
         handleClose()
       }}>
         <Modal.Header>
-          <Modal.Title>Comparing</Modal.Title>
+          <Modal.Title>Product Comparison</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Container fluid>

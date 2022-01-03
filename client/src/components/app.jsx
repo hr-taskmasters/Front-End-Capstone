@@ -41,19 +41,26 @@ class App extends React.Component {
   }
 
   getProductViaId (id) { //  /products/:product_id
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}`, {
-      headers: {
-        'Authorization': `${API_KEY}`
-      }
-    })
-    .then(response => {
+    if(window.localStorage[id]){
       this.setState({
-        product: response.data
+        product: JSON.parse(window.localStorage[id])
       })
-    })
-    .catch(err => {
-      console.error(err);
-    })
+    } else {
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${id}`, {
+        headers: {
+          'Authorization': `${API_KEY}`
+        }
+      })
+      .then(response => {
+        window.localStorage[id] = JSON.stringify(response.data);
+        this.setState({
+          product: response.data
+        })
+      })
+      .catch(err => {
+        console.error(err);
+      })
+    }
   }
 
   getReviewsMeta (id) { //  /reviews/meta
