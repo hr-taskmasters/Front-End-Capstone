@@ -52,8 +52,8 @@ const Answers = (props) => {
       <Row id='q_grid_row2'>
         <Col id='q_grid_row2_col1' xs={1}><strong>A:</strong></Col>
         <Col className="q_answerslist" id='q_grid_row2_col2'>
-          {sliceAns.map((answer) =>
-            <IndividualAnswer answer={answer} key={answer.answer_id} />
+          {sliceAns.map((answer, index) =>
+            <IndividualAnswer answer={answer} key={index} />
           )}
           <Col>
             <Stack direction='horizontal' gap={2}>
