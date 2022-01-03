@@ -6,7 +6,6 @@ import API_KEY from '../../config/config.js';
 
 const IndividualAnswer = (props) => {
   const answer_id = props.answer.answer_id;
-
   const [a_helpful_count, setACount] = useState(() => {return props.answer.helpfulness})
   const [markHelp, setMark] = useState(false);
   const markHelpful = () => {
@@ -59,7 +58,7 @@ const IndividualAnswer = (props) => {
               )}
             </div>
             <div className="vr"/>
-            <div>
+            <div id='q_a_row2_markAHelpful'>
               {!markHelp ? (
                 <div>
                   <label> Helpful? </label>
@@ -74,7 +73,7 @@ const IndividualAnswer = (props) => {
               )}
             </div>
             <div className="vr"/>
-            <div>
+            <div id='q_a_row2_markAReport'>
               {!reported ? (
                 <u onClick={() => markReport()}>Report</u>
               ) : (

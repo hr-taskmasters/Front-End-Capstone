@@ -6,29 +6,28 @@ import Questions from './Questions.jsx';
 import Search from './Search.jsx';
 import AddQuestion from './AddQuestion.jsx';
 
-
 const QuestionsAndAnswers = (props) => {
-
-  const [product_id, setId] = useState(props);
-  useEffect(() => {
-    setId(props.product.id)
-  }, [props])
-  //const [product_id, setId] = useState(42380); //test for specific product, has more answers and photos in answer
-
+  const [product_id, setId] = useState(42366);
+  const [product_name, setName] = useState(42366);
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
-    getAllQuestions();
+    if(props.product.id) {
+      setId(props.product.id);
+      setName(props.product.name);
+    }
+  }, [props.product.id]);
+  useEffect(() => {
+    getAllQuestions(product_id);
   }, [product_id]);
-  const getAllQuestions = () => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${product_id}`, {
+  const getAllQuestions = (product_id) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${product_id}&page=1&count=15`, {
     headers: { 'Authorization': `${API_KEY}` }
     })
       .then((response) => {
-        //console.log('questions',response.data.results);
         setQuestions(response.data.results);
       })
-      .catch((err) => { return; });
-  };
+      .catch((err) => console.error(err));
+  }
 
   const [searchTerm, setSearchTerm] = useState('');
   const filterQuestions = (questionlist, inputTerm) => {
