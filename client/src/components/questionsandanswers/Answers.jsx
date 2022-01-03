@@ -52,7 +52,7 @@ const Answers = (props) => {
           <Col>
             <Stack direction='horizontal' gap={2}>
               {answers.length > 2 && changeBtnMode()}
-              <AddAnswer question_id={question_id}/>
+              <AddAnswer question_id={question_id} question_body={props.question.question_body} product_name={props.product_name}/>
             </Stack>
           </Col>
         </Col>

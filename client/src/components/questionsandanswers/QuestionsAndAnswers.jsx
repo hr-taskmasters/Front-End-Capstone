@@ -73,7 +73,7 @@ const QuestionsAndAnswers = (props) => {
             </Row>
             {filteredQues.length > 0 && (
             <Row id='q_list_questions_container'>
-              <Questions questions={filteredQues} />
+              <Questions questions={filteredQues} product_name={product_name}/>
                 <div>
                   {questions.length > 4 && changeBtnMode()}
                 </div>
