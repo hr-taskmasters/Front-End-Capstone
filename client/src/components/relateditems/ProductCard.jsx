@@ -53,12 +53,26 @@ class ProductCard extends React.Component {
         console.log(err)
       })
     }
+    if(window.localStorage[`meta/?product_id=${this.props.product.id}`]){
+      let metaData = JSON.parse(window.localStorage[`meta/?product_id=${this.props.product.id}`]);
+      let star1 = metaData.ratings[1] ? Number(metaData.ratings[1]) : 0;
+      let star2 = metaData.ratings[2] ? Number(metaData.ratings[2]) : 0;
+      let star3 = metaData.ratings[3] ? Number(metaData.ratings[3]) : 0;
+      let star4 = metaData.ratings[4] ? Number(metaData.ratings[4]) : 0;
+      let star5 = metaData.ratings[5] ? Number(metaData.ratings[5]) : 0;
+      let total = star1 + star2 + star3 + star4 + star5;
+      let rating = ((star1 * 1) + (star2 * 2) + (star3 * 3)+ (star4 * 4) + (star5 * 5)) / total;
+      this.setState({
+        rating: rating
+      })
+    }
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/meta/?product_id=${this.props.product.id}`, {
     headers: {
       'Authorization': `${API_KEY}`
       }
     })
     .then((meta) => {
+      window.localStorage[`meta/?product_id=${this.props.product.id}`] = JSON.stringify(meta.data);
       let star1 = meta.data.ratings[1] ? Number(meta.data.ratings[1]) : 0;
       let star2 = meta.data.ratings[2] ? Number(meta.data.ratings[2]) : 0;
       let star3 = meta.data.ratings[3] ? Number(meta.data.ratings[3]) : 0;
