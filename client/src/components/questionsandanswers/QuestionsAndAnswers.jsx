@@ -8,14 +8,14 @@ import AddQuestion from './AddQuestion.jsx';
 
 const QuestionsAndAnswers = (props) => {
   const [product_id, setId] = useState(42366);
-  const [product_name, setName] = useState(42366);
+  const [product_name, setName] = useState('');
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
     if(props.product.id) {
       setId(props.product.id);
       setName(props.product.name);
     }
-  }, [props.product.id]);
+  }, [props]);
   useEffect(() => {
     getAllQuestions(product_id);
   }, [product_id]);
@@ -80,7 +80,7 @@ const QuestionsAndAnswers = (props) => {
             </Row>
             )}
             <Row id='q_list_addQuestion'>
-              <AddQuestion product_id={product_id}/>
+              <AddQuestion product_id={product_id} product_name={product_name}/>
             </Row>
           </Container>
         </div>
