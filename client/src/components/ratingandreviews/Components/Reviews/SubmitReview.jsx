@@ -10,7 +10,7 @@ import { Button, Stack, Form, Modal, Accordion,
 function SubmitReview (props) {
     const [showModal, setShowModal] = useState(false);
     const [appChars, setAppChars] = useState([]);
-    const [factors, setFactors] = useState(null);
+    // const [factors, setFactors] = useState(null);
     //star rating
     const [stars, setStars] = useState(0);
     //radio buttons state
@@ -45,44 +45,36 @@ function SubmitReview (props) {
         setStars(rate);
     }
 
-    useEffect(() => {
-        createAndParseFactorsObj()
-    },[])
-
-    const createAndParseFactorsObj = () => {
-        if(props.metaData.characteristics !== undefined){
-            const sizeKey = props.metaData.characteristics.Size.id;
-            const widthKey = props.metaData.characteristics.Width.id;
-            const comfortKey = props.metaData.characteristics.Comfort.id;
-            const qualityKey = props.metaData.characteristics.Quality.id;
-            const lengthKey = props.metaData.characteristics.Length.id;
-            const fitKey = props.metaData.characteristics.Fit.id;
-            const factorsObj = {
-                [sizeKey]: Number(size),
-                [widthKey]: Number(width),
-                [comfortKey]: Number(comfort),
-                [qualityKey]: Number(quality),
-                [lengthKey]: Number(length),
-                [fitKey]: Number(fit)
-            }
-            for(var key in factorsObj){
-                if(factorsObj[key] === null){
-                    delete factorsObj[key]
-                }
-            }
-            console.log(factorsObj)
-            setFactors(factorsObj)
-        }
-    }
-
+   
     const postReview = (e) => {
         e.preventDefault();
-        // const factors = {
-        //     142034: Number(comfort),
-        //     142032: Number(fit),
-        //     142033: Number(length),
-        //     142035: Number(quality)
-        // }
+        const factorsObj = {};
+        if(props.metaData.characteristics){
+          if(props.metaData.characteristics.Size){
+            const sizeKey = props.metaData.characteristics.Size.id ;
+            factorsObj[sizeKey]= Number(size)
+          }
+          if(props.metaData.characteristics.Width){
+            const widthKey = props.metaData.characteristics.Width.id ;
+            factorsObj[widthKey]= Number(width)
+          }
+          if(props.metaData.characteristics.Comfort){
+            const comfortKey = props.metaData.characteristics.Comfort.id;
+            factorsObj[comfortKey]= Number(comfort)
+          }
+          if(props.metaData.characteristics.Quality){
+            const qualityKey = props.metaData.characteristics.Quality.id;
+            factorsObj[qualityKey]= Number(quality)
+          }
+          if(props.metaData.characteristics.Length){
+            const lengthKey = props.metaData.characteristics.Length.id;
+            factorsObj[lengthKey]= Number(length)
+          }
+          if (props.metaData.characteristics.Fit) {
+          const fitKey = props.metaData.characteristics.Fit.id;
+            factorsObj[fitKey]= Number(fit)
+          }
+        }
         const bodyParams = {
             product_id: props.product.id,
             rating: (stars / 20),
@@ -92,35 +84,19 @@ function SubmitReview (props) {
             name: nickname,
             email: email,
             photos: [],
-            characteristics: factors
+            characteristics: factorsObj
         }
-        // console.log(factors)  
-        // if ( recommended !== null
-        //     && body.length > 50 
-        //     && nickname.length > 1 
-        //     && email.length > 1 
-        //     && email.includes('@') 
-        //     && factors) {
-          
+        
+        
         axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews`, bodyParams,
         { headers: { 'Authorization': `${API_KEY}` }})
         .then(res => {
             alert('Your review was submitted.')
-            console.log(res)
+            console.log(bodyParams)
             handleClose();
         })
         .catch(err => console.log(err, bodyParams))
-        // } else {
-        //     alert('All fields marked with a * must be complete.')
-        // };
     };
-    /* Tried So far: (all combinations of the following...)
-    - making a test object and a test factors object
-    - adding the header(s): 'Content-Type': 'application/json' 'Content-Type':'application/x-www-form-urlencoded'
-    - stringify'ing the query: JSON.stringify(bodyParams)
-    - removing the ID from the url and only sending it in the query as a property: /?product_id=${props.product.id}
-
-    */
     
     return (
       <div>
@@ -243,7 +219,7 @@ function SubmitReview (props) {
                 </ButtonGroup>
                 </>
                 : <></>}
-                {appChars.indexOf('Quality') > -1 ?
+                {appChars.indexOf('Length') > -1 ?
                 <>
                 <b>Length*</b>
                 <ButtonGroup className="mb-2">
@@ -265,7 +241,7 @@ function SubmitReview (props) {
                 </ButtonGroup>
                 </>
                 : <></>}
-                {appChars.indexOf('Quality') > -1 ?
+                {appChars.indexOf('Fit') > -1 ?
                 <>
                 <b>Fit*</b>
                 <ButtonGroup className="mb-2">
@@ -349,14 +325,11 @@ function SubmitReview (props) {
                     For authentication reasons, you will not be emailed.
                     </Form.Text>
                 </FloatingLabel>
+              <Button className="ms-auto" variant="outline-primary" type="submit" value="submit">Submit</Button>
             </Stack>
-            <Button variant="outline-primary" type="submit" value="submit">Submit</Button>
             </Form>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="outline-secondary" onClick={handleClose}>Cancel</Button>
-              {/* <Button variant="outline-primary" type="submit" onClick={postReview}>Submit</Button> */}
-
             </Modal.Footer>
         </Modal>
       </div>
@@ -370,6 +343,13 @@ export default SubmitReview;
 //=======================
   //create factors obj
 //=======================
+
+// const factors = {
+        //     142034: Number(comfort),
+        //     142032: Number(fit),
+        //     142033: Number(length),
+        //     142035: Number(quality)
+        // }
 
    // useEffect(() => {
     //     createAndParseFactorsObj()
