@@ -46,7 +46,7 @@ const AddQuestion = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>
             <h3 id='question_modal_title'>Ask your question</h3>
-            <h6 id='question_modal_subtitle'>About the [Product Name Here]</h6>
+            <h6 id='question_modal_subtitle'>About the {props.product_name}</h6>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -61,7 +61,7 @@ const AddQuestion = (props) => {
                     name='body'
                     placeholder='Why did you like the product or not?'
                     style={{ height: '100px'}}
-                    maxlength='1000'
+                    maxLength='1000'
                     onChange={(e) => setBody(e.target.value)}
                   ></Form.Control>
                 </FloatingLabel>
@@ -75,7 +75,7 @@ const AddQuestion = (props) => {
                     type='text'
                     name='name'
                     placeholder='Example: jackson11!'
-                    maxlength='60'
+                    maxLength='60'
                     onChange={(e) => setName(e.target.value)}
                   ></Form.Control>
                 </FloatingLabel>
@@ -92,7 +92,7 @@ const AddQuestion = (props) => {
                     type='email'
                     name='email'
                     placeholder='Example: jack@email.com'
-                    maxlength='60'
+                    maxLength='60'
                     onChange={(e) => setEmail(e.target.value)}
                   ></Form.Control>
                 </FloatingLabel>

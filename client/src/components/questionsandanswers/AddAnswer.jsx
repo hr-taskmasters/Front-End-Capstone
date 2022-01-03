@@ -65,7 +65,7 @@ const AddAnswer = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>
             <h3 id='question_modal_title'>Submit your Answer</h3>
-            <h6 id='question_modal_subtitle'>[Product Name]: [Question Body]</h6>
+            <h6 id='question_modal_subtitle'>{props.product_name}: {props.question_body}</h6>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

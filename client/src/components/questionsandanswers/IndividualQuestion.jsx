@@ -69,7 +69,7 @@ const IndividualQuestion = (props) => {
         </Stack>
         </Col>
       </Row>
-      <Answers question={props.question}/>
+      <Answers question={props.question} product_name={props.product_name}/>
       <br></br>
     </Container>
   )
