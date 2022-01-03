@@ -8,6 +8,6 @@ Enzyme.configure({ adapter: new Adapter() });
 const relatedItems = [];
 
 test('Renders no carousel', () => {
-  const wrapper = mount(<RelatedItems items={[]} chooseProduct={() => {return 0}}/>);
+  const wrapper = mount(<RelatedItems productid={null} featuredProd={{}} chooseProduct={{}}/>);
   expect(wrapper).toHaveProp({relatedItems: []});
 })
