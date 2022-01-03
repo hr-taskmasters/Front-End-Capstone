@@ -71,12 +71,14 @@ const QuestionsAndAnswers = (props) => {
             <Row id='q_list_search'>
               <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
             </Row>
+            {filteredQues.length > 0 && (
             <Row id='q_list_questions_container'>
               <Questions questions={filteredQues} />
                 <div>
                   {questions.length > 4 && changeBtnMode()}
                 </div>
             </Row>
+            )}
             <Row id='q_list_addQuestion'>
               <AddQuestion product_id={product_id}/>
             </Row>
