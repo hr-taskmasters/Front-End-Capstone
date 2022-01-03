@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Zoom component correctly 1`] = `
+<div
+  className="p_pic_expanded_zoom"
+  onMouseMove={[Function]}
+  onMouseOut={[Function]}
+  onMouseOver={[Function]}
+  style={
+    Object {
+      "height": "650px",
+      "overflow": "hidden",
+      "width": "900px",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "backgroundImage": "url('images/placeholder-image.png')",
+        "backgroundPosition": "center",
+        "backgroundRepeat": "no-repeat",
+        "backgroundSize": "auto 100%",
+        "height": "650px",
+        "transform": "scale(1.0)",
+        "transformOrigin": "null% null%",
+        "transition": "transform 0.5s ease-out",
+      }
+    }
+  />
+</div>
+`;
