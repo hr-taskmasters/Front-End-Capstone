@@ -24,27 +24,35 @@ class ProductCard extends React.Component {
 
   componentDidMount(){
     this._isMounted = true;
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${this.props.product.id}/styles`, {
-    headers: {
-      'Authorization': `${API_KEY}`
-      }
-    })
-    .then((product) => {
-      if(this._isMounted){
-        if(product.data.results[0].photos[0].thumbnail_url){
-          this.setState({
-            imageUrl: product.data.results[0].photos[0].thumbnail_url
-          })
-        } else {
-          this.setState({
-            imageUrl: `images/placeholder-image.png`
-          })
+    if(window.localStorage[`${this.props.product.id}/styles`]) {
+      let currentStyle = JSON.parse(window.localStorage[`${this.props.product.id}/styles`]);
+      this.setState({
+        imageUrl: currentStyle.results[0].photos[0].thumbnail_url
+      })
+    } else {
+      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${this.props.product.id}/styles`, {
+      headers: {
+        'Authorization': `${API_KEY}`
         }
-      }
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+      })
+      .then((product) => {
+        if(this._isMounted){
+          if(product.data.results[0].photos[0].thumbnail_url){
+            window.localStorage[`${this.props.product.id}/styles`] = JSON.stringify(product.data);
+            this.setState({
+              imageUrl: product.data.results[0].photos[0].thumbnail_url
+            })
+          } else {
+            this.setState({
+              imageUrl: `images/placeholder-image.png`
+            })
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }
     axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/meta/?product_id=${this.props.product.id}`, {
     headers: {
       'Authorization': `${API_KEY}`

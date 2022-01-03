@@ -21,12 +21,19 @@ function ListCarousel(props) {
   const populateCarousel = () => {
     let grid = [];
     props.items.map((productid) => {
-      axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${productid}`, {
-        headers: {
-          'Authorization': `${API_KEY}`
+      if(window.localStorage[productid]){
+        grid.push(JSON.parse(window.localStorage[productid]));
+        if (grid.length === props.items.length) {
+          setGrid(grid);
         }
-      })
+      } else {
+        axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/products/${productid}`, {
+          headers: {
+            'Authorization': `${API_KEY}`
+          }
+        })
         .then((result) => {
+          window.localStorage[productid] = JSON.stringify(result.data);
           grid.push(result.data);
           if (grid.length === props.items.length) {
             setGrid(grid);
@@ -35,6 +42,7 @@ function ListCarousel(props) {
         .catch((err) => {
           console.log(err);
         });
+      }
     });
   };
 
