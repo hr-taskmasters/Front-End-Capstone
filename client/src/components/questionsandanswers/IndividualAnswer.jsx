@@ -40,7 +40,7 @@ const IndividualAnswer = (props) => {
   const [isSeller, setIsSeller] = useState(props.answer.answerer_name==='Seller');
 
   return (
-    <div>
+    <div key={props.answer.answer_id}>
       <div id='q-individual_a_container'>
         <div id='q_a_row1'>{props.answer.body}</div>
         {/* <br></br> */}
@@ -89,7 +89,7 @@ const IndividualAnswer = (props) => {
             <label>Yes, as you can see in these photos.</label>
             <div>
               {photos.map((photo, i) =>
-                <div>
+                <div key={i}>
                   <Image className="q_ans_photos" src={photo.url} thumbnail onClick={()=> setLarge({show: true, index: i})}/>
                   <Modal
                     show={isEnlarge.show} centered size='large'
