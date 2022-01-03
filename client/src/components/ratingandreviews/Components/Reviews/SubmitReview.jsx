@@ -45,7 +45,35 @@ function SubmitReview (props) {
         setStars(rate);
     }
 
-    
+    useEffect(() => {
+        createAndParseFactorsObj()
+    },[])
+
+    const createAndParseFactorsObj = () => {
+        if(props.metaData.characteristics !== undefined){
+            const sizeKey = props.metaData.characteristics.Size.id;
+            const widthKey = props.metaData.characteristics.Width.id;
+            const comfortKey = props.metaData.characteristics.Comfort.id;
+            const qualityKey = props.metaData.characteristics.Quality.id;
+            const lengthKey = props.metaData.characteristics.Length.id;
+            const fitKey = props.metaData.characteristics.Fit.id;
+            const factorsObj = {
+                [sizeKey]: Number(size),
+                [widthKey]: Number(width),
+                [comfortKey]: Number(comfort),
+                [qualityKey]: Number(quality),
+                [lengthKey]: Number(length),
+                [fitKey]: Number(fit)
+            }
+            for(var key in factorsObj){
+                if(factorsObj[key] === null){
+                    delete factorsObj[key]
+                }
+            }
+            console.log(factorsObj)
+            setFactors(factorsObj)
+        }
+    }
 
     const postReview = (e) => {
         e.preventDefault();
@@ -55,33 +83,17 @@ function SubmitReview (props) {
         //     142033: Number(length),
         //     142035: Number(quality)
         // }
-        // const bodyParams = {
-        //     product_id: props.product.id,
-        //     rating: (stars / 20),
-        //     summary: summary,
-        //     body: body,
-        //     recommend: Boolean(recommended),
-        //     name: nickname,
-        //     email: email,
-        //     photos: [],
-        //     characteristics: factors
-        // }
         const bodyParams = {
-          product_id: 42366,
-          rating: 4,
-          summary: "testSummary",
-          body: "testBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBody",
-          recommend: true,
-          name: "test1234",
-          email: "test@1234",
-          photos: [],
-          characteristics: {
-            142034: 3,
-            142032: 3,
-            142033: 3,
-            142035: 3
+            product_id: props.product.id,
+            rating: (stars / 20),
+            summary: summary,
+            body: body,
+            recommend: Boolean(recommended),
+            name: nickname,
+            email: email,
+            photos: [],
+            characteristics: factors
         }
-      }
         // console.log(factors)  
         // if ( recommended !== null
         //     && body.length > 50 
@@ -89,10 +101,12 @@ function SubmitReview (props) {
         //     && email.length > 1 
         //     && email.includes('@') 
         //     && factors) {
+          
         axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews`, bodyParams,
         { headers: { 'Authorization': `${API_KEY}` }})
         .then(res => {
             alert('Your review was submitted.')
+            console.log(res)
             handleClose();
         })
         .catch(err => console.log(err, bodyParams))
@@ -116,6 +130,7 @@ function SubmitReview (props) {
                 <Modal.Title>My Review of "{props.product.name}"</Modal.Title>
             </Modal.Header>
             <Modal.Body>
+              <Form onSubmit={postReview}>
                 <Stack gap={3}>
                 <Rating onClick={handleRating} 
                     ratingValue={stars} 
@@ -239,6 +254,7 @@ function SubmitReview (props) {
                         type="radio"
                         variant="outline-primary"
                         name="radio"
+                        required={true}
                         value={radio.value}
                         checked={length === radio.value}
                         onChange={(e) => setLength(e.currentTarget.value)}
@@ -313,6 +329,7 @@ function SubmitReview (props) {
                     type="text" 
                     placeholder='Example: "jackson11!”' 
                     maxLength="60"
+                    required={true}
                     onChange={(e) => setNickname(e.target.value)}
                     />
                     <Form.Text muted>
@@ -325,6 +342,7 @@ function SubmitReview (props) {
                     type="email" 
                     placeholder='Example: "jackson11@email.com”' 
                     maxLength="60"
+                    required={true}
                     onChange={(e) => setEmail(e.target.value)}
                     />
                     <Form.Text muted>
@@ -332,10 +350,13 @@ function SubmitReview (props) {
                     </Form.Text>
                 </FloatingLabel>
             </Stack>
+            <Button variant="outline-primary" type="submit" value="submit">Submit</Button>
+            </Form>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="outline-secondary" onClick={handleClose}>Cancel</Button>
-              <Button variant="outline-primary" type="submit" onClick={postReview}>Submit</Button>
+              {/* <Button variant="outline-primary" type="submit" onClick={postReview}>Submit</Button> */}
+
             </Modal.Footer>
         </Modal>
       </div>
@@ -346,7 +367,9 @@ export default SubmitReview;
 
 
 
-
+//=======================
+  //create factors obj
+//=======================
 
    // useEffect(() => {
     //     createAndParseFactorsObj()
@@ -379,8 +402,9 @@ export default SubmitReview;
 
 
 
-
-
+//=======================
+  //images 
+//=======================
 // const [showModalImg, setShowModalImg] = useState(false);
 // const handleShowImg = () => setShowModalImg(true);
 // const handleCloseImg = () => setShowModalImg(false);
@@ -403,3 +427,127 @@ export default SubmitReview;
     <Button variant="primary">Understood</Button>
     </Modal.Footer>
 </Modal> */}
+
+//=======================
+  //test query
+//=======================
+
+//   const bodyParams = {
+      //     product_id: 42366,
+      //     rating: 4,
+      //     summary: "testSummary",
+      //     body: "testBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBody",
+      //     recommend: true,
+      //     name: "test1234",
+      //     email: "test@1234",
+      //     photos: [],
+      //     characteristics: {
+      //       142034: 3,
+      //       142032: 3,
+      //       142033: 3,
+      //       142035: 3
+      //   }
+      // }
+
+
+
+//=======================
+  //validation
+//=======================
+
+// const[validated, setValidated] =useState(false);
+//     const handleSubmit= (e) => {
+//       const form = e.currentTarget;
+//       if (form.checkValidity() === false){
+//         e.preventDefault();
+//         e.stopPropagation();
+//       }
+//       setValidated(true)
+
+
+
+//     }
+
+//     return (
+// <>
+//       <Button variant="outline-secondary" onClick={handleShow}>Submit Review</Button>
+//         <Modal show={showModal} onHide={handleClose} backdrop="static" size="lg" dialogClassName="modal-90w">
+//             <Modal.Header closeButton>
+//                 <Modal.Title>My Review of "{props.product.name}"</Modal.Title>
+//             </Modal.Header>
+//             <Modal.Body>
+//       <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        
+
+
+
+//         <b>Review body*</b>
+//         <Form.Group controlId="validationBody">
+//         <FloatingLabel controlId="floatingBody" label='“Why did you like the product or not?”' className="mb-3">
+//             <Form.Control 
+//             as="textarea"
+//             style={{ height: '260px' }}
+//             type="text" 
+//             placeholder='“Why did you like the product or not?”' 
+//             minLength="50"
+//             maxLength="1000"
+//             required={true}
+//             onChange={(e) => setBody(e.target.value)}
+//             />
+//           <Form.Control.Feedback type="invalid">
+//           Please include a review body between 50-1000 characters.
+//           </Form.Control.Feedback>
+//         </FloatingLabel>
+//         </Form.Group>
+
+//         <b>Nickname*</b>
+//         <Form.Group controlId="validationEmail">
+//           <FloatingLabel controlId="floatingInput" label='Example: "jackson11!”' className="mb-3">
+//             <Form.Control 
+//             type="text" 
+//             required
+//             placeholder='Example: "jackson11!”' 
+//             maxLength="60"
+//             onChange={(e) => setNickname(e.target.value)}
+//             />
+//             <Form.Text muted>
+//             For privacy reasons, do not use your full name or email address.
+//             </Form.Text>
+//             <Form.Control.Feedback type="invalid">
+//             Please provide a nickname.
+//             </Form.Control.Feedback>
+//           </FloatingLabel>
+//         </Form.Group>
+        
+//         <b>Email*</b>
+//         <Form.Group controlId="validationEmail">
+//           <FloatingLabel controlId="floatingInput" label='Example: "jackson11@email.com”' className="mb-3">
+//             <Form.Control 
+//               type="email" 
+//               required
+//               placeholder='Example: "jackson11@email.com”' 
+//               maxLength="60"
+//               onChange={(e) => setEmail(e.target.value)}
+//               />
+//               <Form.Text muted>
+//               For authentication reasons, you will not be emailed.
+//               </Form.Text>
+//               <Form.Control.Feedback type="invalid">
+//                   Please provide a valid email address.
+//               </Form.Control.Feedback>
+//             </FloatingLabel>
+//           </Form.Group>
+
+
+
+//         <Button variant="outline-primary" type="submit" className="ms-auto" >Submit</Button>
+//       </Form> 
+
+//             </Modal.Body>
+//              <Modal.Footer>
+//                <Button variant="outline-secondary" onClick={handleClose}>Cancel</Button>
+//                <Button variant="outline-primary" type="submit" >Submit</Button>
+//             </Modal.Footer>
+//          </Modal>
+//       </>
+//     )
