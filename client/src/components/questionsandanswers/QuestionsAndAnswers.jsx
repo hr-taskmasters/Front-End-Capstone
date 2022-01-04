@@ -20,7 +20,7 @@ const QuestionsAndAnswers = (props) => {
     getAllQuestions(product_id);
   }, [product_id]);
   const getAllQuestions = (product_id) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${product_id}&page=1&count=15`, {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?product_id=${product_id}&page=1&count=1000`, {
     headers: { 'Authorization': `${API_KEY}` }
     })
       .then((response) => {
@@ -80,7 +80,7 @@ const QuestionsAndAnswers = (props) => {
             </Row>
             )}
             <Row id='q_list_addQuestion'>
-              <AddQuestion product_id={product_id} product_name={product_name}/>
+              <AddQuestion product_id={product_id} product_name={product_name} getAllQuestions={getAllQuestions}/>
             </Row>
           </Container>
         </div>

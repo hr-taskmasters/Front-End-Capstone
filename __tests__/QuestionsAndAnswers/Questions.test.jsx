@@ -3,7 +3,7 @@ import Enzyme, {shallow, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {Container} from 'react-bootstrap';
 import Questions from '../../client/src/components/questionsandanswers/Questions.jsx';
-import IndividualQuestion from '../../client/src/components/questionsandanswers/IndividualQuestion.jsx'
+import IndividualQuestion from '../../client/src/components/questionsandanswers/IndividualQuestion.jsx';
 Enzyme.configure({ adapter: new Adapter()});
 
 const zeroQuestion = [];

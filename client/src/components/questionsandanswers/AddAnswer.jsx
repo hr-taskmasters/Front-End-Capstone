@@ -19,7 +19,7 @@ const AddAnswer = (props) => {
     const reader = new FileReader();
     reader.onload = () => {
       preview.src = reader.result;
-      //setphotos([...photos, reader.result]);
+      setphotos([...photos, reader.result]);
       const url = URL.createObjectURL(file);
       //setphotos([...photos, url]);
     };

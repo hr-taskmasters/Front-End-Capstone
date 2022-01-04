@@ -26,6 +26,7 @@ const AddQuestion = (props) => {
         .then(response => {
           //console.log(response);
           alert('your question is successfully post.')
+          props.getAllQuestions(props.product_id)
           handleClose();
         })
         .catch((err) => console.error(err));
