@@ -301,7 +301,6 @@ function SubmitReview (props) {
                         <Image id="submit-image-previews" thumbnail />
                         <Form.Control type="file" 
                         multiple
-                        accept='image/png, image/jpeg'
                         onChange={storeImages}
                         />
                       </Stack>
@@ -347,57 +346,10 @@ function SubmitReview (props) {
 export default SubmitReview;
 
 
-//=======================
-  //images 
-//=======================
-// const [showModalImg, setShowModalImg] = useState(false);
-// const handleShowImg = () => setShowModalImg(true);
-// const handleCloseImg = () => setShowModalImg(false);
-
-{/* <Button variant="outline-secondary" onClick={handleShowImg}>Add Images</Button>
-
-
-<Modal show={showModalImg} onHide={handleCloseImg} backdrop="static" dialogClassName="modal-90w">
-    <Modal.Header closeButton>
-        <Modal.Title>My Review of "{props.product.name}"</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-    I will not close if you click outside me. Don't even try to press
-    escape key.
-    </Modal.Body>
-    <Modal.Footer>
-    <Button variant="secondary" onClick={handleCloseImg}>
-        Close
-    </Button>
-    <Button variant="primary">Understood</Button>
-    </Modal.Footer>
-</Modal> */}
-
-//=======================
-  //test query
-//=======================
-
-//   const bodyParams = {
-      //     product_id: 42366,
-      //     rating: 4,
-      //     summary: "testSummary",
-      //     body: "testBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBodytestBody",
-      //     recommend: true,
-      //     name: "test1234",
-      //     email: "test@1234",
-      //     photos: [],
-      //     characteristics: {
-      //       142034: 3,
-      //       142032: 3,
-      //       142033: 3,
-      //       142035: 3
-      //   }
-      // }
-
 
 
 //=======================
-  //validation
+  //validation??
 //=======================
 
 // const[validated, setValidated] =useState(false);
@@ -408,8 +360,6 @@ export default SubmitReview;
 //         e.stopPropagation();
 //       }
 //       setValidated(true)
-
-
 
 //     }
 
@@ -423,8 +373,6 @@ export default SubmitReview;
 //             <Modal.Body>
 //       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         
-
-
 
 //         <b>Review body*</b>
 //         <Form.Group controlId="validationBody">
