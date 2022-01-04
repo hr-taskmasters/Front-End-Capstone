@@ -7,7 +7,7 @@ import Reviews from './Components/Reviews/Reviews.jsx';
 
 
 function RatingAndReviews(props) {
-  const [id, setId] = useState(42366); //43266
+  const [id, setId] = useState(42366);
   const [metaData, setMetaData] = useState([]); 
   const [sort, setSort] = useState('relevant'); 
   const [reviewList, setReviewList] = useState([]); 
@@ -51,9 +51,6 @@ function RatingAndReviews(props) {
       two: false,
       one: false
     }); 
-    // if(reviewList.length > 0){
-    // setFilteredReviewList(reviewList)
-    // }
   }
 
   const toggleFiltered = (option) => {
@@ -85,7 +82,7 @@ function RatingAndReviews(props) {
   }
 
   const getReviews = (id, sort) => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?sort=${sort}&product_id=${id}`, {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?sort=${sort}&product_id=${id}&count=50`, {
         headers: {
         'Authorization': `${API_KEY}`
         },

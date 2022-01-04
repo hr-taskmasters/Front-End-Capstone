@@ -31,6 +31,11 @@ function ReviewBody (props) {
             </div>
             }
           </Row>
+          {props.review.response &&
+          <div className="seller-response">
+            <div>Response from seller:</div>
+            <div>{props.review.response}</div>
+          </div>}
       </Card.Body>
     </Card>
   )

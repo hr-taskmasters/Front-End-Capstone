@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import moment from 'moment';
 import API_KEY from '../../../../config/config.js';
 import axios from 'axios';
-import { Card, FormCheck, Stack } from 'react-bootstrap';
+import { Card, Stack } from 'react-bootstrap';
 import { Rating } from 'react-simple-star-rating';
 import ReviewBody from './ReviewBody.jsx';
 
@@ -79,7 +79,6 @@ function ReviewTile (props) {
       </Card>
     </>
   )
-
 }
 export default ReviewTile;
 
