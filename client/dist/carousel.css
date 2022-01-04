@@ -79,6 +79,10 @@
   text-align: center;
 }
 
+.carouselTitle {
+  padding-left: 5%;
+}
+
 /* .carouselBox .carouselItem .imageContainer {
   min-width: 300px;
   max-width: 300px;

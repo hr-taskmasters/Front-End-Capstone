@@ -9,7 +9,7 @@ const ActionButton = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [comparison, setCompare] = useState([])
+  const [comparison, setCompare] = useState([]);
 
   useEffect(() => {
     if(props.featuredProd.features !== undefined && props.product.features !== undefined){
