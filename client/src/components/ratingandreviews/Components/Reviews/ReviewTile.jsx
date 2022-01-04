@@ -79,7 +79,6 @@ function ReviewTile (props) {
       </Card>
     </>
   )
-
 }
 export default ReviewTile;
 
