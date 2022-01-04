@@ -25,7 +25,6 @@ describe('Test Button component', () => {
   });
 });
 
-
 describe('Test click event', () => {
   it('Test click event', () => {
     const mockCallBack = jest.fn();
@@ -40,8 +39,9 @@ describe('Test click event', () => {
       }]
     }];
     const styleNum = 0;
-    const wrapper = mount((<Favorite style={style} styleNum={styleNum} />));
-    wrapper.find('#p_like_button').first().simulate('click');
+    const wrapper = mount((<Favorite style={style} styleNum={styleNum} onClick={mockCallBack} />));
+    wrapper.find('#p_like_button').at(0).simulate('click');
     expect(mockCallBack.mock.calls.length).toBe(0);
+    // expect(mockCallBack.mock.calls.length).toBe(1);
   });
 });
