@@ -13,8 +13,14 @@ function Favorite(props) {
   }, [props])
 
   return (
-    <Button variant="light" className="btn btn-default btn-md p_fav" onClick={handleClick}>
-      {like ? <i className="fas fa-star p_like"></i>: <i className="far fa-star"></i>}
+    <Button
+      variant='light'
+      type='button'
+      id='p_like_button'
+      className='btn btn-default btn-md p_fav'
+      onClick={handleClick}
+    >
+      {like ? <i className='fas fa-star p_like'></i>: <i className='far fa-star'></i>}
     </Button>
   )
 }

@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Cart component correctly 1`] = `
+<div>
+  <div
+    className="p_flex_container"
+  >
+    <div
+      className="p_flex_child_size"
+    >
+      <select
+        className="p_select"
+        onChange={[Function]}
+      >
+        <option>
+          SELECT SIZE
+        </option>
+        <option
+          className="p_dropdown"
+          value="XS"
+        >
+          XS
+        </option>
+        <option
+          className="p_dropdown"
+          value="S"
+        >
+          S
+        </option>
+        <option
+          className="p_dropdown"
+          value="M"
+        >
+          M
+        </option>
+        <option
+          className="p_dropdown"
+          value="L"
+        >
+          L
+        </option>
+        <option
+          className="p_dropdown"
+          value="XL"
+        >
+          XL
+        </option>
+        <option
+          className="p_dropdown"
+          value="XL"
+        >
+          XL
+        </option>
+      </select>
+    </div>
+    <div
+      className="p_flex_child_quantity"
+    >
+      <select
+        className="p_select"
+      >
+        <option>
+          -
+        </option>
+      </select>
+    </div>
+  </div>
+  <button
+    className="btn btn-default btn-sm p_flex_child_cart btn btn-dark"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    <b>
+       Add to Cart +
+    </b>
+  </button>
+  <button
+    className="btn btn-default btn-md p_fav btn btn-light"
+    disabled={false}
+    id="p_like_button"
+    onClick={[Function]}
+    type="button"
+  >
+    <i
+      className="far fa-star"
+    />
+  </button>
+</div>
+`;

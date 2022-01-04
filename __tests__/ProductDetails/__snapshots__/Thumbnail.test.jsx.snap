@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Thumbnail component correctly 1`] = `
+<div
+  className="p_thumbnail_container"
+>
+  <div
+    className="p_thumbnail_selected p_thumbnail_child"
+  >
+    <i
+      className="fas fa-check-circle p_check"
+    />
+    <img
+      className="p_thumbnail_img"
+      onClick={[Function]}
+      src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
+    />
+    <div
+      className="p_thumbnail_font"
+    >
+      Forest Green & Black
+    </div>
+  </div>
+</div>
+`;
