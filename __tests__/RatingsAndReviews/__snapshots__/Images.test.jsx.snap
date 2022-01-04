@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Images /> should correctly render a single image thumbnail 1`] = `
+<img
+  className="review-photos img-thumbnail"
+  onClick={[Function]}
+/>
+`;
