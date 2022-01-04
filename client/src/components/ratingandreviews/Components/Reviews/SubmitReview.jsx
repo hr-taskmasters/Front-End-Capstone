@@ -4,13 +4,12 @@ import API_KEY from '../../../../config/config.js';
 import Radios from '../../radioData/radioData.js';
 import { Rating } from 'react-simple-star-rating';
 import { Button, Stack, Form, Modal, Accordion, 
-  FloatingLabel, ButtonGroup, ToggleButton } from 'react-bootstrap';
+  FloatingLabel, ButtonGroup, ToggleButton, Image} from 'react-bootstrap';
 
 
 function SubmitReview (props) {
     const [showModal, setShowModal] = useState(false);
     const [appChars, setAppChars] = useState([]);
-    // const [factors, setFactors] = useState(null);
     //star rating
     const [stars, setStars] = useState(0);
     //radio buttons state
@@ -45,7 +44,12 @@ function SubmitReview (props) {
         setStars(rate);
     }
 
-   
+    const storeImages = (e) => {
+      const imagePreview = document.querySelector("submit-image-previews");
+      const file = e.target.files[0];
+      console.log(file);
+    }
+
     const postReview = (e) => {
         e.preventDefault();
         const factorsObj = {};
@@ -86,7 +90,7 @@ function SubmitReview (props) {
             photos: [],
             characteristics: factorsObj
         }
-        
+        // if ()
         
         axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews`, bodyParams,
         { headers: { 'Authorization': `${API_KEY}` }})
@@ -262,6 +266,7 @@ function SubmitReview (props) {
                 </ButtonGroup>
                 </>
                 : <></>}
+
                 <b>Summary</b>
                 <FloatingLabel controlId="floatingInput" label='Example: "Best purchase ever!"' className="mb-3">
                     <Form.Control 
@@ -276,7 +281,7 @@ function SubmitReview (props) {
                 <FloatingLabel controlId="floatingPassword" label='“Why did you like the product or not?”' className="mb-3">
                     <Form.Control 
                     as="textarea"
-                    style={{ height: '260px' }}
+                    style={{ height: '160px' }}
                     type="text" 
                     placeholder='“Why did you like the product or not?”' 
                     minLength="50"
@@ -285,20 +290,25 @@ function SubmitReview (props) {
                     onChange={(e) => setBody(e.target.value)}
                     />
                 </FloatingLabel>
+
                 <b>Add Images</b>
                 <Accordion>
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Upload Images</Accordion.Header>
                     <Accordion.Body>
-                        <Stack gap={2}>
-                            <div>[Image Previews] *Limit 5*</div>
-                    {/* <Form.Label>Default file input example</Form.Label> */}
-                    <Form.Control type="file" />
-                    <Button variant="outline-secondary">Add Image</Button>
-                    </Stack>
+                      <Stack gap={2}>
+                        <div>[Image Previews] *Limit 5*</div>
+                        <Image id="submit-image-previews" thumbnail />
+                        <Form.Control type="file" 
+                        multiple
+                        accept='image/png, image/jpeg'
+                        onChange={storeImages}
+                        />
+                      </Stack>
                     </Accordion.Body>
                 </Accordion.Item>
                 </Accordion>
+
                 <b>Nickname*</b>
                 <FloatingLabel controlId="floatingInput" label='Example: "jackson11!”' className="mb-3">
                     <Form.Control 
@@ -329,57 +339,12 @@ function SubmitReview (props) {
             </Stack>
             </Form>
             </Modal.Body>
-            <Modal.Footer>
-            </Modal.Footer>
         </Modal>
       </div>
     )
 }
 
 export default SubmitReview;
-
-
-
-//=======================
-  //create factors obj
-//=======================
-
-// const factors = {
-        //     142034: Number(comfort),
-        //     142032: Number(fit),
-        //     142033: Number(length),
-        //     142035: Number(quality)
-        // }
-
-   // useEffect(() => {
-    //     createAndParseFactorsObj()
-    // },[])
-
-    // const createAndParseFactorsObj = () => {
-    //     if(props.metaData.characteristics !== undefined){
-    //         const sizeKey = props.metaData.characteristics.Size.id;
-    //         const widthKey = props.metaData.characteristics.Width.id;
-    //         const comfortKey = props.metaData.characteristics.Comfort.id;
-    //         const qualityKey = props.metaData.characteristics.Quality.id;
-    //         const lengthKey = props.metaData.characteristics.Length.id;
-    //         const fitKey = props.metaData.characteristics.Fit.id;
-    //         const factorsObj = {
-    //             [sizeKey]: size,
-    //             [widthKey]: width,
-    //             [comfortKey]: comfort,
-    //             [qualityKey]: quality,
-    //             [lengthKey]: length,
-    //             [fitKey]: fit
-    //         }
-    //         for(var key in factorsObj){
-    //             if(factorsObj[key] === null){
-    //                 delete factorsObj[key]
-    //             }
-    //         }
-    //         setFactors(factorsObj)
-    //     }
-    // }
-
 
 
 //=======================
