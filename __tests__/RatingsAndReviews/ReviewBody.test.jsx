@@ -17,12 +17,12 @@ describe('<ReviewBody />', () => {
         reviewer_name: "BananaBoy123",
         summary: "Is this really the best purchase ever?"
     } 
-    const slicedReview =review.body.slice(0, 250);
+    // const slicedReview =review.body.slice(0, 250);
     it('Should correctly render the reviewBody', () => {
         const reviewBody = renderer
-        .create(<ReviewBody review={slicedReview}/>)
+        .create(<ReviewBody review={review}/>)
         .toJSON();
-        expect(reviewBody.length).toBeLessThan(250)
+        expect(reviewBody.length).toMatchSnapshot()
 
     });
 

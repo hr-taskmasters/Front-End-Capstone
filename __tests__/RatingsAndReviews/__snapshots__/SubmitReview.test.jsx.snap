@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SubmitReview /> Should correctly render the SubmitReview component 1`] = `
+<div>
+  <button
+    className="btn btn-outline-secondary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Submit Review
+  </button>
+</div>
+`;
