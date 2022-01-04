@@ -24,11 +24,11 @@ describe('<ReviewTile />', () => {
         .toJSON();
         expect(reviewTile).toMatchSnapshot()
     });
-    it('Should have a selectHelpful method', () => {
-        const reviewTile = renderer
-        .create(<ReviewTile review={review}/>)
-        .toJSON();
-        expect(reviewTile).toMatchSnapshot()
-    });
+    // it('Should have a selectHelpful method', () => {
+    //     const reviewTile = renderer
+    //     .create(<ReviewTile review={review}/>)
+    //     .toJSON();
+    //     expect(reviewTile).toMatchSnapshot()
+    // });
 
 });
