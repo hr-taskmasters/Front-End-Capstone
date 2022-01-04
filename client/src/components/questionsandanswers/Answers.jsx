@@ -7,12 +7,17 @@ import AddAnswer from './AddAnswer.jsx';
 
 const Answers = (props) => {
   const [question_id, setQId] = useState(() => props.question.question_id);
+  useEffect(() => {
+    if(props.question.question_id) {
+      setQId(props.question.question_id);
+    };
+  }, [props.question.question_id]);
   const [answers, setAnswers] = useState([]);
   useEffect(() => {
     getAllAnswers();
   }, [question_id]);
   const getAllAnswers = () => {
-    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${question_id}/answers`, {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${question_id}/answers?page=1&count=500`, {
     headers: { 'Authorization': `${API_KEY}` }
     })
       .then((response) => {
@@ -36,7 +41,7 @@ const Answers = (props) => {
       );
     } else {
       return(
-        <Button id='collapseBtn' variant="outline-secondary" onClick={()=> collapse()}>Collapse Answers</Button>
+        <strong id='collapseBtn' variant="outline-secondary" onClick={()=> collapse()}>COLLAPSE ANSWERS</strong>
       );
     };
   };
@@ -52,7 +57,7 @@ const Answers = (props) => {
           <Col>
             <Stack direction='horizontal' gap={2}>
               {answers.length > 2 && changeBtnMode()}
-              <AddAnswer question_id={question_id} question_body={props.question.question_body} product_name={props.product_name}/>
+              <AddAnswer question_id={question_id} question_body={props.question.question_body} product_name={props.product_name} getAllAnswers={getAllAnswers}/>
             </Stack>
           </Col>
         </Col>
