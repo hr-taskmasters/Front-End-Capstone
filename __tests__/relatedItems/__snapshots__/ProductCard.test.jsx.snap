@@ -295,6 +295,8 @@ exports[`Product Card renders Product Card component correctly 1`] = `
 </div>
 `;
 
+exports[`Should correctly render the reviewBody 1`] = `undefined`;
+
 exports[`renders Product Card component correctly 1`] = `
 <div
   className="card"

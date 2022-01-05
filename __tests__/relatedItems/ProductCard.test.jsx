@@ -9,6 +9,8 @@ Enzyme.configure({ adapter: new Adapter() });
 let product;
 let featuredProd;
 let card;
+const checkPosMock= jest.fn();
+const chooseProductMock = jest.fn();
 
 beforeEach(async () => {
   product = {
@@ -63,24 +65,24 @@ beforeEach(async () => {
     product={product}
     featuredProd={featuredProd}
     icon='remove'
-    checkPos={() => {}}
+    checkPos={checkPosMock}
     removeOutfit={() => {}}
-    chooseProduct={() => {}}
+    chooseProduct={chooseProductMock}
     uniqueid='42366'
   />);
 })
 
 
 test('renders Product Card component correctly', () => {
-  const component = card.find('.card')
+  const component = card.find('.card');
 
   expect(component).toExist();
 })
 
-// it('renders the correct image', () => {
-//   expect(card.state('imageUrl').toEqual("https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"))
-// })
+test('click works', () => {
+  const component = card.find('.card');
+  card.simulate('click');
 
-  // it('renders the correct rating', () => {
-  //   expect(card.state('rating')).toEqual(2.6);
-  // })
+  expect(checkPosMock.mock.calls.length).toBe(1);
+  expect(chooseProductMock.mock.calls.length).toBe(1);
+})
