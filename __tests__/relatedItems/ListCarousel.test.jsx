@@ -15,7 +15,7 @@ beforeEach(() => {
       42368,
       42373,
       42372
-  ]}
+    ]}
     chooseProduct={() => {jest.fn()}}
     featuredProd={{
       id: 42367,
@@ -46,6 +46,12 @@ beforeEach(() => {
     uniqueid={42367}/>)
 })
 
-test('renders carousel items correctly', () => {
-
+test('carousel renders', () => {
+  expect(component).toContainExactlyOneMatchingElement('.carousel');
 })
+
+test('renders carousel items', () => {
+
+  expect(component).toHaveProp('items');
+})
+
