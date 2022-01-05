@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Factors /> should correctly render factors 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-body"
+  >
+    <div>
+      <div>
+        <b>
+          Comfort
+        </b>
+        <input
+          className="form-range"
+          defaultValue={63.25581395348837}
+          disabled={true}
+          type="range"
+        />
+        <div
+          className="factors-text hstack gap-3"
+        >
+          <div>
+            Uncomfortable
+          </div>
+          <div
+            className="mx-auto"
+          >
+            Ok
+          </div>
+          <div
+            className="ms-auto"
+          >
+            Perfect
+          </div>
+        </div>
+      </div>
+      <div>
+        <b>
+          Fit
+        </b>
+        <input
+          className="form-range"
+          defaultValue={58.04347826086958}
+          disabled={true}
+          type="range"
+        />
+        <div
+          className="factors-text hstack gap-3"
+        >
+          <div>
+            Runs tight
+          </div>
+          <div
+            className="mx-auto"
+          >
+            Perfect
+          </div>
+          <div
+            className="ms-auto"
+          >
+            Runs long
+          </div>
+        </div>
+      </div>
+      <div>
+        <b>
+          Length
+        </b>
+        <input
+          className="form-range"
+          defaultValue={56.09195402298851}
+          disabled={true}
+          type="range"
+        />
+        <div
+          className="factors-text hstack gap-3"
+        >
+          <div>
+            Runs short
+          </div>
+          <div
+            className="mx-auto"
+          >
+            Perfect
+          </div>
+          <div
+            className="ms-auto"
+          >
+            Runs long
+          </div>
+        </div>
+      </div>
+      <div>
+        <b>
+          Quality
+        </b>
+        <input
+          className="form-range"
+          defaultValue={63.95348837209303}
+          disabled={true}
+          type="range"
+        />
+        <div
+          className="factors-text hstack gap-3"
+        >
+          <div>
+            Poor
+          </div>
+          <div
+            className="mx-auto"
+          >
+            What I Expected
+          </div>
+          <div
+            className="ms-auto"
+          >
+            Perfect
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

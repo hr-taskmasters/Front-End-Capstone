@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SortDropdown /> Should inherit a sort by method 1`] = `
+<div
+  className="dropdown"
+>
+  <button
+    aria-expanded={false}
+    className="dropdown-toggle btn btn-outline-secondary"
+    disabled={false}
+    id="dropdown-basic-button"
+    onClick={[Function]}
+    type="button"
+  >
+    relevant
+  </button>
+</div>
+`;
