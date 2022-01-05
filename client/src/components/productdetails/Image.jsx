@@ -64,6 +64,14 @@ function Image(props) {
     setClick(!click);
   }
 
+  const imgUrl = (selectImg) => {
+    if (props.style[props.styleNum].photos[selectImg].url) {
+      return props.style[props.styleNum].photos[selectImg].url;
+    } else {
+      return `images/placeholder-image.png`;
+    }
+  }
+
   return (
     <div className='row justify-content-around'>
       <div className='col-md-2'>
@@ -77,6 +85,7 @@ function Image(props) {
           <img
             className={index + firstImg === selectImg ? 'p_s_img_highlight' : 'p_s_img'}
             key={index}
+            alt={img.name}
             src={img.thumbnail_url ? img.thumbnail_url : `images/placeholder-image.png`}
             onClick={() => handleClick(index)}
           ></img>)) : null}
@@ -101,13 +110,15 @@ function Image(props) {
             {props.style[props.styleNum].photos[selectImg] ?
               <img
                 className='p_pic'
-                src={props.style[props.styleNum].photos[selectImg].url ? props.style[props.styleNum].photos[selectImg].url : `images/placeholder-image.png`}
+                alt={props.style[props.styleNum].name}
+                src={imgUrl(selectImg)}
                 onClick={props.expandMode}>
               </img>
             :
               <img
                 className='p_pic'
-                src={props.style[props.styleNum].photos[0].url ? props.style[props.styleNum].photos[0].url : `images/placeholder-image.png`}
+                alt={props.style[props.styleNum].name}
+                src={imgUrl(0)}
                 onClick={props.expandMode}>
               </img>
             }
@@ -137,7 +148,7 @@ function Image(props) {
                     className='p_thum_icon'
                     onClick={() => handleIconClick(index)}
                   >
-                    <i className={index === selectImg ? 'far fa-circle p_selected_icon' : 'far fa-circle'}></i>
+                    <i className={index === selectImg ? 'fas fa-user-circle p_selected_icon' : 'fas fa-user-circle'}></i>
                   </button>
                 </div>
                 ))
@@ -157,7 +168,7 @@ function Image(props) {
             {click ?
               <div className='p_zoom'>
                 <Zoom
-                  img={props.style[props.styleNum].photos[selectImg].url ? props.style[props.styleNum].photos[selectImg].url : `images/placeholder-image.png`}
+                  img={imgUrl(selectImg)}
                   zoomScale={2.5}
                   height={650}
                   width={900}
@@ -168,7 +179,7 @@ function Image(props) {
             :
               <img
                 className='p_pic_expanded'
-                src={props.style[props.styleNum].photos[selectImg].url ? props.style[props.styleNum].photos[selectImg].url : `images/placeholder-image.png`}
+                src={imgUrl(selectImg)}
                 onClick={zoomIn}
               ></img>
             }

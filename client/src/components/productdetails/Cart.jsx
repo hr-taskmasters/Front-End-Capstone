@@ -5,7 +5,6 @@ import axios from 'axios';
 import API_KEY from '../../config/config.js';
 
 function Cart(props) {
-
   const [size, setSize] = useState('SELECT SIZE');
   const [quantity, setQuantity] = useState(0);
   const [notice, setNotice] = useState(false);
