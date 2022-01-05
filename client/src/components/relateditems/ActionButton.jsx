@@ -65,7 +65,7 @@ const ActionButton = (props) => {
       <span className='actionButton' onClick={(e) => {
         props.removeOutfit(props.product)
       }}>{icon}</span> }
-      <Modal show={show} dialogClassName="compareModal" onHide={(e) => {
+      <Modal show={show} dialogClassName="compareModal" scrollable={true} animation={false} onHide={(e) => {
         handleClose()
       }}>
         <Modal.Header>
