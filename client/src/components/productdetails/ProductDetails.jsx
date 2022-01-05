@@ -16,13 +16,10 @@ function ProductDetails(props) {
     results: []
   });
 
-  const [cart, setCart] = useState([]);
-
   const [ratings, setRatings] = useState({});
 
   useEffect(() => {
     getStyle(id);
-    getCartInfo();
     getReviewsMeta(id);
   }, [id]);
 
@@ -37,20 +34,6 @@ function ProductDetails(props) {
     })
     .catch(err => {
       return;
-    })
-  }
-
-  const getCartInfo = () => {
-    axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/cart', {
-      headers: {
-        'Authorization': `${API_KEY}`
-      }
-    })
-    .then(response => {
-      setCart(response.data);
-    })
-    .catch(err => {
-      console.error(err);
     })
   }
 
