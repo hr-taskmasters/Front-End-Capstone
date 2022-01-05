@@ -55,3 +55,10 @@ test('renders carousel items', () => {
   expect(component).toHaveProp('items');
 })
 
+test('scrollTo', () => {
+  window.HTMLElement.prototype.scrollTo = jest.fn();
+  component.find('#listRight').simulate('click');
+  expect(window.HTMLElement.prototype.scrollTo.mock.calls.length).toBe(1);
+  component.find('#listLeft').simulate('click');
+  expect(window.HTMLElement.prototype.scrollTo.mock.calls.length).toBe(2);
+})

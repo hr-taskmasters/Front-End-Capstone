@@ -75,7 +75,7 @@ const ActionButton = (props) => {
           <Container fluid>
             <Row>
               <Col><b>{props.featuredProd.name}</b></Col>
-              <Col></Col>
+              <Col><b>FEATURE</b></Col>
               <Col><b>{props.product.name}</b></Col>
             </Row>
             {comparison}
