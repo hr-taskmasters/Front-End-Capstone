@@ -37,6 +37,6 @@ describe('Search bar', () => {
   it('Should render search bar', () => {
     const wrapper = mount(<QuestionsAndAnswers product={product}/>);
     expect(wrapper).toContainMatchingElement('Search');
-  })
-})
+  });
+});
 
