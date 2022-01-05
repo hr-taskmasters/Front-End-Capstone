@@ -64,6 +64,7 @@ const AddQuestion = (props) => {
                     style={{ height: '100px'}}
                     maxLength='1000'
                     onChange={(e) => setBody(e.target.value)}
+                    className='add_question_body_input'
                   ></Form.Control>
                 </FloatingLabel>
               </Form.Group>
@@ -78,6 +79,7 @@ const AddQuestion = (props) => {
                     placeholder='Example: jackson11!'
                     maxLength='60'
                     onChange={(e) => setName(e.target.value)}
+                    className='add_question_name_input'
                   ></Form.Control>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
@@ -95,6 +97,7 @@ const AddQuestion = (props) => {
                     placeholder='Example: jack@email.com'
                     maxLength='60'
                     onChange={(e) => setEmail(e.target.value)}
+                    className='add_question_email_input'
                   ></Form.Control>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
@@ -105,8 +108,8 @@ const AddQuestion = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={() => handleClose()}>Cancel</Button>
-          <Button type='submit' onClick={postQuestion}>Submit</Button>
+          <Button className='addQ_cancel_btn' variant='secondary' onClick={() => handleClose()}>Cancel</Button>
+          <Button className='addQ_submit_btn' type='submit' onClick={postQuestion}>Submit</Button>
         </Modal.Footer>
       </Modal>
     </div>
