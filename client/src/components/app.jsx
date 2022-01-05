@@ -5,6 +5,12 @@ import RelatedItems from './relateditems/RelatedItems.jsx';
 import QuestionsAndAnswers from './questionsandanswers/QuestionsAndAnswers.jsx';
 import RatingAndReviews from './ratingandreviews/RatingAndReviews.jsx';
 import API_KEY from '../config/config.js';
+import withClick from './withClick.jsx';
+
+const ProductDetailsWithClick = withClick(ProductDetails);
+const RelatedItemsWithClick = withClick(RelatedItems);
+const QuestionsAndAnswersWithClick = withClick(QuestionsAndAnswers);
+const RatingAndReviewsWithClick = withClick(RatingAndReviews);
 
 class App extends React.Component {
   constructor(props){
@@ -83,10 +89,10 @@ class App extends React.Component {
   render () {
     return (
       <div>
-        <ProductDetails product={this.state.product} ratings={this.state.ratings}/>
-        <RelatedItems productid={this.state.product.id} featuredProd={this.state.product} chooseProduct={this.getProductViaId}/>
-        <QuestionsAndAnswers product={this.state.product}/>
-        <RatingAndReviews product={this.state.product} metaData={this.state.metaData}/>
+        <ProductDetailsWithClick product={this.state.product} ratings={this.state.ratings}/>
+        <RelatedItemsWithClick productid={this.state.product.id} featuredProd={this.state.product} chooseProduct={this.getProductViaId}/>
+        <QuestionsAndAnswersWithClick product={this.state.product}/>
+        <RatingAndReviewsWithClick product={this.state.product} metaData={this.state.metaData}/>
       </div>
     )
   }
