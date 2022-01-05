@@ -9,6 +9,8 @@ Enzyme.configure({ adapter: new Adapter() });
 let product;
 let featuredProd;
 let card;
+const checkPosMock= jest.fn();
+const chooseProductMock = jest.fn();
 
 beforeEach(async () => {
   product = {
@@ -63,17 +65,24 @@ beforeEach(async () => {
     product={product}
     featuredProd={featuredProd}
     icon='remove'
-    checkPos={() => {}}
+    checkPos={checkPosMock}
     removeOutfit={() => {}}
-    chooseProduct={() => {}}
+    chooseProduct={chooseProductMock}
     uniqueid='42366'
   />);
 })
 
 
 test('renders Product Card component correctly', () => {
-  const component = card.find('.card')
+  const component = card.find('.card');
 
   expect(component).toExist();
 })
 
+test('click works', () => {
+  const component = card.find('.card');
+  card.simulate('click');
+
+  expect(checkPosMock.mock.calls.length).toBe(1);
+  expect(chooseProductMock.mock.calls.length).toBe(1);
+})

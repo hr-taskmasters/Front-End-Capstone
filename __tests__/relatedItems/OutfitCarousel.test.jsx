@@ -5,9 +5,50 @@ import OutfitCarousel from '../../client/src/components/relateditems/OutfitCarou
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const relatedItems = [];
+let component;
 
-test('', () => {
-  const wrapper = mount(<RelatedItems productid={null} featuredProd={{}} chooseProduct={{}}/>);
-  expect(wrapper).toHaveProp({relatedItems: []});
+beforeEach(() => {
+
+
+  component = mount(<OutfitCarousel
+    outfits={[]}
+    getYourOutfits={() => {jest.fn()}}
+    removeOutfit={() => {jest.fn()}}
+    chooseProduct={() => {jest.fn()}}
+    featuredProd={{
+      id: 42367,
+      campus: "hr-lax",
+      name: "Bright Future Sunglasses",
+      slogan: "You've got to wear shades",
+      description: "Where you're going you might not need roads, but you definitely need some shades. Give those baby blues a rest and let the future shine bright on these timeless lenses.",
+      category: "Accessories",
+      default_price: "69.00",
+      created_at: "2021-08-13T14:39:39.968Z",
+      updated_at: "2021-08-13T14:39:39.968Z",
+      features: [
+        {
+          "feature": "Lenses",
+          "value": "Ultrasheen"
+        },
+        {
+          "feature": "UV Protection",
+          "value": null
+        },
+        {
+          "feature": "Frames",
+          "value": "LightCompose"
+        }
+      ]
+    }
+  }
+    uniqueid={42367}/>)
+})
+
+test('carousel renders', () => {
+  expect(component).toContainExactlyOneMatchingElement('.carousel');
+})
+
+test('renders carousel items', () => {
+
+  expect(component).toHaveProp('outfits');
 })
