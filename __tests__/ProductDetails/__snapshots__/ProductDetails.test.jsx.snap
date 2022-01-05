@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Product Details component correctly 1`] = `
+<div>
+  <nav
+    className="navbar navbar-light bg-light p_navbar"
+  >
+    <div
+      className="container-fluid"
+    >
+      <a
+        className="navbar-brand"
+      >
+        Logo
+      </a>
+      <form
+        className="d-flex"
+      >
+        <input
+          aria-label="Search"
+          className="form-control me-2"
+          placeholder="Search"
+          type="search"
+        />
+        <button
+          className="btn btn-outline-gray"
+          type="submit"
+        >
+          <i
+            className="fas fa-search"
+          />
+        </button>
+      </form>
+    </div>
+  </nav>
+  <div
+    className="p_announcement"
+  >
+    SITE-WIDE ANNOUNCEMENT MESSAGE! -- SALE / DISCOUNT 
+    <span
+      className="p_offer"
+    >
+      OFFER
+    </span>
+     -- 
+    <span
+      className="p_highlight"
+    >
+      NEW PRODUCT HIGHLIGHT
+    </span>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-6"
+    >
+      <div
+        className="product-grid"
+      >
+        <div
+          className="row justify-content-around"
+        >
+          <div
+            className="col-md-2"
+          >
+            <button
+              className="p_up"
+              onClick={[Function]}
+            >
+              <i
+                className="fas fa-chevron-up"
+              />
+            </button>
+            <button
+              className="p_down"
+              onClick={[Function]}
+            >
+              <i
+                className="fas fa-chevron-down"
+              />
+            </button>
+          </div>
+          <div
+            className="col-md-9"
+          >
+            <div
+              className="spinner-border"
+              role="status"
+            >
+              <span
+                className="visually-hidden"
+              >
+                Loading...
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="product-content col-md-5"
+    >
+      <div />
+      <h4>
+        Jackets
+      </h4>
+      <h2
+        className="p_title"
+      >
+        <a
+          href="#"
+        >
+          Camo Onesie
+        </a>
+      </h2>
+      <div
+        className="p_price"
+      />
+      <div
+        className="p_style"
+      >
+        <b>
+          STYLE &gt; 
+        </b>
+        <span />
+        <div
+          className="p_thumbnail_container"
+        >
+          <div
+            className="spinner-border"
+            role="status"
+          >
+            <span
+              className="visually-hidden"
+            >
+              Loading...
+            </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          className="p_flex_container"
+        >
+          <div
+            className="p_flex_child_size"
+          >
+            <select
+              className="p_select"
+              onChange={[Function]}
+            >
+              <option>
+                SELECT SIZE
+              </option>
+              <option>
+                OUT OF STOCK
+              </option>
+            </select>
+          </div>
+          <div
+            className="p_flex_child_quantity"
+          >
+            <select
+              className="p_select"
+            >
+              <option>
+                -
+              </option>
+            </select>
+          </div>
+        </div>
+        <button
+          className="btn btn-default btn-md p_fav btn btn-light"
+          disabled={false}
+          id="p_like_button"
+          onClick={[Function]}
+          type="button"
+        >
+          <i
+            className="far fa-star"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      className="p_description"
+    >
+      <h6>
+        DESCRIPTION:
+      </h6>
+      <p>
+        The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.
+      </p>
+      <div>
+        <span>
+          Share: 
+        </span>
+        <a
+          className="p_share_icon"
+          href="https://www.facebook.com/"
+        >
+          <i
+            className="fab fa-facebook-square fa-lg"
+          />
+        </a>
+        <a
+          className="p_share_icon"
+          href="https://twitter.com/home"
+        >
+          <i
+            className="fab fa-twitter-square fa-lg"
+          />
+        </a>
+        <a
+          className="p_share_icon"
+          href="https://www.pinterest.com/"
+        >
+          <i
+            className="fab fa-pinterest-square fa-lg"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;
