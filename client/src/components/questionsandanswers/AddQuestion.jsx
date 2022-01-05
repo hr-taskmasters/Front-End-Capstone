@@ -26,6 +26,7 @@ const AddQuestion = (props) => {
         .then(response => {
           //console.log(response);
           alert('your question is successfully post.')
+          props.getAllQuestions(props.product_id)
           handleClose();
         })
         .catch((err) => console.error(err));
@@ -41,7 +42,7 @@ const AddQuestion = (props) => {
   return (
     <div id='add_question_button'>
       <label className='mb-3'>Don't see the question you're looking for?</label>{' '}
-      <Button  variant="outline-secondary" onClick={handleShow}>ADD A QUESTION +</Button>
+      <Button className='question_add' variant="outline-secondary" onClick={handleShow}>ADD A QUESTION +</Button>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>

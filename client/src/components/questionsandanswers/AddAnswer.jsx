@@ -19,8 +19,8 @@ const AddAnswer = (props) => {
     const reader = new FileReader();
     reader.onload = () => {
       preview.src = reader.result;
-      //setphotos([...photos, reader.result]);
-      const url = URL.createObjectURL(file);
+      setphotos([...photos, reader.result]);
+      //const url = URL.createObjectURL(file);
       //setphotos([...photos, url]);
     };
     if(file) {
@@ -43,7 +43,8 @@ const AddAnswer = (props) => {
       })
         .then(response => {
           //console.log(response);
-          alert('your question is successfully post.')
+          alert('your question is successfully post.');
+          props.getAllAnswers();
           handleClose();
         })
         .catch((err) => console.error(err));
@@ -59,7 +60,7 @@ const AddAnswer = (props) => {
   return (
     <div id='add_answer_button'>
       {' '}
-      <Button  variant="outline-secondary" onClick={handleShow}>ADD A ANSWER</Button>
+      <Button  variant="outline-secondary" size='sm' onClick={handleShow}>ADD A ANSWER</Button>
       {/* <img src='blob:null/2b4cec05-df41-4e75-a6dc-ef0e1eb799e3'></img> */}
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -79,7 +80,7 @@ const AddAnswer = (props) => {
                   name='body'
                   placeholder='Please enter a answer.'
                   style={{ height: '100px'}}
-                  maxlength='1000'
+                  maxLength='1000'
                   onChange={(e) => setBody(e.target.value)}
                   ></Form.Control>
               </Form.Group>
@@ -92,7 +93,7 @@ const AddAnswer = (props) => {
                     type='text'
                     name='name'
                     placeholder='Example: jackson543!'
-                    maxlength='60'
+                    maxLength='60'
                     onChange={(e) => setName(e.target.value)}
                   ></Form.Control>
                 </FloatingLabel>
@@ -109,7 +110,7 @@ const AddAnswer = (props) => {
                     type='email'
                     name='email'
                     placeholder='Example: jack@email.com'
-                    maxlength='60'
+                    maxLength='60'
                     onChange={(e) => setEmail(e.target.value)}
                   ></Form.Control>
                 </FloatingLabel>
