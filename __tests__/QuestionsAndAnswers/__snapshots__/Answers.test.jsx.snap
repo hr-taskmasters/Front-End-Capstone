@@ -29,7 +29,7 @@ exports[`<Answers /> with props Render answer compoment correctly 1`] = `
           >
              
             <button
-              className="btn btn-outline-secondary btn-sm"
+              className="answer_add btn btn-outline-secondary btn-sm"
               disabled={false}
               onClick={[Function]}
               type="button"
