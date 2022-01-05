@@ -32,7 +32,4 @@ describe('<RatingBreakdown />', () =>{
 
 
 
-
-
-
 });
