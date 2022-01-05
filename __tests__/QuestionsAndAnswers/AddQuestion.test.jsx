@@ -18,6 +18,7 @@ describe('<AddQuestion />', () => {
     expect(wrapper.find('#question_modal_subtitle')).toContainMatchingElements(1, 'h6');
     expect(wrapper.find('#question_modal_subtitle').text()).toContain('About the Camo Onesie');
   });
+<<<<<<< HEAD
   it('render a form', () => {
     expect(wrapper).toContainMatchingElements(1, 'Form');
   });
@@ -43,3 +44,13 @@ describe('form component', () => {
   });
 });
 
+=======
+  // it('render a question body input field', () => {
+  //   expect(wrapper.find())
+  // })
+  // it('render a name input field')
+  // it('render a email input field')
+  // it('render a submit button')
+  //maybe cancel button/ closeButton
+});
+>>>>>>> 32168d8 (test for add questions)
