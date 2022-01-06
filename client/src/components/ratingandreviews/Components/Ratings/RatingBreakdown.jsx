@@ -7,7 +7,6 @@ function RatingBreakdown (props) {
   const [ratings, setRatings] = useState({});
   const [totalRatings, setTotalRatings] = useState(null);
   const [percentRecommended, setPercentRecommended] = useState(null);
-  // const [averageRating, setAverageRating] = useState(null);
   const [filterList, setFilterList] = useState('')
  
   useEffect(() => {
@@ -45,7 +44,6 @@ function RatingBreakdown (props) {
     }
     return filters;
   }
-
 
   return (
     <Card>

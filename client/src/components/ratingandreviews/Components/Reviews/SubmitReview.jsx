@@ -4,15 +4,14 @@ import API_KEY from '../../../../config/config.js';
 import Radios from '../../radioData/radioData.js';
 import { Rating } from 'react-simple-star-rating';
 import { Button, Stack, Form, Modal, Accordion, 
-  FloatingLabel, ButtonGroup, ToggleButton, Image, ToggleButtonGroup} from 'react-bootstrap';
+  FloatingLabel, ToggleButton, Image, ToggleButtonGroup} from 'react-bootstrap';
 
 
 function SubmitReview (props) {
     const [showModal, setShowModal] = useState(false);
     const [appChars, setAppChars] = useState([]);
-    //star rating
     const [stars, setStars] = useState(0);
-    //radio buttons state
+    
     const [recommended, setRecommended] = useState(null);
     const [size, setSize] = useState(null);
     const [width, setWidth] = useState(null);
@@ -20,7 +19,8 @@ function SubmitReview (props) {
     const [quality, setQuality] = useState(null);
     const [length, setLength] = useState(null);
     const [fit, setFit] = useState(null);
-    //text inputs state
+    const [photos, setPhotos] = useState([]);
+    const [file, setFile] = useState('');
     const [summary, setSummary] = useState('');
     const [body, setBody] = useState('');
     const [nickname, setNickname] = useState('');
@@ -45,10 +45,33 @@ function SubmitReview (props) {
     }
 
     const storeImages = (e) => {
-      const imagePreview = document.querySelector("submit-image-previews");
+      const imagePreview = document.querySelector("#submit-image-previews");
       const file = e.target.files[0];
       console.log(file);
+      setFile(file);
+      const reader = new FileReader();
+      reader.onload =() => {
+        imagePreview.src = reader.result;
+      }
+      if(file) {
+        reader.readAsDataURL(file);
+      }
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('file', file)
+      formData.append('upload_preset', 'rp7rer9y');
+        fetch('https://api.cloudinary.com/v1_1/dtnikmimx/image/upload', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(res => res.json())
+      .then(res => {
+        setPhotos([res.url])
+      })
+      .catch(err => console.log(err))
     }
+
+
 
     const postReview = (e) => {
         e.preventDefault();
@@ -87,19 +110,26 @@ function SubmitReview (props) {
             recommend: Boolean(recommended),
             name: nickname,
             email: email,
-            photos: [],
+            photos: photos,
             characteristics: factorsObj
         }
-        // if ()
+        if (Object.keys(factorsObj).length === Object.values(factorsObj).length
+          && recommended !== null 
+          && stars !== 0
+          ){
         
         axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews`, bodyParams,
         { headers: { 'Authorization': `${API_KEY}` }})
         .then(res => {
             alert('Your review was submitted.')
-            console.log(bodyParams)
+            props.getReviews()
             handleClose();
         })
         .catch(err => console.log(err, bodyParams))
+      } else {
+        alert('All fields marked with a * must be included in your review.')
+        
+      }
     };
     
     return (
@@ -295,10 +325,10 @@ function SubmitReview (props) {
                     <Accordion.Header>Upload Images</Accordion.Header>
                     <Accordion.Body>
                       <Stack gap={2}>
-                        <div>[Image Previews] *Limit 5*</div>
-                        <Image id="submit-image-previews" thumbnail />
+                        <Image id="submit-image-previews" height="20%" width="20%" />
                         <Form.Control type="file" 
                         multiple
+                        accept='image/png, image/jpeg'
                         onChange={storeImages}
                         />
                       </Stack>

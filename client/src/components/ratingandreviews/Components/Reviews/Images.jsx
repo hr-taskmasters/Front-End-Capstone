@@ -1,10 +1,9 @@
-import React, { useState, useEffect} from 'react';
-import { Card, Button, Modal, Image, Row, ModalBody } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { Modal, Image, ModalBody } from 'react-bootstrap'
 
 
 
-function Images (props) {
-    const image = props.image;
+function Images ({ image }) {
     const[imageLarge, setImageLarge]= useState(false)
 
     return (

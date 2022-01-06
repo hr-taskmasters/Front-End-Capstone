@@ -327,9 +327,14 @@ exports[`<RatingsAndReviews /> Should correctly render 1`] = `
               <div
                 className="reviews-dropdown-stack hstack gap-2"
               >
-                <h3>
+                <div>
+                  Displaying
+                </div>
+                <div>
                   0
-                </h3>
+                   / 
+                  0
+                </div>
                 <div>
                   reviews, sorted by:
                 </div>
@@ -362,6 +367,32 @@ exports[`<RatingsAndReviews /> Should correctly render 1`] = `
                   </div>
                 </div>
               </div>
+              <div
+                className="search-bar"
+              >
+                <form
+                  className=""
+                >
+                  <div
+                    className="input-group"
+                  >
+                    <span
+                      className="input-group-text"
+                    >
+                      <i
+                        className="fas fa-search"
+                      />
+                    </span>
+                    <input
+                      className="form-control"
+                      onChange={[Function]}
+                      placeholder="Search reviews..."
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
           <div
@@ -372,7 +403,16 @@ exports[`<RatingsAndReviews /> Should correctly render 1`] = `
             >
               <div
                 className="vstack gap-3"
-              />
+              >
+                <button
+                  className="btn btn-outline-secondary"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Collapse
+                </button>
+              </div>
             </div>
           </div>
         </div>
