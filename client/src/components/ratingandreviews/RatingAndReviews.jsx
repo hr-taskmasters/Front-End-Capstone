@@ -114,7 +114,7 @@ function RatingAndReviews(props) {
     <div id="rating-reviews-main">
       <Card>
         <Card.Title>
-        <h2 className="rating-reviews-title">Ratings and Reviews</h2>
+        <h5 className="rating-reviews-title">RATINGS AND REVIEWS</h5>
         </Card.Title>
         <Card.Body>
           <Stack direction="horizontal" gap={3}>
