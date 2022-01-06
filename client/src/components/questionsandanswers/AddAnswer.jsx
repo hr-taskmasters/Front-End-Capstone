@@ -37,7 +37,6 @@ const AddAnswer = (props) => {
     })
     .then(res => res.json())
     .then((res) => {
-      //console.log(res.url);
       alert('success upload')
       setphotos([res.url]);
     });
@@ -50,7 +49,6 @@ const AddAnswer = (props) => {
       e.stopPropagation();
     }
     setValidated(true);
-    //e.preventDefault();
     const answer_info = {
       body: body,
       name: name,
@@ -62,8 +60,7 @@ const AddAnswer = (props) => {
         headers: { 'Authorization': `${API_KEY}` }
       })
         .then(response => {
-          //console.log(response);
-          alert('your question is successfully post.');
+          alert('your answer is successfully post.');
           props.getAllAnswers();
           handleClose();
         })
