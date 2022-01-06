@@ -10,8 +10,14 @@ const AddQuestion = (props) => {
   const [body, setBody] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [validated, setValidated] = useState(false);
   const postQuestion = (e) => {
-    e.preventDefault();
+    const form = e.currentTarget;
+    if(form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
     const question_info = {
       body: body,
       name: name,
@@ -19,7 +25,6 @@ const AddQuestion = (props) => {
       product_id: props.product_id
     }
     if(body.length > 1 && name.length > 1 && email.length > 1 && email.includes('@')) {
-      console.log(question_info);
       axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions?${props.product_id}`, question_info, {
         headers: { 'Authorization': `${API_KEY}` }
       })
@@ -51,7 +56,7 @@ const AddQuestion = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form noValidatie validated={validated}>
             <Row className='mb-3'>
               <Form.Group as={Col} controlId='formGridQuestion'>
                 <Form.Label>Post your question here</Form.Label>
@@ -64,8 +69,9 @@ const AddQuestion = (props) => {
                     style={{ height: '100px'}}
                     maxLength='1000'
                     onChange={(e) => setBody(e.target.value)}
-                    className='add_question_body_input'
+                    className='add_question_body_input' required
                   ></Form.Control>
+                  <Form.Control.Feedback type='invalid'>Please enter text for question</Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
             </Row>
@@ -79,8 +85,9 @@ const AddQuestion = (props) => {
                     placeholder='Example: jackson11!'
                     maxLength='60'
                     onChange={(e) => setName(e.target.value)}
-                    className='add_question_name_input'
+                    className='add_question_name_input' required
                   ></Form.Control>
+                  <Form.Control.Feedback type='invalid'>Please enter a username</Form.Control.Feedback>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
                   For privacy reasons, do not use your full name or email address
@@ -97,8 +104,9 @@ const AddQuestion = (props) => {
                     placeholder='Example: jack@email.com'
                     maxLength='60'
                     onChange={(e) => setEmail(e.target.value)}
-                    className='add_question_email_input'
+                    className='add_question_email_input' required
                   ></Form.Control>
+                  <Form.Control.Feedback type='invalid'>Please enter a username</Form.Control.Feedback>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
                   For authentication reasons, you will not be emailed

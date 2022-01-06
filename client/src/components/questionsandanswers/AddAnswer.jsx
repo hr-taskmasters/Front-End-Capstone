@@ -12,6 +12,7 @@ const AddAnswer = (props) => {
   const [email, setEmail] = useState('');
   const [photos, setphotos] = useState([]);
   const [file, setFile] = useState('');
+  const [validated, setValidated] = useState(false);
 
   const onFileChange = (e) => {
     const preview = document.querySelector('#q_ans_uploads_previews');
@@ -43,6 +44,12 @@ const AddAnswer = (props) => {
   }
 
   const postAnswer = (e) => {
+    const form = e.currentTarget;
+    if(form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
     //e.preventDefault();
     const answer_info = {
       body: body,
@@ -82,7 +89,7 @@ const AddAnswer = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form noValidatie validated={validated}>
             <Row className='mb-3'>
               <Form.Group as={Col} controlId='formGridQuestion'>
                 <Form.Label>Post your answer here</Form.Label>
@@ -95,8 +102,9 @@ const AddAnswer = (props) => {
                   maxLength='1000'
                   onChange={(e) => setBody(e.target.value)}
                   className='add_answer_body_input'
-                  value={body}
+                  value={body} required
                   ></Form.Control>
+                  <Form.Control.Feedback type='invalid'>Please enter text for answer</Form.Control.Feedback>
               </Form.Group>
             </Row>
             <Row className='mb-3'>
@@ -110,8 +118,9 @@ const AddAnswer = (props) => {
                     maxLength='60'
                     onChange={(e) => setName(e.target.value)}
                     className='add_answer_name_input'
-                    value={name}
+                    value={name} required
                   ></Form.Control>
+                  <Form.Control.Feedback type='invalid'>Please enter a username</Form.Control.Feedback>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
                   For privacy reasons, do not use your full name or email address
@@ -129,8 +138,9 @@ const AddAnswer = (props) => {
                     maxLength='60'
                     onChange={(e) => setEmail(e.target.value)}
                     className='add_answer_email_input'
-                    value={email}
+                    value={email} required
                   ></Form.Control>
+                  <Form.Control.Feedback type='invalid'>Please enter a valid email</Form.Control.Feedback>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
                   For authentication reasons, you will not be emailed
