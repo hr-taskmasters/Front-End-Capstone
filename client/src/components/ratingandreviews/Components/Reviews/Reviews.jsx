@@ -34,14 +34,12 @@ function Reviews (props) {
 
     return (
         <>
-        {/* { props.reviewList ?  */}
         { searchResults ?
         <>
         <Card>
-        <Card.Title>
             <Stack direction="horizontal" gap={2} className="reviews-dropdown-stack">
                 <div>Displaying</div>
-                <div>{searchResults.length} / {props.reviewList.length}</div>
+                <b>{searchResults.length} / {props.reviewList.length}</b>
                 <div>reviews, sorted by:</div>
                 <SortDropdown sortBy={props.sortBy}/>
                 <div className="ms-auto" >
@@ -51,7 +49,6 @@ function Reviews (props) {
             <div className="search-bar">
                 <Search search={search} setSearch={setSearch}/>
             </div>
-        </Card.Title>
         </Card>
         <Card className="reviews-list">
         <Card.Body>
@@ -59,7 +56,7 @@ function Reviews (props) {
                 {searchResults.map(review => (
                     <ReviewTile key={review.review_id} review={review}/>
                 ))}
-                {props.reviewList.length > 2 && reviewNum <= props.reviewList.length ?
+                {props.reviewList.length > 2 && reviewNum < props.reviewList.length ?
                 <Button variant="outline-secondary" onClick={() => loadMore()}>Show more reviews</Button>
                 : <Button variant="outline-secondary" onClick={() => collapse()}>Collapse</Button>}
             </Stack>

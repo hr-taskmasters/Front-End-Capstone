@@ -111,23 +111,25 @@ function RatingAndReviews(props) {
   };
 
   return (
+    <>
+    <h5 className="rating-reviews-title">RATINGS AND REVIEWS</h5>
     <div id="rating-reviews-main">
-      <Card>
-        <Card.Title>
-        <h5 className="rating-reviews-title">RATINGS AND REVIEWS</h5>
-        </Card.Title>
-        <Card.Body>
+      {/* <Card> */}
+        {/* <Card.Title> */}
+        {/* </Card.Title> */}
+        {/* <Card.Body> */}
           <Stack direction="horizontal" gap={3}>
             <Card style={{ width: '26rem' }}> 
               <Ratings metaData={metaData} toggleFiltered={toggleFiltered} filteredBy={filteredBy} resetFiltered={resetFiltered}/>
             </Card>
-            <Card style={{ width: '50rem' }}>
+            <Card style={{ width: '60rem' }}>
               <Reviews reviewList={filteredReviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
             </Card>
           </Stack>
-        </Card.Body>
-      </Card>
+        {/* </Card.Body> */}
+      {/* </Card> */}
     </div>
+    </>
   )
 }
 
