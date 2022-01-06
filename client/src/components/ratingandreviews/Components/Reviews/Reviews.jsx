@@ -28,6 +28,9 @@ function Reviews (props) {
     const loadMore = () => {
         setReviewNum(reviewNum + 2);
     }
+    const collapse = () => {
+        setReviewNum(2);
+    }
 
     const searchResults = searchReviews(slicedReviews, search);
 
@@ -58,9 +61,9 @@ function Reviews (props) {
                 {searchResults.map(review => (
                     <ReviewTile key={review.review_id} review={review}/>
                 ))}
-                {props.reviewList.length > 2 && reviewNum <= props.reviewList.length &&
+                {props.reviewList.length > 2 && reviewNum <= props.reviewList.length ?
                 <Button variant="outline-secondary" onClick={() => loadMore()}>Show more reviews</Button>
-                }
+                : <Button variant="outline-secondary" onClick={() => collapse()}>Collapse</Button>}
             </Stack>
         </Card.Body>
         </Card>
