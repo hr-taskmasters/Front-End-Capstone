@@ -1,22 +1,16 @@
 import React from 'react';
 
 function Price(props) {
+  const item = props.style[props.styleNum];
   return (
     <div className='p_price'>
-      {props.style[props.styleNum] ?
-        props.style[props.styleNum].sale_price ?
-          // with discount
-          <div>
-          ${props.style[props.styleNum].sale_price}
-          <span>{props.style[props.styleNum].original_price}</span>
+      {item &&
+        (item.sale_price ?
+          <div>${item.sale_price}
+          <span>{item.original_price}</span>
           </div>
         :
-          // without discount
-          <div>
-            ${props.style[props.styleNum] ? props.style[props.styleNum].original_price : null}
-          </div>
-      :
-        null}
+          <div>${item.original_price}</div>)}
     </div>
   );
 };

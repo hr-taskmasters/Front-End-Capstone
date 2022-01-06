@@ -8,15 +8,10 @@ class Zoom extends Component {
     this.state = {
       zoom: false,
       mouseX: null,
-      mouseY: null,
+      mouseY: null
     }
 
-    const {
-      height,
-      img,
-      transitionTime,
-      width,
-    } = props
+    const { height, img, transitionTime, width } = props;
 
     this.outerDivStyle = {
       height: `${height}px`,
@@ -33,29 +28,22 @@ class Zoom extends Component {
       backgroundImage: `url('${img}')`,
     }
 
-    this.imageRef = createRef()
-    this.handleMouseOver = this.handleMouseOver.bind(this)
-    this.handleMouseOut = this.handleMouseOut.bind(this)
-    this.handleMouseMovement = this.handleMouseMovement.bind(this)
+    this.imageRef = createRef();
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
+    this.handleMouseMovement = this.handleMouseMovement.bind(this);
   }
 
   handleMouseOver () {
-    this.setState({
-      zoom: true,
-    })
+    this.setState({ zoom: true })
   }
 
   handleMouseOut () {
-    this.setState({
-      zoom: false,
-    })
+    this.setState({ zoom: false })
   }
 
   handleMouseMovement (e) {
-    const {
-      left: offsetLeft,
-      top: offsetTop,
-    } = this.imageRef.current.getBoundingClientRect()
+    const { left: offsetLeft, top: offsetTop } = this.imageRef.current.getBoundingClientRect();
 
     const {
       current: {
@@ -64,10 +52,10 @@ class Zoom extends Component {
           width,
         },
       },
-    } = this.imageRef
+    } = this.imageRef;
 
-    const x = ((e.pageX - offsetLeft) / parseInt(width, 10)) * 100
-    const y = ((e.pageY - offsetTop) / parseInt(height, 10)) * 100
+    const x = ((e.pageX - offsetLeft) / parseInt(width, 10)) * 100;
+    const y = ((e.pageY - offsetTop) / parseInt(height, 10)) * 100;
 
     this.setState({
       mouseX: x,
@@ -76,19 +64,11 @@ class Zoom extends Component {
   }
 
   render () {
-    const {
-      mouseX,
-      mouseY,
-      zoom,
-    } = this.state
-
-    const {
-      zoomScale,
-    } = this.props
-
+    const { mouseX, mouseY, zoom } = this.state;
+    const { zoomScale } = this.props;
     const transform = {
       transformOrigin: `${mouseX}% ${mouseY}%`,
-    }
+    };
 
     return (
       <div
