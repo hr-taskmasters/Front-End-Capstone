@@ -223,7 +223,7 @@ h5.questions_widget_header {
   margin-left: 50px;
 }
 .p_zoom {
-  height: 100vh;
+  height: 70vh;
   display: flex;
   justify-content: center;
   align-items: center;
