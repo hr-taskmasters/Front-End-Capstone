@@ -69,11 +69,7 @@ const AddAnswer = (props) => {
         })
         .catch((err) => console.error(err));
     } else {
-      if(!email.includes('@')) {
-        alert('Please check your email format.')
-      } else {
-        alert('You must enter the all mandatory field.');
-      };
+      alert('You must enter the all mandatory field.');
     };
   };
 
@@ -89,7 +85,7 @@ const AddAnswer = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form noValidatie validated={validated}>
+          <Form novalidatie="true" validated={validated}>
             <Row className='mb-3'>
               <Form.Group as={Col} controlId='formGridQuestion'>
                 <Form.Label>Post your answer here</Form.Label>
@@ -138,7 +134,8 @@ const AddAnswer = (props) => {
                     maxLength='60'
                     onChange={(e) => setEmail(e.target.value)}
                     className='add_answer_email_input'
-                    value={email} required
+                    value={email}
+                    pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' required
                   ></Form.Control>
                   <Form.Control.Feedback type='invalid'>Please enter a valid email</Form.Control.Feedback>
                 </FloatingLabel>
