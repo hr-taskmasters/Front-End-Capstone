@@ -13,24 +13,28 @@ function Reviews (props) {
     const slicedReviews = props.reviewList.slice(0, reviewNum);
     const [search, setSearch] = useState('');
 
+
+    const searchReviews = (reviewList, input) => {
+        if(!input || input.length < 3) {
+            return reviewList;
+        }
+        return reviewList.filter((review) => {
+            const summary = review.summary.toLowerCase();
+            const body = review.body.toLowerCase();
+            return summary.includes(input.toLowerCase()) || body.includes(input.toLowerCase())
+        });
+    }
+
     const loadMore = () => {
         setReviewNum(reviewNum + 2);
     }
 
-//     const [searchTerm, setSearchTerm] = useState('');
-//   const filterQuestions = (questionlist, inputTerm) => {
-//     if(!inputTerm || inputTerm.length < 3) {
-//       return questionlist;
-//     };
-//     return questionlist.filter((question) => {
-//       const body = question.question_body.toLowerCase();
-//       return body.includes(inputTerm.toLowerCase());
-//     });
-//   };
+    const searchResults = searchReviews(slicedReviews, search);
 
     return (
         <>
-        { props.reviewList ? 
+        {/* { props.reviewList ?  */}
+        { searchResults ?
         <>
         <Card>
         <Card.Title>
@@ -50,7 +54,7 @@ function Reviews (props) {
         <Card className="reviews-list">
         <Card.Body>
             <Stack gap={3}>
-                {slicedReviews.map(review => (
+                {searchResults.map(review => (
                     <ReviewTile key={review.review_id} review={review}/>
                 ))}
                 {props.reviewList.length > 2 && reviewNum <= props.reviewList.length &&
