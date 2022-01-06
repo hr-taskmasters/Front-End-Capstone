@@ -6,77 +6,73 @@ Array [
     className="card"
   >
     <div
-      className="card-title h5"
+      className="reviews-dropdown-stack hstack gap-2"
     >
+      <div>
+        Displaying
+      </div>
+      <b>
+        1
+         / 
+        1
+      </b>
+      <div>
+        reviews, sorted by:
+      </div>
       <div
-        className="reviews-dropdown-stack hstack gap-2"
+        className="dropdown"
+      >
+        <button
+          aria-expanded={false}
+          className="dropdown-toggle btn btn-outline-secondary"
+          disabled={false}
+          id="dropdown-basic-button"
+          onClick={[Function]}
+          type="button"
+        >
+          relevant
+        </button>
+      </div>
+      <div
+        className="ms-auto"
       >
         <div>
-          Displaying
-        </div>
-        <div>
-          1
-           / 
-          1
-        </div>
-        <div>
-          reviews, sorted by:
-        </div>
-        <div
-          className="dropdown"
-        >
           <button
-            aria-expanded={false}
-            className="dropdown-toggle btn btn-outline-secondary"
+            className="btn btn-outline-secondary"
             disabled={false}
-            id="dropdown-basic-button"
             onClick={[Function]}
             type="button"
           >
-            relevant
+            Submit Review
           </button>
         </div>
-        <div
-          className="ms-auto"
-        >
-          <div>
-            <button
-              className="btn btn-outline-secondary"
-              disabled={false}
-              onClick={[Function]}
-              type="button"
-            >
-              Submit Review
-            </button>
-          </div>
-        </div>
       </div>
-      <div
-        className="search-bar"
+    </div>
+    <div
+      className="search-bar"
+    >
+      <form
+        className=""
       >
-        <form
-          className=""
+        <div
+          className="input-group"
         >
-          <div
-            className="input-group"
+          <span
+            className="input-group-text"
           >
-            <span
-              className="input-group-text"
-            >
-              <i
-                className="fas fa-search"
-              />
-            </span>
-            <input
-              className="form-control"
-              onChange={[Function]}
-              placeholder="Search reviews..."
-              type="text"
-              value=""
+            <i
+              className="fas fa-search"
             />
-          </div>
-        </form>
-      </div>
+          </span>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="Search reviews..."
+            type="text"
+            value=""
+          />
+        </div>
+      </form>
     </div>
   </div>,
   <div

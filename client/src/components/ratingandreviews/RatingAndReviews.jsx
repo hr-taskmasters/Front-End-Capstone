@@ -122,8 +122,8 @@ function RatingAndReviews(props) {
           <Reviews reviewList={filteredReviewList} 
           product={props.product} 
           metaData={metaData}
-          sortBy={sortBy}/>
-          getReviews={getReviews}
+          sortBy={sortBy}
+          getReviews={getReviews}/>
         </Card>
       </Stack>
     </div>
