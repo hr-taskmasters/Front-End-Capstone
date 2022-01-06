@@ -119,7 +119,11 @@ function RatingAndReviews(props) {
           <Ratings metaData={metaData} toggleFiltered={toggleFiltered} filteredBy={filteredBy} resetFiltered={resetFiltered}/>
         </Card>
         <Card style={{ width: '60rem' }}>
-          <Reviews reviewList={filteredReviewList} product={props.product} metaData={metaData}sortBy={sortBy}/>
+          <Reviews reviewList={filteredReviewList} 
+          product={props.product} 
+          metaData={metaData}
+          sortBy={sortBy}/>
+          getReviews={getReviews}
         </Card>
       </Stack>
     </div>
