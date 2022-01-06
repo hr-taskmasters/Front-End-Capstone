@@ -6,9 +6,10 @@ const Search = ({searchTerm, setSearchTerm}) => {
     <Form>
       <Form.Control
         type='text'
-        placeholder='HAVING A QUESTION? SEARCH FOR ANSWERS...'
+        placeholder='&#xF002; HAVING A QUESTION? SEARCH FOR ANSWERS...'
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        id='q_searchinput'
         />
     </Form>
   )
