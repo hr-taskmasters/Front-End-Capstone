@@ -47,7 +47,6 @@ const Answers = (props) => {
   };
   return (
     <div>
-      {answers.length > 0 &&
       <Row id='q_grid_row2'>
         <Col id='q_grid_row2_col1' xs={1}><strong>A:</strong></Col>
         <Col className="q_answerslist" id='q_grid_row2_col2'>
@@ -62,8 +61,6 @@ const Answers = (props) => {
           </Col>
         </Col>
       </Row>
-      }
-      {/* <br></br> */}
     </div>
   )
 

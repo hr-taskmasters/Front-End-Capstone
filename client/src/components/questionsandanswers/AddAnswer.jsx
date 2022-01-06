@@ -19,7 +19,7 @@ const AddAnswer = (props) => {
     const reader = new FileReader();
     reader.onload = () => {
       preview.src = reader.result;
-      setphotos([...photos, reader.result]);
+      //setphotos([...photos, reader.result]);
       //const url = URL.createObjectURL(file);
       //setphotos([...photos, url]);
     };
@@ -28,16 +28,16 @@ const AddAnswer = (props) => {
     };
   };
   const postAnswer = (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     const answer_info = {
       body: body,
       name: name,
       email: email,
       photos: photos
     }
-    console.log(answer_info);
+    //console.log(answer_info);
     if(body.length > 1 && name.length > 1 && email.length > 1 && email.includes('@')) {
-      console.log(answer_info);
+      //console.log(answer_info);
       axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${props.question_id}/answers`, answer_info, {
         headers: { 'Authorization': `${API_KEY}` }
       })
@@ -60,7 +60,7 @@ const AddAnswer = (props) => {
   return (
     <div id='add_answer_button'>
       {' '}
-      <Button  variant="outline-secondary" size='sm' onClick={handleShow}>ADD A ANSWER</Button>
+      <Button className='answer_add' variant="outline-secondary" size='sm' onClick={handleShow}>ADD A ANSWER</Button>
       {/* <img src='blob:null/2b4cec05-df41-4e75-a6dc-ef0e1eb799e3'></img> */}
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -82,6 +82,8 @@ const AddAnswer = (props) => {
                   style={{ height: '100px'}}
                   maxLength='1000'
                   onChange={(e) => setBody(e.target.value)}
+                  className='add_answer_body_input'
+                  value={body}
                   ></Form.Control>
               </Form.Group>
             </Row>
@@ -95,6 +97,8 @@ const AddAnswer = (props) => {
                     placeholder='Example: jackson543!'
                     maxLength='60'
                     onChange={(e) => setName(e.target.value)}
+                    className='add_answer_name_input'
+                    value={name}
                   ></Form.Control>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
@@ -112,6 +116,8 @@ const AddAnswer = (props) => {
                     placeholder='Example: jack@email.com'
                     maxLength='60'
                     onChange={(e) => setEmail(e.target.value)}
+                    className='add_answer_email_input'
+                    value={email}
                   ></Form.Control>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
@@ -134,8 +140,8 @@ const AddAnswer = (props) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={() => handleClose()}>Cancel</Button>
-          <Button type='submit' onClick={postAnswer}>Submit</Button>
+          <Button className='addA_cancel_btn' variant='secondary' onClick={() => handleClose()}>Cancel</Button>
+          <Button className='addA_submit_btn' type='submit' onClick={postAnswer}>Submit</Button>
         </Modal.Footer>
       </Modal>
     </div>

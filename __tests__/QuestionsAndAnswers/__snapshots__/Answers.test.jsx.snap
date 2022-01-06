@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Answers /> with props Render answer compoment correctly 1`] = `
+<div>
+  <div
+    className="row"
+    id="q_grid_row2"
+  >
+    <div
+      className="col-1"
+      id="q_grid_row2_col1"
+    >
+      <strong>
+        A:
+      </strong>
+    </div>
+    <div
+      className="q_answerslist col"
+      id="q_grid_row2_col2"
+    >
+      <div
+        className="col"
+      >
+        <div
+          className="hstack gap-2"
+        >
+          <div
+            id="add_answer_button"
+          >
+             
+            <button
+              className="answer_add btn btn-outline-secondary btn-sm"
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+            >
+              ADD A ANSWER
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
