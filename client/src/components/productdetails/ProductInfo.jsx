@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import API_KEY from '../../config/config.js'
 import StarRating from './StarRating.jsx';
 import Thumbnail from './Thumbnail.jsx';
 import Cart from './Cart.jsx';
@@ -12,6 +14,7 @@ function ProductInfo(props) {
 
   const [styleNum, setStyleNum] = useState(0);
   const [expand, setExpand] = useState(false);
+  const [reviewList, setReviewList] = useState([]);
 
   const handleClick = (index) => {
     setStyleNum(index);
@@ -27,7 +30,22 @@ function ProductInfo(props) {
 
   useEffect(() => {
     setStyleNum(0);
+    getReviews(props.info.id);
   }, [props])
+
+  const getReviews = (id) => {
+    axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/?sort='newest'&product_id=${id}&count=50`, {
+        headers: {
+        'Authorization': `${API_KEY}`
+        },
+    })
+    .then((response) => {
+      setReviewList(response.data.results)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  };
 
   return (
     <div>
@@ -45,7 +63,7 @@ function ProductInfo(props) {
         </div>
         {!expand &&
           <div className='product-content col-md-5'>
-            <StarRating ratings={props.ratings}/>
+            {reviewList.length && <StarRating ratings={props.ratings} reviewList={reviewList}/>}
             <h4>{props.info.category}</h4>
             <h2 className='p_title'><a href='#'>{props.info.name}</a></h2>
             <Price info={props.info} style={props.style} styleNum={styleNum} />

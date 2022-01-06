@@ -11,7 +11,7 @@ function Cart(props) {
 
   useEffect(() => {
     reset();
-  }, [props])
+  }, [props.style])
 
   const reset = () => {
     setSize('SELECT SIZE');

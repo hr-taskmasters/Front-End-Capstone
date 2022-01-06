@@ -9,7 +9,8 @@ function StarRating(props) {
 
   useEffect(() => {
     average(props.ratings);
-  }, [props.ratings])
+    setReview(props.reviewList.length);
+  }, [props])
 
   const handleReviewClick = () => {
     let offset = 100;
@@ -31,7 +32,6 @@ function StarRating(props) {
         sum += Number(key) * Number(ratingObject[key]);
       }
       setAvgRating(parseFloat(sum/count).toFixed(1));
-      setReview(count);
     }
   }
 
@@ -47,7 +47,7 @@ function StarRating(props) {
             size={28}
           />
           <span>{avgRating}</span>
-          <span className='p_rating'><a onClick={handleReviewClick}>Read All {review} Ratings & Reviews</a></span>
+          <span className='p_rating'><a onClick={handleReviewClick}>Read All {review} Reviews</a></span>
         </div>
       :
         null
