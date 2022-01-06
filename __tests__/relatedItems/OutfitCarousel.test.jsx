@@ -52,3 +52,19 @@ test('renders carousel items', () => {
 
   expect(component).toHaveProp('outfits');
 })
+
+test('carousel private functions get called', () => {
+  window.HTMLElement.prototype.scrollTo = jest.fn();
+  component.find('#outfitRight').simulate('click');
+  expect(window.HTMLElement.prototype.scrollTo.mock.calls.length).toBe(1);
+  component.find('#outfitLeft').simulate('click');
+  expect(window.HTMLElement.prototype.scrollTo.mock.calls.length).toBe(2);
+})
+
+test('stores items from localStorage', () => {
+  const setItemMock = jest.fn();
+  jest.spyOn(window.localStorage.__proto__, 'setItem').mockImplementation(setItemMock);
+
+  component.find('#addToCloset').simulate('click');
+  expect(setItemMock).toHaveBeenCalled();
+})

@@ -97,7 +97,11 @@ function ListCarousel(props) {
       <div className='carouselContainer'>
         <div className="carouselBox">
           {grid.length === 0 ? 'Loading...' : grid.map((product, index) => (
-            <div className="carouselItem" key={index}><ProductCard product={product} featuredProd={props.featuredProd} icon='star' chooseProduct={props.chooseProduct} checkPos={checkPos} uniqueid={props.uniqueid}/></div>
+            <div className="carouselItem"  onClick={() => {
+              window.scrollTo({
+                top: 0
+              });
+            }} key={index}><ProductCard product={product} featuredProd={props.featuredProd} icon='star' chooseProduct={props.chooseProduct} checkPos={checkPos} uniqueid={props.uniqueid}/></div>
           ))}
         </div>
         <div className="moveLeft slideButton" onClick={scrollLeft} id="listLeft">{leftButton}</div>

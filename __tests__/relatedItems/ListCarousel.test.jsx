@@ -55,7 +55,7 @@ test('renders carousel items', () => {
   expect(component).toHaveProp('items');
 })
 
-test('scrollTo', () => {
+test('carousel private functions get called', () => {
   window.HTMLElement.prototype.scrollTo = jest.fn();
   component.find('#listRight').simulate('click');
   expect(window.HTMLElement.prototype.scrollTo.mock.calls.length).toBe(1);

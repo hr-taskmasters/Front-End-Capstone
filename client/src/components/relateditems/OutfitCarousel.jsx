@@ -74,7 +74,7 @@ function OutfitCarousel(props) {
       <div className='carouselContainer'>
         <div className="carouselBox">
         <div className="carouselItem">
-          <Card style={{width: '18rem', backgroundColor: 'beige'}} onClick={() => {
+          <Card style={{width: '18rem', backgroundColor: 'beige'}} id='addToCloset' onClick={() => {
             let duplicateOutfit = false;
             let currentOutfits = JSON.parse(window.localStorage.fecCloset);
             for(let i = 0; i < currentOutfits.length; i++) {
@@ -97,7 +97,13 @@ function OutfitCarousel(props) {
           </Card>
         </div>
           {grid.length === 0 ? '' : grid.map((product, index) => (
-            <div className="carouselItem" key={index}><ProductCard key={product.id} product={product} featuredProd={props.featuredProd} icon='remove' checkPos={checkPos} removeOutfit={props.removeOutfit} chooseProduct={props.chooseProduct} uniqueid={props.uniqueid}/></div>
+            <div className="carouselItem" key={index} onClick={() => {
+              window.scrollTo({
+                top: 0
+              });
+            }}>
+              <ProductCard key={product.id} product={product} featuredProd={props.featuredProd} icon='remove' checkPos={checkPos} removeOutfit={props.removeOutfit} chooseProduct={props.chooseProduct} uniqueid={props.uniqueid}/>
+            </div>
           ))}
         </div>
         <div className="moveLeft slideButton" onClick={scrollLeft} id="outfitLeft">{leftButton}</div>
