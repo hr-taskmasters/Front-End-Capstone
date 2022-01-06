@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render correctly 1`] = `
+<div
+  className="q_individual_q_grid container-md"
+>
+  <div
+    className="row"
+    id="q_grid_row1"
+  >
+    <div
+      className="col-1"
+      id="q_grid_row1_col1"
+    >
+      <strong
+        className="q_title"
+      >
+        Q:
+      </strong>
+    </div>
+    <div
+      className="col"
+      id="q_grid_row1_col2"
+    >
+      <strong
+        className="q_body"
+      >
+        Is it water proof?
+      </strong>
+    </div>
+    <div
+      className="col-md-4"
+      id="q_grid_row1_col3"
+    >
+      <div
+        className="hstack gap-2"
+      >
+        <div
+          className="ms-auto"
+        >
+          <div>
+            <label>
+              Helpful? 
+            </label>
+            <u
+              onClick={[Function]}
+            >
+              Yes
+            </u>
+            <span>
+              (
+              6
+              )
+            </span>
+          </div>
+        </div>
+        <div
+          className="vr"
+        />
+        <div>
+          <u
+            onClick={[Function]}
+          >
+            Report
+          </u>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="row"
+      id="q_grid_row2"
+    >
+      <div
+        className="col-1"
+        id="q_grid_row2_col1"
+      >
+        <strong>
+          A:
+        </strong>
+      </div>
+      <div
+        className="q_answerslist col"
+        id="q_grid_row2_col2"
+      >
+        <div
+          className="col"
+        >
+          <div
+            className="hstack gap-2"
+          >
+            <div
+              id="add_answer_button"
+            >
+               
+              <button
+                className="answer_add btn btn-outline-secondary btn-sm"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                ADD A ANSWER
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+</div>
+`;

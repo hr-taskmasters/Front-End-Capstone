@@ -35,10 +35,10 @@ const IndividualQuestion = (props) => {
     <Container className='q_individual_q_grid' fluid='md'>
       <Row id='q_grid_row1'>
         <Col id='q_grid_row1_col1' xs={1}>
-          <strong>Q:</strong>
+          <strong className='q_title'>Q:</strong>
         </Col>
         <Col id='q_grid_row1_col2'>
-          <strong>
+          <strong className='q_body'>
             {props.question.question_body}
           </strong>
         </Col>
