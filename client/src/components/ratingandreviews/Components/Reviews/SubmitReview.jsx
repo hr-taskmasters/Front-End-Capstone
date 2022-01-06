@@ -10,9 +10,8 @@ import { Button, Stack, Form, Modal, Accordion,
 function SubmitReview (props) {
     const [showModal, setShowModal] = useState(false);
     const [appChars, setAppChars] = useState([]);
-    //star rating
     const [stars, setStars] = useState(0);
-    //radio buttons state
+    
     const [recommended, setRecommended] = useState(null);
     const [size, setSize] = useState(null);
     const [width, setWidth] = useState(null);
@@ -20,7 +19,7 @@ function SubmitReview (props) {
     const [quality, setQuality] = useState(null);
     const [length, setLength] = useState(null);
     const [fit, setFit] = useState(null);
-    //text inputs state
+    
     const [summary, setSummary] = useState('');
     const [body, setBody] = useState('');
     const [nickname, setNickname] = useState('');
