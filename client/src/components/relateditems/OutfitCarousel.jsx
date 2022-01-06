@@ -13,7 +13,7 @@ function OutfitCarousel(props) {
   let scrollPos = 0;
   const scrollDistance = 320;
   const [leftButton, setLButton] = useState(' ');
-  const [rightButton, setRButton] = useState('⇨');
+  const [rightButton, setRButton] = useState('>');
 
   useEffect(() => {
     getOutfits();
@@ -32,8 +32,8 @@ function OutfitCarousel(props) {
         setLButton(' ')
       }
     } else {
-      if(leftButton !== '⇦'){
-        setLButton('⇦');
+      if(leftButton !== '<'){
+        setLButton('<');
       }
     }
     if (scrollPos >= width) {
@@ -41,8 +41,8 @@ function OutfitCarousel(props) {
         setRButton(' ')
       }
     } else {
-      if(rightButton !== '⇨') {
-        setRButton('⇨');
+      if(rightButton !== '>') {
+        setRButton('>');
       }
     }
   };
