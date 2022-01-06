@@ -1,11 +1,12 @@
 .relatedProducts .carousel {
-  height: 70vh;
+  height: 100%;
   width: 100%;
   /* background-color: black; */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  padding-bottom: 2%;
 }
 
 .carouselContainer {
