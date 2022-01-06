@@ -43,7 +43,7 @@ function Reviews (props) {
                 <div>reviews, sorted by:</div>
                 <SortDropdown sortBy={props.sortBy}/>
                 <div className="ms-auto" >
-                    <SubmitReview product={props.product} metaData={props.metaData}/>
+                    <SubmitReview product={props.product} metaData={props.metaData} getReviews={props.getReviews}/>
                 </div>
             </Stack>
             <div className="search-bar">

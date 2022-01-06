@@ -56,7 +56,21 @@ function SubmitReview (props) {
       if(file) {
         reader.readAsDataURL(file);
       }
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('file', file)
+      formData.append('upload_preset', 'rp7rer9y');
+        fetch('https://api.cloudinary.com/v1_1/dtnikmimx/image/upload', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(res => res.json())
+      .then(res => {
+        setPhotos([res.url])
+      })
+      .catch(err => console.log(err))
     }
+
 
 
     const postReview = (e) => {
@@ -108,6 +122,7 @@ function SubmitReview (props) {
         { headers: { 'Authorization': `${API_KEY}` }})
         .then(res => {
             alert('Your review was submitted.')
+            props.getReviews()
             handleClose();
         })
         .catch(err => console.log(err, bodyParams))
@@ -312,6 +327,7 @@ function SubmitReview (props) {
                       <Stack gap={2}>
                         <Image id="submit-image-previews" height="20%" width="20%" />
                         <Form.Control type="file" 
+                        multiple
                         accept='image/png, image/jpeg'
                         onChange={storeImages}
                         />
