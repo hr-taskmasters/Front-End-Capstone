@@ -8,7 +8,7 @@ class Zoom extends Component {
     this.state = {
       zoom: false,
       mouseX: null,
-      mouseY: null,
+      mouseY: null
     }
 
     const { height, img, transitionTime, width } = props;
@@ -35,15 +35,11 @@ class Zoom extends Component {
   }
 
   handleMouseOver () {
-    this.setState({
-      zoom: true
-    })
+    this.setState({ zoom: true })
   }
 
   handleMouseOut () {
-    this.setState({
-      zoom: false
-    })
+    this.setState({ zoom: false })
   }
 
   handleMouseMovement (e) {
