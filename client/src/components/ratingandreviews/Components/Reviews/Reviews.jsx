@@ -39,7 +39,8 @@ function Reviews (props) {
         <Card>
         <Card.Title>
             <Stack direction="horizontal" gap={2} className="reviews-dropdown-stack">
-                <h3>{props.reviewList.length}</h3>
+                <div>Displaying</div>
+                <div>{searchResults.length} / {props.reviewList.length}</div>
                 <div>reviews, sorted by:</div>
                 <SortDropdown sortBy={props.sortBy}/>
                 <div className="ms-auto" >
