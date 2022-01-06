@@ -23,7 +23,7 @@ describe('<AddAnswer />', () => {
   });
 });
 
-describe('form component', () => {
+describe('render form component', () => {
   const wrapper = shallow(<AddAnswer product_name='Camo Onesie' question_id={426448} question_body='Can I wash it?'/>);
   const form = wrapper.find('Form');
   it('should have input for answer body', () => {
@@ -60,3 +60,33 @@ describe('Button click test', () => {
   });
 });
 
+// describe('form input component', () => {
+//   // it('Should change value when OnChange called', () => {
+//   //   const onChangeMock = jest.fn();
+//   //   const wrapper = mount(<AddAnswer product_name='Camo Onesie' question_id={426448} question_body='Can I wash it?' onChange={onChangeMock}/>);
+//   //   //const input = wrapper.find('.add_answer_body_input').at(0);
+//   //   //input.simulate('change', { target: { value: 'Test Answer'}});
+//   //   //form.find('.add_answer_body_input').at(0).simulate('change', { target: { value: 'Test Answer'}});
+//   //   //expect(onChangeMock).toBeCalledWith('Test Answer');
+//   //   wrapper.find('.add_answer_body_input').instance().value = 'Test Answer';
+//   //   expect(wrapper.find('.add_answer_body_input').instance().value).toEqual('Test Answer');
+//   // })
+//   let wrapper;
+//   const setState = jest.fn();
+//   const useStatespy = jest.spyOn(React, 'useState');
+//   useStatespy.mockImplementation((init) => [init, setState]);
+
+//   beforeEach(() => {
+//     wrapper = mount(<AddAnswer product_name='Camo Onesie' question_id={426448} question_body='Can I wash it?'/>);
+//     //wrapper = mount(shallow(<AddAnswer product_name='Camo Onesie' question_id={426448} question_body='Can I wash it?'/>).get(0));
+//   });
+//   afterEach(() => {
+//     jest.clearAllMocks();
+//   });
+//   it('Should capture answer body correctly onChange', () => {
+//     const body = wrapper.find('.add_answer_body_input').at(0);
+//     body.instance().value ='Test Answer';
+//     body.simulate('change');
+//     expect(setState).toHaveBeenCalledWith('Test Answer');
+//   });
+// })
