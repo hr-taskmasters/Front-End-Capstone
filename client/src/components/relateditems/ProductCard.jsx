@@ -131,6 +131,7 @@ const styles = {
   cardImage: {
     maxWidth: '100%',
     height: '300px',
+    objectFit: 'cover',
     overflow: 'hidden'
   },
   cardText: {
