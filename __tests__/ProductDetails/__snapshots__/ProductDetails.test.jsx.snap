@@ -8,11 +8,10 @@ exports[`renders Product Details component correctly 1`] = `
     <div
       className="container-fluid"
     >
-      <a
-        className="navbar-brand"
-      >
-        Logo
-      </a>
+      <img
+        className="p_logo"
+        src="images/logo2.png"
+      />
       <form
         className="d-flex"
       >
@@ -49,40 +48,84 @@ exports[`renders Product Details component correctly 1`] = `
       NEW PRODUCT HIGHLIGHT
     </span>
   </div>
-  <div
-    className="row"
-  >
+  <div>
     <div
-      className="col-md-6"
+      className="row"
     >
       <div
-        className="product-grid"
+        className="col-md-6"
       >
         <div
-          className="row justify-content-around"
+          className="product-grid"
         >
           <div
-            className="col-md-2"
+            className="row justify-content-around"
           >
-            <button
-              className="p_up"
-              onClick={[Function]}
+            <div
+              className="col-md-2"
             >
-              <i
-                className="fas fa-chevron-up"
-              />
-            </button>
-            <button
-              className="p_down"
-              onClick={[Function]}
+              <button
+                className="p_up"
+                onClick={[Function]}
+              >
+                <i
+                  className="fas fa-chevron-up"
+                />
+              </button>
+              <button
+                className="p_down"
+                onClick={[Function]}
+              >
+                <i
+                  className="fas fa-chevron-down"
+                />
+              </button>
+            </div>
+            <div
+              className="col-md-9"
             >
-              <i
-                className="fas fa-chevron-down"
-              />
-            </button>
+              <div
+                className="spinner-border"
+                role="status"
+              >
+                <span
+                  className="visually-hidden"
+                >
+                  Loading...
+                </span>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+      <div
+        className="product-content col-md-5"
+      >
+        <div />
+        <h4>
+          Jackets
+        </h4>
+        <h2
+          className="p_title"
+        >
+          <a
+            href="#"
+          >
+            Camo Onesie
+          </a>
+        </h2>
+        <div
+          className="p_price"
+        />
+        <div
+          className="p_style"
+        >
+          <b>
+            STYLE &gt; 
+          </b>
+          <span />
           <div
-            className="col-md-9"
+            className="p_thumbnail_container"
           >
             <div
               className="spinner-border"
@@ -96,132 +139,110 @@ exports[`renders Product Details component correctly 1`] = `
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div
-      className="product-content col-md-5"
-    >
-      <div />
-      <h4>
-        Jackets
-      </h4>
-      <h2
-        className="p_title"
-      >
-        <a
-          href="#"
-        >
-          Camo Onesie
-        </a>
-      </h2>
-      <div
-        className="p_price"
-      />
-      <div
-        className="p_style"
-      >
-        <b>
-          STYLE &gt; 
-        </b>
-        <span />
-        <div
-          className="p_thumbnail_container"
-        >
+        <div>
           <div
-            className="spinner-border"
-            role="status"
+            className="p_flex_container"
           >
-            <span
-              className="visually-hidden"
+            <div
+              className="p_flex_child_size"
             >
-              Loading...
-            </span>
+              <select
+                className="p_select"
+                onChange={[Function]}
+              >
+                <option>
+                  SELECT SIZE
+                </option>
+                <option>
+                  OUT OF STOCK
+                </option>
+              </select>
+            </div>
+            <div
+              className="p_flex_child_quantity"
+            >
+              <select
+                className="p_select"
+              >
+                <option>
+                  -
+                </option>
+              </select>
+            </div>
           </div>
+          <button
+            className="btn btn-default btn-md p_fav btn btn-light"
+            disabled={false}
+            id="p_like_button"
+            onClick={[Function]}
+            type="button"
+          >
+            <i
+              className="far fa-star"
+            />
+          </button>
         </div>
       </div>
-      <div>
-        <div
-          className="p_flex_container"
-        >
-          <div
-            className="p_flex_child_size"
-          >
-            <select
-              className="p_select"
-              onChange={[Function]}
-            >
-              <option>
-                SELECT SIZE
-              </option>
-              <option>
-                OUT OF STOCK
-              </option>
-            </select>
-          </div>
-          <div
-            className="p_flex_child_quantity"
-          >
-            <select
-              className="p_select"
-            >
-              <option>
-                -
-              </option>
-            </select>
-          </div>
-        </div>
-        <button
-          className="btn btn-default btn-md p_fav btn btn-light"
-          disabled={false}
-          id="p_like_button"
-          onClick={[Function]}
-          type="button"
-        >
-          <i
-            className="far fa-star"
-          />
-        </button>
-      </div>
     </div>
-    <div
-      className="p_description"
+    <table
+      className="p_wrapper"
     >
-      <h6>
-        DESCRIPTION:
-      </h6>
-      <p>
-        The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.
-      </p>
-      <div>
-        <span>
-          Share: 
-        </span>
-        <a
-          className="p_share_icon"
-          href="https://www.facebook.com/"
-        >
-          <i
-            className="fab fa-facebook-square fa-lg"
-          />
-        </a>
-        <a
-          className="p_share_icon"
-          href="https://twitter.com/home"
-        >
-          <i
-            className="fab fa-twitter-square fa-lg"
-          />
-        </a>
-        <a
-          className="p_share_icon"
-          href="https://www.pinterest.com/"
-        >
-          <i
-            className="fab fa-pinterest-square fa-lg"
-          />
-        </a>
-      </div>
-    </div>
+      <thead>
+        <tr>
+          <th
+            className="p_description"
+          >
+            DESCRIPTION:
+          </th>
+          <th
+            className="p_features"
+          >
+            FEATURES:
+          </th>
+          <th
+            className="p_share"
+          >
+            SHARE:
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.
+          </td>
+          <td />
+          <td>
+            <div>
+              <a
+                className="p_share_icon"
+                href="https://www.facebook.com/"
+              >
+                <i
+                  className="fab fa-facebook-square fa-lg"
+                />
+              </a>
+              <a
+                className="p_share_icon"
+                href="https://twitter.com/home"
+              >
+                <i
+                  className="fab fa-twitter-square fa-lg"
+                />
+              </a>
+              <a
+                className="p_share_icon"
+                href="https://www.pinterest.com/"
+              >
+                <i
+                  className="fab fa-pinterest-square fa-lg"
+                />
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 `;

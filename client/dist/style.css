@@ -1,3 +1,7 @@
+.p_logo {
+  width: 80px;
+  border-radius: 30%;
+}
 .p_price span {
   color:#999;
   font-size:13px;
@@ -112,10 +116,36 @@
   margin-left: 30px;
   height: 50px;
 }
-.p_description {
-  display: block;
-  margin: 50px;
-  padding: 30px;
+.p_wrapper {
+  margin: 30px 150px 30px 80px;
+  padding: 10px;
+  table-layout: fixed;
+}
+tr {
+  border-spacing: 5em;
+}
+table th, table td {
+  border-right: 1px solid black;
+}
+table tr th:last-child, table tr td:last-child {
+  border-right: 0;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 40px;
+  height: 20px;
+  width: 40%;
+}
+th.p_description {
+  width: 70%;
+}
+th.p_features {
+  width: 30%;
+}
+th.p_share {
+  width: 10%;
 }
 .p_navbar {
   margin-bottom: 20px;
