@@ -4,18 +4,20 @@
 /* =========================== */
 #rating-reviews-main{
   display: flex;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 1%;
+  padding-right: 1%;
   justify-content: center;
-  margin: 20px;
+  /* margin: 20px; */
   min-width: min-content;
 }
 
 .rating-reviews-title{
   /* padding-left: 20px; */
-  padding-left: 10%;
-  padding-top: 10px;
-  padding-bottom: 0px;
+  display: flex;
+  /* justify-content:center; */
+  padding-left: 5%;
+  padding-top: 50px;
+  padding-bottom: 20px;
 }
 
 /* =========================== */
