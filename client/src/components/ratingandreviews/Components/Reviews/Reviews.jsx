@@ -5,15 +5,28 @@ import { Button, Card, Stack } from 'react-bootstrap';
 import ReviewTile from './ReviewTile.jsx';
 import SortDropdown from './SortDropdown.jsx';
 import SubmitReview from './SubmitReview.jsx';
+import Search from './Search.jsx';
 
 
 function Reviews (props) {
     const [reviewNum, setReviewNum] = useState(2);
     const slicedReviews = props.reviewList.slice(0, reviewNum);
+    const [search, setSearch] = useState('');
 
     const loadMore = () => {
         setReviewNum(reviewNum + 2);
     }
+
+//     const [searchTerm, setSearchTerm] = useState('');
+//   const filterQuestions = (questionlist, inputTerm) => {
+//     if(!inputTerm || inputTerm.length < 3) {
+//       return questionlist;
+//     };
+//     return questionlist.filter((question) => {
+//       const body = question.question_body.toLowerCase();
+//       return body.includes(inputTerm.toLowerCase());
+//     });
+//   };
 
     return (
         <>
@@ -29,6 +42,9 @@ function Reviews (props) {
                     <SubmitReview product={props.product} metaData={props.metaData}/>
                 </div>
             </Stack>
+            <div className="search-bar">
+                <Search search={search} setSearch={setSearch}/>
+            </div>
         </Card.Title>
         </Card>
         <Card className="reviews-list">
