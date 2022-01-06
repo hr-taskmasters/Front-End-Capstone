@@ -4,7 +4,7 @@ import API_KEY from '../../../../config/config.js';
 import Radios from '../../radioData/radioData.js';
 import { Rating } from 'react-simple-star-rating';
 import { Button, Stack, Form, Modal, Accordion, 
-  FloatingLabel, ButtonGroup, ToggleButton, Image, ToggleButtonGroup} from 'react-bootstrap';
+  FloatingLabel, ToggleButton, Image, ToggleButtonGroup} from 'react-bootstrap';
 
 
 function SubmitReview (props) {

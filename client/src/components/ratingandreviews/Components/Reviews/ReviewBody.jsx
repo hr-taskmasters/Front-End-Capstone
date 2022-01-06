@@ -1,10 +1,9 @@
-import React, { useState, useEffect} from 'react';
-import { Card, Button, Modal, Image, Row } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { Card, Button, Row } from 'react-bootstrap'
 import Images from './Images.jsx';
 
 function ReviewBody (props) {
   const slicedBody = props.review.body.slice(0, 250);
-  // const totalBodyLength = 
   const reviewPhotos = props.review.photos;
   const [body, setBody] = useState(slicedBody);
   const [bodyDifference, setBodyDifference] = useState(
@@ -16,7 +15,6 @@ function ReviewBody (props) {
     setBody(props.review.body)
     setBodyDifference(0)
   }
-
 
   return (
     <Card>

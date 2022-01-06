@@ -11,9 +11,14 @@ Array [
       <div
         className="reviews-dropdown-stack hstack gap-2"
       >
-        <h3>
+        <div>
+          Displaying
+        </div>
+        <div>
           1
-        </h3>
+           / 
+          1
+        </div>
         <div>
           reviews, sorted by:
         </div>
@@ -45,6 +50,32 @@ Array [
             </button>
           </div>
         </div>
+      </div>
+      <div
+        className="search-bar"
+      >
+        <form
+          className=""
+        >
+          <div
+            className="input-group"
+          >
+            <span
+              className="input-group-text"
+            >
+              <i
+                className="fas fa-search"
+              />
+            </span>
+            <input
+              className="form-control"
+              onChange={[Function]}
+              placeholder="Search reviews..."
+              type="text"
+              value=""
+            />
+          </div>
+        </form>
       </div>
     </div>
   </div>,
@@ -350,6 +381,14 @@ Array [
             </div>
           </div>
         </div>
+        <button
+          className="btn btn-outline-secondary"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Collapse
+        </button>
       </div>
     </div>
   </div>,
