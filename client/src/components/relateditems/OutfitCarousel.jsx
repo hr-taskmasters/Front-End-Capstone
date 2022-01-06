@@ -74,7 +74,7 @@ function OutfitCarousel(props) {
       <div className='carouselContainer'>
         <div className="carouselBox">
         <div className="carouselItem">
-          <Card style={{width: '18rem', backgroundColor: 'beige'}} onClick={() => {
+          <Card style={{width: '18rem', backgroundColor: 'beige'}} id='addToCloset' onClick={() => {
             let duplicateOutfit = false;
             let currentOutfits = JSON.parse(window.localStorage.fecCloset);
             for(let i = 0; i < currentOutfits.length; i++) {
