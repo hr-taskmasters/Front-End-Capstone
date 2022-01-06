@@ -6,9 +6,8 @@ const Search = ({search, setSearch}) => {
     <Form>
         <InputGroup>
         <InputGroup.Text>
-        <i className="fas fa-search"></i>
+            <i className="fas fa-search"></i>
         </InputGroup.Text>
-        
         <Form.Control
             type="text"
             placeholder="Search reviews..."
