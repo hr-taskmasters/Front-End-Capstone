@@ -37,11 +37,11 @@ const Answers = (props) => {
   const changeBtnMode = () => {
     if(ansPerPage < ansLength) {
       return(
-        <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
+        <strong id='a_loadBtn' onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
       );
     } else {
       return(
-        <strong id='collapseBtn' variant="outline-secondary" onClick={()=> collapse()}>COLLAPSE ANSWERS</strong>
+        <strong id='a_collapseBtn' onClick={()=> collapse()}>COLLAPSE ANSWERS</strong>
       );
     };
   };
@@ -51,7 +51,7 @@ const Answers = (props) => {
         <Col id='q_grid_row2_col1' xs={1}><strong>A:</strong></Col>
         <Col className="q_answerslist" id='q_grid_row2_col2'>
           {sliceAns.map((answer, index) =>
-            <IndividualAnswer answer={answer} key={answer.answer_id} />
+            <IndividualAnswer answer={answer} key={answer.answer_id}/>
           )}
           <Col>
             <Stack direction='horizontal' gap={2}>

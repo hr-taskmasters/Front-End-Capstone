@@ -37,13 +37,12 @@ const IndividualAnswer = (props) => {
     index: 0
   });
 
-  const [isSeller, setIsSeller] = useState(props.answer.answerer_name==='Seller');
+  const [isSeller, setIsSeller] = useState(props.answer.answerer_name==='Seller' || props.answer.answerer_name==='seller');
 
   return (
     <div key={props.answer.answer_id}>
       <div id='q-individual_a_container'>
         <div id='q_a_row1'>{props.answer.body}</div>
-        {/* <br></br> */}
         <Row id='q_a_row2'>
           <Stack direction="horizontal" gap={2}>
             <div id='q_a_row2_name'>
@@ -62,7 +61,7 @@ const IndividualAnswer = (props) => {
               {!markHelp ? (
                 <div>
                   <label> Helpful? </label>
-                  <u onClick={() => markHelpful()}>Yes</u>
+                  <u id='q_helpful' onClick={() => markHelpful()}>Yes</u>
                   <span>({a_helpful_count})</span>
                 </div>
               ) : (
@@ -75,14 +74,13 @@ const IndividualAnswer = (props) => {
             <div className="vr"/>
             <div id='q_a_row2_markAReport'>
               {!reported ? (
-                <u onClick={() => markReport()}>Report</u>
+                <u id='q_report' onClick={() => markReport()}>Report</u>
               ) : (
                 <label>Reported</label>
               )}
             </div>
           </Stack>
         </Row>
-        {/* <br></br> */}
         <Row id='q_a_row3'>
         {photos.length > 0 &&
           <div>
@@ -109,7 +107,6 @@ const IndividualAnswer = (props) => {
       </div>
     </div>
   )
-
 }
 
 export default IndividualAnswer;

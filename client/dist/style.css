@@ -58,7 +58,7 @@
 .q_ans_photos {
   float: left;
   width: 100px;
-  height: 100px;
+  height: auto;
   margin: 10px;
 }
 .p_s_img, .p_s_img_highlight {
@@ -219,9 +219,6 @@ th.p_share {
   overflow-y: scroll;
   height: 500px;
 }
-h5.questions_widget_header {
-  margin-left: 50px;
-}
 .p_zoom {
   height: 70vh;
   display: flex;
@@ -237,4 +234,19 @@ h5.questions_widget_header {
 }
 .addA_upload_btn {
   margin-top: 25px;
+}
+#q_list_questions_container {
+  font-size: larger;
+}
+#a_loadBtn:hover {
+  text-decoration: underline;
+}
+#a_collapseBtn:hover {
+  text-decoration: underline;
+}
+#q_report:hover {
+  color:red;
+}
+#q_helpful:hover {
+  color:seagreen;
 }
