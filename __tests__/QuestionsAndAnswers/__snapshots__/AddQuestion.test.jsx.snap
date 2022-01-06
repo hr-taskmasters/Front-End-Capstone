@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render correctly 1`] = `
+<div
+  id="add_question_button"
+>
+  <label
+    className="mb-3"
+  >
+    Don't see the question you're looking for?
+  </label>
+   
+  <button
+    className="question_add btn btn-outline-secondary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    ADD A QUESTION +
+  </button>
+</div>
+`;

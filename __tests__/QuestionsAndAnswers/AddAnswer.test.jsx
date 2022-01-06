@@ -54,11 +54,12 @@ describe('Button click test', () => {
     wrapper.find('.addA_cancel_btn').at(0).simulate('click');
     expect(mockCallBack.mock.calls.length).toBe(0);
   });
-  it('submit button in Modal Test click', () => {
-    wrapper.find('.addA_submit_btn').at(0).simulate('click');
-    expect(mockCallBack.mock.calls.length).toBe(0);
-  });
+  // it('submit button in Modal Test click', () => {
+  //   wrapper.find('.addA_submit_btn').at(0).simulate('click');
+  //   expect(mockCallBack.mock.calls.length).toBe(0);
+  // });
 });
+
 
 // describe('form input component', () => {
 //   // it('Should change value when OnChange called', () => {

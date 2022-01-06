@@ -11,23 +11,45 @@ const AddAnswer = (props) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [photos, setphotos] = useState([]);
+  const [file, setFile] = useState('');
+  const [validated, setValidated] = useState(false);
 
   const onFileChange = (e) => {
     const preview = document.querySelector('#q_ans_uploads_previews');
     const file = e.target.files[0];
-    //console.log(file);
+    setFile(file);
     const reader = new FileReader();
     reader.onload = () => {
       preview.src = reader.result;
-      //setphotos([...photos, reader.result]);
-      //const url = URL.createObjectURL(file);
-      //setphotos([...photos, url]);
     };
     if(file) {
       reader.readAsDataURL(file);
     };
   };
+  const uploadImage = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'rp7rer9y');
+    fetch('https://api.cloudinary.com/v1_1/dtnikmimx/image/upload', {
+      method: 'POST',
+      body: formData,
+    })
+    .then(res => res.json())
+    .then((res) => {
+      //console.log(res.url);
+      alert('success upload')
+      setphotos([res.url]);
+    });
+  }
+
   const postAnswer = (e) => {
+    const form = e.currentTarget;
+    if(form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    setValidated(true);
     //e.preventDefault();
     const answer_info = {
       body: body,
@@ -35,9 +57,7 @@ const AddAnswer = (props) => {
       email: email,
       photos: photos
     }
-    //console.log(answer_info);
     if(body.length > 1 && name.length > 1 && email.length > 1 && email.includes('@')) {
-      //console.log(answer_info);
       axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/qa/questions/${props.question_id}/answers`, answer_info, {
         headers: { 'Authorization': `${API_KEY}` }
       })
@@ -49,11 +69,7 @@ const AddAnswer = (props) => {
         })
         .catch((err) => console.error(err));
     } else {
-      if(!email.includes('@')) {
-        alert('Please check your email format.')
-      } else {
-        alert('You must enter the all mandatory field.');
-      };
+      alert('You must enter the all mandatory field.');
     };
   };
 
@@ -61,7 +77,6 @@ const AddAnswer = (props) => {
     <div id='add_answer_button'>
       {' '}
       <Button className='answer_add' variant="outline-secondary" size='sm' onClick={handleShow}>ADD A ANSWER</Button>
-      {/* <img src='blob:null/2b4cec05-df41-4e75-a6dc-ef0e1eb799e3'></img> */}
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
@@ -70,7 +85,7 @@ const AddAnswer = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form novalidatie="true" validated={validated}>
             <Row className='mb-3'>
               <Form.Group as={Col} controlId='formGridQuestion'>
                 <Form.Label>Post your answer here</Form.Label>
@@ -83,8 +98,9 @@ const AddAnswer = (props) => {
                   maxLength='1000'
                   onChange={(e) => setBody(e.target.value)}
                   className='add_answer_body_input'
-                  value={body}
+                  value={body} required
                   ></Form.Control>
+                  <Form.Control.Feedback type='invalid'>Please enter text for answer</Form.Control.Feedback>
               </Form.Group>
             </Row>
             <Row className='mb-3'>
@@ -98,8 +114,9 @@ const AddAnswer = (props) => {
                     maxLength='60'
                     onChange={(e) => setName(e.target.value)}
                     className='add_answer_name_input'
-                    value={name}
+                    value={name} required
                   ></Form.Control>
+                  <Form.Control.Feedback type='invalid'>Please enter a username</Form.Control.Feedback>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
                   For privacy reasons, do not use your full name or email address
@@ -118,7 +135,9 @@ const AddAnswer = (props) => {
                     onChange={(e) => setEmail(e.target.value)}
                     className='add_answer_email_input'
                     value={email}
+                    pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' required
                   ></Form.Control>
+                  <Form.Control.Feedback type='invalid'>Please enter a valid email</Form.Control.Feedback>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
                   For authentication reasons, you will not be emailed
@@ -131,10 +150,14 @@ const AddAnswer = (props) => {
                 <Form.Control
                   type='file'
                   accept='image/png, image/jpeg'
-                  onChange={onFileChange} multiple/>
-                {/* {photos.length > 0 && <img id='answer_photo' src='' height='200'>} */}
+                  onChange={onFileChange}/>
                 <br/>
                 <Image id='q_ans_uploads_previews' height='100' width='100'/>
+              </Form.Group>
+            </Row>
+            <Row>
+              <Form.Group>
+                <Button className='addA_upload_btn' type='submit' onClick={uploadImage} size='sm' variant="light">Upload Image</Button>
               </Form.Group>
             </Row>
           </Form>
