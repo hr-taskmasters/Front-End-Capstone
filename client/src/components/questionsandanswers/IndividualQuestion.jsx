@@ -48,7 +48,7 @@ const IndividualQuestion = (props) => {
             {!markHelp ? (
               <div>
                 <label>Helpful? </label>
-                <u onClick={() => markHelpful()}>Yes</u>
+                <u id='q_helpful' onClick={() => markHelpful()}>Yes</u>
                 <span>({q_helpful_count})</span>
               </div>
             ) : (
@@ -61,7 +61,7 @@ const IndividualQuestion = (props) => {
           <div className="vr"/>
           <div>
             {!reported ? (
-              <u onClick={() => markReport()}>Report</u>
+              <u id='q_report' onClick={() => markReport()}>Report</u>
             ) : (
               <label>Reported</label>
             )}

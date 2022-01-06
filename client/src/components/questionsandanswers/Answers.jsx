@@ -37,11 +37,11 @@ const Answers = (props) => {
   const changeBtnMode = () => {
     if(ansPerPage < ansLength) {
       return(
-        <strong onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
+        <strong id='a_loadBtn' onClick={() => loadMoreAns()}>LOAD MORE ANSWERS({answers.length-sliceAns.length})</strong>
       );
     } else {
       return(
-        <strong id='collapseBtn' variant="outline-secondary" onClick={()=> collapse()}>COLLAPSE ANSWERS</strong>
+        <strong id='a_collapseBtn' onClick={()=> collapse()}>COLLAPSE ANSWERS</strong>
       );
     };
   };
