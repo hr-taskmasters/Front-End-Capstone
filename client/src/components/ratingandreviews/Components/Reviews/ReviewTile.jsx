@@ -81,22 +81,3 @@ function ReviewTile (props) {
   )
 }
 export default ReviewTile;
-
-
-
-//select no for unhelpful issue
-
-{/* <div onClick={() => selectUnHelpful()}>No</div> */}
-
-// const selectUnHelpful = () =>{
-//   if (!helpfulSelection) {
-//   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews/${props.review.review_id}/helpful`, 
-//   {helpfulness: reviewHelpfulNum - 1},
-//   { headers: { 'Authorization': `${API_KEY}` } })
-//   .then(res => {
-//     setReviewHelpfulNum(reviewHelpfulNum - 1);
-//     setHelpfulSelection(true);
-//   })
-//   .catch(err => console.log(err));
-//   }
-// }

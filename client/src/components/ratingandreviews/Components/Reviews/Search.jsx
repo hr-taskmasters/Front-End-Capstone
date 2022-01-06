@@ -1,4 +1,4 @@
-import React, {useState, useEfect} from 'react';
+import React from 'react';
 import { Form, InputGroup } from 'react-bootstrap';
 
 const Search = ({search, setSearch}) => {

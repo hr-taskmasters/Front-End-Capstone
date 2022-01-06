@@ -1,6 +1,4 @@
 import React, { useState, useEffect} from 'react';
-import axios from 'axios';
-import API_KEY from '../../../../config/config.js'
 import { Button, Card, Stack } from 'react-bootstrap';
 import ReviewTile from './ReviewTile.jsx';
 import SortDropdown from './SortDropdown.jsx';
