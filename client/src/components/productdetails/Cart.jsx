@@ -11,7 +11,7 @@ function Cart(props) {
 
   useEffect(() => {
     reset();
-  }, [props.style])
+  }, [props])
 
   const reset = () => {
     setSize('SELECT SIZE');
@@ -28,10 +28,10 @@ function Cart(props) {
       var quantity = Object.values(props.style[props.styleNum].skus).filter((item) => {
         return item.size === size;
       })[0].quantity;
-      if (quantity > 14) {
-        quantity = 14;
+      if (quantity > 15) {
+        quantity = 15;
       }
-      var numList = Array.from({length: quantity}, (_, i) => i + 2);
+      var numList = Array.from({length: quantity}, (_, i) => i + 1);
       return numList;
     }
   }
@@ -80,23 +80,34 @@ function Cart(props) {
     }
   }
 
+  const checkQuantity = () => {
+    const sizeAndQuantity = Object.values(props.style[props.styleNum].skus);
+    if (sizeAndQuantity[0].size) {
+      return (
+        <select onChange={selectSize} className='p_select'>
+          <option>SELECT SIZE</option>
+          {sizeAndQuantity.map((item, index) => (
+            <option key={index} value={item.size} className='p_dropdown'>{item.size}</option>
+          ))}
+        </select>
+      )
+    } else {
+      return (
+        <select className='p_select'>
+          <option>OUT OF STOCK</option>
+        </select>
+      )
+    }
+  }
+
   return (
     <div>
       {notice && <div className='p_notice'>Please select size</div>}
       <div className='p_flex_container'>
         <div className='p_flex_child_size'>
-          <select onChange={selectSize} className='p_select'>
-            <option>SELECT SIZE</option>
-            {props.style.length ?
-              Object.values(props.style[props.styleNum].skus).map((item, index) => {
-                return (
-                  <option key={index} value={item.size} className='p_dropdown'>{item.size}</option>
-                )
-              })
-            :
-              <option>OUT OF STOCK</option>
+            {props.style.length &&
+              checkQuantity()
             }
-          </select>
         </div>
 
         <div className='p_flex_child_quantity'>
@@ -106,7 +117,6 @@ function Cart(props) {
             </select>
           :
             <select onChange={pickQuantity} className='p_select'>
-              <option>1</option>
               {selectQuantity().map((num) => (
                 <option key={num} value={num}>{num}</option>
               ))}
@@ -115,7 +125,7 @@ function Cart(props) {
         </div>
       </div>
 
-      {props.style.length ?
+      {props.style.length && Object.values(props.style[props.styleNum].skus)[0].size ?
         <Button variant='dark' type='button' className='btn btn-default btn-sm p_flex_child_cart' onClick={handleClick}>
           <b> Add to Cart +</b>
         </Button>
