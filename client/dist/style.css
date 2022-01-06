@@ -205,3 +205,6 @@ h5.questions_widget_header {
 #q_searchinput {
   font-family: FontAwesome;
 }
+.addA_upload_btn {
+  margin-top: 25px;
+}
