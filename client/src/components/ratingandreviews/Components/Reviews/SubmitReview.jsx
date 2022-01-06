@@ -19,7 +19,8 @@ function SubmitReview (props) {
     const [quality, setQuality] = useState(null);
     const [length, setLength] = useState(null);
     const [fit, setFit] = useState(null);
-    
+    const [photos, setPhotos] = useState([]);
+    const [file, setFile] = useState('');
     const [summary, setSummary] = useState('');
     const [body, setBody] = useState('');
     const [nickname, setNickname] = useState('');
@@ -44,10 +45,19 @@ function SubmitReview (props) {
     }
 
     const storeImages = (e) => {
-      const imagePreview = document.querySelector("submit-image-previews");
+      const imagePreview = document.querySelector("#submit-image-previews");
       const file = e.target.files[0];
       console.log(file);
+      setFile(file);
+      const reader = new FileReader();
+      reader.onload =() => {
+        imagePreview.src = reader.result;
+      }
+      if(file) {
+        reader.readAsDataURL(file);
+      }
     }
+
 
     const postReview = (e) => {
         e.preventDefault();
@@ -86,19 +96,25 @@ function SubmitReview (props) {
             recommend: Boolean(recommended),
             name: nickname,
             email: email,
-            photos: [],
+            photos: photos,
             characteristics: factorsObj
         }
-        // if ()
+        if (Object.keys(factorsObj).length === Object.values(factorsObj).length
+          && recommended !== null 
+          && stars !== 0
+          ){
         
         axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-lax/reviews`, bodyParams,
         { headers: { 'Authorization': `${API_KEY}` }})
         .then(res => {
             alert('Your review was submitted.')
-            console.log(bodyParams)
             handleClose();
         })
         .catch(err => console.log(err, bodyParams))
+      } else {
+        alert('All fields marked with a * must be included in your review.')
+        
+      }
     };
     
     return (
@@ -294,10 +310,9 @@ function SubmitReview (props) {
                     <Accordion.Header>Upload Images</Accordion.Header>
                     <Accordion.Body>
                       <Stack gap={2}>
-                        <div>[Image Previews] *Limit 5*</div>
-                        <Image id="submit-image-previews" thumbnail />
+                        <Image id="submit-image-previews" height="20%" width="20%" />
                         <Form.Control type="file" 
-                        multiple
+                        accept='image/png, image/jpeg'
                         onChange={storeImages}
                         />
                       </Stack>
