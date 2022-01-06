@@ -2,9 +2,6 @@
 
 exports[`renders share component correctly 1`] = `
 <div>
-  <span>
-    Share: 
-  </span>
   <a
     className="p_share_icon"
     href="https://www.facebook.com/"
