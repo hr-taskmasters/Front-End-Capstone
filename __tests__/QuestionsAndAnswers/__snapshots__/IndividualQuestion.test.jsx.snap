@@ -43,6 +43,7 @@ exports[`Render correctly 1`] = `
               Helpful? 
             </label>
             <u
+              id="q_helpful"
               onClick={[Function]}
             >
               Yes
@@ -59,6 +60,7 @@ exports[`Render correctly 1`] = `
         />
         <div>
           <u
+            id="q_report"
             onClick={[Function]}
           >
             Report
