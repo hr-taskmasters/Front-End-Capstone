@@ -40,12 +40,12 @@ const QuestionsAndAnswers = (props) => {
     });
   };
   const length = questions.length;
-  const [numPerPage, setNumPerPage] = useState(4);
+  const [numPerPage, setNumPerPage] = useState(3);
   const loadMore = () => {
     setNumPerPage(numPerPage + 2);
   };
   const collapse = () => {
-    setNumPerPage(4);
+    setNumPerPage(3);
   };
   const sliceQuesions = questions.slice(0, numPerPage);
   const filteredQues = filterQuestions(sliceQuesions, searchTerm);
@@ -64,10 +64,10 @@ const QuestionsAndAnswers = (props) => {
 
   return (
     <div className='questions-answers'>
-      <div id='questions_answers_container'>
+      {/* <div id='questions_answers_container'> */}
         <div className='questions_widget'>
-          <h5 className='questions_widget_header'>QUESTIONS & ANSWERS</h5>
           <Container className='questions_list'>
+            <h5 className='questions_widget_header'>QUESTIONS & ANSWERS</h5>
             <Row id='q_list_search'>
               <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
             </Row>
@@ -84,7 +84,7 @@ const QuestionsAndAnswers = (props) => {
             </Row>
           </Container>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 };
