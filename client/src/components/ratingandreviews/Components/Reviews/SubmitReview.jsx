@@ -4,7 +4,7 @@ import API_KEY from '../../../../config/config.js';
 import Radios from '../../radioData/radioData.js';
 import { Rating } from 'react-simple-star-rating';
 import { Button, Stack, Form, Modal, Accordion, 
-  FloatingLabel, ButtonGroup, ToggleButton, Image} from 'react-bootstrap';
+  FloatingLabel, ButtonGroup, ToggleButton, Image, ToggleButtonGroup} from 'react-bootstrap';
 
 
 function SubmitReview (props) {
@@ -119,14 +119,12 @@ function SubmitReview (props) {
                     tooltipArray={['Poor', 'Fair', 'Average', 'Good', 'Great']}
                 />
                 
-                    {/* RADIOS */}
                 <b>Do you recommend this product?*</b>
-                <ButtonGroup className="mb-2">
+                <ToggleButtonGroup className="mb-2" name="recommendOptions" size="sm">
                   {Radios.recommended.map((radio, i) => (
                     <ToggleButton
                         size="sm"
                         key={i}
-                        // active={true}
                         id={`radioRec-${i}`}
                         type="radio"
                         variant={i % 2 === 0  ? 'outline-primary' : 'outline-secondary'}
@@ -138,11 +136,11 @@ function SubmitReview (props) {
                         {radio.name}
                     </ToggleButton>
                   ))}
-                </ButtonGroup>
+                </ToggleButtonGroup>
                 {appChars.indexOf('Size') > -1 ?
                 <>
                 <b>Size*</b>
-                <ButtonGroup className="mb-2">
+                <ToggleButtonGroup className="mb-2" name="sizeOptions" size="sm">
                   {Radios.size.map((radio, i) => (
                     <ToggleButton
                         key={i}
@@ -157,13 +155,13 @@ function SubmitReview (props) {
                         {radio.name}
                     </ToggleButton>
                   ))}
-                </ButtonGroup>
+                </ToggleButtonGroup>
                 </>
                 : <></>}
                 {appChars.indexOf('Width') > -1 ?
                 <>
                 <b>Width*</b>
-                <ButtonGroup className="mb-2">
+                <ToggleButtonGroup className="mb-2" name="widthOptions" size="sm">
                   {Radios.width.map((radio, i) => (
                     <ToggleButton
                         key={i}
@@ -178,20 +176,20 @@ function SubmitReview (props) {
                         {radio.name}
                     </ToggleButton>
                   ))}
-                </ButtonGroup>
+                </ToggleButtonGroup>
                 </>
                 : <></>}
                 {appChars.indexOf('Comfort') > -1 ?
                 <>
                 <b>Comfort*</b>
-                <ButtonGroup className="mb-2">
+                <ToggleButtonGroup className="mb-2" name="comfortOptions" size="sm">
                   {Radios.comfort.map((radio, i) => (
                     <ToggleButton
                         key={i}
                         id={`radioComfort-${i}`}
-                        type="radio"
+                        type="checkbox"
                         variant="outline-primary"
-                        name="radio"
+                        name="checkbox"
                         value={radio.value}
                         checked={comfort === radio.value}
                         onChange={(e) => setComfort(e.currentTarget.value)}
@@ -199,13 +197,13 @@ function SubmitReview (props) {
                         {radio.name}
                     </ToggleButton>
                   ))}
-                </ButtonGroup>
+                </ToggleButtonGroup>
                 </>
                 : <></>}
                 {appChars.indexOf('Quality') > -1 ?
                 <>
                 <b>Quality*</b>
-                <ButtonGroup className="mb-2">
+                <ToggleButtonGroup className="mb-2" name="qualityOptions" size="sm">
                   {Radios.width.map((radio, i) => (
                     <ToggleButton
                         key={i}
@@ -220,13 +218,13 @@ function SubmitReview (props) {
                         {radio.name}
                     </ToggleButton>
                   ))}
-                </ButtonGroup>
+                </ToggleButtonGroup>
                 </>
                 : <></>}
                 {appChars.indexOf('Length') > -1 ?
                 <>
                 <b>Length*</b>
-                <ButtonGroup className="mb-2">
+                <ToggleButtonGroup className="mb-2" name="lengthOptions" size="sm">
                   {Radios.width.map((radio, i) => (
                     <ToggleButton
                         key={i}
@@ -242,13 +240,13 @@ function SubmitReview (props) {
                         {radio.name}
                     </ToggleButton>
                   ))}
-                </ButtonGroup>
+                </ToggleButtonGroup>
                 </>
                 : <></>}
                 {appChars.indexOf('Fit') > -1 ?
                 <>
                 <b>Fit*</b>
-                <ButtonGroup className="mb-2">
+                <ToggleButtonGroup className="mb-2" name="fitOptions" size="sm">
                   {Radios.width.map((radio, i) => (
                     <ToggleButton
                         key={i}
@@ -263,7 +261,7 @@ function SubmitReview (props) {
                         {radio.name}
                     </ToggleButton>
                   ))}
-                </ButtonGroup>
+                </ToggleButtonGroup>
                 </>
                 : <></>}
 
