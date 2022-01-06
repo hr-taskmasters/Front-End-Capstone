@@ -3,8 +3,7 @@ import { Card, Button, Modal, Image, Row, ModalBody } from 'react-bootstrap'
 
 
 
-function Images (props) {
-    const image = props.image;
+function Images ({ image }) {
     const[imageLarge, setImageLarge]= useState(false)
 
     return (
