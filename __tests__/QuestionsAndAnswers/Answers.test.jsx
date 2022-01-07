@@ -28,8 +28,12 @@ describe('<Answers /> with props', () => {
 });
 
 describe('Test add answer button', () => {
+  const wrapper = mount(<Answers question={oneQuestion}/>);
   test('Render an add Answer button', () => {
-    const wrapper = mount(<Answers question={oneQuestion}/>);
     expect(wrapper).toContainMatchingElement('AddAnswer');
-  })
-})
+  });
+  test('Render load Btn', () => {
+    expect(wrapper.find('strong')).toHaveLength(1);
+  });
+});
+

@@ -102,7 +102,7 @@ exports[`Render correctly 1`] = `
                 onClick={[Function]}
                 type="button"
               >
-                ADD A ANSWER
+                ADD AN ANSWER
               </button>
             </div>
           </div>

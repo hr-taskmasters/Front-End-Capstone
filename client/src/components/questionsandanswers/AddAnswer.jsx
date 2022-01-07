@@ -73,7 +73,7 @@ const AddAnswer = (props) => {
   return (
     <div id='add_answer_button'>
       {' '}
-      <Button className='answer_add' variant="outline-secondary" size='sm' onClick={handleShow}>ADD A ANSWER</Button>
+      <Button className='answer_add' variant="outline-secondary" size='sm' onClick={handleShow}>ADD AN ANSWER</Button>
       <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>

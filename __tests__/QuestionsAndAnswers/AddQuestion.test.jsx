@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
 import AddQuestion from '../../client/src/components/questionsandanswers/AddQuestion.jsx';
 import { Button, Modal, Form, FloatingLabel} from 'react-bootstrap';
+// import {render, fireEvent} from '@testing-library/react';
 Enzyme.configure({ adapter: new Adapter()});
 
 describe('<AddQuestion />', () => {
@@ -22,6 +23,9 @@ describe('<AddQuestion />', () => {
   test('render a form', () => {
     expect(wrapper).toContainMatchingElements(1, 'Form');
   });
+  test('render a modal', () => {
+    expect(wrapper.find('Modal')).toHaveLength(1);
+  })
 });
 
 describe('form component', () => {
