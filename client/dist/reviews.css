@@ -7,14 +7,11 @@
   padding-left: 1%;
   padding-right: 1%;
   justify-content: center;
-  /* margin: 20px; */
   min-width: min-content;
 }
 
 .rating-reviews-title{
   /* padding-left: 20px; */
-  display: flex;
-  /* justify-content:center; */
   padding-left: 5%;
   padding-top: 50px;
   padding-bottom: 20px;
