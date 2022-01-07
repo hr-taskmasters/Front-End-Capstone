@@ -88,7 +88,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
+      <div id="main-app-container">
         <ProductDetailsWithClick product={this.state.product} ratings={this.state.ratings}/>
         <RelatedItemsWithClick productid={this.state.product.id} featuredProd={this.state.product} chooseProduct={this.getProductViaId}/>
         <QuestionsAndAnswersWithClick product={this.state.product}/>

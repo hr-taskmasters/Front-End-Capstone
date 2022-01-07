@@ -1,3 +1,8 @@
+#main-app-container{
+  font-family: Helvetica, sans-serif
+}
+
+
 .p_logo {
   width: 80px;
   border-radius: 30%;
@@ -265,4 +270,5 @@ th.p_share {
   padding-bottom: 2%;
   display: flex;
   justify-content: center;
+  font-family: Helvetica, sans-serif;
 }
