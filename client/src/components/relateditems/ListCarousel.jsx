@@ -9,7 +9,8 @@ import API_KEY from '../../config/config.js';
 function ListCarousel(props) {
 
   const [grid, setGrid] = useState([]);
-  let scrollPos = 0;
+  const [pos, setPos] = useState(0);
+  let scrollPos = pos;
   const scrollDistance = 320;
   const [leftButton, setLButton] = useState(' ');
   const [rightButton, setRButton] = useState('>');
@@ -68,6 +69,7 @@ function ListCarousel(props) {
         setRButton('>');
       }
     }
+    setPos(scrollPos);
   };
 
   const scrollLeft = (e) => {
@@ -92,6 +94,10 @@ function ListCarousel(props) {
     checkPos((element.scrollWidth - element.clientWidth));
   };
 
+  const resetPos = () => {
+    setPos(0);
+  }
+
   return (
     <div className='carousel' key={props.uniqueid + 'related'}>
       <div className='carouselContainer'>
@@ -101,7 +107,7 @@ function ListCarousel(props) {
               window.scrollTo({
                 top: 0
               });
-            }} key={index}><ProductCard product={product} featuredProd={props.featuredProd} icon='star' chooseProduct={props.chooseProduct} checkPos={checkPos} uniqueid={props.uniqueid}/></div>
+            }} key={index}><ProductCard product={product} featuredProd={props.featuredProd} icon='star' chooseProduct={props.chooseProduct} resetPos={resetPos} checkPos={checkPos} uniqueid={props.uniqueid}/></div>
           ))}
         </div>
         <div className="moveLeft slideButton" onClick={scrollLeft} id="listLeft">{leftButton}</div>

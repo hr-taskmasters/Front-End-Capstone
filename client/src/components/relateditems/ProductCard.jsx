@@ -104,6 +104,7 @@ class ProductCard extends React.Component {
       <Card style={{width: '18rem'}} onClick={() => {
         this.props.checkPos();
         this.props.chooseProduct(productid);
+        this.props.resetPos();
       }}>
         <Card.Img variant="top" src={this.state.imageUrl} style={styles.cardImage}/>
         <ActionButton icon={this.props.icon} removeOutfit={this.props.removeOutfit} product={this.props.product} featuredProd={this.props.featuredProd} />
