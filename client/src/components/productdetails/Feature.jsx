@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
 function Feature(props) {
-  console.log(props)
   return (
     <div>
       {props.features.map(feature => (

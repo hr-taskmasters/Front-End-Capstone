@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders AddToCart component correctly 1`] = `
+<button
+  className="btn btn-default btn-sm p_flex_child_cart btn btn-dark"
+  disabled={false}
+  type="button"
+>
+  <b>
+     Add to Cart +
+  </b>
+</button>
+`;
