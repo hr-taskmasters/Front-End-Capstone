@@ -105,7 +105,7 @@ function Image(props) {
                 <i className='fas fa-chevron-left'></i>
               </button>
             :
-              null
+              <button className='p_button'></button>
             }
             {props.style[props.styleNum].photos[selectImg] ?
               <img
