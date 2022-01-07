@@ -11,6 +11,7 @@ let featuredProd;
 let card;
 const checkPosMock= jest.fn();
 const chooseProductMock = jest.fn();
+const resetPosMock = jest.fn();
 
 beforeEach(async () => {
   product = {
@@ -68,6 +69,7 @@ beforeEach(async () => {
     checkPos={checkPosMock}
     removeOutfit={() => {}}
     chooseProduct={chooseProductMock}
+    resetPos={resetPosMock}
     uniqueid='42366'
   />);
 })
