@@ -85,7 +85,8 @@ const AddAnswer = (props) => {
           <Form novalidatie="true" validated={validated}>
             <Row className='mb-3'>
               <Form.Group as={Col} controlId='formGridQuestion'>
-                <Form.Label>Post your answer here</Form.Label>
+                <Form.Label>
+                  Post your answer here<span id='q_mandatory'>*</span></Form.Label>
                 <Form.Control
                   as='textarea'
                   type='text'
@@ -102,7 +103,7 @@ const AddAnswer = (props) => {
             </Row>
             <Row className='mb-3'>
               <Form.Group as={Col} controlId='formGridNickname'>
-                <Form.Label>What is your nickname?</Form.Label>
+                <Form.Label>What is your nickname?<span id='q_mandatory'>*</span></Form.Label>
                 <FloatingLabel controlId='floatingnickname' label='Example: jackson543!'>
                   <Form.Control
                     type='text'
@@ -113,7 +114,7 @@ const AddAnswer = (props) => {
                     className='add_answer_name_input'
                     value={name} required
                   ></Form.Control>
-                  <Form.Control.Feedback type='invalid'>Please enter a username</Form.Control.Feedback>
+                  <Form.Control.Feedback type='invalid'>Please enter a username<span id='q_mandatory'>*</span></Form.Control.Feedback>
                 </FloatingLabel>
                 <Form.Text className='text-muted'>
                   For privacy reasons, do not use your full name or email address
@@ -122,7 +123,7 @@ const AddAnswer = (props) => {
             </Row>
             <Row className='mb-3'>
               <Form.Group as={Col} controlId='formGridNickname'>
-                <Form.Label>What is your email?</Form.Label>
+                <Form.Label>What is your email?<span id='q_mandatory'>*</span></Form.Label>
                 <FloatingLabel controlId='floatingemail' label='Example: jack@email.com'>
                   <Form.Control
                     type='email'

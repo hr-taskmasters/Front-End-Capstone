@@ -272,3 +272,6 @@ th.p_share {
   justify-content: center;
   font-family: Helvetica, sans-serif;
 }
+#q_mandatory {
+  color: red;
+}
