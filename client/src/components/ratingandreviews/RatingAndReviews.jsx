@@ -118,7 +118,7 @@ function RatingAndReviews(props) {
         <Card style={{ width: '26rem' }}> 
           <Ratings metaData={metaData} toggleFiltered={toggleFiltered} filteredBy={filteredBy} resetFiltered={resetFiltered}/>
         </Card>
-        <Card style={{ width: '60rem' }}>
+        <Card style={{ width: '55rem' }}>
           <Reviews reviewList={filteredReviewList} 
           product={props.product} 
           metaData={metaData}
