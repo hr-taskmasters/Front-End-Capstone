@@ -173,6 +173,12 @@ th.p_share {
   background-color: transparent;
   outline: none;
 }
+.p_button {
+  margin: 15px;
+  border: white;
+  background-color: transparent;
+  outline: none;
+}
 .p_expand {
   position: absolute;
   top: 80px;
@@ -257,6 +263,6 @@ th.p_share {
 .footer-main{
   padding-top: 2%;
   padding-bottom: 2%;
-  display: flex; 
+  display: flex;
   justify-content: center;
 }
