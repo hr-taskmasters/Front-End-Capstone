@@ -250,3 +250,12 @@ th.p_share {
 #q_helpful:hover {
   color:seagreen;
 }
+
+
+/* footer */
+.footer-main{
+  padding-top: 2%;
+  padding-bottom: 2%;
+  display: flex; 
+  justify-content: center;
+}
