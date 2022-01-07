@@ -4,14 +4,14 @@ import StarRating from '../../client/src/components/productdetails/StarRating.js
 
 test('renders StarRating component correctly', () => {
   const starRating = renderer.create(<StarRating
-    ratings={{1: '23', 2: '7', 3: '49', 4: '36', 5: '45'}}
+    ratings={{1: '23', 2: '7', 3: '49', 4: '36', 5: '45'}} reviewList={[{}, {}]}
   />).toJSON();
   expect(starRating).toMatchSnapshot();
 });
 
 test('renders StarRating component correctly', () => {
   const starRating = renderer.create(<StarRating
-    ratings={{1: '23', 2: '7', 3: '49', 4: '36', 5: '45'}}
+    ratings={{1: '23', 2: '7', 3: '49', 4: '36', 5: '45'}} reviewList={[{}, {}]}
   />).root;
 
   const rating = starRating.findAllByProps({

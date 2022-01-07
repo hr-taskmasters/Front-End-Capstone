@@ -105,16 +105,17 @@
   margin-bottom: -20px;
 }
 .p_flex_child_cart {
-  width: 250px;
+  width: 60%;
   height: 50px;
 }
 .p_select {
-  width: 200px;
+  width: 80%;
   height: 50px;
 }
 .p_fav {
-  margin-left: 30px;
+  margin-left: 7%;
   height: 50px;
+  width: 23%;
 }
 .p_wrapper {
   margin: 30px 150px 30px 80px;

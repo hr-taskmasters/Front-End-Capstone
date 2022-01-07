@@ -29,7 +29,6 @@ test('Renders the status component', ()=> {
   }];
   const wrapper = shallow(<ProductInfo info={info} ratings={ratings} style={style} />);
   expect(wrapper).toContainExactlyOneMatchingElement('Image');
-  expect(wrapper).toContainExactlyOneMatchingElement('StarRating');
   expect(wrapper).toContainExactlyOneMatchingElement('Price');
   expect(wrapper).toContainExactlyOneMatchingElement('Thumbnail');
   expect(wrapper).toContainExactlyOneMatchingElement('Cart');

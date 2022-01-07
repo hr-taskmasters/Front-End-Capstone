@@ -101,7 +101,7 @@ exports[`renders Product Details component correctly 1`] = `
       <div
         className="product-content col-md-5"
       >
-        <div />
+        0
         <h4>
           Jackets
         </h4>
@@ -146,17 +146,7 @@ exports[`renders Product Details component correctly 1`] = `
             <div
               className="p_flex_child_size"
             >
-              <select
-                className="p_select"
-                onChange={[Function]}
-              >
-                <option>
-                  SELECT SIZE
-                </option>
-                <option>
-                  OUT OF STOCK
-                </option>
-              </select>
+              0
             </div>
             <div
               className="p_flex_child_quantity"

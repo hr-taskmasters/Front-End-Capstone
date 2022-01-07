@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Feature component correctly 1`] = `
+<div>
+  <div>
+    Fabric
+    : 
+    Canvas
+  </div>
+</div>
+`;

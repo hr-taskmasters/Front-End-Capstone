@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import Button from 'react-bootstrap/Button';
 import Favorite from './Favorite.jsx';
+import AddToCart from './AddToCart.jsx';
 import axios from 'axios';
 import API_KEY from '../../config/config.js';
 
@@ -126,9 +126,7 @@ function Cart(props) {
       </div>
 
       {props.style.length && Object.values(props.style[props.styleNum].skus)[0].size ?
-        <Button variant='dark' type='button' className='btn btn-default btn-sm p_flex_child_cart' onClick={handleClick}>
-          <b> Add to Cart +</b>
-        </Button>
+        <AddToCart handleClick={handleClick} />
       :
         null
       }
