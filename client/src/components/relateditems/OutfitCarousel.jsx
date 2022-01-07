@@ -10,7 +10,8 @@ import API_KEY from '../../config/config.js';
 function OutfitCarousel(props) {
 
   const [grid, setGrid] = useState([]);
-  let scrollPos = 0;
+  const [pos, setPos] = useState(0);
+  let scrollPos = pos;
   const scrollDistance = 320;
   const [leftButton, setLButton] = useState(' ');
   const [rightButton, setRButton] = useState('>');
@@ -45,6 +46,7 @@ function OutfitCarousel(props) {
         setRButton('>');
       }
     }
+    setPos(scrollPos);
   };
 
   const scrollLeft = (e) => {
@@ -68,6 +70,10 @@ function OutfitCarousel(props) {
     }
     checkPos((element.scrollWidth - element.clientWidth));
   };
+
+  const resetPos = () => {
+    setPos(0);
+  }
 
   return (
     <div className='carousel' key={props.uniqueid + 'outfit'}>
@@ -102,7 +108,7 @@ function OutfitCarousel(props) {
                 top: 0
               });
             }}>
-              <ProductCard key={product.id} product={product} featuredProd={props.featuredProd} icon='remove' checkPos={checkPos} removeOutfit={props.removeOutfit} chooseProduct={props.chooseProduct} uniqueid={props.uniqueid}/>
+              <ProductCard key={product.id} product={product} featuredProd={props.featuredProd} icon='remove' checkPos={checkPos} removeOutfit={props.removeOutfit} chooseProduct={props.chooseProduct} resetPos={resetPos} uniqueid={props.uniqueid}/>
             </div>
           ))}
         </div>
