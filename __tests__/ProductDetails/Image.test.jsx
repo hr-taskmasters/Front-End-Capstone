@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Enzyme, { configure, mount, shallow, render } from 'enzyme';
+import Enzyme, { configure, mount, shallow, render, contains } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 import Image from '../../client/src/components/productdetails/Image.jsx';
@@ -59,7 +59,8 @@ test('Renders the status component', () => {
   }];
   const styleNum = 0;
   const expand = true;
-  const wrapper = mount(<Image styleNum={styleNum} expand={expand} style={style} />);
+  const mockCallBack = jest.fn();
+  const wrapper = mount(<Image styleNum={styleNum} expand={expand} style={style} expandMode={mockCallBack} exitExpandMode={mockCallBack} />);
   expect(wrapper).toContainMatchingElements(9,'img');
 
   const scrollUp = wrapper.find('.p_up');
@@ -77,4 +78,15 @@ test('Renders the status component', () => {
   const scrollLeft = wrapper.find('.p_left').at(0);
   scrollLeft.simulate('click');
   expect(wrapper).toContainMatchingElements(9,'img');
+
+  const expandMode = wrapper.find('.p_pic').at(0);
+  expandMode.simulate('click');
+  expect(wrapper).toContainMatchingElements(9,'img');
+  expect(mockCallBack.mock.calls.length).toBe(1);
+  expect(wrapper.find('.p_expand').exists()).toBeTruthy();
+
+  const exitExpandMode = wrapper.find('.p_exit_expand').at(0);
+  exitExpandMode.simulate('click');
+  expect(wrapper).toContainMatchingElements(9,'img');
+  expect(mockCallBack.mock.calls.length).toBe(2);
 })
