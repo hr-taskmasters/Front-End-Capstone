@@ -45,3 +45,17 @@ describe('<IndividualAnswer />', () => {
     expect(photos).toContainMatchingElement('Image');
   });
 });
+
+describe('test click for feedback', () => {
+  const wrapper = shallow(<IndividualAnswer answer={answer} key={5269193} />);
+  test('mark helpful', () => {
+    expect(wrapper.find('#q_helpful')).toHaveLength(1);
+    wrapper.find('#q_helpful').at(0).simulate('click');
+    expect(wrapper.find('.a_help_afterclick')).toBeDefined();
+  });
+  test('mark report', () => {
+    expect(wrapper.find('#q_report')).toHaveLength(1);
+  wrapper.find('#q_report').at(0).simulate('click');
+  expect(wrapper.find('.a_reported')).toBeDefined();
+  });
+});

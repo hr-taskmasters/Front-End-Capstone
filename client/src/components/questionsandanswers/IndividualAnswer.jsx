@@ -1,8 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import moment from 'moment';
-import { Stack, Image, Modal, Row, closeButton } from 'react-bootstrap';
+import { Stack, Row } from 'react-bootstrap';
 import axios from 'axios';
 import API_KEY from '../../config/config.js';
+import AnswerPhotos from './AnswerPhotos.jsx';
 
 const IndividualAnswer = (props) => {
   const answer_id = props.answer.answer_id;
@@ -30,12 +31,7 @@ const IndividualAnswer = (props) => {
     })
     .catch((err) => console.error(err));
   }
-
   const photos = props.answer.photos;
-  const [isEnlarge, setLarge] = useState({
-    show: false,
-    index: 0
-  });
 
   const [isSeller, setIsSeller] = useState(props.answer.answerer_name==='Seller' || props.answer.answerer_name==='seller');
 
@@ -65,7 +61,7 @@ const IndividualAnswer = (props) => {
                   <span>({a_helpful_count})</span>
                 </div>
               ) : (
-                <div>
+                <div className='a_help_afterclick'>
                   <label> Helpful? </label>
                   <label>Yes({a_helpful_count})</label>
                 </div>
@@ -76,7 +72,7 @@ const IndividualAnswer = (props) => {
               {!reported ? (
                 <u id='q_report' onClick={() => markReport()}>Report</u>
               ) : (
-                <label>Reported</label>
+                <label className='a_reported'>Reported</label>
               )}
             </div>
           </Stack>
@@ -85,21 +81,7 @@ const IndividualAnswer = (props) => {
         {photos.length > 0 &&
           <div>
             <label>Yes, as you can see in these photos.</label>
-            <div>
-              {photos.map((photo, i) =>
-                <div key={i}>
-                  <Image className="q_ans_photos" src={photo.url} thumbnail onClick={()=> setLarge({show: true, index: i})}/>
-                  <Modal
-                    show={isEnlarge.show} centered size='large'
-                    onHide={() => setLarge({show: false, index: i})}>
-                    <Modal.Header closeButton></Modal.Header>
-                    <Modal.Body>
-                      <Image src={photos[isEnlarge.index].url} thumbnail/>
-                    </Modal.Body>
-                  </Modal>
-                </div>
-              )}
-            </div>
+            <AnswerPhotos photos={photos} />
           </div>
         }
         </Row>
