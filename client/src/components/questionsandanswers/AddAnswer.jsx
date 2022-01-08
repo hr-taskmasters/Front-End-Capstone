@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { Button, Modal, closeButton, Form, Row, Col, FloatingLabel, Image} from 'react-bootstrap';
 import API_KEY from '../../config/config.js';
+import AddAnswerPreview from './AddAnswerPreview.jsx';
 
 const AddAnswer = (props) => {
   const [showModal, setModal] = useState(false);
@@ -13,21 +14,19 @@ const AddAnswer = (props) => {
   const [photos, setphotos] = useState([]);
   const [file, setFile] = useState('');
   const [validated, setValidated] = useState(false);
+  const [photomax, setPhotomax] = useState(false);
 
   const onFileChange = (e) => {
-    const preview = document.querySelector('#q_ans_uploads_previews');
-    const file = e.target.files[0];
-    setFile(file);
-    const reader = new FileReader();
-    reader.onload = () => {
-      preview.src = reader.result;
-    };
-    if(file) {
-      reader.readAsDataURL(file);
+    const files = Array.from(e.target.files);
+    if(files.length > 5) {
+      setPhotomax(true);
+    } else {
+      files.forEach((image) => {
+        uploadImage(image);
+      });
     };
   };
-  const uploadImage = (e) => {
-    e.preventDefault();
+  const uploadImage = (file) => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'rp7rer9y');
@@ -37,8 +36,7 @@ const AddAnswer = (props) => {
     })
     .then(res => res.json())
     .then((res) => {
-      alert('success upload')
-      setphotos([res.url]);
+      setphotos((photos) => [...photos, res.secure_url]);
     });
   }
 
@@ -148,14 +146,11 @@ const AddAnswer = (props) => {
                 <Form.Control
                   type='file'
                   accept='image/png, image/jpeg'
-                  onChange={onFileChange}/>
+                  className='add_answer_photo_input'
+                  onChange={onFileChange} multiple/>
+                {photomax && <span>Sorry, maximum 5 photos</span>}
                 <br/>
-                <Image id='q_ans_uploads_previews' height='100' width='100'/>
-              </Form.Group>
-            </Row>
-            <Row>
-              <Form.Group>
-                <Button className='addA_upload_btn' type='submit' onClick={uploadImage} size='sm' variant="light">Upload Image</Button>
+                <AddAnswerPreview photos={photos} />
               </Form.Group>
             </Row>
           </Form>
