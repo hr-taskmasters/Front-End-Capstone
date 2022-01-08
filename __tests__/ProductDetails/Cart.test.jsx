@@ -48,10 +48,10 @@ describe('Cart', () => {
     wrapper = mount(<Cart style={style} styleNum={styleNum} />);
   });
 
-  it('calls selectSize function when dropdown button is clicked', () => {
-    const incButton = wrapper.find('.p_select').at(1);
-    incButton.simulate('change');
-    expect(wrapper.find('.p_notice')).not.toExist();
+  it('calls AddToCart function when dropdown button is not clicked', () => {
+    const incButton = wrapper.find('AddToCart');
+    incButton.simulate('click');
+    expect(wrapper.find('.p_notice')).toExist();
   });
 });
 
