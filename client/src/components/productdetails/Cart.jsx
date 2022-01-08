@@ -70,7 +70,6 @@ function Cart(props) {
   }
 
   const handleClick = () => {
-    event.preventDefault();
     if (size === 'SELECT SIZE') {
       setNotice(true);
     }
