@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Form, InputGroup } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 const Search = ({searchTerm, setSearchTerm}) => {
   return (
