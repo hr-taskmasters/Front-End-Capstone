@@ -47,7 +47,7 @@ function ListCarousel(props) {
     });
   };
 
-  const checkPos = (width) => {
+  const checkPos = (width, reset) => {
     let leftButton = document.getElementById('listLeft');
     let rightButton = document.getElementById('listRight');
     if (scrollPos <= 0) {
@@ -69,7 +69,9 @@ function ListCarousel(props) {
         setRButton('>');
       }
     }
-    setPos(scrollPos);
+    if(!reset){
+      setPos(scrollPos);
+    }
   };
 
   const scrollLeft = (e) => {
@@ -107,7 +109,7 @@ function ListCarousel(props) {
               window.scrollTo({
                 top: 0
               });
-            }} key={index}><ProductCard product={product} featuredProd={props.featuredProd} icon='star' chooseProduct={props.chooseProduct} resetPos={resetPos} checkPos={checkPos} uniqueid={props.uniqueid}/></div>
+            }} key={product.id}><ProductCard product={product} featuredProd={props.featuredProd} icon='star' chooseProduct={props.chooseProduct} resetPos={resetPos} checkPos={checkPos} uniqueid={props.uniqueid}/></div>
           ))}
         </div>
         <div className="moveLeft slideButton" onClick={scrollLeft} id="listLeft">{leftButton}</div>

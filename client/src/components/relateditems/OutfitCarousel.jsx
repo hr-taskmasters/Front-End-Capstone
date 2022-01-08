@@ -80,9 +80,10 @@ function OutfitCarousel(props) {
       <div className='carouselContainer'>
         <div className="carouselBox">
         <div className="carouselItem">
-          <Card style={{width: '18rem', backgroundColor: 'beige'}} id='addToCloset' onClick={() => {
+          <Card style={{width: '18rem', backgroundColor: 'beige'}} id='addItemToTheCloset' onClick={() => {
             let duplicateOutfit = false;
             let currentOutfits = JSON.parse(window.localStorage.fecCloset);
+            console.log(currentOutfits);
             for(let i = 0; i < currentOutfits.length; i++) {
               if(currentOutfits[i].id === props.featuredProd.id){
                 duplicateOutfit = true;
