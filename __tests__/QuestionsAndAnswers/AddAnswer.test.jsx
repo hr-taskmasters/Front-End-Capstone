@@ -7,19 +7,28 @@ Enzyme.configure({ adapter: new Adapter()});
 
 describe('<AddAnswer />', () => {
   const wrapper = shallow(<AddAnswer product_name='Camo Onesie' question_id={426448} question_body='Can I wash it?'/>);
-  it('render an add answer button', () => {
+  test('render an add answer button', () => {
     expect(wrapper.find('.answer_add')).toContainMatchingElements(1, 'Button');
   })
-  it('render title', () => {
+  test('render title', () => {
     expect(wrapper.find('#question_modal_title')).toContainMatchingElements(1, 'h3');
     expect(wrapper.find('#question_modal_title').text()).toContain('Submit your Answer');
   });
-  it('render subtitle', () => {
+  test('render subtitle', () => {
     expect(wrapper.find('#question_modal_subtitle')).toContainMatchingElements(1, 'h6');
     expect(wrapper.find('#question_modal_subtitle').text()).toContain('Camo Onesie: Can I wash it?');
   });
-  it('render a form', () => {
-    expect(wrapper).toContainMatchingElements(1, 'Form');
+  test('render a Modal', () => {
+    expect(wrapper).toContainMatchingElements(1, 'Modal');
+  });
+  test('open modal when button is clicked', () => {
+    expect(wrapper.find('Modal').prop('show')).toBe(false);
+    wrapper.find('.answer_add').simulate('click');
+    expect(wrapper.find('Modal').prop('show')).toBe(true);
+  });
+  test('cancel button click', () => {
+    wrapper.find('.addA_cancel_btn').simulate('click');
+    expect(wrapper.find('Modal').prop('show')).toBe(false);
   });
 });
 
@@ -54,40 +63,25 @@ describe('Button click test', () => {
     wrapper.find('.addA_cancel_btn').at(0).simulate('click');
     expect(mockCallBack.mock.calls.length).toBe(0);
   });
-  // it('submit button in Modal Test click', () => {
-  //   wrapper.find('.addA_submit_btn').at(0).simulate('click');
-  //   expect(mockCallBack.mock.calls.length).toBe(0);
-  // });
 });
 
-
-// describe('form input component', () => {
-//   // it('Should change value when OnChange called', () => {
-//   //   const onChangeMock = jest.fn();
-//   //   const wrapper = mount(<AddAnswer product_name='Camo Onesie' question_id={426448} question_body='Can I wash it?' onChange={onChangeMock}/>);
-//   //   //const input = wrapper.find('.add_answer_body_input').at(0);
-//   //   //input.simulate('change', { target: { value: 'Test Answer'}});
-//   //   //form.find('.add_answer_body_input').at(0).simulate('change', { target: { value: 'Test Answer'}});
-//   //   //expect(onChangeMock).toBeCalledWith('Test Answer');
-//   //   wrapper.find('.add_answer_body_input').instance().value = 'Test Answer';
-//   //   expect(wrapper.find('.add_answer_body_input').instance().value).toEqual('Test Answer');
-//   // })
-//   let wrapper;
-//   const setState = jest.fn();
-//   const useStatespy = jest.spyOn(React, 'useState');
-//   useStatespy.mockImplementation((init) => [init, setState]);
-
-//   beforeEach(() => {
-//     wrapper = mount(<AddAnswer product_name='Camo Onesie' question_id={426448} question_body='Can I wash it?'/>);
-//     //wrapper = mount(shallow(<AddAnswer product_name='Camo Onesie' question_id={426448} question_body='Can I wash it?'/>).get(0));
-//   });
-//   afterEach(() => {
-//     jest.clearAllMocks();
-//   });
-//   it('Should capture answer body correctly onChange', () => {
-//     const body = wrapper.find('.add_answer_body_input').at(0);
-//     body.instance().value ='Test Answer';
-//     body.simulate('change');
-//     expect(setState).toHaveBeenCalledWith('Test Answer');
-//   });
-// })
+describe('form component', () => {
+  const onChangeMock = jest.fn();
+  const wrapper = shallow(<AddAnswer product_name='Camo Onesie' question_id={426448} question_body='Can I wash it?' onChange={onChangeMock}/>);
+  const form = wrapper.find('Form');
+  test('render a form', () => {
+    expect(form).toHaveLength(1);
+  });
+  test('test onChange for body input', () => {
+    form.find('.add_answer_body_input').simulate('change', { target: {value: 'this is a test body'}});
+    expect(onChangeMock.mock.calls.length).toBe(0);
+  });
+  test('test onChange for name input', () => {
+    form.find('.add_answer_name_input').simulate('change', { target: {value: 'this is a test name'}});
+    expect(onChangeMock.mock.calls.length).toBe(0);
+  });
+  test('test onChange for name input', () => {
+    form.find('.add_answer_email_input').simulate('change', { target: {value: 'this is a test email'}});
+    expect(onChangeMock.mock.calls.length).toBe(0);
+  });
+});
