@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddAnswerPreview /> render correctly 1`] = `
+<div
+  className="q_previews"
+>
+  <img
+    className=""
+    height="100"
+    src="http://res.cloudinary.com/dtnikmimx/image/upload/v1641450048/t8kuusgqlzx4x0qpigrv.jpg"
+    width="100"
+  />
+  <img
+    className=""
+    height="100"
+    src="http://res.cloudinary.com/dtnikmimx/image/upload/v1641450048/t8kuusgqlzx4x0qpigrv.jpg"
+    width="100"
+  />
+</div>
+`;
