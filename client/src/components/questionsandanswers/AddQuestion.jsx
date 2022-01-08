@@ -31,7 +31,7 @@ const AddQuestion = (props) => {
         .then(response => {
           //console.log(response);
           alert('your question is successfully post.')
-          props.getAllQuestions(props.product_id)
+          props.getAllQuestions(props.product_id);
           handleClose();
         })
         .catch((err) => console.error(err));
@@ -55,7 +55,7 @@ const AddQuestion = (props) => {
           <Form novalidatie="true" validated={validated}>
             <Row className='mb-3'>
               <Form.Group as={Col} controlId='formGridQuestion'>
-                <Form.Label>Post your question here</Form.Label>
+                <Form.Label>Post your question here<span id='q_mandatory'>*</span></Form.Label>
                 <FloatingLabel controlId='floatingquestion' label='Why did you like the product or not?'>
                   <Form.Control
                     as='textarea'
@@ -73,7 +73,7 @@ const AddQuestion = (props) => {
             </Row>
             <Row className='mb-3'>
               <Form.Group as={Col} controlId='formGridNickname'>
-                <Form.Label>What is your nickname?</Form.Label>
+                <Form.Label>What is your nickname?<span id='q_mandatory'>*</span></Form.Label>
                 <FloatingLabel controlId='floatingnickname' label='Example: jackson11!'>
                   <Form.Control
                     type='text'
@@ -92,7 +92,7 @@ const AddQuestion = (props) => {
             </Row>
             <Row>
               <Form.Group as={Col} controlId='formGridNickname'>
-                <Form.Label>What is your email?</Form.Label>
+                <Form.Label>What is your email?<span id='q_mandatory'>*</span></Form.Label>
                 <FloatingLabel controlId='floatingemail' label='Example: jack@email.com'>
                   <Form.Control
                     type='email'

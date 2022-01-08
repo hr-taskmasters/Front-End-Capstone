@@ -28,7 +28,8 @@ const Answers = (props) => {
   const ansLength = answers.length;
   const [ansPerPage, setAnsPerPage] = useState(2);
   const loadMoreAns = () => {
-    setAnsPerPage(ansPerPage + 2);
+    //setAnsPerPage(ansPerPage + 2);
+    setAnsPerPage(ansLength);
   }
   const collapse = () => {
     setAnsPerPage(2);

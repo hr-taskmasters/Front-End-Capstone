@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AnswerPhotos /> render correctly 1`] = `
+<div
+  className="a_photos"
+>
+  <div>
+    <img
+      className="q_ans_photos img-thumbnail"
+      onClick={[Function]}
+      src="http://res.cloudinary.com/dtnikmimx/image/upload/v1641450048/t8kuusgqlzx4x0qpigrv.jpg"
+    />
+  </div>
+  <div>
+    <img
+      className="q_ans_photos img-thumbnail"
+      onClick={[Function]}
+      src="http://res.cloudinary.com/dtnikmimx/image/upload/v1641450048/t8kuusgqlzx4x0qpigrv.jpg"
+    />
+  </div>
+</div>
+`;

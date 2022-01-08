@@ -64,7 +64,6 @@ const QuestionsAndAnswers = (props) => {
 
   return (
     <div className='questions-answers'>
-      {/* <div id='questions_answers_container'> */}
         <div className='questions_widget'>
           <Container className='questions_list'>
             <h5 className='questions_widget_header'>QUESTIONS & ANSWERS</h5>
@@ -75,7 +74,7 @@ const QuestionsAndAnswers = (props) => {
             <Row id='q_list_questions_container'>
               <Questions questions={filteredQues} product_name={product_name}/>
                 <div>
-                  {questions.length > 4 && changeBtnMode()}
+                  {questions.length > 3 && changeBtnMode()}
                 </div>
             </Row>
             )}
@@ -84,7 +83,6 @@ const QuestionsAndAnswers = (props) => {
             </Row>
           </Container>
         </div>
-      {/* </div> */}
     </div>
   );
 };

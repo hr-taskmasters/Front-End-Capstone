@@ -22,4 +22,18 @@ test('Render the question component', () => {
   expect(wrapper.find('.q_title').text()).toEqual('Q:');
   expect(wrapper.find('#q_grid_row1_col3')).toContainMatchingElement('span');
   expect(wrapper).toContainExactlyOneMatchingElement('Answers');
+  expect(wrapper.find('Answers')).toHaveProp({ question: {"question_id":426448,"question_body":"Is it water proof?","question_date":"2021-09-24T00:00:00.000Z","question_helpfulness":6,"asker_name":"username123","answers":[]}});
+  expect(wrapper.find('Answers')).toHaveProp('product_name', 'Camo Onesie');
+});
+test('mark helpful', () => {
+  const wrapper = shallow(<IndividualQuestion question={question} product_name='Camo Onesie' />);
+  expect(wrapper.find('#q_helpful')).toHaveLength(1);
+  wrapper.find('#q_helpful').at(0).simulate('click');
+  expect(wrapper.find('q_help_afterclick')).toBeDefined();
+});
+test('mark report', () => {
+  const wrapper = shallow(<IndividualQuestion question={question} product_name='Camo Onesie' />);
+  expect(wrapper.find('#q_report')).toHaveLength(1);
+  wrapper.find('#q_report').at(0).simulate('click');
+  expect(wrapper.find('q_reported')).toBeDefined();
 });

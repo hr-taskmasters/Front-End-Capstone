@@ -32,12 +32,9 @@ describe('Load More Questions Button component', () => {
     const loadMoreBtn = wrapper.find('#loadBtn');
     expect(loadMoreBtn).toBeDefined();
   });
-  test('Should render correctly', () => {
-    expect(wrapper.find('#loadBtn')).toMatchSnapshot();
-  });
   test('Should not render a collapse button', () => {
     expect(wrapper.find('#collapseBtn')).toHaveLength(0);
-  })
+  });
 });
 
 describe('Search bar', () => {
