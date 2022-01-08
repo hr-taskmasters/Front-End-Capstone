@@ -99,12 +99,14 @@ class ProductCard extends React.Component {
   render() {
     const { chooseProduct } = this.props;
     const { productid } = this.state;
+    const { checkPos } = this.props;
+    const { resetPos } = this.props;
 
     return (
-      <Card style={{width: '18rem'}} onClick={() => {
-        this.props.checkPos();
-        this.props.chooseProduct(productid);
-        this.props.resetPos();
+      <Card key={this.props.product.id} style={{width: '18rem'}} onClick={() => {
+        chooseProduct(productid);
+        checkPos(0, true);
+        resetPos();
       }}>
         <Card.Img variant="top" src={this.state.imageUrl} style={styles.cardImage}/>
         <ActionButton icon={this.props.icon} removeOutfit={this.props.removeOutfit} product={this.props.product} featuredProd={this.props.featuredProd} />

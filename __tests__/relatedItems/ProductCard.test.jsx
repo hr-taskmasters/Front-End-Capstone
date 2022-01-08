@@ -12,6 +12,7 @@ let card;
 const checkPosMock= jest.fn();
 const chooseProductMock = jest.fn();
 const resetPosMock = jest.fn();
+ProductCard.prototype.setState = jest.fn();
 
 beforeEach(async () => {
   product = {
@@ -88,3 +89,4 @@ test('click works', () => {
   expect(checkPosMock.mock.calls.length).toBe(1);
   expect(chooseProductMock.mock.calls.length).toBe(1);
 })
+
