@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Zoom from './Zoom.jsx';
 
 function Image(props) {
-
+  console.log(props)
   const [selectImg, setSelectImg] = useState(0);
   const [firstImg, setFirstImg] = useState(0);
   const [lastImg, setLastImg] = useState(7);

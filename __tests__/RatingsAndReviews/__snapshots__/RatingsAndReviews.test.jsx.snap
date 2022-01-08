@@ -305,7 +305,7 @@ Array [
         className="card"
         style={
           Object {
-            "width": "60rem",
+            "width": "55rem",
           }
         }
       >

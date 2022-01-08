@@ -33,6 +33,9 @@ exports[`renders Image Gallery component correctly 1`] = `
     className="col-md-9"
   >
     <div>
+      <button
+        className="p_button"
+      />
       <img
         alt="Forest Green & Black"
         className="p_pic"

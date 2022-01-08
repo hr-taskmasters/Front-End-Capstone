@@ -26,6 +26,35 @@ test('renders Cart component correctly', () => {
   expect(cart).toMatchSnapshot();
 });
 
+describe('Cart', () => {
+  let wrapper;
+  const style = [
+    {
+      style_id: 253620,
+      name: "Forest Green & Black",
+      original_price: "140.00",
+      skus: {
+        1471554: {quantity: 8, size: 'XS'},
+        1471555: {quantity: 16, size: 'S'},
+        1471556: {quantity: 17, size: 'M'},
+        1471557: {quantity: 10, size: 'L'},
+        1471558: {quantity: 15, size: 'XL'},
+        1471559: {quantity: 4, size: 'XL'}
+      }
+    }
+  ];
+  const styleNum = 0;
+  beforeEach(() => {
+    wrapper = mount(<Cart style={style} styleNum={styleNum} />);
+  });
+
+  it('calls selectSize function when dropdown button is clicked', () => {
+    const incButton = wrapper.find('.p_select').at(1);
+    incButton.simulate('change');
+    expect(wrapper.find('.p_notice')).not.toExist();
+  });
+});
+
 test('Renders the status component', ()=> {
   const style = [
     {
@@ -47,3 +76,4 @@ test('Renders the status component', ()=> {
   expect(wrapper).toContainMatchingElements(2,'select');
   expect(wrapper).toContainMatchingElements(8,'option');
 })
+
