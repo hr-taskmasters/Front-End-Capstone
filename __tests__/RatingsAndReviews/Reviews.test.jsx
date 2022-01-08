@@ -4,8 +4,11 @@ import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
 import Reviews from '../../client/src/components/ratingandreviews/Components/Reviews/Reviews.jsx'
 
+Enzyme.configure({adapter: new Adapter()});
+
+
 describe('<Reviews />', () => {
-    const reviewList = [ {
+    const reviews = [{
         body: "Wow this product is amazing, 100/10 recommend. I own 1000 of these muahahaha. ",
         date: "2021-11-10T00:00:00.000Z",
         helpfulness: 6,
@@ -16,11 +19,7 @@ describe('<Reviews />', () => {
         review_id: 1094674,
         reviewer_name: "BananaBoy123",
         summary: "Is this really the best purchase ever?"
-    } 
-    ]
-    const product = {
-        name: "Camo Onesie"
-    }
+    }] 
     const metaData = {
         characteristics :{
             Comfort: {id: 142034, value: "3.1627906976744186"},
@@ -32,13 +31,21 @@ describe('<Reviews />', () => {
         ratings: {1: "23", 2: "8", 3: "50", 4: "36", 5: "47"},
         recommended : {false: "68", true: "96"}
     }
-    const sortBy = () => {}
-
+    const product = {
+        name: "Camo Onesie"
+    }
+    
     it('Should correctly render the review list', () => {
-        const reviews = renderer
-        .create(<Reviews sortBy={sortBy} reviewList={reviewList} metaData={metaData} product={product}/>)
+        const reviewsTest = renderer
+        .create(<Reviews reviewList={reviews} metaData={metaData} product={product} sortBy={()=>{}} getReviews={()=>{}}/>)
         .toJSON();
-        expect(reviews).toMatchSnapshot()
+        expect(reviewsTest).toMatchSnapshot()
     });
+
+    const wrapper = mount(<Reviews reviewList={reviews} metaData={metaData} product={product} sortBy={()=>{}} getReviews={()=>{}}/>)
+    it('Should respond to show more reviews', () => {
+        wrapper.find('.show-less').at(0).simulate('click')
+        expect(reviews).toEqual(reviews)
+    })
 
 });

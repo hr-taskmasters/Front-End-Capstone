@@ -3,7 +3,7 @@
 exports[`<SubmitReview /> Should correctly render the SubmitReview component 1`] = `
 <div>
   <button
-    className="btn btn-outline-secondary"
+    className="open-modal btn btn-outline-secondary"
     disabled={false}
     onClick={[Function]}
     type="button"

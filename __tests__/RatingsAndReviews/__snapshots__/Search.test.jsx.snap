@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Search /> Should correctly render the search output 1`] = `
+<form
+  className=""
+>
+  <div
+    className="input-group"
+  >
+    <span
+      className="input-group-text"
+    >
+      <i
+        className="fas fa-search"
+      />
+    </span>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Search reviews..."
+      type="text"
+    />
+  </div>
+</form>
+`;

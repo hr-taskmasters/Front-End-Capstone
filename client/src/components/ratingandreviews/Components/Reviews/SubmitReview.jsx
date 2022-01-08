@@ -126,21 +126,18 @@ function SubmitReview (props) {
             handleClose();
         })
         .catch(err => console.log(err, bodyParams))
-      } else {
-        alert('All fields marked with a * must be included in your review.')
-        
-      }
+          }
     };
     
     return (
       <div>
-        <Button variant="outline-secondary" onClick={handleShow}>Submit Review</Button>
+        <Button  className="open-modal" variant="outline-secondary" onClick={handleShow}>Submit Review</Button>
         <Modal show={showModal} onHide={handleClose} backdrop="static" size="lg" dialogClassName="modal-90w">
             <Modal.Header closeButton>
                 <Modal.Title>My Review of "{props.product.name}"</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <Form onSubmit={postReview}>
+              <Form className="submit-modal" onSubmit={postReview}>
                 <Stack gap={3}>
                 <Rating onClick={handleRating} 
                     ratingValue={stars} 
