@@ -345,7 +345,7 @@ Array [
             >
               <div>
                 <button
-                  className="btn btn-outline-secondary"
+                  className="open-modal btn btn-outline-secondary"
                   disabled={false}
                   onClick={[Function]}
                   type="button"
@@ -392,7 +392,7 @@ Array [
               className="vstack gap-3"
             >
               <button
-                className="btn btn-outline-secondary"
+                className="show-less btn btn-outline-secondary"
                 disabled={false}
                 onClick={[Function]}
                 type="button"

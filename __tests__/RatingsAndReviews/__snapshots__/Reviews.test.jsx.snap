@@ -38,7 +38,7 @@ Array [
       >
         <div>
           <button
-            className="btn btn-outline-secondary"
+            className="open-modal btn btn-outline-secondary"
             disabled={false}
             onClick={[Function]}
             type="button"
@@ -378,7 +378,7 @@ Array [
           </div>
         </div>
         <button
-          className="btn btn-outline-secondary"
+          className="show-less btn btn-outline-secondary"
           disabled={false}
           onClick={[Function]}
           type="button"

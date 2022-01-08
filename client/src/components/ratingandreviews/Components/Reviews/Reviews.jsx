@@ -57,8 +57,8 @@ function Reviews (props) {
                     <ReviewTile key={review.review_id} review={review}/>
                 ))}
                 {props.reviewList.length > 2 && reviewNum < props.reviewList.length ?
-                <Button variant="outline-secondary" onClick={() => loadMore()}>Show more reviews</Button>
-                : <Button variant="outline-secondary" onClick={() => collapse()}>Collapse</Button>}
+                <Button className="show-more" variant="outline-secondary" onClick={() => loadMore()}>Show more reviews</Button>
+                : <Button className="show-less" variant="outline-secondary" onClick={() => collapse()}>Collapse</Button>}
             </Stack>
         </Card.Body>
         </Card>

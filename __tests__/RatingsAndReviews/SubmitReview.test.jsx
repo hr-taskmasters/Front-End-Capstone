@@ -3,6 +3,7 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
 import SubmitReview from '../../client/src/components/ratingandreviews/Components/Reviews/SubmitReview.jsx'
+Enzyme.configure({adapter: new Adapter()});
 
 describe('<SubmitReview />', () => {
     const product = {
@@ -19,7 +20,7 @@ describe('<SubmitReview />', () => {
         ratings: {1: "23", 2: "8", 3: "50", 4: "36", 5: "47"},
         recommended : {false: "68", true: "96"}
     }
-    const sortBy = () => {}
+    
 
     it('Should correctly render the SubmitReview component', () => {
         const submit = renderer
@@ -28,4 +29,13 @@ describe('<SubmitReview />', () => {
         expect(submit).toMatchSnapshot()
     });
 
+    const wrapper = mount(<SubmitReview  product={product} metaData={metaData} getReviews={{}}/>)
+    it('should open the modal on click', () =>{
+    wrapper.find('.open-modal').at(0).simulate('click')
+    expect(metaData).toEqual(metaData)
+    })
+    it('should show modal', () => {
+        wrapper.find('.submit-modal').at(0).simulate('submit')
+        expect(metaData).toEqual(metaData)
+    })
 });

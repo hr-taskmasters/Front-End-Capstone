@@ -3,6 +3,7 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
 import ReviewBody from '../../client/src/components/ratingandreviews/Components/Reviews/ReviewBody.jsx'
+Enzyme.configure({adapter: new Adapter()});
 
 describe('<ReviewBody />', () => {
     const review = {
@@ -25,5 +26,10 @@ describe('<ReviewBody />', () => {
         expect(reviewBody.length).toMatchSnapshot()
 
     });
+    const wrapper = mount(<ReviewBody review={review}/>)
+    // it('Should respond to show more body text', () => {
+    //     wrapper.find('.show-more-body').simulate('click')
+    //     expect(review).toEqual(review)
+    // })
 
 });

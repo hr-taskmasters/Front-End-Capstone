@@ -24,7 +24,7 @@ function ReviewBody (props) {
           : <>{body}</>}
         </Card.Text>
           {bodyDifference !== 0 &&
-          <Button variant="outline-secondary"onClick={() => showMore()}>Show More</Button>
+          <Button className="show-more-body" variant="outline-secondary"onClick={() => showMore()}>Show More</Button>
           }
           <Row>
             {reviewPhotos.length > 0 &&

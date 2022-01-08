@@ -3,7 +3,7 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import renderer from 'react-test-renderer';
 import RatingBreakdown from '../../client/src/components/ratingandreviews/Components/Ratings/RatingBreakdown.jsx'
-
+Enzyme.configure({adapter: new Adapter()});
 
 describe('<RatingBreakdown />', () =>{
     const metaData = {
@@ -29,7 +29,6 @@ describe('<RatingBreakdown />', () =>{
         .toJSON();
         expect(totalRatings).toMatchSnapshot()
     })
-
 
 
 });
